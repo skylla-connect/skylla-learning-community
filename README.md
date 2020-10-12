@@ -31,11 +31,8 @@ only have one "feature" folder but many "generic" folders.
 
 Examples of "feature" folders:
 
-- Announcements
 - Admin
 - Users
-- Trainer
-- Trainee
 - Live support
 
 Examples of "generic" folders:
@@ -74,12 +71,24 @@ app
             │       └── Users
             |       └── Interviews
             |       └── Hire
+            |       └── Announcements
             └── Module
+            |   └── screens
+            |       └── Assessments
+            |       └── Quiz & Tests
+            |       └── Sessions
+            |       └── Class
+            └── Support
+            |   └── screens
+            |       └── General
+            |       └── Product & Services
+            |       └── Purchase
+            |       └── Code & Debug
+            └── Cart
                 └── screens
-                    └── Assessments
-                    └── Quiz & Tests
-                    └── Sessions
-                    └── Class
+                    └── Module
+                    └── Purchase
+                    └── Confirm
 ```
 
 Next, each of these screens has an `index.js` file, which is the file
@@ -105,17 +114,39 @@ app
 |       |   |   |       └── index.js
 |       |   |   |   └── Hire
 |       |   |   |       └── index.js
+|       |   |   |   └── Announcements
+|       |   |   |       └── index.js
 │       │   │   └── index.js
 │       │   └── Module
+│       │   |   ├── screen 
+│       │   |   │   └── Assignments
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Quiz & Tests
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Sessions
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Class
+│       │   |   │       └── index.js
+│       │   |   └── index.js
+│       │   └── Support
+│       │   |   ├── screen 
+│       │   |   │   └── General
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Product & Services
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Purchase
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Code & Debug
+│       │   |   │       └── index.js
+│       │   |   └── index.js
+│       │   └── Cart
 │       │       ├── screen 
-│       │       │   └── Assignments
+│       │       │   └── Module
 │       │       │   |   └── index.js
-│       │       │   └── Quiz & Tests
+│       │       │   └── Purchase
 │       │       │   |   └── index.js
-│       │       │   └── Sessions
-│       │       │   |   └── index.js
-│       │       │   └── Class
-│       │       │       └── index.js
+│       │       │   └── Confirm
+│       │       │      └── index.js
 │       │       └── index.js
 │       └── index.js
 └── index.js
@@ -150,22 +181,54 @@ app
 │       │   │   │   └── Hire
 │       │   │   │       ├── components
 │       │   │   │       └── index.js
+|       |   |   |   └── Announcements
+│       │   │   │       ├── components
+|       |   |   |       └── index.js
 │       │   │   └── index.js
 │       │   └── Module
+│       │   |   ├── components
+│       │   |   ├── screens
+│       │   |   │   └── Assignments
+│       │   |   │   |   ├── components
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Quiz & Tests
+│       │   |   │   |   ├── components
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Sessions
+│       │   |   │   |   ├── components
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Class
+│       │   |   │       ├── components
+│       │   |   │       └── index.js
+│       │   |   └── index.js
+│       │   └── Support
+│       │   |   ├── components
+│       │   |   ├── screens
+│       │   |   │   └── General
+│       │   |   │   |   ├── components
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Product & Services
+│       │   |   │   |   ├── components
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Purchase
+│       │   |   │   |   ├── components
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Code & Debug
+│       │   |   │       ├── components
+│       │   |   │       └── index.js
+│       │   |   └── index.js
+│       │   └── Cart
 │       │       ├── components
 │       │       ├── screens
-│       │       │   └── Assignments
+│       │       │   └── Module
 │       │       │   |   ├── components
 │       │       │   |   └── index.js
-│       │       │   └── Quiz & Tests
+│       │       │   └── Purchase
 │       │       │   |   ├── components
 │       │       │   |   └── index.js
-│       │       │   └── Sessions
+│       │       │   └── Confirm
 │       │       │   |   ├── components
 │       │       │   |   └── index.js
-│       │       │   └── Class
-│       │       │       ├── components
-│       │       │       └── index.js
 │       │       └── index.js
 │       └── index.js
 └── index.js
@@ -199,28 +262,66 @@ app
 │       │   │   │   │   │   └── ReportsStore.js
 │       │   │   │   │   └── index.js
 │       │   │   │   └── Users
+│       │   │   │   |   ├── components
+│       │   │   │   |   └── index.js
+│       │   │   │   └── Interviews
+│       │   │   │   |   ├── components
+│       │   │   │   |   └── index.js
+│       │   │   │   └── Hire
+│       │   │   │   |   ├── components
+│       │   │   │   |   └── index.js
+|       |   |   |   └── Announcements
 │       │   │   │       ├── components
-│       │   │   │       └── index.js
+|       |   |   |       └── index.js
 │       │   │   ├── shared
 │       │   │   │   └── stores
 │       │   │   │       ├── AccountStore.js
 │       │   │   │       └── UserStore.js
 │       │   │   └── index.js
 │       │   └── Module
+│       │   |   ├── components
+│       │   |   ├── screens
+│       │   |   │   └── Assignments
+│       │   |   │   |   ├── components
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Quiz & Tests
+│       │   |  │   |   ├── components
+│       │   |  │   |   └── index.js
+│       │   |  │   └── Sessions
+│       │   |  │   |   ├── components
+│       │   |  │   |   └── index.js
+│       │   |  │   └── Class
+│       │   |  │       ├── components
+│       │   |  │       └── index.js
+│       │   |  └── index.js
+│       │   └── Support
+│       │   |   ├── components
+│       │   |   ├── screens
+│       │   |   │   └── General
+│       │   |   │   |   ├── components
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Product & Services
+│       │   |   │   |   ├── components
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Purchase
+│       │   |   │   |   ├── components
+│       │   |   │   |   └── index.js
+│       │   |   │   └── Code & Debug
+│       │   |   │       ├── components
+│       │   |   │       └── index.js
+│       │   |   └── index.js
+│       │   └── Cart
 │       │       ├── components
 │       │       ├── screens
-│       │       │   └── Assignments
+│       │       │   └── Module
 │       │       │   |   ├── components
 │       │       │   |   └── index.js
-│       │       │   └── Quiz & Tests
+│       │       │   └── Purchase
 │       │       │   |   ├── components
 │       │       │   |   └── index.js
-│       │       │   └── Sessions
+│       │       │   └── Confirm
 │       │       │   |   ├── components
 │       │       │   |   └── index.js
-│       │       │   └── Class
-│       │       │       ├── components
-│       │       │       └── index.js
 │       │       └── index.js
 │       ├── shared
 │       │   └── components
@@ -229,7 +330,7 @@ app
 │       └── index.js
 ├── shared
 │   └── util
-│       └── createStore.js
+│       └── createStore.jPurs
 └── index.js
 ```
 
