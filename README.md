@@ -31,6 +31,11 @@ only have one "feature" folder but many "generic" folders.
 
 Examples of "feature" folders:
 
+server
+- static
+- index.py
+
+client
 - Admin
 - Users
 - Live support
@@ -61,7 +66,19 @@ var routes = (
 We would now set up our directories like this:
 
 ```
-app
+server
+├── static
+|   ├── static
+|   └── asset-manifest.json
+|   └── index.html
+|   └── manifest.json
+|   └── service-worker.js
+|   ... etc.
+└── index.py
+```
+
+```
+client
 └── src
     └── App
         └── screens
@@ -98,7 +115,7 @@ some top-level application bootstrapping stuff at the root, like
 `config/routes.js`.
 
 ```
-app
+client
 ├── config
 │   └── routes.js
 ├── src
@@ -159,7 +176,7 @@ file structure.
 Each will probably have a `components` directory.
 
 ```
-app
+client
 ├── config
 │   └── routes.js
 ├── src
@@ -246,7 +263,7 @@ code in "shared". Here is our growing app with some new shared, and not
 shared modules.
 
 ```
-app
+client
 ├── config
 │   └── routes.js
 ├── src
@@ -330,7 +347,7 @@ app
 │       └── index.js
 ├── shared
 │   └── util
-│       └── createStore.jPurs
+│       └── createStore.js
 └── index.js
 ```
 
@@ -363,7 +380,7 @@ Tests live next to the modules they test. Tests for
 Now our app has a bunch of `__tests__` directories:
 
 ```
-app
+client
 ├── __tests__
 ├── config
 │   └── routes.js
@@ -392,3 +409,39 @@ specific screen in the app" and not something that is shared. It has the
 added benefit that there's no such thing as an "MSC" yet, so the word
 "screen" causes people to ask "what's a screen?" instead of assuming
 they know what a "view" is supposed to be.
+
+
+# Setup
+
+
+* locate the project folder: 
+`cd skylla-learning-community`
+
+* Locate the client folder:
+`cd client`
+
+* Install node packages and dependencies: 
+`npm install`
+
+* Run tests
+`npm test`
+
+* In the server folder, run;
+`cd server`
+
+NOTE: 
+If you get into a situation where npm install found some vulnerabilities that needs to be fixed.
+run;
+`npm audit fix`
+
+* Start server and the client application
+
+`python index.py`
+
+Point your browser to `http://127.0.0.1:5000/`
+
+## Important: 
+
+Make sure your running `python index.py` in the project folder where there is the server (index.py) serving our client, not in the client folder.
+
+- And to see the changes, run `npm run build`, then restart the server.
