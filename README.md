@@ -68,12 +68,12 @@ We would now set up our directories like this:
 ```
 server
 ├── static
-    └── static
-    └── asset-manifest.json
-    └── index.html
-    └── manifest.json
-    └── service-worker.js
-    ... etc.
+|   ├── static
+|   └── asset-manifest.json
+|   └── index.html
+|   └── manifest.json
+|   └── service-worker.js
+|   ... etc.
 └── index.py
 ```
 
