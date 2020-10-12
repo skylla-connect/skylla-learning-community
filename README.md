@@ -62,7 +62,7 @@ We would now set up our directories like this:
 
 ```
 app
-└── screens
+└── src
     └── App
         └── screens
             ├── Admin
@@ -101,7 +101,7 @@ some top-level application bootstrapping stuff at the root, like
 app
 ├── config
 │   └── routes.js
-├── screens
+├── src
 │   └── App
 │       ├── screens
 │       │   ├── Admin
@@ -162,7 +162,7 @@ Each will probably have a `components` directory.
 app
 ├── config
 │   └── routes.js
-├── screens
+├── src
 │   └── App
 │       ├── components
 │       ├── screens
@@ -249,7 +249,7 @@ shared modules.
 app
 ├── config
 │   └── routes.js
-├── screens
+├── src
 │   └── App
 │       ├── components
 │       ├── screens
@@ -367,7 +367,7 @@ app
 ├── __tests__
 ├── config
 │   └── routes.js
-├── screens
+├── src
 │   └── App
 │       ├── components
 │       │   ├── __tests__
