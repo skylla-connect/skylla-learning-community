@@ -1,7 +1,7 @@
 # Import flask
 from flask import Flask 
 import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../config.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./config.json"
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
