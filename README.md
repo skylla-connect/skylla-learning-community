@@ -75,6 +75,19 @@ server
 |   └── service-worker.js
 |   ... etc.
 └── index.py
+
+/dashboards/{userid & pwd}
+{
+  roles: {
+    alice: "admin",
+    bob: "trainer",
+    david: "trainee",
+    // ...
+  }
+}
+
+We can access the user's Dashboards using userid and password:
+/dashboards/{userid}/
 ```
 
 ```
