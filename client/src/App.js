@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import {FullPageSpinner} from './app/components'
+import withAuthetication from "./app/session/withAuthetication";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import * as ROUTES from "./app/config/routes";
+import {SignUpPage} from './app/screens/signup/index';
+import './app/bootstrap';
 
-function App() {
+const loadAuthenticatedApp = () => import('./authenticated-app')
+const AuthenticatedApp = React.lazy(loadAuthenticatedApp)
+const UnauthenticatedApp = React.lazy(() => import('./unauthenticated-app'))
+
+export const Navigation = ({authUser}) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Skylla Learning Community Project
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          https://skyllaconnect.com/
-        </a>
-      </header>
-    </div>
+    <React.Suspense fallback={<FullPageSpinner />}>
+    {authUser ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+    </React.Suspense>
   );
 }
+const App = () => {
+  // pre-load the authenticated side in the background while the user's
+  // filling out the login form.
+  React.useEffect(() => {
+    loadAuthenticatedApp()
+  }, [])
+  return (
+       <Navigation />   
+  )
+}
 
-export default App;
+export default withAuthetication(App);
