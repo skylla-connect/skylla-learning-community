@@ -21,11 +21,12 @@ const SignInPage = () => (
         <SideBanner/>
         <div css={{
             width: '70%',
+            position: 'relative',
             height: '100vh',
            }}>
             <Centered>
                 <div css={{
-
+                    marginBottom: '60px',
                 }}>
                     <SignUpLink />
                     <SignInForm />
@@ -33,10 +34,11 @@ const SignInPage = () => (
                         display: 'flex',
                         flexDirection: 'row',
                         justifyContent: 'space-between',
-                        marginTop: '15px',
+                        marginTop: '25px',
+                        alignItems: 'center',
                     }}>
                         <PasswordForgetLink />
-                        <h6>FAQs</h6>
+                        <h6 css={{fontSize: '14px'}}>FAQs</h6>
                     </div>
                     <Footer/>
                 </div> 
@@ -84,42 +86,55 @@ class SignInFormBase extends Component {
                 // backgroundColor: 'red'
             }}>
             <FormGroup>
-                <label htmlFor="email">Email Address</label>
+                <label css={{
+                    marginBottom: '-2px',
+                    fontSize: '14px',
+                    color: '#1A1A1A',
+                }} htmlFor="email">E-mail Address</label>
                 <input className='form-control'
                       css={{
-                        width: '320px',
+                        width: '350px',
+                        color: '#6C757D',
                         padding: '5px 10px',
                         textAlign: 'center',
-                        borderRadius: '7px'
+                        borderRadius: '7px',
+                        color: '#B3B3B3',
                     }}
                     id="email"
                     name="email"
                     value={email}
                     onChange={this.onChange}
                     type="email"
-                    placeholder="Email"
+                    placeholder="email"
                 />
             </FormGroup>
-            <FormGroup>
-                <label htmlFor="password">Password</label>
+            <FormGroup css={{
+                paddingTop: '18px',
+            }}>
+                <label css={{
+                     marginBottom: '-2px',
+                     fontSize: '14px',
+                     color: '#1A1A1A',
+                }} htmlFor="password">Password</label>
                 <input className='form-control'
                       css={{
-                        width: '320px',
+                        width: '350px',
                         padding: '5px 10px',
                         textAlign: 'center',
-                        borderRadius: '7px'
+                        borderRadius: '7px',
+                        color: '#B3B3B3',
                     }}
                     id="password"
                     name="password"
                     value={password}
                     onChange={this.onChange}
                     type="password"
-                    placeholder="Password"
+                    placeholder="password"
                 />
             </FormGroup>
             <button className="btn"
              css={{
-                padding: '8px 10px',
+                fontSize: '16px',
                 textAlign: 'center',
                 borderRadius: '7px',
                 marginTop: '25px',

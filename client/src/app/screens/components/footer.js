@@ -13,9 +13,10 @@ export const Footer = () => {
             // lineHeight: '20px',
             padding: '10px',
             background: 'transparent',
+            color: '#6C757D',
         }}>
             <div>
-                <p>© 2020 | Skylla Co</p>
+                <p css={{fontSize: '14px'}}>© 2020 | Skylla Co</p>
             </div>     
         </footer>
      );

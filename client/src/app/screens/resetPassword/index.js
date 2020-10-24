@@ -18,11 +18,12 @@ const PasswordForgetPage = () => (
         <SideBanner/>
         <div css={{
             width: '70%',
+            position: 'relative',
             height: '100vh',
            }}>
             <Centered>
                 <div css={{
-
+                    marginBottom: '60px',
                 }}>
                     <h6>Password Recovery</h6>
                     <p>To get a reset link enter the email 
@@ -99,7 +100,7 @@ class PasswordForgetFormBase extends Component {
     }
 }
 const PasswordForgetLink = () => (
-<p>
+<p css={{fontSize: '14px'}}>
 <Link to={ROUTES.PASSWORD_RESET}>Forgot Password?</Link>
 </p>
 );

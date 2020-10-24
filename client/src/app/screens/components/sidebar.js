@@ -16,8 +16,9 @@ const SideBanner = () => {
             <h1>JOIN</h1>
             <p css={{
                 textAlign: 'center',
-                fontSize: '26px',
-                padding: '65px 50px',
+                fontSize: '24px',
+                padding: '65px 60px',
+                lineHeight: '2rem',
         }}>the Million people
             Learning to Code
             with Skylla Connect</p>

@@ -199,8 +199,12 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = () => (
-<p>
-Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+<p css={{
+    fontSize: '16px',
+    paddingBottom: '30px',
+    }}>
+Don't have an account? <span css={{paddingLeft: '18px'}}>
+    <Link to={ROUTES.SIGN_UP}>Sign Up</Link></span>
 </p>
 );
 
