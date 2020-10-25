@@ -1,10 +1,11 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import './footer.css';
 
 const Footer = () => {
     return (
-        <div style={{textAlign: 'center', padding: '20px'}}>
+        <div style={{textAlign: 'center'}}>
             <div>
                 <Typography>
                     &copy; {new Date().getFullYear()}  | Skylla Co. 

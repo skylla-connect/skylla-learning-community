@@ -15,6 +15,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Menu from './components/menu';
 import Permissions from './components/permissions';
 import Views from './components/views/views';
+import Footer from '../../components/Footer/footer';
 
 const drawerWidth = 240;
 
@@ -162,6 +163,10 @@ function ResponsiveDrawer(props) {
       <main className={classes.content}>
         <div className={classes.toolbar}  style={{marginTop: -50}} />
         <Views />
+
+        <div style={{marginTop: 40}}>
+          <Footer />
+        </div>
       </main>
     </div>
   );

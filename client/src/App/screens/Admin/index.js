@@ -14,7 +14,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Menu from './components/menu';
 import Permissions from './components/permissions';
 import Mobile from './mob';
-import Views from './components/views/views'
+import Views from './components/views/views';
+import Footer from '../../components/Footer/footer';
 
 const drawerWidth = 240;
 
@@ -169,6 +170,10 @@ export default function PersistentDrawerLeft() {
             <div className={classes.drawerHeader} style={{marginTop: -50}} />
             {/* Views */}
             <Views />
+
+            <div style={{marginTop: 40}}>
+              <Footer />
+            </div>
           </main>
       </div>
 

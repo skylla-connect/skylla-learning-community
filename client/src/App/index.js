@@ -17,9 +17,10 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
-import Footer from './components/Footer/footer';
+// import Footer from './components/Footer/footer';
 import Admin_Dashboard from './screens/Admin/index';
 import Trainer_Dashboard from './screens/Trainer/index';
+import Trainee_Dashboard from './screens/Trainee/index';
 
 const THEME = createMuiTheme({
   typography: {
@@ -98,6 +99,11 @@ const routes = [
     path: '/trainer',
     component: Trainer_Dashboard,
   }, 
+
+  {
+    path: '/trainee',
+    component: Trainee_Dashboard,
+  },
 ];
 
 const App = (props) => {
@@ -118,9 +124,6 @@ const App = (props) => {
           </div>
 
            {/* footer */}
-          <footer>
-            <Footer />
-          </footer>
         </Router>
 
       <ScrollTop {...props}>
