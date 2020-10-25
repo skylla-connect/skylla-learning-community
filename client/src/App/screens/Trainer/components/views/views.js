@@ -1,10 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import PersonIcon from '@material-ui/icons/Person';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import DvrIcon from '@material-ui/icons/Dvr';
-import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
 import SchoolIcon from '@material-ui/icons/School';
 import { Typography } from '@material-ui/core';
 

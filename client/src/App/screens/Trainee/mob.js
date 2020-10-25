@@ -7,16 +7,16 @@ import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Menu from './components/menu';
-import Permissions from './components/permissions';
-import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
+import Menu from './components/menu';
+import Permissions from './components/moduleContent';
+import Views from './components/views/views';
+import MobMenu from './components/mobMenu'
 
 const drawerWidth = 240;
 
@@ -101,25 +101,6 @@ function ResponsiveDrawer(props) {
         }}
       />
 
-      <Button 
-        style={{
-          color: 'white',
-          textTransform: 'capitalize'
-        }}
-      >
-        <Typography variant="h6" paragraph style={{marginLeft: 30}}>
-            Module Content
-        </Typography>
-      </Button>
-
-      <div 
-        style={{
-            margin: '-5px auto 0 auto',
-            width: '90%',
-        }}>
-        <Divider  style={{ backgroundColor: 'white'}}/>
-      </div>
-
       <div className={classes.paper} style={{marginTop: '40px'}}> 
         <Permissions />
       </div>
@@ -147,6 +128,8 @@ function ResponsiveDrawer(props) {
                 SKYLLA LEARNING COMMUNITY
             </Typography>
           </div>
+
+          <MobMenu />
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

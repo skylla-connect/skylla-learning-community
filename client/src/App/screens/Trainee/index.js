@@ -6,17 +6,22 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import Footer from '../../components/Footer/footer';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Menu from './components/menu';
-import Permissions from './components/permissions';
+import Permissions from './components/moduleContent';
 import Mobile from './mob';
-import Views from './components/views/views';
-import Footer from '../../components/Footer/footer';
+import Avatar from '@material-ui/core/Avatar';
+import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
+import Views from './components/views/views'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import SocialIcons from './components/social';
 
 const drawerWidth = 240;
 
@@ -90,6 +95,19 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+
+  fab: {
+    margin: theme.spacing(0),
+    backgroundColor: 'white',
+    '&:hover': {
+      backgroundColor: 'white',
+    },
+  },
+  absolute: {
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
+  },
 }));
 
 export default function PersistentDrawerLeft() {
@@ -130,6 +148,58 @@ export default function PersistentDrawerLeft() {
                     SKYLLA LEARNING COMMUNITY
                 </Typography>
               </div>
+              <div style={{textAlign: 'center'}}>
+                <Avatar alt="Remy Sharp" src="" />
+                <Typography variant="body2">
+                  Trainee
+                </Typography>
+              </div>
+
+              <div style={{textAlign: 'center', margin: 15}}>
+                <Avatar alt="Remy Sharp" src="" />
+                <Typography variant="body2">
+                  Trainer
+                </Typography>
+              </div>
+
+              <div style={{textAlign: 'center'}}>
+                <img 
+                  src="https://cdn0.iconfinder.com/data/icons/business-startup-10/50/57-128.png" 
+                  alt=""
+                  width="20%" />
+                <Typography variant="body2">
+                  Quiz &amp; Tests 
+                </Typography>
+              </div>
+
+              <div style={{textAlign: 'center'}}>
+                <img 
+                  src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
+                  alt=""
+                  width="20%" />
+                 <Typography variant="body2">
+                  View Sessions
+                </Typography>
+              </div>
+
+              <div style={{textAlign: 'center'}}>
+                <img 
+                  src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
+                  alt=""
+                  width="20%" 
+                />
+                <Typography variant="body2">
+                  Join Live Class
+                </Typography>
+              </div>
+
+              <div style={{textAlign: 'center'}}>
+                  <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
+                      <Fab color="primary" className={classes.fab}>
+                        <AddShoppingCartIcon style={{}} />
+                      </Fab>
+                  </Tooltip>
+              </div>
             </Toolbar>
           </AppBar>
           <Drawer
@@ -156,43 +226,39 @@ export default function PersistentDrawerLeft() {
                 backgroundColor: 'white',
                 width: '90%',
                 margin: 'auto',
-            }}
-          />
-
-          <Button style={{
-              color: 'white',
-              textTransform: 'capitalize'
-          }}>
-            <Typography variant="h6" paragraph>
-                Module Content
-            </Typography>
-          </Button>
-
-            <div 
-                style={{
-                    margin: '-2px auto 0 auto',
-                    width: '90%',
-                }}>
-                <Divider  style={{ backgroundColor: 'white'}}/> 
-            </div>
+              }}
+            />
 
             <div className={classes.paper}> 
-                <Permissions />
+              <Permissions />
             </div>
-            </Drawer>
-            <main
-                className={clsx(classes.content, {
-                [classes.contentShift]: open,
-                })}
-            >
-                <div className={classes.drawerHeader} style={{marginTop: -50}} />
-                {/* Views */}
-                <Views />
 
-                <div style={{marginTop: 40}}>
-                  <Footer />
-                </div>
-            </main>
+            <Divider 
+              style={{
+                backgroundColor: 'white',
+                width: '90%',
+                margin: 'auto',
+              }}
+            />
+
+            <div className={classes.paper}> 
+              <SocialIcons />
+            </div>
+            
+          </Drawer>
+          <main
+            className={clsx(classes.content, {
+              [classes.contentShift]: open,
+            })}
+          >
+            <div className={classes.drawerHeader} style={{marginTop: -50}} />
+            {/* Views */}
+            <Views />
+
+            <div style={{marginTop: 40}}>
+              <Footer />
+            </div>
+          </main>
       </div>
 
       {/* mobile */}
