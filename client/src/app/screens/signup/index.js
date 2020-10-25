@@ -28,7 +28,10 @@ const SignUpPage = () => (
                 <div css={{marginBottom: '60px'}}>
                     <h5
                     css={{
-                        
+                        fontSize: '16px',
+                        textTransform: 'capitalize',
+                        color: '#000000',
+                        paddingBottom: '20px',
                     }}>create account</h5>
                     <SignUpForm />
                     <Footer/>
@@ -84,20 +87,27 @@ class SignUpFormBase extends Component {
     return (
         <form onSubmit={this.onSubmit} 
         css={{
+            width: '350px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'stretch',
             width: '350px',
-            // backgroundColor: 'red'
         }}>
-            <FormGroup>
-                <label htmlFor="username">Full Name</label>
+            <FormGroup css={{
+                paddingTop: '8px',
+            }}>
+                <label css={{
+                     marginBottom: '-2px',
+                     fontSize: '14px',
+                     color: '#1A1A1A',
+                }} htmlFor="username">Full Name</label>
                 <input className='form-control'
                     css={{
-                        width: '320px',
-                        padding: '5px 10px',
+                        width: '350px',
+                        fontSize: '14px',
                         textAlign: 'center',
-                        borderRadius: '7px'
+                        borderRadius: '7px',
+                        color: '#B3B3B3',
                     }}
                     id="username"
                     name="username"
@@ -107,12 +117,18 @@ class SignUpFormBase extends Component {
                     placeholder="Name"
                 />
             </FormGroup>
-            <FormGroup>
-                <label htmlFor="email">Email Address</label>
+            <FormGroup css={{
+                paddingTop: '8px',
+            }}>
+                <label css={{
+                     marginBottom: '-2px',
+                     fontSize: '14px',
+                     color: '#1A1A1A',
+                }} htmlFor="email">E-mail Address</label>
                 <input className='form-control'
                       css={{
-                        width: '320px',
-                        padding: '5px 10px',
+                        width: '350px',
+                        fontSize: '14px',
                         textAlign: 'center',
                         borderRadius: '7px'
                     }}
@@ -124,12 +140,18 @@ class SignUpFormBase extends Component {
                     placeholder="Email"
                 />
             </FormGroup>
-            <FormGroup>
-                <label htmlFor="passwordOne">Password</label>
+            <FormGroup css={{
+                paddingTop: '8px',
+            }}>
+                <label css={{
+                     marginBottom: '-2px',
+                     fontSize: '14px',
+                     color: '#1A1A1A',
+                }} htmlFor="passwordOne">Password</label>
                 <input className='form-control'
                       css={{
-                        width: '320px',
-                        padding: '5px 10px',
+                        width: '350px',
+                        fontSize: '14px',
                         textAlign: 'center',
                         borderRadius: '7px'
                     }}
@@ -141,12 +163,18 @@ class SignUpFormBase extends Component {
                     placeholder="Password"
                 />
             </FormGroup>
-            <FormGroup>
-                <label htmlFor="passwordTwo"> Confirm Password</label>
+            <FormGroup css={{
+                paddingTop: '8px',
+            }}>
+                <label css={{
+                     marginBottom: '-2px',
+                     fontSize: '14px',
+                     color: '#1A1A1A',
+                }} htmlFor="passwordTwo"> Confirm Password</label>
                 <input className='form-control'
                   css={{
-                    width: '320px',
-                    padding: '5px 10px',
+                    width: '350px',
+                    fontSize: '14px',
                     textAlign: 'center',
                     borderRadius: '7px'
                 }}
@@ -182,10 +210,10 @@ class SignUpFormBase extends Component {
             </FormGroup>
             <button className="btn"
               css={{
-                padding: '8px 10px',
                 textAlign: 'center',
                 borderRadius: '7px',
-                marginTop: '25px',
+                marginTop: '18px',
+                fontSize: '16px',
                 backgroundColor: colors.blue,
                 color: colors.base,
             }}

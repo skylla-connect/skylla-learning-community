@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Firebase, { FirebaseContext } from './app/firebase';
+import './app/bootstrap';
 
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>

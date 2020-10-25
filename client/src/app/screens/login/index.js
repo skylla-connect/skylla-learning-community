@@ -119,7 +119,6 @@ class SignInFormBase extends Component {
                 <input className='form-control'
                       css={{
                         width: '350px',
-                        padding: '5px 10px',
                         textAlign: 'center',
                         borderRadius: '7px',
                         color: '#B3B3B3',
