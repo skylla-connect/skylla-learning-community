@@ -18,7 +18,8 @@ import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 import Footer from './components/Footer/footer';
-import Admin_Dashboard from './screens/Admin/index'
+import Admin_Dashboard from './screens/Admin/index';
+import Trainer_Dashboard from './screens/Trainer/index';
 
 const THEME = createMuiTheme({
   typography: {
@@ -89,8 +90,13 @@ ScrollTop.propTypes = {
 // Let's declare all our routes that we are to use
 const routes = [
   {
-    path: '/',
+    path: '/admin',
     component: Admin_Dashboard,
+  }, 
+
+  {
+    path: '/trainer',
+    component: Trainer_Dashboard,
   }, 
 ];
 
