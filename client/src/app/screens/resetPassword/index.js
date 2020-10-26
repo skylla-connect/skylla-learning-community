@@ -25,9 +25,16 @@ const PasswordForgetPage = () => (
                 <div css={{
                     marginBottom: '60px',
                 }}>
-                    <h6>Password Recovery</h6>
-                    <p>To get a reset link enter the email 
-                        address you added toyour account</p>
+                    <div css={{
+                        width: '350px',
+                    }}>
+                        <h6 css={{
+                            fontFamily: 'Helvetica-Bold',
+                            fontSize: '16px',
+                        }}>Password Recovery</h6>
+                        <p css={{fontSize: '15px'}}>To get a reset link enter the email 
+                            address you added to your account</p>
+                    </div>
                     <PasswordForgetForm />
                     <Footer/>
                 </div> 
@@ -63,12 +70,18 @@ class PasswordForgetFormBase extends Component {
         const { email, error } = this.state;
         const isInvalid = email === '';
         return (
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit}
+            css={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'stretch',
+                width: '350px',
+            }}>
                <FormGroup>
                 <label htmlFor="email">E-mail Address</label>
                 <input className='form-control'
                       css={{
-                        width: '320px',
+                        width: '350px',
                         padding: '5px 10px',
                         textAlign: 'center',
                         borderRadius: '7px'
@@ -83,7 +96,7 @@ class PasswordForgetFormBase extends Component {
             </FormGroup>
             <button className="btn"
              css={{
-                width: '65%',
+                width: '100%',
                 padding: '8px 10px',
                 textAlign: 'center',
                 borderRadius: '7px',
@@ -94,7 +107,10 @@ class PasswordForgetFormBase extends Component {
             disabled={isInvalid} type="submit">
             SEND
             </button>
-                {error && <p>{error.message}</p>}
+                {error && <p css={{
+                color: 'red', 
+                fontSize: '14px',
+                paddingTop: '15px'}}>{error.message}</p>}
             </form>
         );
     }

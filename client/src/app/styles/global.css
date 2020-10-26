@@ -14,6 +14,11 @@
     src: local('Raleway-Medium'), 
     url('../fonts/Raleway-Medium.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'Helvetica-Bold';
+    src: local('Helvetica-Bold'), 
+    url('../fonts/Helvetica-Bold.ttf') format('truetype');
+}
 body{
     overflow-x: hidden;
     font-family: Helvetica;

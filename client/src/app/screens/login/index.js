@@ -8,7 +8,7 @@ import { SignUpLink } from '../signup';
 import { withFirebase } from '../../firebase';
 import * as ROUTES from '../../config/routes';
 import * as colors from "../../styles/colors";
-import { Centered, FormGroup } from '../../components';
+import { Centered, FormGroup, Spinner } from '../../components';
 import SideBanner from '../components/sidebar';
 import { PasswordForgetLink } from '../resetPassword';
 import {Footer} from "../components/footer";
@@ -50,6 +50,7 @@ const SignInPage = () => (
 const INITIAL_STATE = {
 email: '',
 password: '',
+isPending: false,
 error: null,
 };
 class SignInFormBase extends Component {
@@ -57,7 +58,9 @@ class SignInFormBase extends Component {
         super(props);
         this.state = { ...INITIAL_STATE };
     }
+
     onSubmit = event => {
+        this.setState({isPending: true})
         const { email, password } = this.state;
         this.props.firebase
         .doSignInWithEmailAndPassword(email, password)
@@ -66,7 +69,7 @@ class SignInFormBase extends Component {
             this.props.history.push(ROUTES.HOME);
         })
         .catch(error => {
-            this.setState({ error });
+            this.setState({ error, isPending: false });
         });
         event.preventDefault();
     };
@@ -141,9 +144,12 @@ class SignInFormBase extends Component {
                 color: colors.base,
             }}
             disabled={isInvalid} type="submit">
-            LOGIN
+            LOGIN {this.state.isPending ? <Spinner css={{marginLeft: 5}} /> : null}
             </button>
-            {error && <p>{error.message}</p>}
+            {error && <p css={{
+                color: 'red', 
+                fontSize: '14px',
+                paddingTop: '15px'}}>{error.message}</p>}
             </form>
         );
     }

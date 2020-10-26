@@ -219,7 +219,9 @@ class SignUpFormBase extends Component {
             }}
             disabled = {isInvalid} type="submit">CREATE ACCOUNT</button>
             {error && <p css={{
-                padding: '15px 0px 0px 0px'
+                paddingTop: '15px',
+                fontSize: '14px',
+                color: 'red',
             }}>{error.message}</p>}
         </form>
     );
