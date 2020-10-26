@@ -3,7 +3,6 @@ import {jsx} from '@emotion/core'
 
 import {keyframes} from '@emotion/core'
 import styled from '@emotion/styled'
-import * as colors from './styles/colors'
 import {FaSpinner} from 'react-icons/fa'
 
 const spin = keyframes({

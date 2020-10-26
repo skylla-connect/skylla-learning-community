@@ -91,7 +91,6 @@ class SignUpFormBase extends Component {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'stretch',
-            width: '350px',
         }}>
             <FormGroup css={{
                 paddingTop: '8px',

@@ -86,7 +86,6 @@ class SignInFormBase extends Component {
                 flexDirection: 'column',
                 alignItems: 'stretch',
                 width: '350px',
-                // backgroundColor: 'red'
             }}>
             <FormGroup>
                 <label css={{
@@ -97,7 +96,7 @@ class SignInFormBase extends Component {
                 <input className='form-control'
                       css={{
                         width: '350px',
-                        color: '#6C757D',
+
                         padding: '5px 10px',
                         textAlign: 'center',
                         borderRadius: '7px',
