@@ -12,6 +12,7 @@ import { Centered, FormGroup, Spinner } from '../../components';
 import SideBanner from '../components/sidebar';
 import { PasswordForgetLink } from '../resetPassword';
 import {Footer} from "../components/footer";
+import TextFieldMui from '../components/textField';
 
 const SignInPage = () => (
     <div css={{
@@ -88,32 +89,23 @@ class SignInFormBase extends Component {
                 width: '350px',
             }}>
             <FormGroup>
-                <label css={{
-                    marginBottom: '-2px',
-                    fontSize: '14px',
-                    color: '#1A1A1A',
-                }} htmlFor="email">E-mail Address</label>
-                <input className='form-control'
-                      css={{
-                        width: '350px',
-
-                        padding: '5px 10px',
-                        textAlign: 'center',
-                        borderRadius: '7px',
-                        color: '#B3B3B3',
-                    }}
-                    id="email"
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                    type="email"
-                    placeholder="email"
+            <TextFieldMui 
+                label="E-mail Address"
+                variant="outlined"
+                type="email"
+                onChange={this.onChange}
                 />
             </FormGroup>
             <FormGroup css={{
-                paddingTop: '18px',
+                paddingTop: '25px',
             }}>
-                <label css={{
+                <TextFieldMui 
+                label="Password"
+                variant="outlined"
+                type="password"
+                onChange={this.onChange}
+                />
+                {/* <label css={{
                      marginBottom: '-2px',
                      fontSize: '14px',
                      color: '#1A1A1A',
@@ -131,7 +123,7 @@ class SignInFormBase extends Component {
                     onChange={this.onChange}
                     type="password"
                     placeholder="password"
-                />
+                /> */}
             </FormGroup>
             <button className="btn"
              css={{
