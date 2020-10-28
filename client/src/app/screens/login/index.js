@@ -15,6 +15,7 @@ import {Footer} from "../components/footer";
 import TextFieldMui from '../components/textField';
 import ButtonMui from '../components/button';
 
+
 const SignInPage = () => (
     <div css={{
         display: 'flex',
@@ -60,7 +61,6 @@ class SignInFormBase extends Component {
         super(props);
         this.state = { ...INITIAL_STATE };
     }
-
     onSubmit = event => {
         this.setState({isPending: true})
         const { email, password } = this.state;
@@ -79,7 +79,7 @@ class SignInFormBase extends Component {
         this.setState({ [event.target.name]: event.target.value });
     };
     render() {
-        const { email, password, error } = this.state;
+        const { email, password, error, isPending } = this.state;
         const isInvalid = password === '' || email === '';
         return (
             <form onSubmit={this.onSubmit} 
@@ -94,6 +94,9 @@ class SignInFormBase extends Component {
                 label="E-mail Address"
                 variant="outlined"
                 type="email"
+                id="email"
+                name="email"
+                value={email}
                 onChange={this.onChange}
                 />
             </FormGroup>
@@ -102,6 +105,9 @@ class SignInFormBase extends Component {
             }}>
                 <TextFieldMui 
                 label="Password"
+                id="password"
+                name="password"
+                value={password}
                 variant="outlined"
                 type="password"
                 onChange={this.onChange}
@@ -113,6 +119,9 @@ class SignInFormBase extends Component {
                 <ButtonMui 
                 variant="contained"
                 color="primary"
+                type="submit"
+                disabled={isInvalid}
+                isPending={isPending}
                 text="login"
                 />
             </FormGroup>

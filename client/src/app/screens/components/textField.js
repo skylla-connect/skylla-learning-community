@@ -23,6 +23,9 @@ const TextFieldMui = ({...props}) => {
             <TextField 
             label = {props.label}
             variant = {props.variant}
+            id={props.id}
+            name={props.name}
+            value={props.value}
             type = {showPassword? 'text': 'password'}
             onChange = {props.onChange}
             inputProps ={{ style: {textAlign: 'center', fontSize: '13.5px'}}}
@@ -49,6 +52,9 @@ const TextFieldMui = ({...props}) => {
             css={{ textAlign: 'center'}}
             label = {props.label}
             variant = {props.variant}
+            id={props.id}
+            name={props.name}
+            value={props.value}
             type = {props.type}
             size="small"
             inputProps ={{ style: {textAlign: 'center', fontSize: '13.5px'}}}
