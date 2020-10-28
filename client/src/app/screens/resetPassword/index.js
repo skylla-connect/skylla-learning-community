@@ -9,6 +9,8 @@ import { Centered, FormGroup } from '../../components';
 import { Footer } from '../components/footer';
 import SideBanner from '../components/sidebar';
 import * as colors from "../../styles/colors";
+import TextFieldMui from '../components/textField';
+import ButtonMui from '../components/button';
 
 const PasswordForgetPage = () => (
     <div css={{
@@ -45,6 +47,7 @@ const PasswordForgetPage = () => (
 const INITIAL_STATE = {
 email: '',
 error: null,
+isPending: false,
 };
 class PasswordForgetFormBase extends Component {
     constructor(props) {
@@ -53,13 +56,14 @@ class PasswordForgetFormBase extends Component {
     }
     onSubmit = event => {
         const { email } = this.state;
+        this.setState({isPending: true});
         this.props.firebase
         .doPasswordReset(email)
         .then(() => {
             this.setState({ ...INITIAL_STATE });
         })
         .catch(error => {
-            this.setState({ error });
+            this.setState({ error, isPending: false });
         });
         event.preventDefault();
     };
@@ -78,8 +82,20 @@ class PasswordForgetFormBase extends Component {
                 width: '350px',
             }}>
                <FormGroup>
-                <label htmlFor="email">E-mail Address</label>
-                <input className='form-control'
+               
+            <TextFieldMui 
+                label="E-mail Address"
+                variant="outlined"
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                placeholder="Enter your email address"
+                onChange={this.onChange}
+                />
+            
+                {/* <label htmlFor="email">E-mail Address</label> */}
+                {/* <input className='form-control'
                       css={{
                         width: '350px',
                         padding: '5px 10px',
@@ -92,9 +108,22 @@ class PasswordForgetFormBase extends Component {
                     onChange={this.onChange}
                     type="email"
                     placeholder="Enter your email address"
-                />
+                /> */}
             </FormGroup>
-            <button className="btn"
+            <FormGroup css={{
+                paddingTop: '25px'
+            }}>
+                <ButtonMui 
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    disabled={isInvalid}
+                    isPending={this.state.isPending}
+                    text="send"
+                    />
+            </FormGroup>
+            
+            {/* <button className="btn"
              css={{
                 width: '100%',
                 padding: '8px 10px',
@@ -106,7 +135,7 @@ class PasswordForgetFormBase extends Component {
             }}
             disabled={isInvalid} type="submit">
             SEND
-            </button>
+            </button> */}
                 {error && <p css={{
                 color: 'red', 
                 fontSize: '14px',
