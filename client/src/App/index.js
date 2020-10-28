@@ -4,6 +4,7 @@ import {
   Route, 
   Switch 
 } from 'react-router-dom';
+import firebase from './firebase';
 
 // import { createBrowserHistory as history} from 'history';
 
@@ -69,7 +70,6 @@ function ScrollTop(props) {
       anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
-
   return (
     <Zoom in={trigger}>
       <div onClick={handleClick} role="presentation" className={classes.root}>
