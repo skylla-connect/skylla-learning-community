@@ -13,6 +13,7 @@ import SideBanner from '../components/sidebar';
 import { PasswordForgetLink } from '../resetPassword';
 import {Footer} from "../components/footer";
 import TextFieldMui from '../components/textField';
+import ButtonMui from '../components/button';
 
 const SignInPage = () => (
     <div css={{
@@ -35,7 +36,7 @@ const SignInPage = () => (
                         display: 'flex',
                         flexDirection: 'row',
                         justifyContent: 'space-between',
-                        marginTop: '25px',
+                        marginTop: '30px',
                         alignItems: 'center',
                     }}>
                         <PasswordForgetLink />
@@ -105,27 +106,18 @@ class SignInFormBase extends Component {
                 type="password"
                 onChange={this.onChange}
                 />
-                {/* <label css={{
-                     marginBottom: '-2px',
-                     fontSize: '14px',
-                     color: '#1A1A1A',
-                }} htmlFor="password">Password</label>
-                <input className='form-control'
-                      css={{
-                        width: '350px',
-                        textAlign: 'center',
-                        borderRadius: '7px',
-                        color: '#B3B3B3',
-                    }}
-                    id="password"
-                    name="password"
-                    value={password}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="password"
-                /> */}
             </FormGroup>
-            <button className="btn"
+            <FormGroup css={{
+                paddingTop: '25px',
+            }}>
+                <ButtonMui 
+                variant="contained"
+                color="primary"
+                text="login"
+                />
+            </FormGroup>
+           
+            {/* <button className="btn"
              css={{
                 fontSize: '16px',
                 textAlign: 'center',
@@ -136,7 +128,7 @@ class SignInFormBase extends Component {
             }}
             disabled={isInvalid} type="submit">
             LOGIN {this.state.isPending ? <Spinner css={{marginLeft: 5}} /> : null}
-            </button>
+            </button> */}
             {error && <p css={{
                 color: 'red', 
                 fontSize: '14px',
