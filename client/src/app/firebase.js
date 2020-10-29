@@ -1,5 +1,5 @@
 import React from 'react';
-import app from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/auth';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -24,8 +24,9 @@ messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 
 class Firebase {
     constructor() {
-        app.initializeApp(firebaseConfig);
-        this.auth = app.auth();
+        this.app = firebase.initializeApp(firebaseConfig);
+        this.auth = this.app.auth();
+        this.db = this.app.firestore()
 }
     // *** Auth API ***
     doCreateUserWithEmailAndPassword = (email, password) =>
@@ -38,7 +39,8 @@ class Firebase {
 
     doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
-
+    doCreateNewUser = (userCredentials) => 
+    this.db.doc(`/users/trainee`).set(userCredentials);
 }
 export default Firebase;
 const FirebaseContext = React.createContext(null);

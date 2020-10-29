@@ -125,19 +125,6 @@ class SignInFormBase extends Component {
                 text="login"
                 />
             </FormGroup>
-           
-            {/* <button className="btn"
-             css={{
-                fontSize: '16px',
-                textAlign: 'center',
-                borderRadius: '7px',
-                marginTop: '25px',
-                backgroundColor: colors.blue,
-                color: colors.base,
-            }}
-            disabled={isInvalid} type="submit">
-            LOGIN {this.state.isPending ? <Spinner css={{marginLeft: 5}} /> : null}
-            </button> */}
             {error && <p css={{
                 color: 'red', 
                 fontSize: '14px',
