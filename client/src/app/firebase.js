@@ -40,7 +40,35 @@ class Firebase {
     doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
     doCreateNewUser = (userCredentials) => 
-    this.db.doc(`/users/trainee`).set(userCredentials);
+    this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);
+
+    doGetUserAdmin = (userId) => {
+        this.db.doc(`/users/admin`)
+        .where("uid", "===", userId)
+        .limit(1)
+        .get()
+        .then(data => {
+            return data
+        }); 
+    }
+    doGetUserTrainer = (userId) => {
+        this.db.doc(`/users/trainer`)
+        .where("uid", "===", userId)
+        .limit(1)
+        .get()
+        .then(data => {
+            return data
+        }); 
+    }
+    doGetUserTrainee = (userId) => {
+        this.db.doc(`/users/trainee`)
+        .where("uid", "===", userId)
+        .limit(1)
+        .get()
+        .then(data => {
+            return data
+        }); 
+    }
 }
 export default Firebase;
 const FirebaseContext = React.createContext(null);
