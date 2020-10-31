@@ -16,7 +16,6 @@ export default Athenticated;
 function Routes() {
     return (
             <Router>
-                <h1>home</h1>
                 <Switch>
                     <Route path={ROUTES.HOME} component={Home} />
                     <Route path="/">
