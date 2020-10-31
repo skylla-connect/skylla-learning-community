@@ -2,12 +2,12 @@
 import {jsx} from '@emotion/core'
 
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUpLink } from '../signup';
 import { withFirebase } from '../../firebase';
 import * as ROUTES from '../../config/routes';
-import * as colors from "../../styles/colors";
+// import * as colors from "../../styles/colors";
 import { Centered, FormGroup, Spinner } from '../../components';
 import SideBanner from '../components/sidebar';
 import { PasswordForgetLink } from '../resetPassword';
@@ -41,7 +41,9 @@ const SignInPage = () => (
                         alignItems: 'center',
                     }}>
                         <PasswordForgetLink />
-                        <h6 css={{fontSize: '14px'}}>FAQs</h6>
+                        <Link to="#" css={{fontSize: '14px', color: 'black'}}>
+                            FAQs
+                        </Link>
                     </div>
                     <Footer/>
                 </div> 

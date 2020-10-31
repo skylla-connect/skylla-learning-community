@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core'
+import { Typography } from '@material-ui/core';
 
 import React from "react";
 import { Centered } from '../../components';
@@ -14,17 +15,23 @@ const SideBanner = () => {
         color: colors.base,
         backgroundColor: colors.blue}}>
         <Centered>
-            <h1>JOIN</h1>
-            <p css={{
-                fontFamily: 'Raleway-Medium',
+            <Typography variant="h5" style={{
+                fontFamily: 'Times New Roman', 
+                fontWeight: 'bold',
+                letterSpacing: '0.1rem',
+                }}>
+                JOIN
+            </Typography>
+            <Typography variant="h6" paragraph style={{
+                fontFamily: 'Raleway',
                 textAlign: 'center',
-                fontSize: '24px',
+                // fontSize: '24px',
                 padding: '65px 70px',
                 letterSpacing: '0.01rem',
                 lineHeight: '2rem',
         }}>the Million people
             Learning to Code
-            with Skylla Connect</p>
+            with Skylla Connect</Typography>
         </Centered>
     </div>
      );
