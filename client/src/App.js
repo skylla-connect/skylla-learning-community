@@ -1,19 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {FullPageSpinner} from './app/components'
 import withAuthetication from "./app/session/withAuthetication";
+import AuthUserContext from "./app/session/context";
 
 
 const loadAuthenticatedApp = () => import('./authenticated-app')
 const AuthenticatedApp = React.lazy(loadAuthenticatedApp)
 const UnauthenticatedApp = React.lazy(() => import('./unauthenticated-app'))
 
-export const Navigation = ({authUser}) => {
-  return (
-    <React.Suspense fallback={<FullPageSpinner />}>
-    {authUser ? <AuthenticatedApp /> : <UnauthenticatedApp />}
-    </React.Suspense>
-  );
-}
 const App = () => {
   // pre-load the authenticated side in the background while the user's
   // filling out the login form.
@@ -21,7 +15,11 @@ const App = () => {
     loadAuthenticatedApp()
   }, [])
   return (
-       <Navigation />   
+    <React.Suspense fallback={<FullPageSpinner />}>
+      <AuthUserContext.Consumer>
+        {authUser => authUser ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      </AuthUserContext.Consumer>
+    </React.Suspense>
   )
 }
 

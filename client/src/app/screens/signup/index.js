@@ -4,7 +4,7 @@ import {jsx} from '@emotion/core'
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { withFirebase } from "../../firebase";
+import { FirebaseContext, withFirebase } from "../../firebase";
 
 import * as ROUTES from '../../config/routes';
 import SideBanner from '../components/sidebar';
@@ -65,25 +65,23 @@ class SignUpFormBase extends Component {
             name: username,
             email: email,
             password: passwordOne,
-        }
+        };
         this.props.firebase
         .doCreateUserWithEmailAndPassword(email, passwordOne)
-        .then(data => {
+        .then( (authUser) => {
             const userCredentials = {
                 name: newUser.name,
                 email: newUser.email,
                 password: newUser.password,
                 createdAt: new Date().toISOString(),
-                userId: data.user.uid,
+                userId: authUser.user.uid,
             };
-         return this.props.firebase.doCreateNewUser(userCredentials);
-        }).then(data => {
-            console.log(data);
-            this.setState({ ...INITIAL_STATE });
-            this.props.history.push(ROUTES.HOME);
+        this.props.firebase.doCreateNewUser(userCredentials);
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.HOME);
         })
         .catch(error => {
-        this.setState({ error, isPending: false });
+        this.setState({ error, isPending: false});
         });
         event.preventDefault();
         };
