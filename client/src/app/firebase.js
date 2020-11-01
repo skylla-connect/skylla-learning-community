@@ -40,8 +40,8 @@ class Firebase {
 
     doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
-    doCreateNewUser = (userCredentials) => 
-    this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);
+    doCreateNewUser = async (userCredentials) => 
+    await this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);
 
     doGetUserAdmin = (userId) => {
         this.db.doc(`/users/admin`)
