@@ -15,6 +15,7 @@ import { Footer } from '../components/footer';
 import ButtonMui from "../components/button";
 import TextFieldMui from "../components/textField";
 
+
 const SignUpPage = () => (
     <div css={{
         display: 'flex',
@@ -52,7 +53,6 @@ const INITIAL_STATE = {
     isChecked: false,
     error: null,
     };
-
 class SignUpFormBase extends Component {
     constructor(props) {
         super(props);
@@ -66,15 +66,19 @@ class SignUpFormBase extends Component {
             email: email,
             password: passwordOne,
         };
+        let usersid;
         this.props.firebase
         .doCreateUserWithEmailAndPassword(email, passwordOne)
         .then( (authUser) => {
+            usersid = authUser.user.uid;
+            return authUser.user.getIdToken();
+        }).then(token => {
             const userCredentials = {
                 name: newUser.name,
                 email: newUser.email,
                 password: newUser.password,
                 createdAt: new Date().toISOString(),
-                userId: authUser.user.uid,
+                userId: usersid,
             };
         this.props.firebase.doCreateNewUser(userCredentials);
         this.setState({ ...INITIAL_STATE });
