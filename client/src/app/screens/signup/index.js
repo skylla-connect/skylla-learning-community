@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core'
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFirebase } from "../../firebase";
@@ -227,7 +227,7 @@ const SignUpLink = () => (
     fontSize: '16px',
     paddingBottom: '30px',
     }}>
-Don't have an account? <span css={{paddingLeft: '18px'}}>
+    Don't have an account? <span css={{paddingLeft: '18px'}}>
     <Link to={ROUTES.SIGN_UP}>Sign Up</Link></span>
 </p>
 );

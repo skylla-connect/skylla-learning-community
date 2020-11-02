@@ -6,7 +6,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import SpeedIcon from '@material-ui/icons/Speed';
 
-import { withFirebase } from '../../../firebase';
+import { withFirebase } from '../../../../firebase';
 import * as ROUTES from '../../../config/routes';
 
 const menu = (props) => {

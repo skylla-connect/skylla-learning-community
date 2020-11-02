@@ -15,15 +15,15 @@ export default Athenticated;
 
 function Routes() {
     return (
-            <Router>
-                <Switch>
-                    <Route path={ROUTES.ADMIN} component={Admin} />
-                    <Route path={ROUTES.TRAINER} component={Trainer} />
-                    <Route path={ROUTES.TRAINEE} component={Trainee} />
-                    <Route path="/">
-                        <Redirect to={ROUTES.ADMIN}/>
-                    </Route>
-                </Switch>
-            </Router>
-)
-    }
+        <Router>
+            <Switch>
+                <Route path={ROUTES.ADMIN} component={Admin} />
+                <Route path={ROUTES.TRAINER} component={Trainer} />
+                <Route path={ROUTES.TRAINEE} component={Trainee} />
+                <Route path="/">
+                    <Redirect to={ROUTES.ADMIN}/>
+                </Route>
+            </Switch>
+        </Router>
+    )
+}
