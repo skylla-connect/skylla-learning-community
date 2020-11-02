@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core'
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withFirebase } from '../../firebase';
 import * as ROUTES from '../../config/routes';
 import { Centered, FormGroup } from '../../components';
 import { Footer } from '../components/footer';
 import SideBanner from '../components/sidebar';
-import * as colors from "../../styles/colors";
+// import * as colors from "../../styles/colors";
 import TextFieldMui from '../components/textField';
 import ButtonMui from '../components/button';
 
@@ -38,6 +38,17 @@ const PasswordForgetPage = () => (
                             address you added to your account</p>
                     </div>
                     <PasswordForgetForm />
+
+                    <p css={{
+                        fontSize: '15px',
+                        padding: '30px 0 20px 0',
+                        }}>
+                        Click to go back
+                        <span css={{paddingLeft: '18px'}}>
+                            <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+                        </span>
+                    </p>
+                    
                     <Footer/>
                 </div> 
             </Centered>
@@ -145,9 +156,9 @@ class PasswordForgetFormBase extends Component {
     }
 }
 const PasswordForgetLink = () => (
-<p css={{fontSize: '14px'}}>
-<Link to={ROUTES.PASSWORD_RESET}>Forgot Password?</Link>
-</p>
+    <p css={{fontSize: '14px'}}>
+        <Link to={ROUTES.PASSWORD_RESET}>Forgot Password?</Link>
+    </p>
 );
 export default PasswordForgetPage;
 const PasswordForgetForm = withFirebase(PasswordForgetFormBase);

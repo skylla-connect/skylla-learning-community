@@ -2,12 +2,12 @@
 import {jsx} from '@emotion/core'
 
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUpLink } from '../signup';
 import { withFirebase } from '../../firebase';
 import * as ROUTES from '../../config/routes';
-import * as colors from "../../styles/colors";
+// import * as colors from "../../styles/colors";
 import { Centered, FormGroup, Spinner } from '../../components';
 import SideBanner from '../components/sidebar';
 import { PasswordForgetLink } from '../resetPassword';
@@ -41,7 +41,9 @@ const SignInPage = () => (
                         alignItems: 'center',
                     }}>
                         <PasswordForgetLink />
-                        <h6 css={{fontSize: '14px'}}>FAQs</h6>
+                        <Link to="#" css={{fontSize: '14px', color: 'black'}}>
+                            FAQs
+                        </Link>
                     </div>
                     <Footer/>
                 </div> 
@@ -51,10 +53,10 @@ const SignInPage = () => (
 );
 
 const INITIAL_STATE = {
-email: '',
-password: '',
-isPending: false,
-error: null,
+    email: '',
+    password: '',
+    isPending: false,
+    error: null,
 };
 class SignInFormBase extends Component {
     constructor(props) {
@@ -68,7 +70,7 @@ class SignInFormBase extends Component {
         .doSignInWithEmailAndPassword(email, password)
         .then(() => {
             this.setState({ ...INITIAL_STATE });
-            this.props.history.push(ROUTES.HOME);
+            this.props.history.push(ROUTES.ADMIN);
         })
         .catch(error => {
             this.setState({ error, isPending: false });
@@ -83,46 +85,46 @@ class SignInFormBase extends Component {
         const isInvalid = password === '' || email === '';
         return (
             <form onSubmit={this.onSubmit} 
-            css={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'stretch',
-                width: '350px',
-            }}>
+                css={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'stretch',
+                    width: '350px',
+                }}>
             <FormGroup>
-            <TextFieldMui 
-                label="E-mail Address"
-                variant="outlined"
-                type="email"
-                id="email"
-                name="email"
-                value={email}
-                onChange={this.onChange}
+                <TextFieldMui 
+                    label="E-mail Address"
+                    variant="outlined"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={email}
+                    onChange={this.onChange}
                 />
             </FormGroup>
             <FormGroup css={{
                 paddingTop: '25px',
             }}>
                 <TextFieldMui 
-                label="Password"
-                id="password"
-                name="password"
-                value={password}
-                variant="outlined"
-                type="password"
-                onChange={this.onChange}
+                    label="Password"
+                    id="password"
+                    name="password"
+                    value={password}
+                    variant="outlined"
+                    type="password"
+                    onChange={this.onChange}
                 />
             </FormGroup>
             <FormGroup css={{
                 paddingTop: '25px',
-            }}>
+                }}>
                 <ButtonMui 
-                variant="contained"
-                color="primary"
-                type="submit"
-                disabled={isInvalid}
-                isPending={isPending}
-                text="login"
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    disabled={isInvalid}
+                    isPending={isPending}
+                    text="login"
                 />
             </FormGroup>
             {error && <p css={{

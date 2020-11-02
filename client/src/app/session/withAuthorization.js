@@ -12,18 +12,18 @@ class WithAuthorization extends React.Component {
     componentDidMount() {
         this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
         if (!condition(authUser)) {
-        this.props.history.push(ROUTES.SIGN_IN);
+            this.props.history.push(ROUTES.SIGN_IN);
         }
         });
     } 
     componentWillUnmount() {
         this.listener();
-        }  
+    }  
     render() {
         return (
         <AuthUserContext.Consumer>
             {authUser =>
-            condition(authUser) ? <Component {...this.props} /> : null
+                condition(authUser) ? <Component {...this.props} /> : null
             }
         </AuthUserContext.Consumer>);
         

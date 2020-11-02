@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core'
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { FirebaseContext, withFirebase } from "../../firebase";
+import { withFirebase } from "../../firebase";
 
 import * as ROUTES from '../../config/routes';
 import SideBanner from '../components/sidebar';
 import { Centered, FormGroup } from '../../components';
-import * as colors from "../../styles/colors";
+// import * as colors from "../../styles/colors";
 import './index.css';
 import { Footer } from '../components/footer';
 import ButtonMui from "../components/button";
@@ -37,6 +37,14 @@ const SignUpPage = () => (
                         paddingBottom: '30px',
                     }}>create account</h5>
                     <SignUpForm />
+
+                    <p css={{
+                        fontSize: '16px',
+                        padding: '20px 0 20px 0',
+                        }}>
+                        Already have an account? <span css={{paddingLeft: '18px'}}>
+                        <Link to={ROUTES.SIGN_IN}>Sign In</Link></span>
+                    </p>
                     <Footer/>
                 </div>
             </Centered>
@@ -80,14 +88,14 @@ class SignUpFormBase extends Component {
                 createdAt: new Date().toISOString(),
                 userId: usersid,
             };
-        this.props.firebase.doCreateNewUser(userCredentials);
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
+            this.props.firebase.doCreateNewUser(userCredentials);
+            this.setState({ ...INITIAL_STATE });
+            this.props.history.push(ROUTES.ADMIN);
         })
         .catch(error => {
-        this.setState({ error, isPending: false});
-        });
-        event.preventDefault();
+            this.setState({ error, isPending: false});
+            });
+            event.preventDefault();
         };
     onChange = event => {
         this.setState({ [event.target.name]: event.target.value });
@@ -186,11 +194,11 @@ class SignUpFormBase extends Component {
                     padding: '10px',
                     fontSize: '14px'
                 }}>I agree to <a href="#" css={{
-                    backgroundColor: "#000cff",
-                    color: "#000000" }}>Terms</a> of service and to Skylla <a href="#"
+                    // backgroundColor: "#007bff",
+                    color: "#007bff" }}>Terms</a> of service and to Skylla <a href="#"
                     css={{
-                        backgroundColor: "#000cff",
-                        color: "#000000"  
+                        // backgroundColor: "#007bff",
+                        color: "#007bff"  
                     }}>Polices</a> </label>
             </FormGroup>
             <FormGroup css={{
@@ -220,7 +228,7 @@ const SignUpLink = () => (
     fontSize: '16px',
     paddingBottom: '30px',
     }}>
-Don't have an account? <span css={{paddingLeft: '18px'}}>
+    Don't have an account? <span css={{paddingLeft: '18px'}}>
     <Link to={ROUTES.SIGN_UP}>Sign Up</Link></span>
 </p>
 );
