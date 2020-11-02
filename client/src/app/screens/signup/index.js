@@ -4,7 +4,7 @@ import {jsx} from '@emotion/core'
 import { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { withFirebase } from "../../firebase";
+import { withFirebase } from "../../../firebase";
 
 import * as ROUTES from '../../config/routes';
 import SideBanner from '../components/sidebar';

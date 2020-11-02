@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 // import Container from './App/index';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Firebase, { FirebaseContext } from './app/firebase';
+import Firebase, { FirebaseContext } from './firebase';
 import './app/bootstrap';
 
 ReactDOM.render(
