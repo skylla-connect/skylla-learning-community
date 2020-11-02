@@ -2,7 +2,7 @@
 import {jsx} from '@emotion/core'
 
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUpLink } from '../signup';
 import { withFirebase } from '../../firebase';
@@ -44,7 +44,7 @@ const SignInPage = () => (
                         <h6 css={{fontSize: '14px'}}>FAQs</h6>
                     </div>
                     <Footer/>
-                </div> 
+                </div>
             </Centered>
         </div>
     </div>
@@ -82,7 +82,7 @@ class SignInFormBase extends Component {
         const { email, password, error, isPending } = this.state;
         const isInvalid = password === '' || email === '';
         return (
-            <form onSubmit={this.onSubmit} 
+            <form onSubmit={this.onSubmit}
             css={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -139,3 +139,17 @@ const SignInForm = compose(
         )(SignInFormBase);
 export default SignInPage;
 export { SignInForm };
+
+
+const SignInLink = () => (
+<p css={{
+    fontSize: '16px',
+    paddingBottom: '30px',
+    }}>
+    If you have an account? <span css={{paddingLeft: '18px'}}>
+      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+    </span>
+</p>
+);
+
+export {SignInPage, SignInLink };

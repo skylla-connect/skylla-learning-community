@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { FirebaseContext, withFirebase } from "../../firebase";
+import { SignInLink } from '../login';
 
 import * as ROUTES from '../../config/routes';
 import SideBanner from '../components/sidebar';
@@ -28,6 +29,7 @@ const SignUpPage = () => (
             Height: '100vh',
            }}>
             <Centered>
+                <SignInLink />
                 <div css={{marginBottom: '60px'}}>
                     <h5
                     css={{
@@ -111,7 +113,7 @@ class SignUpFormBase extends Component {
             isPending;
 
     return (
-        <form onSubmit={this.onSubmit} 
+        <form onSubmit={this.onSubmit}
         css={{
             width: '350px',
             display: 'flex',
@@ -169,7 +171,7 @@ class SignUpFormBase extends Component {
                 onChange={this.onChange}
                 />
             </FormGroup>
-            <FormGroup css={{display: 'flex', 
+            <FormGroup css={{display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center',
@@ -189,6 +191,7 @@ class SignUpFormBase extends Component {
                     backgroundColor: "#000cff",
                     color: "#000000" }}>Terms</a> of service and to Skylla <a href="#"
                     css={{
+
                         backgroundColor: "#000cff",
                         color: "#000000"  
                     }}>Polices</a> </label>
@@ -229,6 +232,6 @@ const SignUpForm = compose(
     withRouter,
     withFirebase,
     )(SignUpFormBase);
-    
+
 
 export { SignUpPage, SignUpLink };
