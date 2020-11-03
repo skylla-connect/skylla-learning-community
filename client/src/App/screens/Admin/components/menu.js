@@ -6,9 +6,10 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import SpeedIcon from '@material-ui/icons/Speed';
 import { Link } from 'react-router-dom';
+import { withFirebase  } from '../../../firebase';
 // import './permissions.css'
 
-const menu = (props) => {
+const menu = ({ firebase }) => {
   return (
     <div>
       <MenuList>
@@ -64,7 +65,7 @@ const menu = (props) => {
         </Link>
 
         {/* Logout */}
-        <MenuItem>
+        <MenuItem onClick={firebase.doSignOut}>
           <i className="fa fa-power-off" style={{
             // fontSize:'36px',
             backgroundColor: '#DF8C42',
@@ -80,4 +81,4 @@ const menu = (props) => {
   );
 }
 
-export default menu;
+export default withFirebase (menu);

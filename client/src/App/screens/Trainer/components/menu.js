@@ -4,8 +4,9 @@ import MenuList from '@material-ui/core/MenuList';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AssessmentIcon from '@material-ui/icons/Assessment';
+import { withFirebase } from '../../../firebase';
 
-const menu = (props) => {
+const menu = ({ firebase }) => {
   return (
     <div>
       <MenuList>
@@ -30,7 +31,7 @@ const menu = (props) => {
               }} /> Interviews
           </MenuItem>
 
-          <MenuItem>
+          <MenuItem onClick={firebase.doSignOut}>
             <i className="fa fa-power-off" style={{
               // fontSize:'36px',
               backgroundColor: '#DF8C42',
@@ -46,4 +47,4 @@ const menu = (props) => {
   );
 }
 
-export default menu;
+export default withFirebase(menu);

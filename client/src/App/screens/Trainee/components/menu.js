@@ -7,22 +7,8 @@ import AssessmentIcon from '@material-ui/icons/Assessment';
 import SpeedIcon from '@material-ui/icons/Speed';
 
 import { withFirebase } from '../../../firebase';
-import * as ROUTES from '../../../config/routes';
 
-const menu = (props) => {
-
-  const handleSignOut = async event => {
-    event.preventDefault();
-    props.firebase
-    .doSignOut()
-    .then(() => {
-        props.history.push(ROUTES.SIGN_IN);
-    })
-    .catch(error => {
-        alert(error);
-    });
-    event.preventDefault();
-  };
+const menu = ({ firebase }) => {
 
   return (
     <div>
@@ -63,7 +49,7 @@ const menu = (props) => {
               /> Get Hired
           </MenuItem>
 
-          <MenuItem onClick={handleSignOut}>
+          <MenuItem onClick={firebase.doSignOut}>
             <i className="fa fa-power-off" style={{
               // fontSize:'36px',
               backgroundColor: '#DF8C42',
