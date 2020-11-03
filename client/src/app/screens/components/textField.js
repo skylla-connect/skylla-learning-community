@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core'
 
-import React, { useState } from "react";
+import { useState } from "react";
 import TextField  from "@material-ui/core/TextField";
 import InputAdornment  from "@material-ui/core/InputAdornment";
 import IconButton  from "@material-ui/core/IconButton";
@@ -16,7 +16,7 @@ const styles = {
 };
 const TextFieldMui = ({...props}) => {
     const [showPassword, setShowPassword] = useState(false);
-    if (props.type == "password") {
+    if (props.type === "password") {
         const handleClickShowPassword = () => setShowPassword(!showPassword);
         const {classes} = props;
         return ( 

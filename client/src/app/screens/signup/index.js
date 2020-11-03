@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core'
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { withFirebase } from "../../firebase";
+import { withFirebase } from "../../../app/firebase";
 
 import * as ROUTES from '../../config/routes';
 import SideBanner from '../components/sidebar';
@@ -188,13 +188,13 @@ class SignUpFormBase extends Component {
                     marginTop: '8px',
                     padding: '10px',
                     fontSize: '14px'
-                }}>I agree to <a href="#" css={{
+                }}>I agree to <Link to="#" css={{
                     // backgroundColor: "#007bff",
-                    color: "#007bff" }}>Terms</a> of service and to Skylla <a href="#"
+                    color: "#007bff" }}>Terms</Link> of service and to Skylla <Link to="#"
                     css={{
                         // backgroundColor: "#007bff",
                         color: "#007bff"  
-                    }}>Polices</a> </label>
+                    }}>Polices</Link> </label>
             </FormGroup>
             <FormGroup css={{
                 paddingTop: '15px',

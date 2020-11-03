@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
 import AuthUserContext from '../session/context';
-import { withFirebase } from '../firebase';
+import { withFirebase } from '../../app/firebase';
 import * as ROUTES from '../../app/config/routes';
 
 
@@ -22,7 +22,8 @@ class WithAuthorization extends React.Component {
     render() {
         return (
         <AuthUserContext.Consumer>
-            {authUser =>
+            {
+                authUser =>
                 condition(authUser) ? <Component {...this.props} /> : null
             }
         </AuthUserContext.Consumer>);
