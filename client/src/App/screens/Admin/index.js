@@ -16,7 +16,7 @@ import Permissions from './components/permissions';
 import Mobile from './mob';
 import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
-import AddUsers from './screens/addUsers';
+import {SignUpPage} from './screens/addUsers';
 
 import {
   BrowserRouter as Router,
@@ -76,7 +76,7 @@ const routes = [
     path: "/add_users",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <AddUsers />
+    main: () => <SignUpPage />
   },
 
   {

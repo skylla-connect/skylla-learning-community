@@ -34,6 +34,10 @@ class Firebase {
     doCreateNewUser = async (userCredentials) => 
     await this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);
 
+    // Create a new trainer
+    doCreateNewTrainer = async (userCredentials) => 
+    await this.db.doc(`/users/trainer/sys_trainers/${userCredentials.userId}`).set(userCredentials);
+
     doGetUserAdmin = (userId) => {
         this.db.doc(`/users/admin`)
         .where("uid", "===", userId)
