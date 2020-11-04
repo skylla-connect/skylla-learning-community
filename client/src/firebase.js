@@ -34,31 +34,16 @@ class Firebase {
     await this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);
 
     doGetUserAdmin = (userId) => {
-        this.db.doc(`/users/admin`)
-        .where("uid", "===", userId)
-        .limit(1)
+        return this.db.doc(`/users/admin/users/${userId}`)
         .get()
-        .then(data => {
-            return data
-        }); 
     }
     doGetUserTrainer = (userId) => {
-        this.db.doc(`/users/trainer`)
-        .where("uid", "===", userId)
-        .limit(1)
-        .get()
-        .then(data => {
-            return data
-        }); 
+        return this.db.doc(`/users/trainer/users/${userId}`)
+        .get() 
     }
     doGetUserTrainee = (userId) => {
-        this.db.doc(`/users/trainee`)
-        .where("uid", "===", userId)
-        .limit(1)
-        .get()
-        .then(data => {
-            return data
-        }); 
+        return this.db.doc(`/users/trainee/users/${userId}`)
+        .get() 
     }
 }
 export default Firebase;
