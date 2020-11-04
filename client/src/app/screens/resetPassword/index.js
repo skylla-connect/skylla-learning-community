@@ -104,22 +104,6 @@ class PasswordForgetFormBase extends Component {
                 placeholder="Enter your email address"
                 onChange={this.onChange}
                 />
-            
-                {/* <label htmlFor="email">E-mail Address</label> */}
-                {/* <input className='form-control'
-                      css={{
-                        width: '350px',
-                        padding: '5px 10px',
-                        textAlign: 'center',
-                        borderRadius: '7px'
-                    }}
-                    id="email"
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                    type="email"
-                    placeholder="Enter your email address"
-                /> */}
             </FormGroup>
             <FormGroup css={{
                 paddingTop: '25px'
@@ -133,20 +117,6 @@ class PasswordForgetFormBase extends Component {
                     text="send"
                     />
             </FormGroup>
-            
-            {/* <button className="btn"
-             css={{
-                width: '100%',
-                padding: '8px 10px',
-                textAlign: 'center',
-                borderRadius: '7px',
-                marginTop: '25px',
-                backgroundColor: colors.blue,
-                color: colors.base,
-            }}
-            disabled={isInvalid} type="submit">
-            SEND
-            </button> */}
                 {error && <p css={{
                 color: 'red', 
                 fontSize: '14px',

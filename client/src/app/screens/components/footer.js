@@ -16,7 +16,7 @@ export const Footer = () => {
             color: '#6C757D',
         }}>
             <div>
-                <p css={{fontSize: '14px'}}>© 2020 | Skylla Co</p>
+                <p css={{fontSize: '14px'}}>&copy; {new Date().getFullYear()} | Skylla Co</p>
             </div>     
         </footer>
      );

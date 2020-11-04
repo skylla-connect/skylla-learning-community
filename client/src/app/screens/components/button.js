@@ -16,7 +16,7 @@ const ButtonMui = (props) => {
         color={props.color}
         type={props.type}
         className={classes.button}
-        {...props}
+        disabled={props.disabled}
     >{props.text} {props.isPending && (<Spinner css={{marginLeft: 5}} /> )}</Button>
      );
 }

@@ -116,7 +116,8 @@ class SignUpFormBase extends Component {
             passwordOne === '' ||
             email === '' ||
             username === '' ||
-            isChecked === false;
+            isChecked === false ||
+            isPending;
 
     return (
         <form onSubmit={this.onSubmit} 

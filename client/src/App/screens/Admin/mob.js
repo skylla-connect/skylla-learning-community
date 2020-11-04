@@ -16,6 +16,7 @@ import Menu from './components/menu';
 import Permissions from './components/permissions';
 import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
+import withAuthorization from '../../session/withAuthorization';
 
 const drawerWidth = 240;
 
@@ -179,5 +180,7 @@ ResponsiveDrawer.propTypes = {
    */
   window: PropTypes.func,
 };
+const condition = authUser => 
+  authUser && authUser.ROLE === "admin";
 
-export default ResponsiveDrawer;
+export default withAuthorization(condition)(ResponsiveDrawer);
