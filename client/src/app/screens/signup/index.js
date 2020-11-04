@@ -9,7 +9,6 @@ import { withFirebase } from "../../../app/firebase";
 import * as ROUTES from '../../config/routes';
 import SideBanner from '../components/sidebar';
 import { Centered, FormGroup } from '../../components';
-// import * as colors from "../../styles/colors";
 import './index.css';
 import { Footer } from '../components/footer';
 import ButtonMui from "../components/button";
@@ -60,12 +59,14 @@ const INITIAL_STATE = {
     isPending: false,
     isChecked: false,
     error: null,
-    };
+};
+
 class SignUpFormBase extends Component {
     constructor(props) {
         super(props);
         this.state = { ...INITIAL_STATE };
     }
+    
     onSubmit = event => {
         this.setState({...this.state, isPending: true})
         const { username, email, passwordOne } = this.state;
