@@ -17,6 +17,7 @@ import Mobile from './mob';
 import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
 import {SignUpPage} from './screens/addUsers';
+import DeleteUsers from './screens/deleteUsers';
 
 import {
   BrowserRouter as Router,
@@ -83,7 +84,7 @@ const routes = [
     path: "/delete_users",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <div>Delete users</div>
+    main: () => <DeleteUsers />
   },
 
   {
