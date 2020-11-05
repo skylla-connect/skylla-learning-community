@@ -17,6 +17,7 @@ import Mobile from './mob';
 import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
 import AddUsers from './screens/addUsers';
+import Profile from './screens/profilePage';
 
 import {
   BrowserRouter as Router,
@@ -40,9 +41,7 @@ const routes = [
     path: "/profile",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <div>
-      Profile page
-    </div>
+    main: () => <Profile />
   },
 
   {
