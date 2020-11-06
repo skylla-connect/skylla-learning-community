@@ -68,17 +68,14 @@ export default function ProfilePage() {
                                 ID: 003
                             </Typography>
                             <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                                jdoe@skyllaconnect.com
+                                johnd@skyllaconnect.com
                             </Typography>
                         </Grid>
                     </Grid>
-                    {/* <Grid item>
-                    <Typography variant="subtitle1">$19.00</Typography>
-                    </Grid> */}
                 </Grid>
             </Grid>
+            <Divider style={{ margin:'30px 0 0 0' }}/>
         </div>
-        <Divider/>
     </Paper>
   );
 }
