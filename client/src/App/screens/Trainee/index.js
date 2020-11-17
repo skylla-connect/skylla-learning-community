@@ -22,6 +22,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Views from './components/views/views'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import SocialIcons from './components/social';
+import *as ROUTES from '../../config/routes';
+import {Link} from 'react-router-dom'
 
 const drawerWidth = 240;
 
@@ -196,7 +198,7 @@ export default function PersistentDrawerLeft() {
               <div style={{textAlign: 'center'}}>
                   <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
                       <Fab color="primary" className={classes.fab}>
-                        <AddShoppingCartIcon style={{}} />
+                        <Link to={ROUTES.CART}><AddShoppingCartIcon style={{}} /></Link>
                       </Fab>
                   </Tooltip>
               </div>
