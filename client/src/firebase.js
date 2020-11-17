@@ -33,6 +33,27 @@ class Firebase {
     doCreateNewUser = async (userCredentials) => 
     await this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);
 
+    doAddItemToCart = async (userCartDetails) => {
+        return await this.db.doc(`/cart/${userCartDetails.userId}`).get()
+        .then(data => {
+            if (data.exists){
+                return this.db
+                .doc(`/cart/${userCartDetails.userId}/items/${userCartDetails.courseName}`)
+                .set(userCartDetails);
+            } else {
+                return this.db.doc(`/cart/${userCartDetails.userId}`).set(userCartDetails);
+            }
+        });
+    }
+    doRemoveCartItem = async (userId, courseName) => 
+    await this.db.doc(`/cart/${userId}/items/${courseName}`).delete();
+
+    doGetUserCart = (userId) => 
+     this.db.doc(`/cart/${userId}`).get();
+
+     doRemoveUserCart = async (userId) => 
+     await this.db.doc(`/cart/${userId}`).delete();
+
     doGetUserAdmin = (userId) => {
         return this.db.doc(`/users/admin/users/${userId}`)
         .get()
