@@ -9,27 +9,16 @@ const Cart  = () =>{
         <div>
             <div className='cart-wrapper'>
             <header>
-               <ul>
                <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' alt='img' />
                <div className='CRT'>
-               <AddShoppingCartIcon style={{fontSize:'60px', margin:'-50px 0 0 0'}}/>
+               <AddShoppingCartIcon className='ca-icon' style={{fontSize:'60px', margin:'-50px 0 0 0'}}/>
                 <p>
                     Cart
                </p>
                </div>
-               </ul>
             </header>
             <div className='wrap-cart'>
-              <div className='walk'>
-              <div className='icon'>
-              <AddShoppingCartIcon style={{fontSize:'100px'}}/>
-              </div>
-                <div>
-                <h3>Javascript</h3>
-                <p>Walk Through Javascript</p>
-                </div>
-              </div>
-              <div className='purchase'>
+            <div className='purchase'>
                   <h3>Javascript</h3>
                   <p>Preview this Content</p>
                   <p>Ush 50000.00</p>
@@ -39,6 +28,15 @@ const Cart  = () =>{
                   <Button
                     className='btn-2' 
                   >Buy</Button>
+              </div>
+              <div className='walk'>
+              <div className='icon'>
+              <AddShoppingCartIcon style={{fontSize:'100px'}}/>
+              </div>
+                <div>
+                <h3>Javascript</h3>
+                <p>Walk Through Javascript</p>
+                </div>
               </div>
             </div>
             <div className='course'>
