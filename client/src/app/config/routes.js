@@ -4,3 +4,4 @@ export const ADMIN = '/admin';
 export const TRAINER = '/trainer';
 export const TRAINEE = '/trainee';
 export const PASSWORD_RESET = '/resetpassword';
+export const MODULES = '/module'

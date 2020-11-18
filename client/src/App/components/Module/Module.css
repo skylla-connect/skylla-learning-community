@@ -1,0 +1,64 @@
+body{
+    width: 100%;
+    background-color: #DAE8FC;
+}
+.menu1{
+    background-color: blue;
+    height: 6em;
+}
+.cart{
+    color: white;
+    margin: -5.5em auto auto 58em;
+}
+.log{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 25%;
+}
+.join{
+    display: flex;
+    background-color: #CFCFCF;
+    font-size: xx-large;
+}
+.title{
+    margin: 5% auto 5% 3em;
+    font-weight: bolder;
+    padding: 90px;
+}
+.texts{
+    width: 40%;
+    margin: 10% auto 10% auto;
+    text-align: center;
+}
+.all{
+    display: flex;
+    text-align: center;
+    padding-top: 2%;
+    margin: 5% 10% auto 5%;
+    background-color: whitesmoke;
+    width:90%;
+}
+.size{
+    width: 50%;
+}
+.sizer{
+    width: 60%;
+}
+.shuffle{
+    font-size: xx-large;
+    margin:10px auto auto 2em;
+}
+/* FOOTER STYLES */
+.foot{
+    background-color: whitesmoke;
+    width: 100%;
+    height: 5em;
+    margin: 10% auto 0 0;
+    bottom: 0;
+}
+.ryt{
+    padding-top: 1.5em;
+    text-align: center;
+    font-size: larger;
+
+}

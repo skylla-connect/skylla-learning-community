@@ -5,7 +5,7 @@ import { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUpLink } from '../signup';
-import { withFirebase } from '../../../app/firebase';
+import { withFirebase } from '../../../App/firebase';
 import * as ROUTES from '../../config/routes';
 // import * as colors from "../../styles/colors";
 import { Centered, FormGroup } from '../../components';
