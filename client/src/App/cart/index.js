@@ -10,12 +10,6 @@ const Cart  = () =>{
             <div className='cart-wrapper'>
             <header className='header1'>
                <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' alt='img' />
-               <div className='CRT'>
-               <AddShoppingCartIcon className='ca-icon' style={{fontSize:'40px', margin:'-80px 0 0 0'}}/>
-                <p>
-                    Cart
-               </p>
-               </div>
             </header>
             <div className='wrap-cart'>
             <div className='purchase'>
@@ -24,7 +18,7 @@ const Cart  = () =>{
                   <p>Ush 50000.00</p>
                   <Button 
                     className='btn-1'
-                  >Go to Cart</Button> <br />
+                  >Continue Shopping</Button> <br />
                   <Button
                     className='btn-2' 
                   >Buy</Button>
