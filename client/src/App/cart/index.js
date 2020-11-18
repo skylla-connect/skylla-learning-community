@@ -8,10 +8,10 @@ const Cart  = () =>{
     return(
         <div>
             <div className='cart-wrapper'>
-            <header>
+            <header className='header1'>
                <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' alt='img' />
                <div className='CRT'>
-               <AddShoppingCartIcon className='ca-icon' style={{fontSize:'60px', margin:'-50px 0 0 0'}}/>
+               <AddShoppingCartIcon className='ca-icon' style={{fontSize:'40px', margin:'-80px 0 0 0'}}/>
                 <p>
                     Cart
                </p>
