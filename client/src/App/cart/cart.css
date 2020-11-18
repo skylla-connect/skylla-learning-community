@@ -26,7 +26,7 @@
     display: flex;
 }
 .cart-wrapper{
-    /* width: 90%; */
+    margin-top: 5%;
     text-align: center;
 }
 .purchase{
@@ -35,7 +35,7 @@
     width: 25%;
     height: 600px;
     position: absolute;
-    margin: -5% auto auto 65%;
+    margin: 5% auto auto 50%;
     background-color: white;
 }
 .purchase h3{
@@ -59,7 +59,7 @@
 }
 .walk{
     width: 50%;
-    margin: 50px auto auto 100px;
+    margin: 70px auto auto 10px;
     border-radius: 0%;
     display: flex;
     height: 200px;
@@ -78,7 +78,7 @@
 }
 .course{
     width: 50%;
-    margin: 50px auto auto 100px;
+    margin: 50px auto auto 10px;
     border-radius: 0%;
     height: 300px;
     background-color: whitesmoke;
