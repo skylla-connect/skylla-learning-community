@@ -1,0 +1,37 @@
+body{
+    width: 100%;
+    background-color: #DAE8FC;
+}
+.menu1{
+    background-color: blue;
+    height: 6em;
+}
+.cart{
+    color: white;
+    margin: -5.5em 90% auto 90%;
+}
+.log{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 25%;
+}
+@media screen and (max-width: 768px) {
+    body{
+        width: 100%;
+        background-color: #DAE8FC;
+    }
+    .menu1{
+        background-color: blue;
+        height: 6em;
+    }
+    .cart{
+        color: white;
+        margin: -4.5em 80% auto 80%;
+    }
+    .log{
+        margin: -2% auto -2% auto;
+        padding-top: 2em;
+        padding-bottom: 2em;
+        width: 50%;
+    }
+}

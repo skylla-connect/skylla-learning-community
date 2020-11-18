@@ -1,21 +1,18 @@
 import React from 'react';
 import '../../components/Module/Module.css'
-import Shoppingcart from '@material-ui/icons/ShoppingCart'
 import Shuffle from '@material-ui/icons/Shuffle'
+import LayersClear from '@material-ui/icons/LayersClear'
+import FindReplace from '@material-ui/icons/FindReplace'
+import CompareArrows from '@material-ui/icons/CompareArrows'
+import LaptopChromebook from '@material-ui/icons/LaptopChromebook'
 import PanTool from '@material-ui/icons/PanTool'
 import Button from '@material-ui/core/Button'
+import Menu from '../../components/Module/Menu/Menu'
 
 const Module =() =>{
     return(
         <div>
-            {/* MENU SKYLLA */}
-            <div className='menu1'>
-                <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' className='log'/>
-                <div className='cart'>
-                    <Shoppingcart />
-                    <p>Cart</p>
-                </div>
-            </div>
+            <Menu />
             {/* CONTENT */}
             <div className='join'>
                 <h1 className='title'>JOIN</h1>
@@ -41,7 +38,7 @@ const Module =() =>{
                 </div>
                 {/* CARD LEFT */}
                 <div className='shuffle'>
-                    <PanTool className='shuffle'/>
+                    <PanTool />
                 </div>
                <div>
                     <div className='sizer'>
@@ -63,7 +60,7 @@ const Module =() =>{
             {/* CARD RIGHT */}
             <div className='all'>
                 <div className='shuffle'> 
-                    <Shuffle />
+                    <LayersClear />
                 </div>
                 <div className='size'>
                     <p>
@@ -79,7 +76,7 @@ const Module =() =>{
                 </div>
                 {/* CARD LEFT */}
                 <div className='shuffle'>
-                    <PanTool className='shuffle'/>
+                    <FindReplace/>
                 </div>
                <div>
                     <div className='sizer'>
@@ -100,7 +97,7 @@ const Module =() =>{
             {/* CARD RIGHT */}
             <div className='all'>
                 <div className='shuffle'> 
-                    <Shuffle />
+                    <LaptopChromebook />
                 </div>
                 <div className='size'>
                     <p>
@@ -116,7 +113,7 @@ const Module =() =>{
                 </div>
                 {/* CARD LEFT */}
                 <div className='shuffle'>
-                    <PanTool className='shuffle'/>
+                    <CompareArrows />
                 </div>
                <div>
                     <div className='sizer'>

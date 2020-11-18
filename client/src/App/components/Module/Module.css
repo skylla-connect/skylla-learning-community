@@ -1,27 +1,11 @@
-body{
-    width: 100%;
-    background-color: #DAE8FC;
-}
-.menu1{
-    background-color: blue;
-    height: 6em;
-}
-.cart{
-    color: white;
-    margin: -5.5em auto auto 58em;
-}
-.log{
-    padding-top: 1em;
-    padding-bottom: 1em;
-    width: 25%;
-}
+
 .join{
     display: flex;
     background-color: #CFCFCF;
     font-size: xx-large;
 }
 .title{
-    margin: 5% auto 5% 3em;
+    margin: 5% 0 5% 10%;
     font-weight: bolder;
     padding: 90px;
 }
@@ -61,4 +45,45 @@ body{
     text-align: center;
     font-size: larger;
 
+}
+@media screen and (max-width: 768px) {
+    body{
+        width: 100%;
+        background-color: #DAE8FC;
+    }
+    .join{
+        display: flex;
+        background-color: #CFCFCF;
+        font-size: larger;
+    }
+    .title{
+
+        margin: 5% -20% 5% -20%;
+        font-weight: bold;
+        padding: 90px;
+    }
+    .texts{
+        width: 40%;
+        margin: 25% 15% 25% 15%;
+        text-align: center;
+    }
+    .all{
+        text-align: center;
+        display: block;
+        padding-top: 2%;
+        margin: auto 10% auto auto;
+        background-color: whitesmoke;
+        width:100%;
+    }
+    .size{
+        width: 80%;
+        margin: auto 10% auto 10%;
+    }
+    .sizer{
+        width: 80%;
+        margin: auto 10% auto 10%;
+    }
+    .shuffle{
+        margin:0 80% auto 0;
+    }
 }
