@@ -7,6 +7,7 @@ import * as colors from "../../styles/colors";
 import Footer from "../../components/Footer/footer";
 import TextFieldMui from "../components/textField";
 import VisaLogo from "./static/Icon_Visa.png";
+import MasterLogo from "./static/Icon_MasterCard.png";
 
 // MUI stuff
 import  makeStyles  from '@material-ui/core/styles/makeStyles';
@@ -14,7 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PhoneIphoneOutlined from '@material-ui/icons/PhoneIphoneOutlined';
-import CreditCardOutlinedIcon from '@material-ui/icons/CreditCardOutlined';
+import AddIcon from '@material-ui/icons/Add';
 import Tooltip from '@material-ui/core/Tooltip';
 import Card from '@material-ui/core/Card';
 import CardContent from "@material-ui/core/CardContent";
@@ -62,10 +63,12 @@ const StyledToggleButton = withStyles({
     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <span style={{fontSize: "15px"}}>
             <IconButton style={{padding: "0px"}}>
-                <Radio name={props.card.name} value={props.card.value} 
+                <Radio name={props.card.cardNo} value={props.card.cardNo} 
                 style={{padding: "0px 0px 0px 10px", color: "#FFC107"}}/>
             </IconButton>
-            <img style={{paddingRight: "20px"}}  src={VisaLogo} alt="visa"/>  
+            {props.card.type === "Visa card"? <img style={{paddingRight: "20px"}} 
+            src={VisaLogo} alt="visa"/>: <img style={{paddingRight: "20px"}} 
+            src={MasterLogo} alt="master"/> }
             {props.card.type} 
         </span> 
     </AccordionSummary>
@@ -76,8 +79,7 @@ const StyledToggleButton = withStyles({
     <FormGroup style={{backgroundColor: "#fff"}}>
     <TextFieldMui 
         type ="text" 
-        value="David Kayongo"
-      //   variant="outlined"
+        value={props.card.cardName}
         label = "Name on Card"
         inputProps ={{style: {fontSize: '13.5px'}}}
         />
@@ -85,8 +87,7 @@ const StyledToggleButton = withStyles({
     <FormGroup style={{backgroundColor: "#fff", marginTop: "10px" }}>
     <TextFieldMui 
         type ="text"
-        value="1234-4567-345"
-      //   variant="outlined"
+        value={props.card.cardNo}
         label = "Card Number"
         inputProps ={{ style: {fontSize: '13.5px'}}}
     />
@@ -96,8 +97,7 @@ const StyledToggleButton = withStyles({
         <FormGroup style={{width: "100px" ,backgroundColor: colors.base}}>
             <TextFieldMui 
                 type ="text"
-                value="JUN"
-              //   variant="outlined"
+                value={props.card.expiryMonth}
                 label = "MM"
                 inputProps ={{ style: {fontSize: '13px'}}}
                 />
@@ -105,9 +105,8 @@ const StyledToggleButton = withStyles({
         <FormGroup style={{width: "100px", backgroundColor: colors.base}}>
             <TextFieldMui 
                 inputProps ={{ style: {fontSize: '13px'}}}
-                value="2020"
+                value={props.card.expiryYear}
                 type ="text"
-              //   variant="outlined"
                 label = "YYYY"
                 />
         </FormGroup>
@@ -115,8 +114,7 @@ const StyledToggleButton = withStyles({
     <FormGroup style={{width: "100px", backgroundColor: colors.base}}>
         <TextFieldMui 
             type ="text"
-            value="1235"
-          //   variant="outlined"
+            value={props.card.CCV}
             inputProps ={{ style: {fontSize: '13.5px'}}}
             label = "CCV"
             />
@@ -127,7 +125,7 @@ const StyledToggleButton = withStyles({
 </Accordion> 
 );
 
-  export function Savedcards () {
+  export function Savedcards (props) {
     const [value, setValue] = React.useState("add");
     const [name, setName] = React.useState("add");
     
@@ -146,9 +144,9 @@ const StyledToggleButton = withStyles({
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <span style={{fontSize: "15px"}}>
             <IconButton style={{padding: "0px"}}>
-                <Radio name="add" value="add" style={{padding: "0px 0px 0px 10px", color: "#FFC107"}}/>
+                <Radio name="add" value="add" style={{padding: "0px 40px 0px 10px", color: "#FFC107"}}/>
             </IconButton>
-            <img style={{paddingRight: "20px"}}  src={VisaLogo} alt="visa"/>  
+            <AddIcon style={{color: colors.gray80}}  />  
             Add card
         </span> 
     </AccordionSummary>
@@ -214,8 +212,23 @@ const StyledToggleButton = withStyles({
     </AccordionDetails>
     </Accordion>
             {[
-                {type:"Visa card", name: "visa", value: "visa"}, 
-                {type: "Master card", name: "mastre", value: "mastre"} ].map(item => {
+                {
+                    type:"Visa card",
+                    cardName: "kayongo david",
+                    cardNo: "1234-4567-234",
+                    expiryMonth: "JUN",
+                    expiryYear: "2020",
+                    CCV: "1234"
+            }, 
+            {
+                type: "Master card",
+                cardName: "kayongo david",
+                cardNo: "1234-4567-284",
+                expiryMonth: "JUN",
+                expiryYear: "2020",
+                CCV: "1234"
+            
+            } ].map(item => {
                 return (
                     <SavedCard card={item} />
                 );
@@ -379,9 +392,7 @@ const StyledToggleButton = withStyles({
   
     const [alignment, setAlignment] = React.useState('left');
     const [isExpanded, setIsExpanded] = useState(false);
-    const handleClickExpansion = (event) => {
-        setIsExpanded(!isExpanded)};
-  
+    
     const handleChange = (
       event,
       newAlignment
@@ -433,6 +444,7 @@ const useStyles = makeStyles((theme) => ({
 const Checkout = ({...props}) => {
     const classes = useStyles();
     const learnContent = ["content", "content", "content", "content", "content", "content"]
+    const [billingAddress, setBillingAddress] = React.useState("");
     return ( 
         <div className={classes.root}>
         <Card className="navbar navbar-default" css={{
@@ -483,7 +495,7 @@ const Checkout = ({...props}) => {
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         value={learnContent}
-                        onChange={() => console.log()}
+                        onChange={(event) => setBillingAddress(event.target.value)}
                         label="Billing Address"
                         >
                          <MenuItem value="" disabled><em>Country</em></MenuItem>
