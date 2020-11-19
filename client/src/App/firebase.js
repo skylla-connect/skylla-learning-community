@@ -31,6 +31,11 @@ class Firebase {
 
     doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
+    // Get the user profile information corresponding to a userId
+    doGetTraineeProfile = async () => {
+        this.db.collection("/users/trainee/users")
+    };
+
     doCreateNewUser = async (userCredentials) => 
     await this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);
 

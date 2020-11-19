@@ -6,16 +6,9 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFirebase } from "../../../firebase";
 import { Centered, FormGroup } from '../../../components';
-// import './index.css';
 import ButtonMui from "../../components/button";
-import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Visibility from '@material-ui/icons/Visibility';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
+import * as ROUTES from '../../../config/routes';
+import TextFieldMui from "../../components/textField";
 
 
 const SignUpPage = () => (
@@ -86,10 +79,11 @@ class SignUpFormBase extends Component {
                 password: newUser.password,
                 createdAt: new Date().toISOString(),
                 userId: usersid,
+                role: 'trainer',
             };
             this.props.firebase.doCreateNewTrainer(userCredentials);
             this.setState({ ...INITIAL_STATE });
-            this.props.history.push('/admin');
+            this.props.history.push(ROUTES.ADMIN);
         })
         .catch(error => {
             this.setState({ error, isPending: false});
@@ -128,74 +122,56 @@ class SignUpFormBase extends Component {
             username === ''
 
     return (
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit}  css={{
+            width: '550px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'stretch',
+        }}>
+
             <FormGroup>
-                <TextField
-                    required
+                <TextFieldMui
                     label="Full Name"
-                    id="outlined-size-normal"
                     variant="outlined"
                     type="text"
+                    id="username"
                     name="username"
                     value={username}
+                    placeholder="Name"
                     onChange={this.onChange}
-                    style={{minWidth: '550px'}}
+                />
+            </FormGroup>
+            
+            <FormGroup css={{
+                 paddingTop: "18px"
+             }}>
+                <TextFieldMui 
+                    label="E-mail Address"
+                    variant="outlined"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={email}
+                    onChange={this.onChange}
                 />
             </FormGroup>
 
-             <FormGroup css={{
-                 paddingTop: "18px",
-                 marginBottom: '18px'
-             }}>
-
-            <TextField
-                required
-                label="E-mail Address"
-                id="outlined-size-normal"
-                variant="outlined"
-                value={email}
-                name='email'
-                style={{    width: '100%'}}
-                onChange={this.onChange}
-            />
-  
-            </FormGroup>
-
-            <FormGroup>
-                <FormControl variant="outlined" css={{
+            <FormGroup css={{
                     paddingTop: '18px',
                 }}>
-                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                    <OutlinedInput
-                        required
-                        label="Password"
-                        id="passwordOne"
-                        name="passwordOne"
-                        value={passwordOne}
-                        variant="outlined"
-                        onChange={this.onChange}
-                        type={this.state.showPassword ? 'text' : 'password'}
-                        autoComplete="current-password"
-
-                        endAdornment={
-                            <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={this.handleClickShowPassword}
-                                onMouseDown={this.handleMouseDownPassword}
-                                edge="end"
-                            >
-                                {
-                                this.state.showPassword ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                            </InputAdornment>
-                        }
-                    />
-                </FormControl>
+                    <TextFieldMui 
+                    label="Temporary Password"
+                    id="passwordOne"
+                    name="passwordOne"
+                    value={passwordOne}
+                    variant="outlined"
+                    type="password"
+                    onChange={this.onChange}
+                />
             </FormGroup>
            
             <FormGroup css={{
-                paddingTop: '15px',
+                paddingTop: '18px',
             }}>
                 <ButtonMui
                 variant="contained"

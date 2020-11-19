@@ -88,6 +88,7 @@ class SignUpFormBase extends Component {
                 password: newUser.password,
                 createdAt: new Date().toISOString(),
                 userId: usersid,
+                role: 'trainee',
             };
             this.props.firebase.doCreateNewUser(userCredentials);
             this.setState({ ...INITIAL_STATE });
