@@ -3,6 +3,7 @@ import {FullPageSpinner} from './app/components';
 import {  } from "recompose";
 import withAuthetication from "./app/session/withAuthetication";
 import AuthUserContext from "./app/session/context";
+// import LiveSupport from '../src/LiveSupport/LiveSupport'
 
 const loadAuthenticatedApp = () => import('./authenticated-app')
 const AuthenticatedApp = React.lazy(loadAuthenticatedApp)
@@ -39,6 +40,7 @@ const App = () => {
     <React.Suspense fallback={<FullPageSpinner />}>
         {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </React.Suspense>
+    
   )
 }
 

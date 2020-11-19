@@ -22,6 +22,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Views from './components/views/views'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import SocialIcons from './components/social';
+import Link from 'react-router-dom/Link'
+import * as ROUTES from '../../config/routes' 
 
 const drawerWidth = 240;
 
@@ -143,6 +145,12 @@ export default function PersistentDrawerLeft() {
               >
                 <MenuIcon />
               </IconButton>
+              <div style={{textAlign: 'center'}}>
+                <Avatar alt="Remy Sharp" src="" />
+                <Typography variant="body2">
+               <Link to = {ROUTES.LIVE_SUPPORT} style={{color:'white'}}>  LiveSupport</Link>
+                </Typography>
+              </div>
               <div style={{margin: 'auto'}}>
                 <Typography noWrap>
                     SKYLLA LEARNING COMMUNITY
@@ -200,6 +208,7 @@ export default function PersistentDrawerLeft() {
                       </Fab>
                   </Tooltip>
               </div>
+              
             </Toolbar>
           </AppBar>
           <Drawer

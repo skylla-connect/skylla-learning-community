@@ -8,6 +8,7 @@ import Trainee from './app/screens/Trainee/index';
 import { useUser } from './App';
 import withAuthorization from './app/session/withAuthorization';
 import { FullPageSpinner } from './app/components';
+import LiveSupport from './LiveSupport/LiveSupport'
 
 const Athenticated = () => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);
@@ -36,6 +37,7 @@ function Routes(props) {
                 <Route path={ROUTES.ADMIN} component={Admin} />
                 <Route path={ROUTES.TRAINER} component={Trainer} />
                 <Route path={ROUTES.TRAINEE} component={Trainee} />
+                <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}
