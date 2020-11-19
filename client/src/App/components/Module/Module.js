@@ -1,13 +1,16 @@
 import React from 'react';
 import '../../components/Module/Module.css'
 import Shuffle from '@material-ui/icons/Shuffle'
-import LayersClear from '@material-ui/icons/LayersClear'
+import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL'
 import FindReplace from '@material-ui/icons/FindReplace'
-import CompareArrows from '@material-ui/icons/CompareArrows'
+import GitHub from '@material-ui/icons/GitHub'
+import Code from '@material-ui/icons/Code'
 import LaptopChromebook from '@material-ui/icons/LaptopChromebook'
 import PanTool from '@material-ui/icons/PanTool'
 import Button from '@material-ui/core/Button'
 import Menu from '../../components/Module/Menu/Menu'
+import { Link } from 'react-router-dom';
+
 
 const Module =() =>{
     return(
@@ -15,6 +18,9 @@ const Module =() =>{
             <Menu />
             {/* CONTENT */}
             <div className='join'>
+                <div>
+                    <Link to='/'><FormatTextdirectionRToL /></Link>
+                </div>
                 <h1 className='title'>JOIN</h1>
                 <p className='texts'>the million people learning to code with skylla connect</p>
             </div>
@@ -42,10 +48,10 @@ const Module =() =>{
                 </div>
                <div>
                     <div className='sizer'>
-                        <p>Take a look at one of our most
+                        <p style={{width:'80%'}}>
+                            Take a look at one of our most
                             popular computer Science 
                             fundamentals startercourse
-                            
                         </p>
                         <Button
                             variant='contained'
@@ -58,15 +64,15 @@ const Module =() =>{
 
             {/* SECOND CARD */}
             {/* CARD RIGHT */}
-            <div className='all'>
-                <div className='shuffle'> 
-                    <LayersClear />
+            <div className='all1'>
+                <div className='shuffler'> 
+                    <Code />
                 </div>
-                <div className='size'>
+                <div className='size2'>
                     <p>
-                        Learn the fundamentals of computer Science
-                        in one week.
-                        10+videos -10+ challenges
+                    Learn HTML | CSS & JavaScript  
+                    in one week.
+                    10+ videos - 10+ challenges
                     </p>
                     <Button
                         variant='contained'
@@ -75,15 +81,15 @@ const Module =() =>{
                     </Button>
                 </div>
                 {/* CARD LEFT */}
-                <div className='shuffle'>
+                <div className='shuffler' >
                     <FindReplace/>
                 </div>
                <div>
-                    <div className='sizer'>
-                        <p>Take a look at one of our most
-                            popular computer Science 
-                            fundamentals startercourse
-                            
+                    <div className='size1'>
+                        <p>
+                            Learn Python in one week.videos
+                            -12 challenges 
+                            -2 articles
                         </p>
                         <Button
                             variant='contained'
@@ -95,15 +101,14 @@ const Module =() =>{
             </div>
             {/* THIRD CARD */}
             {/* CARD RIGHT */}
-            <div className='all'>
+            <div className='all2'>
                 <div className='shuffle'> 
                     <LaptopChromebook />
                 </div>
                 <div className='size'>
                     <p>
-                        Learn the fundamentals of computer Science
-                        in one week.
-                        10+videos -10+ challenges
+                    Learn to manage different versions of your code with git.
+                    10+ videos - 10+ challenges
                     </p>
                     <Button
                         variant='contained'
@@ -113,14 +118,14 @@ const Module =() =>{
                 </div>
                 {/* CARD LEFT */}
                 <div className='shuffle'>
-                    <CompareArrows />
+                    <GitHub />
                 </div>
                <div>
                     <div className='sizer'>
-                        <p>Take a look at one of our most
-                            popular computer Science 
-                            fundamentals startercourse
-                            
+                        <p>
+                            Take a look at one of our most 
+                            popular versions of Git starter 
+                            course
                         </p>
                         <Button
                             variant='contained'

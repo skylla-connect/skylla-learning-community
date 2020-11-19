@@ -5,32 +5,61 @@
     font-size: xx-large;
 }
 .title{
-    margin: 5% 0 5% 10%;
+    margin: 5% 15% 5% 15%;
     font-weight: bolder;
     padding: 90px;
 }
 .texts{
     width: 40%;
-    margin: 10% auto 10% auto;
+    margin: 10% 0% 10% 0%;
     text-align: center;
 }
 .all{
+    width:90%;
     display: flex;
     text-align: center;
     padding-top: 2%;
-    margin: 5% 10% auto 5%;
+    padding-bottom: 2%;
+    margin: 5% 0 auto 5%;
     background-color: whitesmoke;
+}
+.all1{
     width:90%;
+    display: flex;
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin: 5% 0 auto 5%;
+    background-color: whitesmoke;
+}
+.all2{
+    width:90%;
+    display: flex;
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin: 5% 0 auto 5%;
+    background-color: whitesmoke;
 }
 .size{
     width: 50%;
 }
+.size1{
+    width: 80%;
+}
+.size2{
+    width: 50%;
+}
 .sizer{
-    width: 60%;
+    width: 90%;
+}
+.shuffler{
+    font-size: xx-large;
+    margin:0 auto auto 3em;
 }
 .shuffle{
     font-size: xx-large;
-    margin:10px auto auto 2em;
+    margin:0 auto auto 3em;
 }
 /* FOOTER STYLES */
 .foot{
