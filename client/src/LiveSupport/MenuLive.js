@@ -1,4 +1,3 @@
-import { colors } from '@material-ui/core';
 import React, { Component } from 'react'
 // import Avatar from '@material-ui/core/Avatar';
 import './MenuLive.css'
