@@ -7,9 +7,11 @@ import GitHub from '@material-ui/icons/GitHub'
 import Code from '@material-ui/icons/Code'
 import LaptopChromebook from '@material-ui/icons/LaptopChromebook'
 import PanTool from '@material-ui/icons/PanTool'
+import ArrowBack from '@material-ui/icons/ArrowBack'
 import Button from '@material-ui/core/Button'
 import Menu from '../../components/Module/Menu/Menu'
 import { Link } from 'react-router-dom';
+import Card from '@material-ui/core/Card'
 
 
 const Module =() =>{
@@ -19,7 +21,7 @@ const Module =() =>{
             {/* CONTENT */}
             <div className='join'>
                 <div>
-                    <Link to='/'><FormatTextdirectionRToL /></Link>
+                    <Link to='/'><ArrowBack /></Link>
                 </div>
                 <h1 className='title'>JOIN</h1>
                 <p className='texts'>the million people learning to code with skylla connect</p>
@@ -27,10 +29,10 @@ const Module =() =>{
             {/* FIRST CARD */}
             {/* CARD RIGHT */}
             <div className='all'>
-                <div className='sky'> 
-                    <Shuffle />
-                </div>
-                <div className='middle'>
+                <Card elevation='3' className='card1'>
+                    <div className='sky'> 
+                        <Shuffle />
+                    </div>
                     <p>
                         Learn the fundamentals of computer Science
                         in one week.
@@ -38,39 +40,35 @@ const Module =() =>{
                     </p>
                     <Button
                         variant='contained'
-                        color='secondary'
-                        id='butt1'>
+                        color='secondary'>
                         Go to cart
                     </Button>
-                </div>
+                </Card>
                 {/* CARD LEFT */}
-                <div className='sky1'>
-                    <PanTool />
-                </div>
-               <div>
-                    <div className='middle'>
-                        <p>
-                            Take a look at one of our most
-                            popular computer Science 
-                            fundamentals startercourse
-                        </p>
-                        <Button
-                            variant='contained'
-                            color='secondary'
-                            id='butt1'>
-                            Go to cart
-                        </Button>
+               <Card elevation='3'className='card2'>
+                    <div className='sky1' >
+                        <PanTool />
                     </div>
-               </div>
+                    <p className='p'>
+                        Take a look at one of our most
+                        popular computer Science 
+                        fundamentals startercourse
+                    </p>
+                    <Button
+                        variant='contained'
+                        color='secondary'>
+                        Go to cart
+                    </Button>
+               </Card>
             </div>
 
             {/* SECOND CARD */}
             {/* CARD RIGHT */}
             <div className='all'>
-                <div className='shuffler'> 
-                    <Code />
-                </div>
-                <div className='size'>
+                <Card elevation='3' className='card1'>
+                    <div className='shuffler'> 
+                        <Code />
+                    </div>
                     <p>
                     Learn HTML | CSS & JavaScript  
                     in one week.
@@ -82,34 +80,32 @@ const Module =() =>{
                         id='butt1'>
                         Go to cart
                     </Button>
-                </div>
+                </Card>
                 {/* CARD LEFT */}
-                <div className='wid'>
-                <div className='first' >
-                    <FindReplace/>
-                </div>
-                    <div className='size1'>
-                        <p>
-                            Learn Python in one week.videos
-                            -12 challenges <br />
-                            -2 articles
-                        </p>
-                        <Button
-                            variant='contained'
-                            color='secondary'
-                            id='butt1'>
-                            Go to cart
-                        </Button>
+                <Card elevation='3' className='card2'>
+                    <div className='first' >
+                        <FindReplace/>
                     </div>
-                </div>
+                    <p>
+                        Learn Python in one week.videos
+                        -12 challenges <br />
+                        -2 articles
+                    </p>
+                    <Button
+                        variant='contained'
+                        color='secondary'
+                        id='butt1'>
+                        Go to cart
+                    </Button>
+                </Card>
             </div>
             {/* THIRD CARD */}
             {/* CARD RIGHT */}
             <div className='all'>
-                <div className='shuffle'> 
-                    <LaptopChromebook />
-                </div>
-                <div className='size5'>
+                <Card elevation='3' className='card1'>
+                    <div className='shuffle'> 
+                        <LaptopChromebook />
+                    </div>
                     <p>
                     Learn to manage different versions of your code with git.
                     10+ videos - 10+ challenges
@@ -120,28 +116,25 @@ const Module =() =>{
                         id='but'>
                         Go to cart
                     </Button>
-                </div>
+                </Card>
                 {/* CARD LEFT */}
-                 <div>
-                 <div className='sec'>
-                    <GitHub />
-                </div>
-                    <div className='sized'>
-                        <p>
-                            Take a look at one of our most 
-                            popular versions of Git starter 
-                            course and feel free to read and also
-                            get started
-                        </p>
-                        <Button
-                            variant='contained'
-                            color='secondary'
-                            id='butt2'>
-                            Go to cart
-                        </Button>
+                 <Card elevation='3' className='card2'>
+                    <div className='sec'>
+                        <GitHub />
                     </div>
-
-                 </div>           
+                    <p>
+                        Take a look at one of our most 
+                        popular versions of Git starter 
+                        course and feel free to read and also
+                        get started
+                    </p>
+                    <Button
+                        variant='contained'
+                        color='secondary'
+                        id='butt2'>
+                        Go to cart
+                    </Button> 
+                 </Card>  
             </div>
 
             {/* FOOTER */}

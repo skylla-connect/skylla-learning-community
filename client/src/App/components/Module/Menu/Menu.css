@@ -1,6 +1,5 @@
 body{
-    width: 100%;
-    background-color: #DAE8FC;
+    width:100%;
 }
 .menu1{
     background-color: blue;
@@ -8,12 +7,13 @@ body{
 }
 .cart{
     color: white;
-    margin: -7% 95% -7% 95%;
+    margin: -6% 95% -6% 95%;
 }
 .log{
+    width: 20%;
     padding-top: 1em;
     padding-bottom: 1em;
-    width: 25%;
+    
 }
 @media screen and (max-width: 768px) {
     body{
