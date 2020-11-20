@@ -3,7 +3,7 @@ import React from 'react';
 import { compose } from 'recompose';
 
 import AuthUserContext from '../session/context';
-import { withFirebase } from '../../app/firebase';
+import { withFirebase } from '../../App/firebase';
 // import * as ROUTES from '../../app/config/routes';
 
 
