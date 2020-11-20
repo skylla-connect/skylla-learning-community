@@ -55,16 +55,19 @@ const PasswordForgetPage = () => (
         </div>
     </div>
 );
+
 const INITIAL_STATE = {
-email: '',
-error: null,
-isPending: false,
+    email: '',
+    error: null,
+    isPending: false,
 };
+
 class PasswordForgetFormBase extends Component {
     constructor(props) {
         super(props);
         this.state = { ...INITIAL_STATE };
     }
+    
     onSubmit = event => {
         const { email } = this.state;
         this.setState({isPending: true});
