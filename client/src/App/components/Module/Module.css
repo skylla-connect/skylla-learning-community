@@ -1,4 +1,4 @@
-body{
+.moduleBody{
     background-color: #DAE8FC;
 }
 .join{
@@ -28,7 +28,7 @@ body{
     width: 100%;
 }
 .card1{
-    padding: 3% 0 3% 0;
+    padding: 40px;
     width: 45%;
     margin: 5%;
     height: 12em;
@@ -38,7 +38,7 @@ body{
     text-align: center;
     margin: 5%;
     height: 12em;
-    padding: 3% 0 3% 0;
+    padding: 40px;
 }
 .p{
     width: 100%;

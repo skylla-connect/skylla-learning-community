@@ -16,7 +16,7 @@ import Card from '@material-ui/core/Card'
 
 const Module =() =>{
     return(
-        <div>
+        <div className='moduleBody'>
             <Menu />
             {/* CONTENT */}
             <div className='join'>
@@ -24,14 +24,14 @@ const Module =() =>{
                     <Link to='/'><ArrowBack /></Link>
                 </div>
                 <h1 className='title'>JOIN</h1>
-                <p className='texts'>the million people learning to code with skylla connect</p>
+                <p className='texts'>the millions of people learning to code with Skylla Connect</p>
             </div>
             {/* FIRST CARD */}
             {/* CARD RIGHT */}
             <div className='all'>
-                <Card elevation='3' className='card1'>
+                <Card elevation={3} className='card1'>
                     <div className='sky'> 
-                        <Shuffle />
+                        <Shuffle className='icons'/>
                     </div>
                     <p>
                         Learn the fundamentals of computer Science
@@ -45,9 +45,9 @@ const Module =() =>{
                     </Button>
                 </Card>
                 {/* CARD LEFT */}
-               <Card elevation='3'className='card2'>
+               <Card elevation={3} className='card2'>
                     <div className='sky1' >
-                        <PanTool />
+                        <PanTool className='icons'/>
                     </div>
                     <p className='p'>
                         Take a look at one of our most
@@ -65,9 +65,9 @@ const Module =() =>{
             {/* SECOND CARD */}
             {/* CARD RIGHT */}
             <div className='all'>
-                <Card elevation='3' className='card1'>
+                <Card elevation={3} className='card1'>
                     <div className='shuffler'> 
-                        <Code />
+                        <Code className='icons'/>
                     </div>
                     <p>
                     Learn HTML | CSS & JavaScript  
@@ -82,9 +82,9 @@ const Module =() =>{
                     </Button>
                 </Card>
                 {/* CARD LEFT */}
-                <Card elevation='3' className='card2'>
+                <Card elevation={3} className='card2'>
                     <div className='first' >
-                        <FindReplace/>
+                        <FindReplace className='icons'/>
                     </div>
                     <p>
                         Learn Python in one week.videos
@@ -102,9 +102,9 @@ const Module =() =>{
             {/* THIRD CARD */}
             {/* CARD RIGHT */}
             <div className='all'>
-                <Card elevation='3' className='card1'>
+                <Card elevation={3} className='card1'>
                     <div className='shuffle'> 
-                        <LaptopChromebook />
+                        <LaptopChromebook className='icons'/>
                     </div>
                     <p>
                     Learn to manage different versions of your code with git.
@@ -118,9 +118,9 @@ const Module =() =>{
                     </Button>
                 </Card>
                 {/* CARD LEFT */}
-                 <Card elevation='3' className='card2'>
+                 <Card elevation={3} className='card2'>
                     <div className='sec'>
-                        <GitHub />
+                        <GitHub className='icons'/>
                     </div>
                     <p>
                         Take a look at one of our most 
