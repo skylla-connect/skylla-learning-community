@@ -15,51 +15,57 @@
     text-align: center;
 }
 .all{
-    width:90%;
-    display: flex;
     text-align: center;
+    display: flex;
+    background-color: whitesmoke;
+    width: 90%;
+    margin: 5% 5% 5% 5%;
     padding-top: 2%;
     padding-bottom: 2%;
-    margin: 5% 0 auto 5%;
-    background-color: whitesmoke;
 }
 .all1{
-    width:90%;
-    display: flex;
     text-align: center;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    margin: 5% 0 auto 5%;
-    background-color: whitesmoke;
-}
-.all2{
-    width:90%;
     display: flex;
-    text-align: center;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    margin: 5% 0 auto 5%;
-    background-color: whitesmoke;
+    width: 90%;
+    margin: 5% 5% 5% 5%;
 }
 .size{
-    width: 50%;
+    width: 48%;
 }
-.size1{
+.but{
+    width: 70%;
+    margin: auto 20% auto 20%;
+}
+.size5{
+    width: 70%;
+    margin: auto 10% auto 10%;
+}
+.sized{
     width: 80%;
+    margin: auto 15% auto 15%;
 }
-.size2{
+.wid{
     width: 50%;
 }
-.sizer{
-    width: 90%;
+#butt{
+    width: 27.3%;
+    margin: auto 40% auto 40%;
 }
-.shuffler{
-    font-size: xx-large;
-    margin:0 auto auto 3em;
+.sec{
+    position: absolute;
+    margin: 1em -2% auto -2%;
 }
-.shuffle{
-    font-size: xx-large;
-    margin:0 auto auto 3em;
+.first{
+    position: absolute;
+    margin: 2em 5% auto 5%;
+}
+#butt1{
+    width: 30%;
+    margin: auto 46% auto 46%;
+}
+#butt2{
+    width: 45%;
+    margin: auto 15% auto 15%;
 }
 /* FOOTER STYLES */
 .foot{
@@ -76,10 +82,6 @@
 
 }
 @media screen and (max-width: 768px) {
-    body{
-        width: 100%;
-        background-color: #DAE8FC;
-    }
     .join{
         display: flex;
         background-color: #CFCFCF;
@@ -93,26 +95,89 @@
     }
     .texts{
         width: 40%;
-        margin: 25% 15% 25% 15%;
+        margin: 10% 0% 10% 0%;
         text-align: center;
     }
     .all{
         text-align: center;
         display: block;
-        padding-top: 2%;
-        margin: auto 10% auto auto;
         background-color: whitesmoke;
-        width:100%;
+        width: 100%;
+        margin: 5% 0% 5% 0%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+    .all1{
+        text-align: center;
+        display: block;
+        width: 100%;
+        margin: 10% 10% 10% 10%;
     }
     .size{
-        width: 80%;
-        margin: auto 10% auto 10%;
+        width: 90%;
+        margin: auto 5% auto 5%;
     }
-    .sizer{
-        width: 80%;
-        margin: auto 10% auto 10%;
+    .size5{
+        width: 90%;
+        margin: auto 5% auto 5%;
+    }
+    .sized{
+        width: 90%;
+        margin: 5% 5% 5% 5%;
+    }
+    .size1{
+        width: 100%;
+        margin: 5% 5% 5% 5%;
+    }
+    .wid{
+        width: 90%;
+    }
+    #butt{
+        width: 50%;
+        margin: auto 40% auto 40%;
+    }
+    .middle{
+        width: 90%;
+        margin: auto 5% auto 5%;
+    }
+    #butt1{
+        width: 50%;
+        margin: auto 7% auto 7%;
+    }
+    #butt2{
+        width: 50%;
+        margin: auto 5% auto 5%;
+    }
+    #but{
+        width: 50%;
+        margin: auto 5% auto 5%;
+    }
+    .first{
+        position: absolute;
+        margin: 2em 6% auto 6%;
     }
     .shuffle{
-        margin:0 80% auto 0;
+        position: absolute;
+        margin: 2em 6% auto 6%;
     }
+    .shuffler{
+        position: absolute;
+        margin: 2em 6% auto 6%;
+    }
+    .sec{
+        position: absolute;
+        margin: 3.5em 6% auto 6%;
+    }
+    .sky{
+        position:absolute;
+        margin: 2em 1em auto 1em;
+    }
+    .sky1{
+        position:absolute;
+        margin: 1.9em 1em auto 1em;
+    }
+    /* .but{
+        width: 70%;
+        margin: auto 20% auto 20%;
+    } */
 }

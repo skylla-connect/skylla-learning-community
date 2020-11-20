@@ -27,10 +27,10 @@ const Module =() =>{
             {/* FIRST CARD */}
             {/* CARD RIGHT */}
             <div className='all'>
-                <div className='shuffle'> 
+                <div className='sky'> 
                     <Shuffle />
                 </div>
-                <div className='size'>
+                <div className='middle'>
                     <p>
                         Learn the fundamentals of computer Science
                         in one week.
@@ -38,24 +38,26 @@ const Module =() =>{
                     </p>
                     <Button
                         variant='contained'
-                        color='secondary'>
+                        color='secondary'
+                        id='butt1'>
                         Go to cart
                     </Button>
                 </div>
                 {/* CARD LEFT */}
-                <div className='shuffle'>
+                <div className='sky1'>
                     <PanTool />
                 </div>
                <div>
-                    <div className='sizer'>
-                        <p style={{width:'80%'}}>
+                    <div className='middle'>
+                        <p>
                             Take a look at one of our most
                             popular computer Science 
                             fundamentals startercourse
                         </p>
                         <Button
                             variant='contained'
-                            color='secondary'>
+                            color='secondary'
+                            id='butt1'>
                             Go to cart
                         </Button>
                     </div>
@@ -64,11 +66,11 @@ const Module =() =>{
 
             {/* SECOND CARD */}
             {/* CARD RIGHT */}
-            <div className='all1'>
+            <div className='all'>
                 <div className='shuffler'> 
                     <Code />
                 </div>
-                <div className='size2'>
+                <div className='size'>
                     <p>
                     Learn HTML | CSS & JavaScript  
                     in one week.
@@ -76,64 +78,70 @@ const Module =() =>{
                     </p>
                     <Button
                         variant='contained'
-                        color='secondary'>
+                        color='secondary'
+                        id='butt1'>
                         Go to cart
                     </Button>
                 </div>
                 {/* CARD LEFT */}
-                <div className='shuffler' >
+                <div className='wid'>
+                <div className='first' >
                     <FindReplace/>
                 </div>
-               <div>
                     <div className='size1'>
                         <p>
                             Learn Python in one week.videos
-                            -12 challenges 
+                            -12 challenges <br />
                             -2 articles
                         </p>
                         <Button
                             variant='contained'
-                            color='secondary'>
+                            color='secondary'
+                            id='butt1'>
                             Go to cart
                         </Button>
                     </div>
-               </div>
+                </div>
             </div>
             {/* THIRD CARD */}
             {/* CARD RIGHT */}
-            <div className='all2'>
+            <div className='all'>
                 <div className='shuffle'> 
                     <LaptopChromebook />
                 </div>
-                <div className='size'>
+                <div className='size5'>
                     <p>
                     Learn to manage different versions of your code with git.
                     10+ videos - 10+ challenges
                     </p>
                     <Button
                         variant='contained'
-                        color='secondary'>
+                        color='secondary'
+                        id='but'>
                         Go to cart
                     </Button>
                 </div>
                 {/* CARD LEFT */}
-                <div className='shuffle'>
+                 <div>
+                 <div className='sec'>
                     <GitHub />
                 </div>
-               <div>
-                    <div className='sizer'>
+                    <div className='sized'>
                         <p>
                             Take a look at one of our most 
                             popular versions of Git starter 
-                            course
+                            course and feel free to read and also
+                            get started
                         </p>
                         <Button
                             variant='contained'
-                            color='secondary'>
+                            color='secondary'
+                            id='butt2'>
                             Go to cart
                         </Button>
                     </div>
-               </div>
+
+                 </div>           
             </div>
 
             {/* FOOTER */}
