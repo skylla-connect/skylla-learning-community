@@ -14,10 +14,10 @@ class MenuLive extends Component{
                 alt='pic'
                     style={{
                       width:'15%',
-                      height:'20%',
+                      height:'30%',
                       float:'left',
                       color:'white',
-                      marginTop:'40px'
+                      marginTop:'70px'
                   }}
                 /></a><br/>
                 <a href="#product"
@@ -26,8 +26,9 @@ class MenuLive extends Component{
                 style={{
                   float:'right',
                   color:'white',
-                  // padding: '20px',
-                  fontSize: '80px',
+                  padding: '20px',
+                  fontSize: '70px',
+                  marginTop:'40px'
                  
               }}
                 />
@@ -38,8 +39,8 @@ class MenuLive extends Component{
                 style={{
                  
                   color:'white',
-                  padding: '60px',
-                  // marginTop:'40em'
+                  padding: '25px',
+                  textAlign: 'center'
                  
               }}
                 >Live Chat</h1></a>

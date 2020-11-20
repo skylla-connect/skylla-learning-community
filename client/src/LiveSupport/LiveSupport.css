@@ -1,3 +1,14 @@
+.carousel-indicators {
+    margin-left: 50%;
+}
+
+.carousel-indicators li {
+    background-color: rgb(71, 9, 243); 
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+}
+
 body{
     overflow-x: hidden !important;
     width: 100%;

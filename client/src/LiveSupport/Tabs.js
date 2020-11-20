@@ -1,53 +1,3 @@
-// import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// // import Paper from '@material-ui/core/Paper';
-// import Tabs from '@material-ui/core/Tabs';
-// import Tab from '@material-ui/core/Tab';
-
-// const useStyles = makeStyles({
-//   roots: {
-//     flexGrow: 1,
-//     textDecoration:'none',
-//     textTransform:'lowercase',
-//     textDecorationLine:'none',
-//     textBorded:'none',
-//     borderTop:'none',
-//     borderRight:'none',
-//     borderLeft:'none',
-//     backgroundColor:'yellow'
-//   },
-// });
-
-// export default function CenteredTabs() {
-//   const classes = useStyles();
-//   const [value, setValue] = React.useState(0);
-
-//   const handleChange = (event, newValue) => {
-//     setValue(newValue);
-//   };
-
-//   return (
-//     <div className="topnav">
-//       <Tabs
-//        className={classes.roots}
-//         value={value}
-//         onChange={handleChange}
-//         indicatorColor="primary"
-//         textColor="primary"
-//         borderText='none'
-//         textDecoration='none'
-//         centered
-//       >
-//         <Tab label="General" style={{border:'none'}}/>
-//         <Tab label="Product & Services" style={{border:'none'}}/>
-//         <Tab label="Purchase module" style={{border:'none'}}/>
-//         <Tab label="Code & Debug" style={{border:'none'}}/>
-        
-//       </Tabs>
-//     </div>
-//   );
-// }
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -121,13 +71,23 @@ export default function NavTabs() {
 
   return (
     <div className={classes.roots}>
-      <AppBar position="static" style={{backgroundColor:'lightgrey', height: '90px', marginTop: '30px',color:'black',textTransform:'lowercase',}}>
+      <AppBar elevation={0} position="static" style={{backgroundColor:'lightgrey', height: 'auto', color:'black',textTransform:'lowercase',}}>
         <Tabs
           variant="fullWidth"
-          backgroundColor='#ddd'
+          // backgroundColor='#ddd'
           value={value}
           onChange={handleChange}
-        //   aria-label="nav tabs example"
+          TabIndicatorProps={{
+            style: {
+              height:"2px",
+              width: 0, 
+              borderLeft: '20px solid transparent',
+              borderRight: '20px solid transparent',              
+              borderBottom: '16px solid white',
+              marginLeft: '10%',
+              backgroundColor: 'transparent',
+            }
+          }}
         >
           <LinkTab label="General" href="/general" {...a11yProps(0)} style={{color:'black', marginTop: '15px'}}/>
           <LinkTab label="Product & Services" href="/product" {...a11yProps(1)} style={{color:'black', marginTop: '15px'}} />
@@ -139,13 +99,13 @@ export default function NavTabs() {
         General
       </TabPanel>
       <TabPanel value={value}  >
-      Product & Services
+      Product &amp; Services
       </TabPanel>
       <TabPanel value={value}  >
       Purchase Module
       </TabPanel>
       <TabPanel value={value} >
-      Code & Debug
+      Code &amp; Debug
       </TabPanel>
     </div>
   );

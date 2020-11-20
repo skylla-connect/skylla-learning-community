@@ -1,5 +1,5 @@
 .mymenu{
-    height:200px;
+    height:150px;
     width:100%;
     background-color: blue;
     color:white;
@@ -7,7 +7,7 @@
 }
 
 .head h2,h3{
-margin-top: 20px;    
+margin-top: 10px;    
 
 }
 
