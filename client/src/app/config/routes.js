@@ -3,4 +3,5 @@ export const SIGN_IN = '/signin';
 export const ADMIN = '/admin';
 export const TRAINER = '/trainer';
 export const TRAINEE = '/trainee';
+export const PAYMENT = '/payment';
 export const PASSWORD_RESET = '/resetpassword';
