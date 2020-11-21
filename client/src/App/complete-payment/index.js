@@ -21,6 +21,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import visa from './img/visa.png'
 import { TextField } from '@material-ui/core';
+import 'date-fns';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -49,12 +58,12 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 280,
   },
   formControlled: {
-    margin: theme.spacing(0),
-    minWidth: 180,
+    margin: theme.spacing(1),
+    minWidth: 100,
   },
   formsec: {
-    margin: theme.spacing(0),
-    minWidth: 180,
+    margin: theme.spacing(1),
+    minWidth: 280,
     // marginLeft:'15px'
   },
   selectEmpty: {
@@ -76,7 +85,11 @@ const useStyles = makeStyles((theme) => ({
 
 const CompletePayment = () => {
   const classes = useStyles();
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appbar}>
@@ -140,43 +153,52 @@ const CompletePayment = () => {
               style={{width:'93%'}}
             />
             <br />
-             <div className='wrap-flex'>
             <div>
-            <FormControl variant="outlined"  className={classes.formControlled} id='form-control'>
-                    <InputLabel htmlFor="outlined-age-native-simple">MMM</InputLabel>
-                    <Select
-                        native
-                        label="MMM"
-                        >
-                        <option >Jan</option>
-                        <option >Feb</option>
-                    </Select>
-            </FormControl>
-            </div>
-            <div>
-            <FormControl variant="outlined" className={classes.formControlled} id='form-Control'>
-                    <InputLabel htmlFor="outlined-age-native-simple">YYYY</InputLabel>
-                    <Select
-                        native
-                        label="YYY"
-                        >
-                        <option >2000</option>
-                        <option >2001</option>
-                    </Select>
-            </FormControl>
-            </div>
-           <div>
-           <FormControl variant="outlined" className={classes.formControlled} id='form-Control'>
+            <div className='wrap-flex'>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container justify="space-around">
+                <KeyboardDatePicker
+                  disableToolbar
+                  variant="inline"
+                  format="MM"
+                  margin="normal"
+                  className={classes.formControlled} id='form-control'
+                  // id="date-picker-inline"
+                  label="MM"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+                <KeyboardDatePicker
+                  margin="normal"
+                  // id="date-picker-dialog"
+                  label="YYYY"
+                  className={classes.formControlled} id='form-Control'
+                  format="yyyy"
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                  }}
+                />
+
+              </Grid>
+          </MuiPickersUtilsProvider>
+          </div>
+             </div>
+             <div>
+           {/* <FormControl variant="outlined" > */}
            <TextField 
               variant='outlined'
               className={classes.formsec}
               id='form-sec'
               label='Security Code'
+              style={{width:'93%'}}
             />
-            </FormControl>
-           </div>
-             </div>
-            
+            {/* </FormControl> */}
+          </div>
              <FormControlLabel control={<Checkbox name="checkedC" />} label="Remember this card" />
           </form>
           <div className='summary'>

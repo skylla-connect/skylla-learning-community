@@ -34,7 +34,8 @@ body {
     width: 30%;
     border: 1px solid black;
     margin: -200px 0 0 100px;
-    height: 400px;
+    text-align: center;
+    height: 490px;
 }
 .wrap-form-sum{
     display: flex;
@@ -71,8 +72,9 @@ body {
     .summary{
         width: 98%;
         border: 1px solid black;
+        text-align: center;
         margin: 40px 0 0 0px;
-        height: 400px;
+        height: 420px;
     }
     .wrap-flex{
         display: block;
