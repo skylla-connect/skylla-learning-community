@@ -1,4 +1,5 @@
 import React from 'react';
+import './cart.css'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -6,9 +7,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import Footer from '../../components/Footer/footer';
+import Footer from '../components/Footer/footer';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -19,10 +20,10 @@ import Mobile from './mob';
 import Avatar from '@material-ui/core/Avatar';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
-import Views from './components/views/views'
+// import Views from './components/views/views'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import SocialIcons from './components/social';
-import *as ROUTES from '../../config/routes';
+import *as ROUTES from '../config/routes';
 import {Link} from 'react-router-dom'
 
 const drawerWidth = 240;
@@ -195,13 +196,13 @@ export default function PersistentDrawerLeft() {
                 </Typography>
               </div>
 
-              <div style={{textAlign: 'center'}}>
+              {/* <div style={{textAlign: 'center'}}>
                   <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
                       <Fab color="primary" className={classes.fab}>
                         <Link to={ROUTES.CART}><AddShoppingCartIcon style={{}} /></Link>
                       </Fab>
                   </Tooltip>
-              </div>
+              </div> */}
             </Toolbar>
           </AppBar>
           <Drawer
@@ -253,13 +254,49 @@ export default function PersistentDrawerLeft() {
               [classes.contentShift]: open,
             })}
           >
-            <div className={classes.drawerHeader} style={{marginTop: -50}} />
-            {/* Views */}
-            <Views />
-
-            <div style={{marginTop: 40}}>
-              <Footer />
+            <div>
+              <div className='cart-wrapper'>
+              {/* <header className='header1'>
+                <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' alt='img' />
+              </header> */}
+            <div className='wrap-cart'>
+              <div className='purchase'>
+                <h3>Javascript</h3>
+                <p>Preview this Content</p>
+                <p>Ush 50000.00</p>
+                <Button 
+                  className='btn-1'
+                >Continue Shopping</Button> <br />
+                <Button
+                  className='btn-2' 
+                >Buy</Button>
             </div>
+
+            <div className='walk'>
+              <div className='icon'>
+                <AddShoppingCartIcon style={{fontSize:'100px'}}/>
+              </div>
+              <div>
+                  <h3>Javascript</h3>
+                  <p>Walk Through Javascript</p>
+                </div>
+              </div>
+            </div>
+
+            <div className='course'>
+              <h3>What You Will Learn</h3>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+            </div>
+
+            <div className='more-info'>
+                <h3>More about the module</h3>
+            </div>
+        </div>
+        <Footer />
+        </div>
           </main>
       </div>
 
