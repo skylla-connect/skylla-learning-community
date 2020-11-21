@@ -255,43 +255,45 @@ export default function PersistentDrawerLeft() {
             })}
           >
             <div>
-            <div className='cart-wrapper'>
-            {/* <header className='header1'>
-               <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' alt='img' />
-            </header> */}
+              <div className='cart-wrapper'>
+              {/* <header className='header1'>
+                <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' alt='img' />
+              </header> */}
             <div className='wrap-cart'>
-            <div className='purchase'>
-                  <h3>Javascript</h3>
-                  <p>Preview this Content</p>
-                  <p>Ush 50000.00</p>
-                  <Button 
-                    className='btn-1'
-                  >Continue Shopping</Button> <br />
-                  <Button
-                    className='btn-2' 
-                  >Buy</Button>
-              </div>
-              <div className='walk'>
-              <div className='icon'>
-              <AddShoppingCartIcon style={{fontSize:'100px'}}/>
-              </div>
-                <div>
+              <div className='purchase'>
                 <h3>Javascript</h3>
-                <p>Walk Through Javascript</p>
+                <p>Preview this Content</p>
+                <p>Ush 50000.00</p>
+                <Button 
+                  className='btn-1'
+                >Continue Shopping</Button> <br />
+                <Button
+                  className='btn-2' 
+                >Buy</Button>
+            </div>
+
+            <div className='walk'>
+              <div className='icon'>
+                <AddShoppingCartIcon style={{fontSize:'100px'}}/>
+              </div>
+              <div>
+                  <h3>Javascript</h3>
+                  <p>Walk Through Javascript</p>
                 </div>
               </div>
             </div>
+
             <div className='course'>
-                <h3>What You Will Learn</h3>
-                    <p>Content</p>
-                    <p>Content</p>
-                    <p>Content</p>
-                    <p>Content</p>
+              <h3>What You Will Learn</h3>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
+              <p>Content</p>
             </div>
+
             <div className='more-info'>
                 <h3>More about the module</h3>
             </div>
-            
         </div>
         <Footer />
         </div>
