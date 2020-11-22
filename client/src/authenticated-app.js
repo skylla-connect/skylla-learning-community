@@ -12,6 +12,7 @@ import { useUser } from './App';
 import withAuthorization from './app/session/withAuthorization';
 import { FullPageSpinner } from './app/components';
 import Product from './app/screens/productDetails';
+import CartApp  from './app/screens/cart';
 
 function NetworkError() {
     return (
@@ -68,6 +69,7 @@ function Routes(props) {
                 <Route path={ROUTES.TRAINER} component={Trainer} />
                 <Route path={ROUTES.TRAINEE} component={Trainee} />
                 <Route path="/product" component={Product} />
+                <Route path="/cart" component={CartApp} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}

@@ -66,6 +66,21 @@ class Firebase {
         return this.db.doc(`/users/trainee/users/${userId}`)
         .get() 
     }
+    doGetModule = (moduleId) => {
+        return this.db.doc(`/modules/${moduleId}`)
+        .get() 
+    }
+    doGetModules = async () => {
+        return await this.db.collection(`/modules`)
+        .get() 
+    }
+    doSearch = async (query) => {
+        return this.db.collection("modules")
+        .orderBy("title")
+        .where("title", ">=", query.upper())
+        .where("title", ">=", query.lower() + "uf8ff")
+        .stream()
+    }
 }
 export default Firebase;
 const FirebaseContext = React.createContext(null);

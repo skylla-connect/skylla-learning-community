@@ -8,15 +8,15 @@ import Footer from "../../components/Footer/footer";
 import TextFieldMui from "../components/textField";
 import VisaLogo from "./static/Icon_Visa.png";
 import MasterLogo from "./static/Icon_MasterCard.png";
+import { dispatchCTX, stateCTX } from "../../session/checkout-context";
+import Navbar from '../components/navbar-checkout';
 
 // MUI stuff
 import  makeStyles  from '@material-ui/core/styles/makeStyles';
 import Grid from '@material-ui/core/Grid';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PhoneIphoneOutlined from '@material-ui/icons/PhoneIphoneOutlined';
 import AddIcon from '@material-ui/icons/Add';
-import Tooltip from '@material-ui/core/Tooltip';
 import Card from '@material-ui/core/Card';
 import CardContent from "@material-ui/core/CardContent";
 import Typography from '@material-ui/core/Typography';
@@ -26,7 +26,8 @@ import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import {FormControl, withStyles, CardHeader, InputLabel, 
     MenuItem, Select, Table, TableBody, TableCell, TextField, TableRow, 
-    TableFooter, RadioGroup, Paper, Radio, Accordion, CardActions, IconButton, Collapse, AccordionDetails, AccordionSummary } from '@material-ui/core';
+    TableFooter, RadioGroup, Paper, Radio, Accordion, IconButton, AccordionDetails, AccordionSummary } from '@material-ui/core';
+
 
 
 const StyledToggleButton = withStyles({
@@ -126,13 +127,61 @@ const StyledToggleButton = withStyles({
 );
 
   export function Savedcards (props) {
+    const dispatch = React.useContext(dispatchCTX);
     const [value, setValue] = React.useState("add");
     const [name, setName] = React.useState("add");
-    
+    const [cardName, setCardName] = React.useState("");
+    const [cardNo, setCardNo] = React.useState("");
+    const [expiryMonth, setExpiryMonth] = React.useState("");
+    const [expiryYear, setExpiryYear] = React.useState("");
+    const [CCV, setCCV] = React.useState("");
     const onChangeCard = (event) => {
     setValue(event.target.value);
     setName(event.target.name);
     }
+    const selectedCard = (card) => {
+        dispatch({type: "selected", payload: card});
+    }
+    React.useEffect(() => {
+        if (name === "add") {
+            const card = {
+                cardName: cardName, 
+                cardNo: cardNo,
+                expiryMonth: expiryMonth,
+                expiryYear: expiryYear,
+                CCV: CCV
+            }
+            dispatch({type: "add", payload: card});
+        }
+    },[name, cardName, cardNo, expiryYear, expiryMonth, CCV]);
+    React.useEffect(() => {
+        [
+            {
+                type:"Visa card",
+                cardName: "kayongo david",
+                cardNo: "1234-4567-234",
+                expiryMonth: "JUN",
+                expiryYear: "2020",
+                CCV: "1234"
+        }, 
+        {
+            type: "Master card",
+            cardName: "kayongo david",
+            cardNo: "1234-4567-284",
+            expiryMonth: "JUN",
+            expiryYear: "2020",
+            CCV: "1234"
+        
+        } ].map(item => {
+            switch (name) {
+                case item.cardNo:
+                    selectedCard(item);
+                    break;
+                default:
+                    break;
+        }
+        });
+    },[value, name]);
     return ( 
     <div>
     <RadioGroup 
@@ -158,6 +207,8 @@ const StyledToggleButton = withStyles({
             <TextFieldMui 
                 type ="text"
                 variant="outlined"
+                value={cardName}
+                onChange={(ev) => setCardName(ev.target.value)}
                 label = "Name on Card"
                 inputProps ={{ style: {fontSize: '13.5px'}}}
                 />
@@ -167,6 +218,8 @@ const StyledToggleButton = withStyles({
                 type ="text"
                 variant="outlined"
                 label = "Card Number"
+                value={cardNo}
+                onChange={(ev) => setCardNo(ev.target.value)}
                 inputProps ={{ style: {fontSize: '13.5px'}}}
             />
             </FormGroup>
@@ -177,6 +230,8 @@ const StyledToggleButton = withStyles({
                         type ="text"
                         variant="outlined"
                         label = "MM"
+                        value={expiryMonth}
+                        onChange={(ev) => setExpiryMonth(ev.target.value)}
                         inputProps ={{ style: {fontSize: '13px'}}}
                         />
                 </FormGroup>
@@ -186,6 +241,8 @@ const StyledToggleButton = withStyles({
                         type ="text"
                         variant="outlined"
                         label = "YYYY"
+                        value={expiryYear}
+                        onChange={(ev) => setExpiryYear(ev.target.value)}
                         />
                 </FormGroup>
             </div>
@@ -195,6 +252,8 @@ const StyledToggleButton = withStyles({
                     variant="outlined"
                     inputProps ={{ style: {fontSize: '13.5px'}}}
                     label = "CCV"
+                    value={CCV}
+                    onChange={(ev) => setCCV(ev.target.value)}
                     />
             </FormGroup>
         </div>
@@ -442,41 +501,18 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const Checkout = ({...props}) => {
+    const dispatch = React.useContext(dispatchCTX);
+    const context = React.useContext(stateCTX);
     const classes = useStyles();
     const learnContent = ["content", "content", "content", "content", "content", "content"]
-    const [billingAddress, setBillingAddress] = React.useState("");
+    const handleChangeEvent = (event) => {
+        event.preventDefault();
+        dispatch({type: "address", payload: event.target.value});
+    };
+    console.log(context);
     return ( 
         <div className={classes.root}>
-        <Card className="navbar navbar-default" css={{
-            margin: "0 auto",
-            backgroundColor: colors.gray,
-            borderRadius: '7px',
-            width: '95vw',
-            height: '10vh'
-        }} >
-             <ul className="nav navbar-nav container" css={{
-                 display: 'flex',
-                 flexDirection: 'row',
-             }}>
-                <li>
-                    <Link exact to="/" 
-                    activeStyle={{ color: colors.blue}} 
-                    css={{
-                        color: colors.blue,
-                        fontSize: "22px",
-                        letterSpacing: '0.15rem'
-                    }} >
-                        <span></span>
-                        &nbsp;Skylla
-                    </Link>
-                </li>
-                <li>
-                    <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
-                        <AddShoppingCartIcon style={{color: colors.gray}} />
-                    </Tooltip>
-                </li>
-             </ul>
-        </Card>
+            <Navbar />
         <Grid container spacing={6} className={classes.grid}>
             <Grid container spacing={6} style={{
                 display: 'flex',
@@ -495,7 +531,7 @@ const Checkout = ({...props}) => {
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         value={learnContent}
-                        onChange={(event) => setBillingAddress(event.target.value)}
+                        onChange={handleChangeEvent}
                         label="Billing Address"
                         >
                          <MenuItem value="" disabled><em>Country</em></MenuItem>

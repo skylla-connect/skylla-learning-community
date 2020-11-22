@@ -1,5 +1,8 @@
 import React from "react";
 
+export const stateCTX = React.createContext();
+export const dispatchCTX = React.createContext();
+
 const initialState = {
     cardDetails: {},
     billingAddress: "",
@@ -32,4 +35,15 @@ export const reducer = (state=initialState, action) =>{
         default:
             return state;
     }
+}
+
+export default function Store (props) {
+    const [state, dispatch] = React.useReducer(reducer, initialState);
+    return (
+        <stateCTX.Provider value={state}>
+            <dispatchCTX.Provider value={dispatch} >
+                    {props.children}
+            </dispatchCTX.Provider>
+        </stateCTX.Provider>
+    )
 }

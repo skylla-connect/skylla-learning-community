@@ -7,11 +7,11 @@ import SignInPage from './app/screens/login/index';
 import PasswordReset from './app/screens/resetPassword/index';
 import Product from './app/screens/productDetails';
 import Checkout from './app/screens/checkout';
-
+import Store from "./app/session/checkout-context";
 
 const Unathenticated = () => {
     return ( 
-        <Routes />
+            <Routes />
      );
 } 
 export default Unathenticated;
@@ -24,7 +24,9 @@ export const Routes = () => {
                     <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
                     <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
                     <Route path="/product" component={Product} />
-                    <Route path="/checkout" component={Checkout} />
+                    {/* <Store>
+                        <Route path="/checkout" component={Checkout} />
+                    </Store> */}
                     <Redirect to={ROUTES.SIGN_IN} />
                 </Switch>
             </Router>
