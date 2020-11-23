@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'none'
     }
   },
-  
   drawer: {
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,

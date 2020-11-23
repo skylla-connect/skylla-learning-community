@@ -1,6 +1,6 @@
 import React from 'react';
 import './Module.css'
-import Menu from '../../shared/Menu/Menu'
+import Menu from '../shared/Menu/Menu'
 import Footer from '../../../../components/Footer/footer';
 import CodeModules from './Coding/Code';
 
