@@ -1,0 +1,65 @@
+
+/* Create three unequal columns that floats next to each other */
+.CodeColumn {
+    display: inline-block;
+    justify-content: center;
+    justify-items: center;        
+    padding: 20px;
+}
+
+/* Left and right column */
+.CodeColumn.Codeside {
+    width: 40%;
+    text-align: left;  
+    vertical-align: middle;       
+}
+
+/* Clear floats after the columns */
+.codeRow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.codeImage {
+    float: left;
+}
+
+.Image {
+    float: right;
+    margin: -80px 0;
+    width: 70%;
+}
+
+.clear {
+    clear: both;
+}
+  
+/*  Responsive layout - makes the three columns stack on 
+    top of each other instead of next to each other
+*/
+@media screen and (max-width: 600px) {
+    .CodeColumn.Codeside, .CodeColumn.sideOne {
+      width: 100%;
+      text-align: left;
+      margin: auto;
+    }
+
+    .codeImage {
+        margin-left: -10px;
+    }
+
+    .Image {
+        margin-right: 25px;
+    }
+}
+
+@media screen and (width: 667px) {
+    .Image {
+        margin: -90px 0;
+    }
+
+    .codeImage {
+        margin-left: -20px;
+    }
+}

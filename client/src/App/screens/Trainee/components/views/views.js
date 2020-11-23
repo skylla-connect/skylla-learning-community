@@ -1,12 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-// import { Typography, Paper } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginTop: 50,
   },
   paper: {
     padding: theme.spacing(4),
@@ -91,18 +91,6 @@ export default function FullWidthGrid(props) {
         </Grid>
       </Grid>
 
-      {/* <Grid container spacing={3}>
-        <Grid item xs={8} sm>
-          <div className={classes.paperEditor}>
-            Editor Here
-          </div>
-        </Grid>
-        <Grid item xs={4} sm>
-          <div className={classes.paperOut}>
-            Output
-          </div>
-        </Grid> */}
-      {/* </Grid> */}
       <div className={classes.container}>
         <div className={classes.col}>
           <div className={classes.paperEditor}>

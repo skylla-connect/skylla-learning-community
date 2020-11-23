@@ -2,7 +2,7 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import { Paper } from '@material-ui/core';
 import app from 'firebase/app';
-import { withFirebase } from "../../../../app/firebase";
+import { withFirebase } from "../../../../App/firebase";
 import 'firebase/firestore';
 import { compose } from 'recompose';
 import Typography from '@material-ui/core/Typography';

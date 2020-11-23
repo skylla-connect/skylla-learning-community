@@ -16,7 +16,7 @@ import Permissions from './components/permissions';
 import Mobile from './mob';
 import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
-import {SignUpPage} from './screens/addUsers';
+import { SignUpPage } from './screens/addUsers';
 import DeleteUsers from './screens/deleteUsers';
 
 import {

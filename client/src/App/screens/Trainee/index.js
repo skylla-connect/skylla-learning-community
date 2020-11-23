@@ -6,7 +6,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-// import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Footer from '../../components/Footer/footer';
 import IconButton from '@material-ui/core/IconButton';
@@ -23,7 +22,12 @@ import Views from './components/views/views'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import SocialIcons from './components/social';
 import *as ROUTES from '../../config/routes';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -112,6 +116,55 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Define routes in the Trainees
+const routes = [
+  {
+    path: ROUTES.TRAINEE,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+       {/* Views */}
+       <Views />
+    </div>
+  },
+
+  {
+    path: ROUTES.PROFILE,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      Profile page
+    </div>
+  },
+
+  {
+    path: ROUTES.ASSESSMENTS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      Final Assessments page
+    </div>
+  },
+
+  {
+    path: ROUTES.INTERVIEWS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      Interviews page
+    </div>
+  },
+
+  {
+    path: ROUTES.HIRED,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      Hire page
+    </div>
+  },
+];
+
 export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
@@ -126,145 +179,176 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <div>
-      <div className={classes.root}>
-        <CssBaseline />
-          <AppBar
-            position="fixed"
-            className={clsx(classes.appBar, {
-              [classes.appBarShift]: open,
-            })}
-          >
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                edge="start"
-                className={clsx(classes.menuButton, open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <div style={{margin: 'auto'}}>
-                <Typography noWrap>
-                    SKYLLA LEARNING COMMUNITY
-                </Typography>
-              </div>
-              <div style={{textAlign: 'center'}}>
-                <Avatar alt="Remy Sharp" src="" />
-                <Typography variant="body2">
-                  Trainee
-                </Typography>
-              </div>
+    <Router>
+      <div>
+        <div className={classes.root}>
+          <CssBaseline />
+            <AppBar
+              position="fixed"
+              className={clsx(classes.appBar, {
+                [classes.appBarShift]: open,
+              })}
+            >
+              <Toolbar>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={handleDrawerOpen}
+                  edge="start"
+                  className={clsx(classes.menuButton, open && classes.hide)}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <div style={{margin: 'auto'}}>
+                  <Typography noWrap>
+                      SKYLLA LEARNING COMMUNITY
+                  </Typography>
+                </div>
+                <div style={{textAlign: 'center'}}>
+                  <Avatar alt="Remy Sharp" src="" />
+                  <Typography variant="body2">
+                    Trainee
+                  </Typography>
+                </div>
 
-              <div style={{textAlign: 'center', margin: 15}}>
-                <Avatar alt="Remy Sharp" src="" />
-                <Typography variant="body2">
-                  Trainer
-                </Typography>
-              </div>
+                <div style={{textAlign: 'center', margin: 15}}>
+                  <Avatar alt="Remy Sharp" src="" />
+                  <Typography variant="body2">
+                    Trainer
+                  </Typography>
+                </div>
 
-              <div style={{textAlign: 'center'}}>
-                <img 
-                  src="https://cdn0.iconfinder.com/data/icons/business-startup-10/50/57-128.png" 
-                  alt=""
-                  width="20%" />
-                <Typography variant="body2">
-                  Quiz &amp; Tests 
-                </Typography>
-              </div>
+                <div style={{textAlign: 'center'}}>
+                  <img 
+                    src="https://cdn0.iconfinder.com/data/icons/business-startup-10/50/57-128.png" 
+                    alt=""
+                    width="20%" />
+                  <Typography variant="body2">
+                    Quiz &amp; Tests 
+                  </Typography>
+                </div>
 
-              <div style={{textAlign: 'center'}}>
-                <img 
-                  src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
-                  alt=""
-                  width="20%" />
-                 <Typography variant="body2">
-                  View Sessions
-                </Typography>
-              </div>
+                <div style={{textAlign: 'center'}}>
+                  <img 
+                    src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
+                    alt=""
+                    width="20%" />
+                  <Typography variant="body2">
+                    View Sessions
+                  </Typography>
+                </div>
 
-              <div style={{textAlign: 'center'}}>
-                <img 
-                  src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
-                  alt=""
-                  width="20%" 
-                />
-                <Typography variant="body2">
-                  Join Live Class
-                </Typography>
-              </div>
+                <div style={{textAlign: 'center'}}>
+                  <img 
+                    src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
+                    alt=""
+                    width="20%" 
+                  />
+                  <Typography variant="body2">
+                    Join Live Class
+                  </Typography>
+                </div>
 
-              <div style={{textAlign: 'center'}}>
-                  <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
-                      <Fab color="primary" className={classes.fab}>
-                        <Link to={ROUTES.CART}><AddShoppingCartIcon style={{}} /></Link>
-                      </Fab>
-                  </Tooltip>
-              </div>
-            </Toolbar>
-          </AppBar>
-          <Drawer
-            className={classes.drawer}
-            variant="persistent"
-            anchor="left"
-            open={open}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-          >
-            <div className={classes.drawerHeader} open={open}>
-              <IconButton onClick={handleDrawerClose} style={{color: 'white'}}>
-                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-              </IconButton>
-            </div>
-            <Divider />
-            <div className={classes.paper}>
-              <Menu />
-            </div>
-
-            <Divider 
-              style={{
-                backgroundColor: 'white',
-                width: '90%',
-                margin: 'auto',
+                <div style={{textAlign: 'center'}}>
+                    <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
+                        <Fab color="primary" className={classes.fab}>
+                          <Link to={ROUTES.MODULES}>
+                            <AddShoppingCartIcon style={{}} />
+                          </Link>
+                        </Fab>
+                    </Tooltip>
+                </div>
+              </Toolbar>
+            </AppBar>
+            <Drawer
+              className={classes.drawer}
+              variant="persistent"
+              anchor="left"
+              open={open}
+              classes={{
+                paper: classes.drawerPaper,
               }}
-            />
+            >
+              <div className={classes.drawerHeader} open={open}>
+                <IconButton onClick={handleDrawerClose} style={{color: 'white'}}>
+                  {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                </IconButton>
+              </div>
+              <Divider />
+              <div className={classes.paper}>
+                <Menu />
+              </div>
 
-            <div className={classes.paper}> 
-              <Permissions />
-            </div>
+              <Divider 
+                style={{
+                  backgroundColor: 'white',
+                  width: '90%',
+                  margin: 'auto',
+                }}
+              />
 
-            <Divider 
-              style={{
-                backgroundColor: 'white',
-                width: '90%',
-                margin: 'auto',
-              }}
-            />
+              <div className={classes.paper}> 
+                <Permissions />
+              </div>
 
-            <div className={classes.paper}> 
-              <SocialIcons />
-            </div>
-            
-          </Drawer>
-          <main
-            className={clsx(classes.content, {
-              [classes.contentShift]: open,
-            })}
-          >
-            <div className={classes.drawerHeader} style={{marginTop: -50}} />
-            {/* Views */}
-            <Views />
+              <Divider 
+                style={{
+                  backgroundColor: 'white',
+                  width: '90%',
+                  margin: 'auto',
+                }}
+              />
 
-            <div style={{marginTop: 40}}>
-              <Footer />
-            </div>
-          </main>
+              <div className={classes.paper}> 
+                <SocialIcons />
+              </div>
+              
+              <Switch>
+                {routes.map((route, index) => (
+                  // You can render a <Route> in as many places
+                  // as you want in your app. It will render along
+                  // with any other <Route>s that also match the URL.
+                  // So, a sidebar or breadcrumbs or anything else
+                  // that requires you to render multiple things
+                  // in multiple places at the same URL is nothing
+                  // more than multiple <Route>s.
+                  <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    children={<route.sidebar />}
+                  />
+                ))}
+              </Switch>
+            </Drawer>
+            <main
+              className={clsx(classes.content, {
+                [classes.contentShift]: open,
+              })}
+            >
+              <div className={classes.drawerHeader} style={{marginTop: -50}} />
+              <Switch>
+                {routes.map((route, index) => (
+                  // Render more <Route>s with the same paths as
+                  // above, but different components this time.
+                  <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    children={<route.main />}
+                  />
+                ))}
+              </Switch>
+
+              <div style={{marginTop: 40}}>
+                <Footer />
+              </div>
+            </main>
+        </div>
+
+        {/* mobile */}
+        <Mobile />
       </div>
-
-      {/* mobile */}
-      <Mobile />
-    </div>
+    </Router>
   );
 }

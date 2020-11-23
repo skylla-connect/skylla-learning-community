@@ -1,0 +1,97 @@
+.moduleBody{
+    background-color: #DAE8FC;
+}
+.join{
+    display: flex;
+    background-color: #CFCFCF;
+    font-size: xx-large;
+    height: 7em;
+}
+.title{
+    margin: -1% 10% -1% 10%;
+    font-weight: bolder;
+    padding: 90px;
+}
+.texts{
+    width: 40%;
+    margin: 6% 0% 6% 0%;
+    text-align: center;
+}
+.all{
+    text-align: center;
+    display: flex;
+    width: 100%;
+}
+.all1{
+    text-align: center;
+    display: flex;
+    width: 100%;
+}
+.card1{
+    padding: 40px;
+    width: 45%;
+    margin: 5%;
+    height: 12em;
+}
+.card2{
+    width: 45%;
+    text-align: center;
+    margin: 5%;
+    height: 12em;
+    padding: 40px;
+}
+.p{
+    width: 100%;
+}
+
+/* FOOTER STYLES */
+.foot{
+    background-color: white;
+    width: 100%;
+    height: 5em;
+    margin: 6% auto 0 0;
+    bottom: 0;
+}
+.ryt{
+    padding-top: 1.5em;
+    text-align: center;
+    font-size: larger;
+
+}
+@media screen and (max-width: 768px) {
+    .join{
+        display: flex;
+        background-color: #CFCFCF;
+        font-size: larger;
+        height: 10em;
+    }
+    .title{
+        margin: -5% -25% -5% -25%;
+        font-weight: bold;
+        padding: 90px;
+    }
+    .texts{
+        width: 40%;
+        margin: 10% 5% 10% 5%;
+        text-align: center;
+    }
+    .all{
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+    .card1{
+        padding: 3% 0 3% 0;
+        width: 100%;
+        text-align: center;
+        height: 12em;
+        margin: 5% 0 0 0;
+    }
+    .card2{
+        width: 100%;
+        text-align: center;
+        height: 12em;
+        padding: 3% 0 3% 0;
+        margin: 5% 0 0 0;
+    }
+}
