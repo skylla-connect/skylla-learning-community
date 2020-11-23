@@ -71,15 +71,23 @@ export default function NavTabs() {
 
   return (
     <div className={classes.roots}>
-      <AppBar elevation={0} position="static" style={{backgroundColor:'lightgrey', height: 'auto', color:'black',textTransform:'lowercase',}}>
+      <AppBar 
+        elevation={0} 
+        position="static" 
+        style={{
+          backgroundColor:'lightgrey', 
+          height: 'auto', 
+          color:'black',
+          textTransform:'lowercase',
+          }}
+        >
         <Tabs
           variant="fullWidth"
-          // backgroundColor='#ddd'
           value={value}
           onChange={handleChange}
           TabIndicatorProps={{
             style: {
-              height:"2px",
+              height: "2px",
               width: 0, 
               borderLeft: '20px solid transparent',
               borderRight: '20px solid transparent',              
@@ -89,23 +97,62 @@ export default function NavTabs() {
             }
           }}
         >
-          <LinkTab label="General" href="/general" {...a11yProps(0)} style={{color:'black', marginTop: '15px'}}/>
-          <LinkTab label="Product & Services" href="/product" {...a11yProps(1)} style={{color:'black', marginTop: '15px'}} />
-          <LinkTab label="Purchase Module" href="/purchase" {...a11yProps(2)} style={{color:'black', marginTop: '15px'}}/>
-          <LinkTab label="Code & Debug" href="/code" {...a11yProps(3)} style={{color:'black', marginTop: '15px'}} />
+          <LinkTab 
+            label="General" 
+            href="/general" 
+            {
+              ...a11yProps(0)} 
+              style={{color:'black', 
+              // marginTop: '15px'
+            }}
+          />
+
+          <LinkTab 
+            label="Product &amp; Services" 
+            href="/product" 
+            {...a11yProps(1)} 
+            style={{
+              color:'black', 
+              // marginTop: '15px'
+              }} 
+          />
+
+          <LinkTab 
+            label="Purchase Module" 
+            href="/purchase" 
+            {...a11yProps(2)} 
+            style={{
+              color:'black', 
+              // marginTop: '15px'
+            }}
+          />
+
+          <LinkTab 
+            label="Code &amp; Debug" 
+            href="/code" 
+            {...a11yProps(3)} 
+            style={{
+              color:'black', 
+              // marginTop: '15px'
+            }} 
+          />
         </Tabs>
       </AppBar>
+
       <TabPanel value={value}  >
         General
       </TabPanel>
+
       <TabPanel value={value}  >
-      Product &amp; Services
+        Product &amp; Services
       </TabPanel>
+
       <TabPanel value={value}  >
-      Purchase Module
+        Purchase Module
       </TabPanel>
+
       <TabPanel value={value} >
-      Code &amp; Debug
+        Code &amp; Debug
       </TabPanel>
     </div>
   );
