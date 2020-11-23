@@ -8,7 +8,7 @@ import Trainee from './App/screens/Trainee/index';
 import { useUser } from './App';
 import withAuthorization from './App/session/withAuthorization';
 import { FullPageSpinner } from './App/components';
-import Module from './App/components/Module/Module';
+import Module from './App/screens/Trainee/components/Module/Module';
 
 const Athenticated = () => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);

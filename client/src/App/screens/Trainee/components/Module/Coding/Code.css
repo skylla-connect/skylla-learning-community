@@ -1,0 +1,117 @@
+body,
+input,
+textarea,
+select, h1, h2, h3, h4, h5, h6, p {
+  font-family: raleway, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.root {
+  margin: 0;
+  font-family: raleway, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  background: url(./Assests/taibah_img.png) no-repeat center center;
+  font-style: normal;
+  font-size: 25;
+  font-weight: normal;
+  color: #6c757d;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  object-fit: fill;
+  text-align: left;
+  overflow-x: hidden;
+}
+
+/* Create three unequal columns that floats next to each other */
+.CodeColumn {
+    display: inline-block;
+    justify-content: center;
+    justify-items: center;        
+    padding: 20px;
+}
+
+/* Left and right column */
+.CodeColumn.Codeside {
+    width: 40%;
+    text-align: left;  
+    vertical-align: middle;       
+}
+
+/* Middle column */
+.CodeColumn.sideOne {
+    width: 2%;
+    border-left: 1px solid rgb(209, 209, 209);
+    height: 90px;
+    vertical-align: middle;
+}
+
+/* Clear floats after the columns */
+.codeRow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.codeImage {
+    float: left;
+}
+
+.Image {
+    float: right;
+    margin: -80px 0;
+    width: 70%;
+}
+
+.clear {
+    clear: both;
+}
+
+img {
+    width: 30%;
+}
+  
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .CodeColumn.Codeside, .CodeColumn.sideOne {
+      width: 100%;
+      text-align: left;
+      margin: auto;
+    }
+
+    .codeImage {
+        margin-left: -10px;
+    }
+
+    .Image {
+        margin-right: 25px;
+    }
+}
+
+@media screen and (width: 667px) {
+    .Image {
+        margin: -90px 0;
+    }
+
+    .codeImage {
+        margin-left: -20px;
+    }
+}
+.topbox {
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+    border-width: 0 25px 25px 25px;
+    height: 0;
+    /* width: 50px; */
+    box-sizing: content-box;
+    position: relative;
+    margin: 20px 0 0px 0;
+}   
