@@ -6,7 +6,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-// import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Footer from '../../components/Footer/footer';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,8 +21,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Views from './components/views/views'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import SocialIcons from './components/social';
-import Link from 'react-router-dom/Link'
-import * as ROUTES from '../../config/routes' 
 
 const drawerWidth = 240;
 
@@ -105,11 +102,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'white',
     },
   },
-  absolute: {
-    position: 'absolute',
-    bottom: theme.spacing(2),
-    right: theme.spacing(3),
-  },
 }));
 
 export default function PersistentDrawerLeft() {
@@ -145,17 +137,13 @@ export default function PersistentDrawerLeft() {
               >
                 <MenuIcon />
               </IconButton>
-              <div style={{textAlign: 'center'}}>
-                <Avatar alt="Remy Sharp" src="" />
-                <Typography variant="body2">
-               <Link to = {ROUTES.LIVE_SUPPORT} style={{color:'white'}}>  LiveSupport</Link>
-                </Typography>
-              </div>
+
               <div style={{margin: 'auto'}}>
                 <Typography noWrap>
                     SKYLLA LEARNING COMMUNITY
                 </Typography>
               </div>
+
               <div style={{textAlign: 'center'}}>
                 <Avatar alt="Remy Sharp" src="" />
                 <Typography variant="body2">
