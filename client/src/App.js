@@ -1,8 +1,8 @@
 import React from 'react';
-import {FullPageSpinner} from './app/components';
+import {FullPageSpinner} from './App/components';
 import {  } from "recompose";
-import withAuthetication from "./app/session/withAuthetication";
-import AuthUserContext from "./app/session/context";
+import withAuthetication from "./App/session/withAuthetication";
+import AuthUserContext from "./App/session/context";
 
 const loadAuthenticatedApp = () => import('./authenticated-app')
 const AuthenticatedApp = React.lazy(loadAuthenticatedApp)

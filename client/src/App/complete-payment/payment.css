@@ -23,10 +23,7 @@ body {
     margin: 0 0 0 10px;
     display: flex;
 }
-.billing{
-    margin: 0 0 0 100px;
-    text-align: left;
-}
+
 .wrap-flex{
     display: flex;
 }
@@ -42,6 +39,7 @@ body {
 }
 .btn-comp{
     width: 80%;
+    margin: 20px auto 20px auto;
 }
 .p-p{
     text-align: left;

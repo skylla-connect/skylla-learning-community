@@ -2,11 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 // import MenuIcon from '@material-ui/icons/Menu';
 import './payment.css'
+import RadioGroup from '@material-ui/core/RadioGroup';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone'
@@ -20,14 +20,14 @@ import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import visa from './img/visa.png'
-import { TextField } from '@material-ui/core';
+import { 
+  Paper,
+  TextField,
+  Typography,
+ } from '@material-ui/core';
 import 'date-fns';
 import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import Footer from '../components/Footer/footer'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,11 +55,11 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 280,
+    minWidth: 430,
   },
   formControlled: {
     margin: theme.spacing(1),
-    minWidth: 100,
+    minWidth: 20,
   },
   formsec: {
     margin: theme.spacing(1),
@@ -81,147 +81,261 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor:'whiteSmoke',
     textAlign:'center'
   },
+
+  details: {
+    padding: 40,
+    border: '1px solid black',
+    position: 'absolute',
+    top: '20%',
+    right: '2%',
+    width: '40%',
+  },
+
+  payment: {
+    padding: 20,
+    position: 'absolute',
+    width: '40%',
+    left: '3%',
+    top: '20%'
+  }, 
+
+  textField: {
+    marginTop: 20
+  }
 }));
 
 const CompletePayment = () => {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [value, setValue] = React.useState('');
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleChange = (event) => {
+    setValue(event.target.value);
   };
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" className={classes.appbar}>
-        <Toolbar>
-          <Typography variant="h6" >
-            <img 
-            className={classes.img}
-            id='img'
-             src={logo}
-             alt='img'
-            />
-          </Typography>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <FavoriteBorderIcon />
-          </IconButton>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <AddShoppingCartIcon />
-          </IconButton>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <NotificationsNoneIcon />
-          </IconButton>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <Avatar className={classes.purple}>RN</Avatar>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <div>
-          <div className='billing'>
-              <h3>Checkout</h3>
-              <p>Billing Address</p>
-                <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel htmlFor="outlined-age-native-simple">Country</InputLabel>
-                    <Select
-                        native
-                        label="Country"
-                        >
-                        <option >Uganda</option>
-                        <option >Kenya</option>
-                    </Select>
-            </FormControl>
-            <div>
-             <FormControlLabel  
-              control={<Radio />} 
-              label="Credit or Debit Card" 
-              /> <img src={visa} style={{width:'3%'}} alt='img'/>
-              <br />
-              <FormControlLabel  control={<Radio />} label="Mobile Money" />
-            </div>
-          </div>
-          <div className='wrap-form-sum'>
-          <form className={classes.form} noValidate autoComplete="off" id='form-pay'>
-            <TextField 
-              variant='outlined'
-              label='Name on Card'
-              style={{width:'93%'}}
-            />
-            <br />
-            <TextField 
-              variant='outlined'
-              label='Card Number'
-              style={{width:'93%'}}
-            />
-            <br />
-            <div>
-            <div className='wrap-flex'>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Grid container justify="space-around">
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM"
-                  margin="normal"
-                  className={classes.formControlled} id='form-control'
-                  // id="date-picker-inline"
-                  label="MM"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-                <KeyboardDatePicker
-                  margin="normal"
-                  // id="date-picker-dialog"
-                  label="YYYY"
-                  className={classes.formControlled} id='form-Control'
-                  format="yyyy"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
 
-              </Grid>
-          </MuiPickersUtilsProvider>
+
+  return (
+    <div>
+      <div className={classes.root}>
+        <AppBar position="static" className={classes.appbar}>
+          <Toolbar>
+            <Typography variant="h6" >
+              <img 
+              className={classes.img}
+              id='img'
+              src={logo}
+              alt='img'
+              />
+            </Typography>
+            
+            <IconButton 
+                edge="start" 
+                className={classes.menuButton} 
+                color="inherit" 
+                aria-label="menu"
+              >
+              <FavoriteBorderIcon />
+            </IconButton>
+
+            <IconButton 
+                edge="start" 
+                className={classes.menuButton} 
+                color="inherit" 
+                aria-label="menu"
+              >
+              <AddShoppingCartIcon />
+            </IconButton>
+
+            <IconButton 
+                edge="start" 
+                className={classes.menuButton} 
+                color="inherit" 
+                aria-label="menu"
+              >
+              <NotificationsNoneIcon />
+            </IconButton>
+
+            <IconButton 
+                edge="start" 
+                className={classes.menuButton} 
+                color="inherit" 
+                aria-label="menu"
+              >
+              <Avatar className={classes.purple}>
+                RN
+              </Avatar>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+
+        <div className={classes.checked}>
+
+          {/* payment options */}
+          <div className={classes.payment}>
+            <form  noValidate autoComplete="off" >
+              <Typography variant="h6" paragraph>
+                Checkout
+              </Typography>
+
+              <Typography variant="h6" paragraph>
+                Billing Address
+              </Typography>
+
+              <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel htmlFor="outlined-age-native-simple">
+                  Country
+                </InputLabel>
+                <Select
+                    native
+                    label="Country"
+                    >
+                    <option >
+                      Uganda
+                    </option>
+                    <option>
+                      Kenya
+                    </option>
+                </Select>
+              </FormControl>
+
+              <FormControl component="fieldset">
+                <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                  <div style={{display: 'flex'}}>
+                    <FormControlLabel value="female" control={<Radio />} label="Credit or Debit Card" />
+                    <img src={visa} style={{
+                      width:'12%', 
+                      height: '10%',
+                      marginTop: 10
+                    }} alt='img'/>
+                  </div>
+                  
+                  <div style={{display: 'flex'}}>
+                    <FormControlLabel value="male" control={<Radio />} label="Mobile Money" />
+
+                    <img 
+                      height="40" 
+                      src="https://apimgmtst14nbxosi1zkfy2r.blob.core.windows.net/content/MediaLibrary/images/mtnmomo.svg" 
+                      alt="MTN MoMo" 
+                    />
+                  </div>
+                </RadioGroup>
+              </FormControl>
+
+              <TextField 
+                variant='outlined'
+                label='Name on Card'
+                style={{width:'100%'}}
+                className={classes.textField}
+              />
+
+              <TextField 
+                variant='outlined'
+                label='Card Number'
+                style={{width:'100%'}}
+                className={classes.textField}
+              />
+
+              <div style={{
+                margin: '30px 11px 30px 11px'
+              }}>
+                <Grid container spacing={3} style={{
+                  display: 'flex'
+                }}>
+                  <TextField 
+                    variant='outlined'
+                    id='form-sec'
+                    label='Month/Year'
+                    placeholder="MM / YY"
+                    style={{width:'45%'}}
+                  />
+
+                  <TextField 
+                    variant='outlined'
+                    id='form-sec'
+                    label='CVV'
+                    placeholder="CVV"
+                    style={{width:'45%', marginLeft: 10}}
+                  />
+                </Grid>
+              </div>
+
+              <FormControlLabel 
+                control={<Checkbox name="checkedC" />} 
+                label="Remember this card" 
+              />
+
+              <div>
+                <Button 
+                  variant="contained" 
+                  color="secondary"
+                  style={{
+                    padding: 10,
+                    width: '100%',
+                    margin: '20px auto 20px auto'
+                  }}>
+                  Confirm Payment
+                </Button>
+              </div>
+            </form>
           </div>
-             </div>
-             <div>
-           {/* <FormControl variant="outlined" > */}
-           <TextField 
-              variant='outlined'
-              className={classes.formsec}
-              id='form-sec'
-              label='Security Code'
-              style={{width:'93%'}}
-            />
-            {/* </FormControl> */}
-          </div>
-             <FormControlLabel control={<Checkbox name="checkedC" />} label="Remember this card" />
-          </form>
-          <div className='summary'>
-            <h2>Order Details</h2>
-            <h3>Summary</h3>
-            <p>Original Price : Ugx 50,000</p>
-            <p>Coupon discount : Ugx 0</p>
+
+          {/* order details */}
+          <Paper elevation="4" className={classes.details}>
+            <div style={{
+              margin: '20px auto 40px auto',
+              textAlign: 'center'
+            }}>
+              <Typography variant="h4" paragraph>
+                Order Details
+              </Typography>
+            </div>
+
+            <Typography variant="h5" paragraph>
+                Summary
+            </Typography>
+
+            <Typography variant="body2" paragraph>
+              Original Price : Ugx 50,000
+            </Typography>
+
+            <Typography variant="body2" paragraph>
+              Coupon discount : Ugx 0
+            </Typography>
             <hr />
-            <p>Total : Ugx 50,000</p>
-            <p className='p-p'>
+            
+            <Typography variant="body2" paragraph>
+              <strong>
+                Total : Ugx 50,000
+              </strong>
+            </Typography>
+
+              <Typography variant="body2" paragraph>
               Skylla required by law to collect applicable transaction taxes
               for purchase made in certain tax jurisdictions.
-            </p>
-            <p className='p-p'>By completing your purchase you agree to the Terms of Service </p>
-            <Button
-              variant='contained'
-              color='secondary'
-              className='btn-comp'
-            >
-              Complete Payment
-            </Button>
-          </div>
-          </div>
+            </Typography>
+
+            <Typography variant="body2" paragraph>
+                By completing your purchase you agree to the Terms of Service 
+            </Typography>
+
+            <div className='btn-comp'>
+              <Button
+                variant='contained'
+                color='secondary'
+                style={{
+                  width: '100%'
+                }}
+              >
+                Complete Payment
+              </Button>
+            </div>
+
+            <div style={{
+              marginTop: 50
+            }}>
+              <Footer />
+            </div>
+          </Paper>
+        </div>
       </div>
     </div>
   );
