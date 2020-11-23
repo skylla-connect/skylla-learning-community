@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CompletePayment = () => {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2020-08-18T21:11:54'));
 
   const handleDateChange = (date) => {
     setSelectedDate(date);

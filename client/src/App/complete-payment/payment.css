@@ -77,7 +77,7 @@ body {
         height: 420px;
     }
     .wrap-flex{
-        display: block;
+        display: flex;
     }
     #form-control{
         margin: 10px 0 0 0px;
