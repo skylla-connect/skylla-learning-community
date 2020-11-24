@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Typography, 
@@ -17,14 +17,16 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import LoaderButton from "../components/loader";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import { app } from 'firebase';
+import { UserContext } from './userContext';
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
         width: '50%',
         height: 'auto',
-        margin: '5% 0 0 0'
+        margin: '5% 25% 0 25%'
     },
 
     BioData: {
@@ -34,18 +36,20 @@ const useStyles = makeStyles((theme) => ({
 
     pPic: {
         width: '100%',
-        borderRadius: '50%'
+        borderRadius: '50%',
+        // margin: 'auto 23% 0 23%'
     },
 
     paper: {
         padding: theme.spacing(4),
         margin: 'auto auto auto 0',
-        maxWidth: 500,
+        // maxWidth: 500,
     },
 
     image: {
         width: 180,
         height: 180,
+        // margin: 'auto 80% 0 80%'
     },
 
     input: {
@@ -54,16 +58,17 @@ const useStyles = makeStyles((theme) => ({
 
     uploadButton: {
         position: 'absolute',
-        margin: '30% 0 0 35%',
+        margin: '30% 0 0 70%',
         backgroundColor: 'black'
     },
 
     margin: {
-        margin: theme.spacing(3, 0),
+        margin: theme.spacing(3,13),
     },
 
     textField: {
-        width: '55ch',
+        width: '300px',
+        marginLeft: '18%',
         display: 'block'
     },
 }));
@@ -77,6 +82,7 @@ export default function ProfilePage() {
         showPassword: false,
       });
       const [isChanging, setIsChanging] = React.useState(false);
+      const currentUser = useContext(UserContext)
 
         function validateForm() {
             return (
@@ -110,9 +116,9 @@ export default function ProfilePage() {
       };
 
   return (
-    <Paper className={classes.root}>
+    <Paper elevation={0} className={classes.root}>
         <div className={classes.paper}>
-            <Grid container spacing={2}>
+            <Grid alignItems='center' justify="center" container spacing={2} gutterBottom>
                 <Grid item>
                     <ButtonBase className={classes.image}>
                         <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
@@ -128,23 +134,24 @@ export default function ProfilePage() {
                         />
                     </ButtonBase>
                 </Grid>
-                <Grid item xs={12} sm container style={{marginTop:100}}>
-                    <Grid item xs container direction="column" spacing={2}>
-                        <Grid item xs>
-                            <Typography gutterBottom variant="h4">
+            </Grid>
+            <Grid spacing={2} gutterBottom>
+                    <Grid item xs alignItems='center' justify="center" container spacing={2}>
+                    { currentUser && 
+                        <Grid item >
+                            <Typography gutterBottom variant="h4" align='center'>
                                 John Doe
                             </Typography>
-                            <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                                johnd@skyllaconnect.com
+                            <Typography variant="body2" align='center' style={{ cursor: 'pointer', }}>
+                                {currentUser.email}
                             </Typography>
                         </Grid>
+                    }
                     </Grid>
                 </Grid>
-            </Grid>
-
             <Divider style={{ margin:'30px 0 50px 0' }}/>
             
-            <div className={classes.pswdChange}>
+            <Grid alignItems='center' justify="center" container spacing={2} gutterBottom>
                 <Typography gutterBottom variant="h5">
                     Change Password
                 </Typography>
@@ -171,7 +178,7 @@ export default function ProfilePage() {
                         labelWidth={100}
                     />
                 </FormControl>
-                <Divider style={{ margin:'20px 0 20px 0', width:'60%' }}/>
+                <Divider style={{ margin:'20px 23% 20px 23%', width:'60%' }}/>
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
                     <OutlinedInput
@@ -222,11 +229,14 @@ export default function ProfilePage() {
                     bsSize="large"
                     disabled={!validateForm()}
                     isLoading={isChanging}
+                    style={{
+                        marginLeft: '40%'
+                    }}
                 >
                     Change
                 </LoaderButton>
                 </form>
-            </div>
+            </Grid>
         </div>
     </Paper>
   );
