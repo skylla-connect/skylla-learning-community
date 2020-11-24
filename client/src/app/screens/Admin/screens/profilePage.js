@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Typography, 
@@ -17,8 +17,9 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import LoaderButton from "../components/loader";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import { app } from 'firebase';
-import { UserContext } from './userContext';
+import FirebaseContext from 'firebase';
+import 'firebase/firestore';
+// import { UserContext } from './userContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -73,6 +74,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
 export default function ProfilePage() {
     const classes = useStyles();
     const [values, setValues] = React.useState({
@@ -82,7 +85,35 @@ export default function ProfilePage() {
         showPassword: false,
       });
       const [isChanging, setIsChanging] = React.useState(false);
-      const currentUser = useContext(UserContext)
+    //   const currentUser = useContext(UserContext)
+      const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:''})
+      
+      class userDetails {
+        constructor (name, email, password ) {
+            this.name = name;
+            this.email = email;
+            this.password = password;
+        }
+        // toString() {
+        //     return this.name + ', ' + this.email + ', ' + this.password;
+        // }
+    }
+    
+    // Firestore data converter
+    var userDetailsConverter = {
+        toFirestore: function(userDetails) {
+            return {
+                name: userDetails.name,
+                email: userDetails.email,
+                password: userDetails.password
+                }
+        },
+        fromFirestore: function(snapshot, options){
+            const data = snapshot.data(options);
+            const det1 = new userDetails(data.name, data.email, data.password);
+            return det1
+        }
+    }
 
         function validateForm() {
             return (
@@ -92,9 +123,33 @@ export default function ProfilePage() {
             );
         }
         
+        React.useEffect(() => {
+            let user1 = FirebaseContext.auth().currentUser;
+            // let uID = FirebaseContext.firestore().collection("users").doc(user1.uid)    
+            let db = FirebaseContext.firestore().collection("users/trainee/users");
+            let query = db.where('userId', '==', user1.uid);
+
+            query.withConverter(userDetailsConverter).get()
+            .then(snapshot => {
+                if (snapshot.empty) {
+                console.log('No matching documents.');
+                return;
+                }  
+
+                snapshot.forEach(doc => {
+                    var x = doc.data();
+                    setcurrentUserDetails(x)
+                console.log(doc.id, '=>', x);
+                ;
+                })
+            })
+            .catch(err => {
+                console.log('Error getting documents', err);
+            });
+        }, [])
+
         async function handleChangeClick(event) {
             event.preventDefault();
-        
             setIsChanging(true);
             
             //Firebase user session authentication
@@ -118,7 +173,7 @@ export default function ProfilePage() {
   return (
     <Paper elevation={0} className={classes.root}>
         <div className={classes.paper}>
-            <Grid alignItems='center' justify="center" container spacing={2} gutterBottom>
+            <Grid alignItems='center' justify="center" container spacing={2}>
                 <Grid item>
                     <ButtonBase className={classes.image}>
                         <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
@@ -135,23 +190,20 @@ export default function ProfilePage() {
                     </ButtonBase>
                 </Grid>
             </Grid>
-            <Grid spacing={2} gutterBottom>
+            <Grid>
                     <Grid item xs alignItems='center' justify="center" container spacing={2}>
-                    { currentUser && 
                         <Grid item >
                             <Typography gutterBottom variant="h4" align='center'>
-                                John Doe
+                                {currentUserDetails.name}
                             </Typography>
                             <Typography variant="body2" align='center' style={{ cursor: 'pointer', }}>
-                                {currentUser.email}
+                                {currentUserDetails.email}
                             </Typography>
                         </Grid>
-                    }
                     </Grid>
                 </Grid>
             <Divider style={{ margin:'30px 0 50px 0' }}/>
-            
-            <Grid alignItems='center' justify="center" container spacing={2} gutterBottom>
+            <Grid alignItems='center' justify="center" container spacing={2}>
                 <Typography gutterBottom variant="h5">
                     Change Password
                 </Typography>
@@ -224,9 +276,9 @@ export default function ProfilePage() {
                     />
                 </FormControl>
                 <LoaderButton
-                    block
+                    // block
                     type="submit"
-                    bsSize="large"
+                    // bsSize="large"
                     disabled={!validateForm()}
                     isLoading={isChanging}
                     style={{
