@@ -10,6 +10,7 @@ import withAuthorization from './App/session/withAuthorization';
 import { FullPageSpinner } from './App/components';
 import Module from './App/screens/Trainee/screens/Module/Module';
 import Cart from './App/screens/Trainee/screens/cart/index';
+import Payment from './App/screens/Trainee/screens/cart/complete-payment/index';
 
 const Athenticated = () => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);
@@ -40,6 +41,7 @@ function Routes(props) {
                 <Route path={ROUTES.TRAINEE} component={Trainee} />
                 <Route path={ROUTES.CART} component={Cart} />
                 <Route path={ROUTES.MODULES} component={Module} /> 
+                <Route path={ROUTES.PAYMENT} component={Payment} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}

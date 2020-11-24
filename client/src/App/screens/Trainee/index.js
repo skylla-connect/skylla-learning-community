@@ -22,11 +22,11 @@ import Views from './components/views/views'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import SocialIcons from './components/social';
 import *as ROUTES from '../../config/routes';
-import {Link} from 'react-router-dom';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Link,
 } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -179,7 +179,6 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <Router>
       <div>
         <div className={classes.root}>
           <CssBaseline />
@@ -189,77 +188,79 @@ export default function PersistentDrawerLeft() {
                 [classes.appBarShift]: open,
               })}
             >
-              <Toolbar>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  onClick={handleDrawerOpen}
-                  edge="start"
-                  className={clsx(classes.menuButton, open && classes.hide)}
-                >
-                  <MenuIcon />
-                </IconButton>
-                <div style={{margin: 'auto'}}>
-                  <Typography noWrap>
-                      SKYLLA LEARNING COMMUNITY
-                  </Typography>
-                </div>
-                <div style={{textAlign: 'center'}}>
-                  <Avatar alt="Remy Sharp" src="" />
-                  <Typography variant="body2">
-                    Trainee
-                  </Typography>
-                </div>
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+              <div style={{margin: 'auto'}}>
+                <Typography noWrap>
+                    SKYLLA LEARNING COMMUNITY
+                </Typography>
+              </div>
+              <div style={{textAlign: 'center'}}>
+                <Avatar alt="Remy Sharp" src="" />
+                <Typography variant="body2">
+                  Trainee
+                </Typography>
+              </div>
 
-                <div style={{textAlign: 'center', margin: 15}}>
-                  <Avatar alt="Remy Sharp" src="" />
-                  <Typography variant="body2">
-                    Trainer
-                  </Typography>
-                </div>
+              <div style={{textAlign: 'center', margin: 15}}>
+                <Avatar alt="Remy Sharp" src="" />
+                <Typography variant="body2">
+                  Trainer
+                </Typography>
+              </div>
 
-                <div style={{textAlign: 'center'}}>
-                  <img 
-                    src="https://cdn0.iconfinder.com/data/icons/business-startup-10/50/57-128.png" 
-                    alt=""
-                    width="20%" />
-                  <Typography variant="body2">
-                    Quiz &amp; Tests 
-                  </Typography>
-                </div>
+              <div style={{textAlign: 'center'}}>
+                <img 
+                  src="https://cdn0.iconfinder.com/data/icons/business-startup-10/50/57-128.png" 
+                  alt=""
+                  width="20%" />
+                <Typography variant="body2">
+                  Quiz &amp; Tests 
+                </Typography>
+              </div>
 
-                <div style={{textAlign: 'center'}}>
-                  <img 
-                    src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
-                    alt=""
-                    width="20%" />
-                  <Typography variant="body2">
-                    View Sessions
-                  </Typography>
-                </div>
+              <div style={{textAlign: 'center'}}>
+                <img 
+                  src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
+                  alt=""
+                  width="20%" />
+                <Typography variant="body2">
+                  View Sessions
+                </Typography>
+              </div>
 
-                <div style={{textAlign: 'center'}}>
-                  <img 
-                    src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
-                    alt=""
-                    width="20%" 
-                  />
-                  <Typography variant="body2">
-                    Join Live Class
-                  </Typography>
-                </div>
+              <div style={{textAlign: 'center'}}>
+                <img 
+                  src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
+                  alt=""
+                  width="20%" 
+                />
+                <Typography variant="body2">
+                  Join Live Class
+                </Typography>
+              </div>
 
-                <div style={{textAlign: 'center'}}>
-                    <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
-                        <Fab color="primary" className={classes.fab}>
-                          <Link to={ROUTES.MODULES}>
-                            <AddShoppingCartIcon style={{}} />
-                          </Link>
-                        </Fab>
-                    </Tooltip>
-                </div>
-              </Toolbar>
-            </AppBar>
+              <div style={{textAlign: 'center'}}>
+                <Link to={ROUTES.MODULES}>
+                  <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
+                      <Fab color="primary" className={classes.fab}>
+                        <AddShoppingCartIcon style={{}} />
+                      </Fab>
+                  </Tooltip>
+                </Link>
+              </div>
+            </Toolbar>
+          </AppBar>
+
+          <Router>
             <Drawer
               className={classes.drawer}
               variant="persistent"
@@ -269,86 +270,86 @@ export default function PersistentDrawerLeft() {
                 paper: classes.drawerPaper,
               }}
             >
-              <div className={classes.drawerHeader} open={open}>
-                <IconButton onClick={handleDrawerClose} style={{color: 'white'}}>
-                  {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                </IconButton>
-              </div>
-              <Divider />
-              <div className={classes.paper}>
-                <Menu />
-              </div>
+            <div className={classes.drawerHeader} open={open}>
+              <IconButton onClick={handleDrawerClose} style={{color: 'white'}}>
+                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+              </IconButton>
+            </div>
+            <Divider />
+            <div className={classes.paper}>
+              <Menu />
+            </div>
 
-              <Divider 
-                style={{
-                  backgroundColor: 'white',
-                  width: '90%',
-                  margin: 'auto',
-                }}
-              />
+            <Divider 
+              style={{
+                backgroundColor: 'white',
+                width: '90%',
+                margin: 'auto',
+              }}
+            />
 
-              <div className={classes.paper}> 
-                <Permissions />
-              </div>
+            <div className={classes.paper}> 
+              <Permissions />
+            </div>
 
-              <Divider 
-                style={{
-                  backgroundColor: 'white',
-                  width: '90%',
-                  margin: 'auto',
-                }}
-              />
+            <Divider 
+              style={{
+                backgroundColor: 'white',
+                width: '90%',
+                margin: 'auto',
+              }}
+            />
 
-              <div className={classes.paper}> 
-                <SocialIcons />
-              </div>
-              
-              <Switch>
-                {routes.map((route, index) => (
-                  // You can render a <Route> in as many places
-                  // as you want in your app. It will render along
-                  // with any other <Route>s that also match the URL.
-                  // So, a sidebar or breadcrumbs or anything else
-                  // that requires you to render multiple things
-                  // in multiple places at the same URL is nothing
-                  // more than multiple <Route>s.
-                  <Route
-                    key={index}
-                    path={route.path}
-                    exact={route.exact}
-                    children={<route.sidebar />}
-                  />
-                ))}
-              </Switch>
-            </Drawer>
-            <main
-              className={clsx(classes.content, {
-                [classes.contentShift]: open,
-              })}
-            >
-              <div className={classes.drawerHeader} style={{marginTop: -50}} />
-              <Switch>
-                {routes.map((route, index) => (
-                  // Render more <Route>s with the same paths as
-                  // above, but different components this time.
-                  <Route
-                    key={index}
-                    path={route.path}
-                    exact={route.exact}
-                    children={<route.main />}
-                  />
-                ))}
-              </Switch>
+            <div className={classes.paper}> 
+              <SocialIcons />
+            </div>
+            
+            <Switch>
+              {routes.map((route, index) => (
+                // You can render a <Route> in as many places
+                // as you want in your app. It will render along
+                // with any other <Route>s that also match the URL.
+                // So, a sidebar or breadcrumbs or anything else
+                // that requires you to render multiple things
+                // in multiple places at the same URL is nothing
+                // more than multiple <Route>s.
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  children={<route.sidebar />}
+                />
+              ))}
+            </Switch>
+          </Drawer>
+          <main
+            className={clsx(classes.content, {
+              [classes.contentShift]: open,
+            })}
+          >
+            <div className={classes.drawerHeader} style={{marginTop: -50}} />
+            <Switch>
+              {routes.map((route, index) => (
+                // Render more <Route>s with the same paths as
+                // above, but different components this time.
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  children={<route.main />}
+                />
+              ))}
+            </Switch>
 
-              <div style={{marginTop: 40}}>
-                <Footer />
-              </div>
-            </main>
-        </div>
-
-        {/* mobile */}
-        <Mobile />
+            <div style={{marginTop: 40}}>
+              <Footer />
+            </div>
+          </main>
+        </Router>
       </div>
-    </Router>
+
+      {/* mobile */}
+      <Mobile />
+    </div>
   );
 }
