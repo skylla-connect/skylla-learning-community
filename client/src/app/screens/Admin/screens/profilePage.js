@@ -68,8 +68,8 @@ const useStyles = makeStyles((theme) => ({
     },
 
     textField: {
-        width: '300px',
-        marginLeft: '18%',
+        width: '500px',
+        marginLeft: '10%',
         display: 'block'
     },
 }));
@@ -211,6 +211,7 @@ export default function ProfilePage() {
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Old Password</InputLabel>
                     <OutlinedInput
+                        style={{ width:'100%' }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'Oldpassword'}
                         value={values.Oldpassword}
@@ -234,6 +235,7 @@ export default function ProfilePage() {
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
                     <OutlinedInput
+                        style={{ width:'100%' }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'Newpassword'}
                         value={values.Newpassword}
@@ -256,6 +258,7 @@ export default function ProfilePage() {
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Confirm New Password</InputLabel>
                     <OutlinedInput
+                        style={{ width:'100%' }}
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'ConfirmNewpassword'}
                         value={values.ConfirmNewpassword}
@@ -282,7 +285,8 @@ export default function ProfilePage() {
                     disabled={!validateForm()}
                     isLoading={isChanging}
                     style={{
-                        marginLeft: '40%'
+                        marginLeft: '10%',
+                        width:'83%'
                     }}
                 >
                     Change
