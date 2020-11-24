@@ -4,11 +4,12 @@ import {jsx} from '@emotion/core';
 import {Link} from 'react-router-dom';
 import * as mq from '../../../styles/media-queries';
 import * as colors from '../../../styles/colors';
+import { Button } from '@material-ui/core';
+import { FormGroup } from '../../../components';
 
-function ModuleRow({book}) {
-  const {title, author, coverImageUrl} = book
- 
-
+function ModuleRow(props) {
+  const {title, author, coverImageUrl} = props.book;
+  const {finished, book} = props;
   return (
     <div
       css={{
@@ -18,8 +19,7 @@ function ModuleRow({book}) {
         position: 'relative',
       }}
     >
-      <Link
-        to={`/book/${book.id}`}
+      <div
         css={{
           flexGrow: 2,
           display: 'grid',
@@ -76,9 +76,34 @@ function ModuleRow({book}) {
               <small>{book.publisher}</small>
             </div>
           </div>
-          <small>{book.synopsis.substring(0, 500)}...</small>
+          <small css={{fontSize: "0.85em", lineHeight: "2em"}}>{book.synopsis.substring(0, 500)}...</small>
+          {!finished && <div css={{
+            paddingTop: "0.85em",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly"
+          }}>
+          <FormGroup>
+              <Link>
+                <Button 
+                css={{width: '120px'}}
+                    variant="outlined"
+                    color="primary"
+                    ><small>Go to Cart</small></Button>
+              </Link>
+            </FormGroup>
+            <FormGroup>
+              <Link>
+                <Button 
+                css={{width: '120px'}}
+                    variant="contained"
+                    color="primary"
+                    ><small>Buy now</small></Button>
+              </Link>
+            </FormGroup>
+          </div>}
         </div>
-      </Link>
+      </div>
     </div>
   )
 }

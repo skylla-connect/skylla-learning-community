@@ -48,8 +48,8 @@ class Firebase {
     doRemoveCartItem = async (userId, courseName) => 
     await this.db.doc(`/cart/${userId}/items/${courseName}`).delete();
 
-    doGetUserCart = (userId) => 
-     this.db.doc(`/cart/${userId}`).get();
+    doGetUserOrders = (userId) => 
+     this.db.doc(`/ordes/${userId}`).get();
 
      doRemoveUserCart = async (userId) => 
      await this.db.doc(`/cart/${userId}`).delete();
@@ -71,8 +71,9 @@ class Firebase {
         .get() 
     }
     doGetModules = async () => {
-        return await this.db.collection(`/modules`)
-        .get() 
+        const allModules = await this.db.collection(`/modules`)
+        .get()
+        return allModules;
     }
     doSearch = async (query) => {
         return this.db.collection("modules")

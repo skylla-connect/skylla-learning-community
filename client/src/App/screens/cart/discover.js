@@ -3,10 +3,9 @@ import {jsx} from '@emotion/core'
 
 import React from 'react';
 import {FaSearch, FaTimes} from 'react-icons/fa'
-import {useAsync} from 'react-async';
 import { Spinner } from "../../components";
 import ModuleRow from "./components/ModuleRow";
-import * as booksClient from '../../utils/modules-client'
+import modules from "./components/data/modules.json";
 
 //MUI stuff
 import  makeStyles  from '@material-ui/core/styles/makeStyles';
@@ -15,10 +14,12 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { withFirebase } from '../../../firebase';
 import useCallbackStatus from '../../utils/use-callback-status';
+import { useOrderItemState } from '../../session/order-context';
 
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
+      fontFamily: "Helvetica",
     },
     grid: {
       width: '90%', 
@@ -28,31 +29,47 @@ const useStyles = makeStyles((theme) => ({
       }
     }
   }));
-// function initialSearch() {
-//     return booksClient.search('');
-//   }
+
 const Discover = (props) => {
-  const getModules = () => {
-    return (props.firebase.doGetModules()
-    .then(result => {
-      if(result.exists){
-        return result.data();
-      } else {
-        return [];
-      }
+  const getModules = async () => {
+    return await (props.firebase.doGetModules()
+    .then(snapshot => {
+      return snapshot.docs;
+      // if(result.exists){
+      //   return result.data();
+      // } else {
+      //   return [];
+      // }
     })
     )
   }
-  function search(query) {
-    return props.firebase.doSearch(query);;
+  async function search(query) {
+    return await (props.firebase.doSearch(query)
+    .then(snapshot => {
+      return snapshot.docs;
+    })
+    );
   }
     const classes = useStyles();
     const [query, setQuery] = React.useState('');
     const [hasSearched, setHasSearched] = React.useState();
     console.log(getModules());
-    const {isPending, isRejected, isResolved, error, run} = useCallbackStatus()
-    run(getModules())
-      // const {books} = data || {books: []}
+    const { data, status, isPending, isRejected, isResolved, error, run} = useCallbackStatus()
+    React.useEffect(() => {
+      run(getModules())
+    },[]);
+    console.log(isPending);
+    console.log(isRejected);
+    console.log(isResolved);
+    console.log(status);
+    console.log(error);
+    console.log(data);
+      let books = modules || data;
+      const orders = useOrderItemState()
+      console.log(orders);
+      console.log(books);
+      books = books.filter(li => !orders.find(item => item.id === li.id));
+      console.log(books);
     
     function handleInputChange(e) {
         setQuery(e.target.value)
@@ -61,15 +78,15 @@ const Discover = (props) => {
     function handleSearchClick(e) {
         e.preventDefault()
         setHasSearched(true)
-        // run(query)
+        run(search(query))
     }
     return ( 
         <div className={classes.root}>
-            {/* <div>
+            <div>
         <form onSubmit={handleSearchClick}>
           <input
             onChange={handleInputChange}
-            placeholder="Search books..."
+            placeholder="Search modules..."
             id="search"
             css={{width: '100%'}}
           />
@@ -102,10 +119,10 @@ const Discover = (props) => {
             <pre>{error.message}</pre>
           </div>
         ) : null}
-      </div> */}
-      {/* <div>
+      </div>
+      <div>
         {hasSearched ? null : (
-            <div css={{marginTop: 20, fontSize: '1.2em', textAlign: 'center'}}>
+            <div css={{marginTop: 20, fontSize: '1.1em', textAlign: 'center'}}>
                 <p>Welcome to the discover page.</p>
                 <p>Here, let me load a few books for you...</p>
                 {isPending ? (
@@ -126,7 +143,7 @@ const Discover = (props) => {
             <List css={{marginTop: 20}}>
               {books.map(book => (
                 <ListItem key={book.id}>
-                  <ModuleRow key={book.id} book={book} />
+                  <ModuleRow key={book.id} book={book} orders={orders}/>
                 </ListItem>
               ))}
             </List>
@@ -147,7 +164,7 @@ const Discover = (props) => {
             </div>
           ) : null
         ) : null}
-      </div> */}
+      </div>
         </div>
         
      );

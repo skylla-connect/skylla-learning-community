@@ -12,6 +12,8 @@ import { Link, Router } from "@reach/router";
 import Discover from "./discover";
 import * as mq from '../../styles/media-queries';
 import Navbar from '../components/navbar-checkout';
+import YourModules from './imodules';
+import OrderProvider from '../../session/order-context';
 
 function CartApp({match}) {
     return (
@@ -38,11 +40,13 @@ function CartApp({match}) {
         </div>
         <main css={{width: '100%'}}>
           <Store>
-            <Router>
-                <Discover path={`${match.path}/discover`} />
-                <Checkout path={`${match.path}/checkout`} />
-                {/* <BookScreen path="/book/:bookId" /> */}
-            </Router>
+            <OrderProvider>
+              <Router>
+                  <Discover path={`${match.path}/discover`} />
+                  <YourModules path={`${match.path}/finished`} />
+                  {/* <BookScreen path="/book/:bookId" /> */}
+              </Router>
+            </OrderProvider>
           </Store>
         </main>
         <footer />
@@ -89,6 +93,7 @@ const NavLink = styled(Link)({
           css={{
             listStyle: 'none',
             padding: '0',
+            fontSize: "1.0em",
             '& [aria-current="page"]': {
               borderLeft: `5px solid ${colors.indigo}`,
               background: colors.gray10,

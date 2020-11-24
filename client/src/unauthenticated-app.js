@@ -8,6 +8,7 @@ import PasswordReset from './app/screens/resetPassword/index';
 import Product from './app/screens/productDetails';
 import Checkout from './app/screens/checkout';
 import Store from "./app/session/checkout-context";
+import CartApp from "./app/screens/cart";
 
 const Unathenticated = () => {
     return ( 
@@ -24,6 +25,7 @@ export const Routes = () => {
                     <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
                     <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
                     <Route path="/product" component={Product} />
+                    <Route path="/cart" component={CartApp} />
                     {/* <Store>
                         <Route path="/checkout" component={Checkout} />
                     </Store> */}

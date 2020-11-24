@@ -1,48 +1,26 @@
+import React from "react";
 
 const OrderStateContext = React.createContext()
 const OrderDispatchContext = React.createContext()
 
-const initialState = {
-    orderPlaced: false,
-    isLoading: false,
-    error: null
-}
 
-const orderReducer = (state = initialState, action) => {
+const orderReducer = (state = [], action) => {
     switch (action.type) {
-        case "order-init":
-            return initialState;
-        case "order":
-            return {
-                ...state,
-                orderPlaced: false,
-                isLoading: true,
-                error: null
-            }
-
-        case "success":
-            return {
-                ...state,
-                orderPlaced: true,
-                isLoading: false
-            }
-
-        case "failure":
-            return {
-                ...state,
-                isLoading: false,
-                error: payload.error
-            }
+        case 'add': {
+            return [...state, action.payload]
+          }
+        case "fetch":
+            return [...action.payload]
 
         default:
             return state;
     }
 }
 
-export default orderReducer;
+export {orderReducer};
 
-function orderProvider({children}) { 
-    const [state, dispatch] = React.useReducer(orderReducer, initialState )
+const OrderProvider = ({children}) => { 
+    const [state, dispatch] = React.useReducer(orderReducer, [])
     return (
       <OrderStateContext.Provider value={state}>
         <OrderDispatchContext.Provider value={dispatch}>
@@ -52,4 +30,24 @@ function orderProvider({children}) {
     )
   }
 
-export default (orderProvider);
+export default OrderProvider;
+
+function useOrderItemDispatch() {
+    const context = React.useContext(OrderDispatchContext)
+    if (context === undefined) {
+        throw new Error(
+        `useListItemDispatch must be used within a ListItemProvider`,
+        )
+    }
+    return context
+    }
+
+function useOrderItemState() {
+    const context = React.useContext(OrderStateContext)
+    if (context === undefined) {
+        throw new Error(`useListItemState must be used within a ListItemProvider`)
+    }
+    return context
+}
+export {useOrderItemDispatch, useOrderItemState}
+
