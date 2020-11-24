@@ -59,7 +59,7 @@ class DeleteUsers extends React.Component {
         }
     
         this.setState({open: false});
-      };
+    };
 
     deleteUserDetails(userId){
         this.db.collection("users/trainer/sys_trainers")

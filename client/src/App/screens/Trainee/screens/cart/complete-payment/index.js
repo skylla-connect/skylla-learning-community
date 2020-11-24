@@ -198,7 +198,7 @@ const CompletePayment = () => {
                   />
 
                   <div style={{
-                    margin: '30px auto 30px auto'
+                    margin: '10px auto 10px auto'
                     }}>
                     <Grid container spacing={3}>
                       <Grid item xs={12} sm={6}>
@@ -271,7 +271,7 @@ const CompletePayment = () => {
                     </strong>
                   </Typography>
 
-                    <Typography variant="body2" paragraph>
+                  <Typography variant="body2" paragraph>
                     Skylla required by law to collect applicable transaction taxes
                     for purchase made in certain tax jurisdictions.
                   </Typography>
