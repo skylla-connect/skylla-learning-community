@@ -14,7 +14,7 @@ import CloudDoneIcon from '@material-ui/icons/CloudDone';
 import DeveloperModeIcon from '@material-ui/icons/DeveloperMode';
 import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 import HealingIcon from '@material-ui/icons/Healing';
-import SettingsRemoteIcon from '@material-ui/icons/SettingsRemote';
+// import SettingsRemoteIcon from '@material-ui/icons/SettingsRemote';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
@@ -140,7 +140,6 @@ export default function NavTabs() {
           <Tab 
             className={classes.tab}
             label="General" 
-            // href="/general" 
             {
               ...a11yProps(0)} 
               style={{color:'black', 
@@ -151,7 +150,6 @@ export default function NavTabs() {
           <Tab 
             className={classes.tab}
             label="Product &amp; Services" 
-            // href="/product" 
             {...a11yProps(1)} 
             style={{
               color:'black',
@@ -161,7 +159,6 @@ export default function NavTabs() {
           <Tab 
             className={classes.tab}
             label="Purchase Module" 
-            // href="/purchase" 
             {...a11yProps(2)} 
             style={{
               color:'black', 
@@ -171,7 +168,6 @@ export default function NavTabs() {
           <Tab
             className={classes.tab} 
             label="Code &amp; Debug" 
-            // href="/code" 
             {...a11yProps(3)} 
             style={{
               color:'black',
@@ -262,34 +258,36 @@ export default function NavTabs() {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-         <h2 style={{textAlign:'center'}}>Our Services</h2>
+          <h2 style={{textAlign:'center'}}>Our Services</h2>
           <div className='services' >
           
-          <div className='serv' >
-            <Card elevation='5' className='servs'> <SettingsInputAntennaIcon />Train Software Developers and employ them</Card>
-            <Card elevation='5' className='servs'> <DeviceHubIcon/>Develop Softwares</Card>
-            <Card elevation='5'className='servs'><SupervisedUserCircleIcon /> Hire Software Engineers</Card>
-            <Card elevation='5' className='servs'> <CloudDoneIcon />Cloud Consultancy</Card>
-            <Card elevation='5' className='servs'> <HealingIcon/>Technical support and software Maintainance and Upgrade</Card>
-          </div>
-          <div className='serv2' >
-            <Card elevation='5' className='servs'> <DeveloperModeIcon  />Software Engineering and DevOp</Card>
-            <Card elevation='5' className='servs'> <OpenWithIcon/>Remote and On Premise Infrastructure</Card>
-            <Card elevation='5'className='servs'> <ContactSupportIcon/>Support Open Source Software</Card>
-            <Card elevation='5'className='servs'> <ReceiptIcon/>Sale Software</Card>
-            <Card elevation='5'className='servs'> < SubscriptionsIcon />Software Subscription</Card>
-          </div>
+            <div className='serv' >
+              <Card elevation='5' className='servs'> <SettingsInputAntennaIcon style={{color:'green'}}/>Train Software Developers and employ them</Card>
+              <Card elevation='5' className='servs'> <DeviceHubIcon style={{color:'orange'}}/>Develop Softwares</Card>
+              <Card elevation='5'className='servs'><SupervisedUserCircleIcon style={{color:'crimson'}}/> Hire Software Engineers</Card>
+              <Card elevation='5' className='servs'> <CloudDoneIcon style={{color:'darkblue'}}/>Cloud Consultancy</Card>
+              <Card elevation='5' className='servs'> <HealingIcon style={{color:'tomato'}}/>Technical support and software Maintainance and Upgrade</Card>
+            </div>
+
+            <div className='serv2' >
+              <Card elevation='5' className='servs'> <DeveloperModeIcon  style={{color:'blueviolet'}}/>Software Engineering and DevOp</Card>
+              <Card elevation='5' className='servs'> <OpenWithIcon style={{color:'turquoise'}}/>Remote and On Premise Infrastructure</Card>
+              <Card elevation='5'className='servs'> <ContactSupportIcon style={{color:'yellowgreen'}}/>Support Open Source Software</Card>
+              <Card elevation='5'className='servs'> <ReceiptIcon style={{color:'magenta'}}/>Sale Software</Card>
+              <Card elevation='5'className='servs'> < SubscriptionsIcon style={{color:'rebeccapurple'}}/>Software Subscription</Card>
+            </div>
         </div>
         <h2 style={{textAlign:'center'}}>Our Products</h2>
         <div className='services'  >
         <div className='serv' >
             <Card elevation='5' className='servs'>Softwares</Card>
-            {/* <Card elevation='5' className='servs'> </Card>
-            <Card elevation='5'className='servs'></Card> */}
+            <Card elevation='5' className='servs'>We avail Software Engineers for hire </Card>
+            <Card elevation='5'className='servs'>We avail Software Engineers for hire</Card>
           </div>
           <div className='serv' >
             <Card elevation='5' className='servs'>We avail Software Engineers for hire</Card>
-            {/* <Card elevation='5' className='servs'>Develop Softwares</Card> */}
+            <Card elevation='5' className='servs'>We avail Software Engineers for hire</Card>
+            <Card elevation='5' className='servs'>We avail Software Engineers for hire</Card>
  
           </div>
         </div>
