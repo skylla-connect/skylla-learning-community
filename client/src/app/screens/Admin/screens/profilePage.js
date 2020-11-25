@@ -93,6 +93,60 @@ export default function ProfilePage() {
       const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
       
 
+      class userDetails {
+        constructor (name, email, password, photo ) {
+            this.name = name;
+            this.email = email;
+            this.password = password;
+            this.photo= photo;
+        }
+        // toString() {
+        //     return this.name + ', ' + this.email + ', ' + this.password;
+        // }
+    }
+    
+    // Firestore data converter
+    var userDetailsConverter = {
+        toFirestore: function(userDetails) {
+            return {
+                name: userDetails.name,
+                email: userDetails.email,
+                password: userDetails.password,
+                photo: userDetails.photo
+                }
+        },
+        fromFirestore: function(snapshot, options){
+            const data = snapshot.data(options);
+            const det1 = new userDetails(data.name, data.email, data.password, data.photo);
+            return det1
+        }
+    }
+
+    React.useEffect(() => {
+        let user1 = FirebaseContext.auth().currentUser;
+        // let uID = FirebaseContext.firestore().collection("users").doc(user1.uid)    
+        let db = FirebaseContext.firestore().collection("users/admin/users");
+        let query = db.where('uid', '==', user1.uid);
+
+        query.withConverter(userDetailsConverter).get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+            console.log('No matching documents.');
+            return;
+            }  
+
+            snapshot.forEach(doc => {
+                var x = doc.data();
+                setcurrentUserDetails(x)
+            // console.log(doc.id, '=>', x);
+            ;
+            })
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+    }, [])
+
     //   console.log(imageAsFile)
         const handleImageAsFile = (e) => {
             const image = e.target.files[0]
@@ -124,49 +178,20 @@ export default function ProfilePage() {
                     FirebaseContext.storage().ref('users/' + userCurrent.uid + `/${imageAsFile.name}`).getDownloadURL()
                     .then(fireBaseUrl => {
                     setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
-                    // console.log(fireBaseUrl)
+                    console.log(imageAsUrl)
                     let db = FirebaseContext.firestore().collection("users/admin/users");
                     db.doc(userCurrent.uid).update({
                         photo: fireBaseUrl
                       });
+                      
                     })
                     setIsChanging(true);
                 }
             })
           })
-        //   window.location.reload();
+            // alert('Image updated successfully! Please refresh page')
           }
       
-
-      class userDetails {
-        constructor (name, email, password, photo ) {
-            this.name = name;
-            this.email = email;
-            this.password = password;
-            this.photo= photo;
-        }
-        // toString() {
-        //     return this.name + ', ' + this.email + ', ' + this.password;
-        // }
-    }
-    
-    // Firestore data converter
-    var userDetailsConverter = {
-        toFirestore: function(userDetails) {
-            return {
-                name: userDetails.name,
-                email: userDetails.email,
-                password: userDetails.password,
-                photo: userDetails.photo
-                }
-        },
-        fromFirestore: function(snapshot, options){
-            const data = snapshot.data(options);
-            const det1 = new userDetails(data.name, data.email, data.password, data.photo);
-            return det1
-        }
-    }
-
         function validateForm() {
             return (
             values.Oldpassword.length > 0 &&     //more validation checks needed for the old Password
@@ -175,30 +200,6 @@ export default function ProfilePage() {
             );
         }
         
-        React.useEffect(() => {
-            let user1 = FirebaseContext.auth().currentUser;
-            // let uID = FirebaseContext.firestore().collection("users").doc(user1.uid)    
-            let db = FirebaseContext.firestore().collection("users/admin/users");
-            let query = db.where('uid', '==', user1.uid);
-
-            query.withConverter(userDetailsConverter).get()
-            .then(snapshot => {
-                if (snapshot.empty) {
-                console.log('No matching documents.');
-                return;
-                }  
-
-                snapshot.forEach(doc => {
-                    var x = doc.data();
-                    setcurrentUserDetails(x)
-                // console.log(doc.id, '=>', x);
-                ;
-                })
-            })
-            .catch(err => {
-                console.log('Error getting documents', err);
-            });
-        }, [])
 
         async function handleChangeClick(event) {
             event.preventDefault();
@@ -216,7 +217,9 @@ export default function ProfilePage() {
             
         } 
 
-
+        const handleSave = () => {
+            window.location.reload()
+        }
     
       const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
@@ -242,7 +245,6 @@ export default function ProfilePage() {
                             <IconButton type="submit" className={classes.uploadButton} color="primary" component="span">
                             <PhotoCamera />
                             </IconButton>
-                            {/* <button disabled={!imageAsFile}>upload</button> */}
                             <LoaderButton
                                 // block
                                 type="submit"
@@ -369,6 +371,7 @@ export default function ProfilePage() {
                     Change
                 </LoaderButton>
                 </form>
+                <button onClick={handleSave}>SAVE</button>
             </Grid>
         </div>
     </Paper>
