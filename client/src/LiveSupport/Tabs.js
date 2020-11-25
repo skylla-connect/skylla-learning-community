@@ -131,7 +131,6 @@ export default function NavTabs() {
             {
               ...a11yProps(0)} 
               style={{color:'black', 
-              // marginTop: '15px'
               border: 'none'
             }}
           />
@@ -143,7 +142,6 @@ export default function NavTabs() {
             {...a11yProps(1)} 
             style={{
               color:'black',
-              // marginTop: '15px'
               }} 
           />
 
@@ -154,7 +152,6 @@ export default function NavTabs() {
             {...a11yProps(2)} 
             style={{
               color:'black', 
-              // marginTop: '15px'
             }}
           />
 
@@ -164,8 +161,7 @@ export default function NavTabs() {
             // href="/code" 
             {...a11yProps(3)} 
             style={{
-              color:'black', 
-              // marginTop: '15px'
+              color:'black',
             }} 
           />
         </Tabs>
