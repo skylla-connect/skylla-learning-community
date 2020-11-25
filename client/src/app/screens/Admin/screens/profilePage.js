@@ -371,7 +371,7 @@ export default function ProfilePage() {
                     Change
                 </LoaderButton>
                 </form>
-                <button onClick={handleSave}>SAVE</button>
+                {/* <button onClick={handleSave}>SAVE</button> */}
             </Grid>
         </div>
     </Paper>
