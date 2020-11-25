@@ -8,6 +8,19 @@ import {Divider,Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import './LiveSupport.css'
 import Carousel from 'react-bootstrap/Carousel';
+import Card from '@material-ui/core/Card';
+import './Tabs.css'
+import CloudDoneIcon from '@material-ui/icons/CloudDone';
+import DeveloperModeIcon from '@material-ui/icons/DeveloperMode';
+import DeviceHubIcon from '@material-ui/icons/DeviceHub';
+import HealingIcon from '@material-ui/icons/Healing';
+import SettingsRemoteIcon from '@material-ui/icons/SettingsRemote';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
+import OpenWithIcon from '@material-ui/icons/OpenWith';
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import SettingsInputAntennaIcon from '@material-ui/icons/SettingsInputAntenna';
 //  import Cart from '../../../client/src/app/components/Module/Module'
 
 
@@ -249,7 +262,37 @@ export default function NavTabs() {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        Product &amp; Services
+         <h2 style={{textAlign:'center'}}>Our Services</h2>
+          <div className='services' >
+          
+          <div className='serv' >
+            <Card elevation='5' className='servs'> <SettingsInputAntennaIcon />Train Software Developers and employ them</Card>
+            <Card elevation='5' className='servs'> <DeviceHubIcon/>Develop Softwares</Card>
+            <Card elevation='5'className='servs'><SupervisedUserCircleIcon /> Hire Software Engineers</Card>
+            <Card elevation='5' className='servs'> <CloudDoneIcon />Cloud Consultancy</Card>
+            <Card elevation='5' className='servs'> <HealingIcon/>Technical support and software Maintainance and Upgrade</Card>
+          </div>
+          <div className='serv2' >
+            <Card elevation='5' className='servs'> <DeveloperModeIcon  />Software Engineering and DevOp</Card>
+            <Card elevation='5' className='servs'> <OpenWithIcon/>Remote and On Premise Infrastructure</Card>
+            <Card elevation='5'className='servs'> <ContactSupportIcon/>Support Open Source Software</Card>
+            <Card elevation='5'className='servs'> <ReceiptIcon/>Sale Software</Card>
+            <Card elevation='5'className='servs'> < SubscriptionsIcon />Software Subscription</Card>
+          </div>
+        </div>
+        <h2 style={{textAlign:'center'}}>Our Products</h2>
+        <div className='services'  >
+        <div className='serv' >
+            <Card elevation='5' className='servs'>Softwares</Card>
+            {/* <Card elevation='5' className='servs'> </Card>
+            <Card elevation='5'className='servs'></Card> */}
+          </div>
+          <div className='serv' >
+            <Card elevation='5' className='servs'>We avail Software Engineers for hire</Card>
+            {/* <Card elevation='5' className='servs'>Develop Softwares</Card> */}
+ 
+          </div>
+        </div>
       </TabPanel>
 
       <TabPanel value={value} index={2} >
