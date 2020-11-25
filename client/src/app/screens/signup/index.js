@@ -56,7 +56,7 @@ const INITIAL_STATE = {
     email: '',
     passwordOne: '',
     passwordTwo: '',
-    photo: 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png',
+    photo: '',
     isPending: false,
     isChecked: false,
     error: null,

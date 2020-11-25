@@ -41,7 +41,7 @@ const SignUpPage = () => (
 const INITIAL_STATE = {
     username: '',
     email: '',
-    photo: 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png',
+    photo: '',
     passwordOne: '',
     isPending: false,
     isChecked: false,

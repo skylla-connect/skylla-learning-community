@@ -263,7 +263,7 @@ export default function ProfilePage() {
                         </form>
                         <img 
                             className={classes.pPic} 
-                            src={currentUserDetails.photo} 
+                            src={currentUserDetails.photo || 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'} 
                             alt=''
                         />
                     </ButtonBase>
