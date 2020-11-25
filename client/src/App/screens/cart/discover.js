@@ -143,7 +143,7 @@ const Discover = (props) => {
             <List css={{marginTop: 20}}>
               {books.map(book => (
                 <ListItem key={book.id}>
-                  <ModuleRow key={book.id} book={book} orders={orders}/>
+                  <ModuleRow key={book.id} book={book} />
                 </ListItem>
               ))}
             </List>

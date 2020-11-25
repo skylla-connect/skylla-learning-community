@@ -60,7 +60,7 @@ const StyledToggleButton = withStyles({
     },
   })(ToggleButtonGroup);
   const SavedCard = ({...props}) => (
-    <Accordion style={{backgroundColor: colors.bluegray}}>
+    <Accordion style={{backgroundColor: colors.bluegray, width: "100%"}}>
     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <span style={{fontSize: "15px"}}>
             <IconButton style={{padding: "0px"}}>
@@ -189,7 +189,7 @@ const StyledToggleButton = withStyles({
     value={value}
     onChange={onChangeCard}
     >
-        <Accordion style={{backgroundColor: colors.bluegray}}>
+        <Accordion style={{backgroundColor: colors.bluegray, width: "100%"}}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <span style={{fontSize: "15px"}}>
             <IconButton style={{padding: "0px"}}>
@@ -311,7 +311,7 @@ const StyledToggleButton = withStyles({
           value={value}
           onChange={handleChangeCard}
           >
-        <Accordion style={{backgroundColor: colors.bluegray}}>
+        <Accordion style={{backgroundColor: colors.bluegray, width: "100%"}}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <span style={{fontSize: "15px"}}>
             <IconButton style={{padding: "0px"}}>
@@ -382,13 +382,12 @@ const StyledToggleButton = withStyles({
         </Card>
     </AccordionDetails>
     </Accordion>
-    <Accordion style={{backgroundColor: colors.bluegray}}>
+    <Accordion style={{backgroundColor: colors.bluegray, width: "100%"}}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <span style={{fontSize: "15px"}}>
             <IconButton style={{padding: "0px"}}>
                 <Radio name="airtel" value="airtel" style={{padding: "0px 20px 0px 10px", color: "#FFC107"}}/>
-            </IconButton>
-            {/* <CreditCardOutlinedIcon style={{color: "#ff0000"}}/>   */}
+            </IconButton> 
             Airtel
         </span> 
     </AccordionSummary>
@@ -442,7 +441,7 @@ const StyledToggleButton = withStyles({
         </div>
         </Card>
     </AccordionDetails>
-    </Accordion>
+    </Accordion> 
         </RadioGroup>
       );
   }
@@ -492,7 +491,7 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
     grid: {
-      width: '90%', 
+      width: '100%', 
       margin: 'auto',
       [theme.breakpoints.down('sm')]: {
           width: '100%'
@@ -512,13 +511,12 @@ const Checkout = ({...props}) => {
     console.log(context);
     return ( 
         <div className={classes.root}>
-            <Navbar />
         <Grid container spacing={6} className={classes.grid}>
             <Grid container spacing={6} style={{
                 display: 'flex',
                 justifyContent: 'space-evenly',
                }} className={classes.grid}>
-                <Grid item xs={12} sm={5} style={{marginTop: '40px'}}>
+                <Grid item xs={12} sm={8} style={{marginTop: '40px'}}>
                     <Typography variant="h6">Checkout</Typography>
                     <FormGroup style={{
                         width: "220px",
@@ -560,15 +558,15 @@ const Checkout = ({...props}) => {
                         }/>
                     </FormGroup>
                 </Grid>
-                <Grid item xs={12} sm={5}>
+                <Grid item xs={12} sm={4}>
                 <Card style={{
                         display: 'flex',
                         flexDirection: "column",
                         justifyContent: 'center',
                         alignItems: 'center',
-                        width: "86%",
+                        width: "165%",
                         height: 'inherint',
-                        padding: "20px 15px"
+                        // padding: "20px 15px"
                     }}>
                         <CardHeader title="Summary"/>
                         <CardContent>

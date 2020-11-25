@@ -24,10 +24,10 @@ export const Routes = () => {
                     <Route path={ROUTES.SIGN_IN} component={SignInPage} />
                     <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
                     <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
-                    <Route path="/product" component={Product} />
                     <Route path="/cart" component={CartApp} />
+                   
                     {/* <Store>
-                        <Route path="/checkout" component={Checkout} />
+                        <Route path="/checkout/:module" component={Checkout} />
                     </Store> */}
                     <Redirect to={ROUTES.SIGN_IN} />
                 </Switch>

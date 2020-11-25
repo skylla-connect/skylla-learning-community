@@ -68,7 +68,7 @@ function Routes(props) {
                 <Route path={ROUTES.ADMIN} component={Admin} />
                 <Route path={ROUTES.TRAINER} component={Trainer} />
                 <Route path={ROUTES.TRAINEE} component={Trainee} />
-                <Route path="/product" component={Product} />
+                {/* <Route path="/product" component={Product} /> */}
                 <Route path="/cart" component={CartApp} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}

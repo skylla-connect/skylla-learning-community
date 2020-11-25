@@ -2,9 +2,9 @@
 import {jsx} from '@emotion/core';
 
 import React from 'react';
-import { NavLink as Link } from "react-router-dom";
 import * as colors from "../../styles/colors";
 import Footer from "../../components/Footer/footer";
+import * as mq from '../../styles/media-queries';
 
 // MUI stuff
 import  makeStyles  from '@material-ui/core/styles/makeStyles';
@@ -16,8 +16,10 @@ import Card from '@material-ui/core/Card';
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { FormGroup} from '../../components';
+import { FormGroup, Spinner} from '../../components';
 import Button from '@material-ui/core/Button';
+import { withFirebase } from '../../../firebase';
+import useCallbackStatus from '../../utils/use-callback-status';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
     grid: {
-      width: '90%', 
+      width: '100%', 
       margin: 'auto',
       [theme.breakpoints.down('sm')]: {
           width: '100%'
@@ -33,40 +35,44 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const Product = ({...props}) => {
+const Product = (props) => {
     const classes = useStyles();
     const learnContent = ["content", "content", "content", "content", "content", "content"]
+    async function getModule(bookId) {
+        return await (props.firebase.doGetModule(bookId)
+        .then(snapshot => {
+             return snapshot.docs
+            }))
+      }
+    const { data, status, isPending, isRejected, isResolved, error, run} = useCallbackStatus()
+    React.useEffect(() => {
+      run(getModule(props.bookId))
+    },[]);
+    if (isPending) {
+        return (
+          <div css={{marginTop: '2em', fontSize: '2em', textAlign: 'center'}}>
+            <Spinner />
+          </div>
+        )
+      }
+      if (isRejected) {
+        return (
+          <div css={{color: 'red'}}>
+            <p>Oh no, there was an error.</p>
+            <pre>{error.message}</pre>
+          </div>
+        )
+      }
+      if (isResolved && !data) {
+        return (
+          <div css={{color: 'red'}}>
+            <p>Hmmm... Something went wrong. Please try another book.</p>
+          </div>
+        )
+      }
+    const {title, author, coverImageUrl, publisher, synopsis} = data;
     return ( 
         <div className={classes.root}>
-        <nav className="navbar navbar-default" css={{
-            backgroundColor: colors.blue,
-            height: '20vh'
-        }} >
-             <ul className="nav navbar-nav container" css={{
-                 display: 'flex',
-                 flexDirection: 'row',
-             }}>
-                <li>
-                    <Link exact to="/" 
-                    activeStyle={{ color: '#fff'}} 
-                    css={{
-                        color: colors.base,
-                        fontSize: "22px",
-                        letterSpacing: '0.15rem'
-                    }} >
-                        <span></span>
-                        &nbsp;Skylla
-                    </Link>
-                </li>
-                <li>
-                    <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
-                        <Fab color="primary">
-                        <AddShoppingCartIcon style={{color: colors.base}} />
-                        </Fab>
-                    </Tooltip>
-                </li>
-             </ul>
-        </nav>
         <Grid container spacing={6} className={classes.grid}>
             <Grid container spacing={6} style={{
                 display: 'flex',
@@ -79,7 +85,7 @@ const Product = ({...props}) => {
                         justifyContent: 'space-evenly',
                         alignItems: 'center',
                         backgroundColor: colors.gray,
-                        height: '25vh',
+                        height: '15vh',
                     }}>
                         <CardMedia>
                         <Tooltip title="Cart" aria-label="Cart" style={{}}>
@@ -108,16 +114,13 @@ const Product = ({...props}) => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={4} style={{
-                    marginTop: '-80px',
-                    zIndex: 999,
-                }}>
+                <Grid item xs={12} sm={6}>
                 <Card style={{
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
                         borderRadius: '25px',
-                        height: '85vh',
+                        height: '70vh',
                     }}>
                         <CardContent style={{
                             textAlign: 'center'}}>
@@ -135,16 +138,8 @@ const Product = ({...props}) => {
                                         variant="contained"
                                         color="primary"
                                         type="submit"
-                                        >GO to Cart</Button>
-                                </FormGroup>
-                                <FormGroup style={{marginTop: "15px"}}>
-                                <Button style={{
-                                    width: '250px',
-                                    backgroundColor: "#000000"}}
-                                        variant="contained"
-                                        color="primary"
-                                        type="submit"
-                                        >Buy Now!</Button>
+                                        css={{width: "200px"}}
+                                        >Buy now!</Button>
                                 </FormGroup>
                             </div>
                         </CardContent>
@@ -152,18 +147,43 @@ const Product = ({...props}) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={12}>
-            <Card style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: colors.gray,
-                        height: '12vh',
-                        marginBottom: '20px',
-                    }}>
-                        <CardContent>
-                            <Typography variant="body">More about the module</Typography>
-                        </CardContent>
-                    </Card>
+            <div>
+      <div
+        css={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 2fr',
+          gridGap: '2em',
+          marginBottom: '1em',
+          [mq.small]: {
+            display: 'flex',
+            flexDirection: 'column',
+          },
+        }}
+      >
+        <img
+          src={coverImageUrl}
+          alt={`${title} book cover`}
+          css={{
+            width: '100%',
+            maxWidth: 200,
+          }}
+        />
+        <div>
+          <div css={{display: 'flex', position: 'relative'}}>
+            <div css={{flex: 1, justifyContent: 'space-between'}}>
+              <h1>{title}</h1>
+              <div>
+                <i>{author}</i>
+                <span css={{marginRight: 6, marginLeft: 6}}>|</span>
+                <i>{publisher}</i>
+              </div>
+            </div>
+          </div>
+          <br />
+          <p>{synopsis}</p>
+        </div>
+      </div>
+    </div>
             </Grid>
                
         </Grid>
@@ -172,4 +192,4 @@ const Product = ({...props}) => {
      );
 }
  
-export default Product;
+export default withFirebase(Product);

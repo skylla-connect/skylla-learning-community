@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core';
 
-import {Link} from 'react-router-dom';
+import {Link, navigate} from '@reach/router';
 import * as mq from '../../../styles/media-queries';
 import * as colors from '../../../styles/colors';
 import { Button } from '@material-ui/core';
@@ -84,7 +84,7 @@ function ModuleRow(props) {
             justifyContent: "space-evenly"
           }}>
           <FormGroup>
-              <Link>
+              <Link to={`/cart/module/${book.id}`}>
                 <Button 
                 css={{width: '120px'}}
                     variant="outlined"
@@ -93,13 +93,14 @@ function ModuleRow(props) {
               </Link>
             </FormGroup>
             <FormGroup>
-              <Link>
+              {/* <Link to={`/checkout/${book.id}`}> */}
                 <Button 
+                onClick={() => navigate(`/cart/checkout/${book.id}`)}
                 css={{width: '120px'}}
                     variant="contained"
                     color="primary"
                     ><small>Buy now</small></Button>
-              </Link>
+              {/* </Link> */}
             </FormGroup>
           </div>}
         </div>

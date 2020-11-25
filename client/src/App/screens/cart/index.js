@@ -14,6 +14,7 @@ import * as mq from '../../styles/media-queries';
 import Navbar from '../components/navbar-checkout';
 import YourModules from './imodules';
 import OrderProvider from '../../session/order-context';
+import Product from '../productDetails';
 
 function CartApp({match}) {
     return (
@@ -44,7 +45,8 @@ function CartApp({match}) {
               <Router>
                   <Discover path={`${match.path}/discover`} />
                   <YourModules path={`${match.path}/finished`} />
-                  {/* <BookScreen path="/book/:bookId" /> */}
+                  <Product path={`${match.path}/module/:moduleId`} />
+                  <Checkout path={`${match.path}/checkout/:module`}/>
               </Router>
             </OrderProvider>
           </Store>
