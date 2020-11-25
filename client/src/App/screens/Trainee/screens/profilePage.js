@@ -126,8 +126,8 @@ export default function ProfilePage() {
         React.useEffect(() => {
             let user1 = FirebaseContext.auth().currentUser;
             // let uID = FirebaseContext.firestore().collection("users").doc(user1.uid)    
-            let db = FirebaseContext.firestore().collection("users/admin/users");
-            let query = db.where('uid', '==', user1.uid);
+            let db = FirebaseContext.firestore().collection("users/trainee/users");
+            let query = db.where('userId', '==', user1.uid);
 
             query.withConverter(userDetailsConverter).get()
             .then(snapshot => {

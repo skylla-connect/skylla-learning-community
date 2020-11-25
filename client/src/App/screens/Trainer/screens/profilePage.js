@@ -18,6 +18,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import LoaderButton from "../components/loader";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import FirebaseContext from 'firebase';
+// import {storage} from "firebase"
 import 'firebase/firestore';
 // import { UserContext } from './userContext';
 
@@ -37,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
 
     pPic: {
         width: '100%',
+        height: '100%',
         borderRadius: '50%',
-        // margin: 'auto 23% 0 23%'
     },
 
     paper: {
@@ -50,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
     image: {
         width: 180,
         height: 180,
-        // margin: 'auto 80% 0 80%'
+        borderRadius: 'auto',
+        // backgroundImage: 'url(https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png)'
     },
 
     input: {
@@ -85,14 +87,62 @@ export default function ProfilePage() {
         showPassword: false,
       });
       const [isChanging, setIsChanging] = React.useState(false);
-    //   const currentUser = useContext(UserContext)
-      const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:''})
+        // const allInputs = {imgUrl: ''}
+        const [imageAsFile, setImageAsFile] = React.useState('')
+        const [imageAsUrl, setImageAsUrl] = React.useState({imgUrl: ''})
+      const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
       
+
+      console.log(imageAsFile)
+        const handleImageAsFile = (e) => {
+            const image = e.target.files[0]
+        setImageAsFile(imageFile => (image))
+        }
+
+        const handleFireBaseUpload = e => {
+            e.preventDefault()
+          console.log('start of upload')
+          // async magic goes here...
+          if(imageAsFile === '') {
+            console.error(`not an image, the image file is a ${typeof(imageAsFile)}`)
+          }
+          let userCurrent = FirebaseContext.auth().currentUser;
+          const uploadTask = FirebaseContext.storage().ref('users/' + userCurrent.uid + `/${imageAsFile.name}`).put(imageAsFile)
+          //initiates the firebase side uploading 
+          uploadTask.on('state_changed', 
+          (snapShot) => {
+            //takes a snap shot of the process as it is happening
+            console.log(snapShot)
+          }, (err) => {
+            //catches the errors
+            console.log(err)
+          }, () => {
+            // gets the functions from storage refences the image storage in firebase by the children
+            // gets the download url then sets the image from firebase as the value for the imgUrl key:
+            FirebaseContext.auth().onAuthStateChanged(user => {
+                if(user) {
+                    FirebaseContext.storage().ref('users/' + userCurrent.uid + `/${imageAsFile.name}`).getDownloadURL()
+                    .then(fireBaseUrl => {
+                    setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
+                    // console.log(fireBaseUrl)
+                    let db = FirebaseContext.firestore().collection("users/trainer/sys_trainers");
+                    db.doc(userCurrent.uid).update({
+                        photo: fireBaseUrl
+                      });
+                    })
+                }
+            })
+          })
+        //   window.location.reload();
+          }
+      
+
       class userDetails {
-        constructor (name, email, password ) {
+        constructor (name, email, password, photo ) {
             this.name = name;
             this.email = email;
             this.password = password;
+            this.photo= photo;
         }
         // toString() {
         //     return this.name + ', ' + this.email + ', ' + this.password;
@@ -105,12 +155,13 @@ export default function ProfilePage() {
             return {
                 name: userDetails.name,
                 email: userDetails.email,
-                password: userDetails.password
+                password: userDetails.password,
+                photo: userDetails.photo
                 }
         },
         fromFirestore: function(snapshot, options){
             const data = snapshot.data(options);
-            const det1 = new userDetails(data.name, data.email, data.password);
+            const det1 = new userDetails(data.name, data.email, data.password, data.photo);
             return det1
         }
     }
@@ -126,8 +177,8 @@ export default function ProfilePage() {
         React.useEffect(() => {
             let user1 = FirebaseContext.auth().currentUser;
             // let uID = FirebaseContext.firestore().collection("users").doc(user1.uid)    
-            let db = FirebaseContext.firestore().collection("users/admin/users");
-            let query = db.where('uid', '==', user1.uid);
+            let db = FirebaseContext.firestore().collection("users/trainer/sys_trainers");
+            let query = db.where('userId', '==', user1.uid);
 
             query.withConverter(userDetailsConverter).get()
             .then(snapshot => {
@@ -151,8 +202,13 @@ export default function ProfilePage() {
         async function handleChangeClick(event) {
             event.preventDefault();
             setIsChanging(true);
-            
-            //Firebase user session authentication
+            let userCurrent = FirebaseContext.auth().currentUser;
+            let db = FirebaseContext.firestore().collection("users/trainer/sys_trainers");
+            if(values.Oldpassword===currentUserDetails.password){
+                db.doc(userCurrent.uid).update({
+                    password: values.Newpassword
+                  });
+            }
             
         } 
 
@@ -176,16 +232,33 @@ export default function ProfilePage() {
             <Grid alignItems='center' justify="center" container spacing={2}>
                 <Grid item>
                     <ButtonBase className={classes.image}>
-                        <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+                        <form onSubmit={handleFireBaseUpload}>
+                        <input accept="image/*" className={classes.input} onChange={handleImageAsFile} id="icon-button-file" type="file" />
                         <label htmlFor="icon-button-file">
-                            <IconButton className={classes.uploadButton} color="primary" component="span">
+                            <IconButton type="submit" className={classes.uploadButton} color="primary" component="span">
                             <PhotoCamera />
                             </IconButton>
+                            {/* <button disabled={!imageAsFile}>upload</button> */}
+                            <LoaderButton
+                                // block
+                                type="submit"
+                                // bsSize="large"
+                                disabled={!imageAsFile}
+                                isLoading={isChanging}
+                                style={{
+                                    margin: '100px 0 0 90%',
+                                    width:'23%',
+                                    position: 'absolute',
+                                }}
+                            >
+                                UPLOAD
+                            </LoaderButton>
                         </label>
+                        </form>
                         <img 
                             className={classes.pPic} 
-                            src={'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'} 
-                            alt='Profile Pic'
+                            src={currentUserDetails.photo} 
+                            alt=''
                         />
                     </ButtonBase>
                 </Grid>

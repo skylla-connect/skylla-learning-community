@@ -16,6 +16,7 @@ import Menu from './components/menu';
 import Permissions from './components/permissions';
 import Mobile from './mob';
 import Views from './components/views/views';
+import ProfilePage from './screens/profilePage';
 import Footer from '../../components/Footer/footer';
 import *as ROUTES from '../../config/routes';
 import {
@@ -115,7 +116,7 @@ const routes = [
     exact: true,
     sidebar: () => <div></div>,
     main: () => <div>
-      Profile page
+      <ProfilePage/>
     </div>
   },
 
