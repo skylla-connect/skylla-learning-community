@@ -41,6 +41,7 @@ const SignUpPage = () => (
 const INITIAL_STATE = {
     username: '',
     email: '',
+    photo: 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png',
     passwordOne: '',
     isPending: false,
     isChecked: false,
@@ -60,11 +61,12 @@ class SignUpFormBase extends Component {
     // As an admin, I can create trainers on submit
     onSubmit = event => {
         this.setState({...this.state, isPending: true})
-        const { username, email, passwordOne } = this.state;
+        const { username, email, passwordOne, photo } = this.state;
         const newUser = {
             name: username,
             email: email,
             password: passwordOne,
+            photo:photo,
         };
         let usersid;
         this.props.firebase
@@ -77,6 +79,7 @@ class SignUpFormBase extends Component {
                 name: newUser.name,
                 email: newUser.email,
                 password: newUser.password,
+                photo: newUser.photo,
                 createdAt: new Date().toISOString(),
                 userId: usersid,
                 role: 'trainer',

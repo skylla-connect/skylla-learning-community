@@ -93,7 +93,7 @@ export default function ProfilePage() {
       const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
       
 
-      console.log(imageAsFile)
+    //   console.log(imageAsFile)
         const handleImageAsFile = (e) => {
             const image = e.target.files[0]
         setImageAsFile(imageFile => (image))
@@ -130,6 +130,7 @@ export default function ProfilePage() {
                         photo: fireBaseUrl
                       });
                     })
+                    setIsChanging(true);
                 }
             })
           })
@@ -190,7 +191,7 @@ export default function ProfilePage() {
                 snapshot.forEach(doc => {
                     var x = doc.data();
                     setcurrentUserDetails(x)
-                console.log(doc.id, '=>', x);
+                // console.log(doc.id, '=>', x);
                 ;
                 })
             })
@@ -208,6 +209,9 @@ export default function ProfilePage() {
                 db.doc(userCurrent.uid).update({
                     password: values.Newpassword
                   });
+                  alert('Password changed successfully!')
+            }else{
+                alert('The Old Password does not match the current one!')
             }
             
         } 
@@ -246,7 +250,7 @@ export default function ProfilePage() {
                                 disabled={!imageAsFile}
                                 isLoading={isChanging}
                                 style={{
-                                    margin: '100px 0 0 90%',
+                                    margin: '140px 0 0 90%',
                                     width:'23%',
                                     position: 'absolute',
                                 }}

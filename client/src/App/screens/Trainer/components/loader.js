@@ -16,7 +16,7 @@ export default function LoaderButton({
       variant="contained" 
       color="primary"
     >
-      {isLoading && <CircularProgress  className="spinning"/>}
+      {isLoading}
       {props.children}
     </Button>
   );
