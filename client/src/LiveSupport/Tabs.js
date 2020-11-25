@@ -6,6 +6,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import {NavLink} from 'react-router-dom';
+//  import Cart from '../../../client/src/app/components/Module/Module'
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -97,7 +100,7 @@ export default function NavTabs() {
             }
           }}
         >
-          <LinkTab 
+          <Tab 
             label="General" 
             href="/general" 
             {
@@ -107,7 +110,7 @@ export default function NavTabs() {
             }}
           />
 
-          <LinkTab 
+          <Tab 
             label="Product &amp; Services" 
             href="/product" 
             {...a11yProps(1)} 
@@ -117,7 +120,7 @@ export default function NavTabs() {
               }} 
           />
 
-          <LinkTab 
+          <Tab 
             label="Purchase Module" 
             href="/purchase" 
             {...a11yProps(2)} 
@@ -127,7 +130,7 @@ export default function NavTabs() {
             }}
           />
 
-          <LinkTab 
+          <Tab 
             label="Code &amp; Debug" 
             href="/code" 
             {...a11yProps(3)} 
@@ -139,19 +142,19 @@ export default function NavTabs() {
         </Tabs>
       </AppBar>
 
-      <TabPanel value={value}  >
+      <TabPanel value={value} index={0}>
         General
       </TabPanel>
 
-      <TabPanel value={value}  >
+      <TabPanel value={value} index={1}>
         Product &amp; Services
       </TabPanel>
 
-      <TabPanel value={value}  >
-        Purchase Module
+      <TabPanel value={value} index={2} >
+        <NavLink to='/cart'>purchase</NavLink>
       </TabPanel>
 
-      <TabPanel value={value} >
+      <TabPanel value={value}index={3}>
         Code &amp; Debug
       </TabPanel>
     </div>

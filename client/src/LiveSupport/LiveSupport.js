@@ -1,22 +1,17 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper,Divider,Typography } from '@material-ui/core';
-import Footer from '../app/components/Footer/footer'
+import {Divider,Typography } from '@material-ui/core';
 import MenuLive from '../LiveSupport/MenuLive'
 import Tabs from '../LiveSupport/Tabs'
 import './LiveSupport.css'
 import Carousel from 'react-bootstrap/Carousel';
-// import Radio from '@material-ui/core/Radio';
 
 
 
 const useStyles = makeStyles((theme) => ({
     carousel: {
-        // backgroundColor: 'black',
         width: '100%',
         padding: 20
-        // zIndex: 1,
-        // position: 'absolute',
     },
     carouselImg: {
         width: '30%',
@@ -26,9 +21,7 @@ const useStyles = makeStyles((theme) => ({
     caption: {
         width: '35%',
         height: 'auto',
-        // border: '1px solid black',
         borderRadius: 70,
-        // position: 'absolute',
         margin: '0 10% 0 0',
         float: 'right',
         top: '0%',
@@ -126,8 +119,6 @@ export default function LiveSupport() {
                     <p style={{margin:'20px 0% 0 15%'}}>Need help? We are always here for you  <button className='butt'>Live Support</button></p>
                     
                 </div>
-            
-                <Footer />
         </div>
     )
 }
