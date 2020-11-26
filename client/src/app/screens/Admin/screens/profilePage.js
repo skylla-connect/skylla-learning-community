@@ -26,9 +26,9 @@ import 'firebase/firestore';
 const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: 'transparent',
-        width: '50%',
+        width: '100%',
         height: 'auto',
-        margin: '5% 25% 0 25%'
+        margin: '5% 0 0 0'
     },
 
     BioData: {
@@ -45,14 +45,12 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(4),
         margin: 'auto auto auto 0',
-        // maxWidth: 500,
     },
 
     image: {
         width: 180,
         height: 180,
         borderRadius: 'auto',
-        // backgroundImage: 'url(https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png)'
     },
 
     input: {
@@ -71,11 +69,10 @@ const useStyles = makeStyles((theme) => ({
 
     textField: {
         width: '500px',
-        marginLeft: '10%',
+        marginLeft: '5%',
         display: 'block'
     },
 }));
-
 
 
 export default function ProfilePage() {
@@ -237,7 +234,7 @@ export default function ProfilePage() {
     <Paper elevation={0} className={classes.root}>
         <div className={classes.paper}>
             <Grid alignItems='center' justify="center" container spacing={2}>
-                <Grid item>
+                <Grid item xs={12} sm={6}>
                     <ButtonBase className={classes.image}>
                         <form onSubmit={handleFireBaseUpload}>
                         <input accept="image/*" className={classes.input} onChange={handleImageAsFile} id="icon-button-file" type="file" />
@@ -245,6 +242,7 @@ export default function ProfilePage() {
                             <IconButton type="submit" className={classes.uploadButton} color="primary" component="span">
                             <PhotoCamera />
                             </IconButton>
+                            {/* <button disabled={!imageAsFile}>upload</button> */}
                             <LoaderButton
                                 // block
                                 type="submit"
@@ -262,117 +260,116 @@ export default function ProfilePage() {
                         </label>
                         </form>
                         <img 
-                            className={classes.pPic} 
-                            src={imageAsUrl.imgUrl || currentUserDetails.photo || 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'} 
+                            className={classes.pPic}  
+                            src={imageAsUrl.imgUrl || currentUserDetails.photo || 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'}
                             alt=''
                         />
                     </ButtonBase>
-                </Grid>
-            </Grid>
-            <Grid>
-                    <Grid item xs alignItems='center' justify="center" container spacing={2}>
-                        <Grid item >
-                            <Typography gutterBottom variant="h4" align='center'>
-                                {currentUserDetails.name}
-                            </Typography>
-                            <Typography variant="body2" align='center' style={{ cursor: 'pointer', }}>
-                                {currentUserDetails.email}
-                            </Typography>
+                    <Grid>
+                        <Grid alignItems='center' justify="center" container spacing={2} xs={4}>
+                            <Grid item>
+                                <Typography gutterBottom variant="h4" align='center'>
+                                    {currentUserDetails.name}
+                                </Typography>
+                                <Typography variant="body2" align='center' style={{ cursor: 'pointer', }}>
+                                    {currentUserDetails.email}
+                                </Typography>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
-            <Divider style={{ margin:'30px 0 50px 0' }}/>
-            <Grid alignItems='center' justify="center" container spacing={2}>
-                <Typography gutterBottom variant="h5">
-                    Change Password
-                </Typography>
-                <form onSubmit={handleChangeClick}>
-                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Old Password</InputLabel>
-                    <OutlinedInput
-                        style={{ width:'100%' }}
-                        id="outlined-adornment-password"
-                        type={values.showPassword ? 'text' : 'Oldpassword'}
-                        value={values.Oldpassword}
-                        onChange={handleChange('Oldpassword')}
-                        endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                            >
-                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                        </InputAdornment>
-                        }
-                        labelWidth={100}
-                    />
-                </FormControl>
-                <Divider style={{ margin:'20px 23% 20px 23%', width:'60%' }}/>
-                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
-                    <OutlinedInput
-                        style={{ width:'100%' }}
-                        id="outlined-adornment-password"
-                        type={values.showPassword ? 'text' : 'Newpassword'}
-                        value={values.Newpassword}
-                        onChange={handleChange('Newpassword')}
-                        endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                            >
-                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                        </InputAdornment>
-                        }
-                        labelWidth={110}
-                    />
-                </FormControl>
-                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Confirm New Password</InputLabel>
-                    <OutlinedInput
-                        style={{ width:'100%' }}
-                        id="outlined-adornment-password"
-                        type={values.showPassword ? 'text' : 'ConfirmNewpassword'}
-                        value={values.ConfirmNewpassword}
-                        onChange={handleChange('ConfirmNewpassword')}
-                        endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                            >
-                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                        </InputAdornment>
-                        }
-                        labelWidth={170}
-                    />
-                </FormControl>
-                <LoaderButton
-                    // block
-                    type="submit"
-                    // bsSize="large"
-                    disabled={!validateForm() || !imageAsFile}
-                    isLoading={isChanging}
-                    style={{
-                        marginLeft: '10%',
-                        width:'83%'
-                    }}
-                >
-                    Change
-                </LoaderButton>
-                </form>
-                {/* <button onClick={handleSave}>SAVE</button> */}
+                <Grid alignItems='center' justify="center" container spacing={2} xs={12} sm={6}>
+                    <Typography gutterBottom variant="h5">
+                        Change Password
+                    </Typography>
+                    <form onSubmit={handleChangeClick}>
+                    <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-password">Old Password</InputLabel>
+                        <OutlinedInput
+                            style={{ width:'100%' }}
+                            id="outlined-adornment-password"
+                            type={values.showPassword ? 'text' : 'Oldpassword'}
+                            value={values.Oldpassword}
+                            onChange={handleChange('Oldpassword')}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                                >
+                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            labelWidth={100}
+                        />
+                    </FormControl>
+                    <Divider style={{ margin:'20px 23% 20px 18%', width:'60%' }}/>
+                    <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
+                        <OutlinedInput
+                            style={{ width:'100%' }}
+                            id="outlined-adornment-password"
+                            type={values.showPassword ? 'text' : 'Newpassword'}
+                            value={values.Newpassword}
+                            onChange={handleChange('Newpassword')}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                                >
+                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            labelWidth={110}
+                        />
+                    </FormControl>
+                    <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-password">Confirm New Password</InputLabel>
+                        <OutlinedInput
+                            style={{ width:'100%' }}
+                            id="outlined-adornment-password"
+                            type={values.showPassword ? 'text' : 'ConfirmNewpassword'}
+                            value={values.ConfirmNewpassword}
+                            onChange={handleChange('ConfirmNewpassword')}
+                            endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                                edge="end"
+                                >
+                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                            }
+                            labelWidth={170}
+                        />
+                    </FormControl>
+                    <LoaderButton
+                        // block
+                        type="submit"
+                        // bsSize="large"
+                        disabled={!validateForm()}
+                        isLoading={isChanging}
+                        style={{
+                            marginLeft: '5%',
+                            width:'83%'
+                        }}
+                    >
+                        Change
+                    </LoaderButton>
+                    </form>
+                </Grid>
             </Grid>
+            {/* <Divider style={{ margin:'30px 0 50px 0' }}/> */} 
         </div>
     </Paper>
   );
