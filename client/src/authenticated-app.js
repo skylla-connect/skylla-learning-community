@@ -8,7 +8,7 @@ import Trainee from './App/screens/Trainee/index';
 import { useUser } from './App';
 import withAuthorization from './App/session/withAuthorization';
 import { FullPageSpinner } from './App/components';
-import Module from './App/screens/Trainee/screens/Module/Module';
+import Module from './App/screens/Trainee//screens/Module/Module';
 import Cart from './App/screens/Trainee/screens/cart/index';
 import Payment from './App/screens/Trainee/screens/cart/complete-payment/index';
 

@@ -251,7 +251,7 @@ export default function ProfilePage() {
                                 isLoading={isChanging}
                                 style={{
                                     margin: '140px 0 0 90%',
-                                    width:'23%',
+                                    width:'50%',
                                     position: 'absolute',
                                 }}
                             >
@@ -261,7 +261,7 @@ export default function ProfilePage() {
                         </form>
                         <img 
                             className={classes.pPic}  
-                            src={currentUserDetails.photo || 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'}
+                            src={imageAsUrl.imgUrl || currentUserDetails.photo || 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'}
                             alt=''
                         />
                     </ButtonBase>

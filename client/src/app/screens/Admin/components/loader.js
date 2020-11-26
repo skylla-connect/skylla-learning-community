@@ -1,6 +1,7 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
+// import CircularProgress from '@material-ui/core/CircularProgress';
+import CheckIcon from '@material-ui/icons/Check';
 
 export default function LoaderButton({
   isLoading,
@@ -16,7 +17,7 @@ export default function LoaderButton({
       variant="contained" 
       color="primary"
     >
-      {isLoading}
+      {isLoading && <CheckIcon/>}
       {props.children}
     </Button>
   );
