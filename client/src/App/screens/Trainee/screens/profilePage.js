@@ -74,21 +74,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const initialState = {
+    Oldpassword: '',
+    Newpassword: '',
+    ConfirmNewpassword: '',
+    showPassword: false,
+};
+
 
 export default function ProfilePage() {
     const classes = useStyles();
-    const [values, setValues] = React.useState({
-        Oldpassword: '',
-        Newpassword: '',
-        ConfirmNewpassword: '',
-        showPassword: false,
-      });
+    const [values, setValues] = React.useState(initialState);
       const [isChanging, setIsChanging] = React.useState(false);
+      const [isChangingP, setIsChangingP] = React.useState(false);
         // const allInputs = {imgUrl: ''}
         const [imageAsFile, setImageAsFile] = React.useState('')
         const [imageAsUrl, setImageAsUrl] = React.useState({imgUrl: ''})
       const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
-      
+      const clearState = () => {
+        setValues({ ...initialState });
+      };
 
     //   console.log(imageAsFile)
         const handleImageAsFile = (e) => {
@@ -206,32 +211,33 @@ export default function ProfilePage() {
                 db.doc(user.uid).update({
                     password: values.Newpassword
                     });
-                    alert('Password changed successfully!')
-                    setIsChanging(true)
+                    // Get auth credentials from the user for re-authentication. The example below shows
+                    // email and password credentials but there are multiple possible providers,
+                    // such as GoogleAuthProvider or FacebookAuthProvider.
+                    const cred = FirebaseContext.auth.EmailAuthProvider.credential(
+                        user.email, 
+                        currentUserDetails.password
+                    );
+                    FirebaseContext.auth().currentUser.reauthenticateWithCredential(cred)
+                    .then(() => {
+                    // User successfully reauthenticated.
+                    const newPass = values.Newpassword;
+                    console.log('Password updated successfully!');
+                    setIsChangingP(true)
+                    return FirebaseContext.auth().currentUser.updatePassword(newPass);
+                    
+                    
+                    })
+                    .catch((error) => { 
+                        console.log(error); 
+                    });
+                    
+                    alert('Password changed successfully!');
+                    setIsChangingP(true);
+                    clearState()
             }else{
                 alert('The Old Password does not match the current one!')
-                console.log(currentUserDetails.password)
             }
-
-            // Get auth credentials from the user for re-authentication. The example below shows
-            // email and password credentials but there are multiple possible providers,
-            // such as GoogleAuthProvider or FacebookAuthProvider.
-            
-            const cred = FirebaseContext.auth.EmailAuthProvider.credential(user.email, currentUserDetails.password);
-            FirebaseContext.auth().currentUser.reauthenticateWithCredential(cred)
-            .then(() => {
-            // User successfully reauthenticated.
-            const newPass = values.Newpassword;
-            console.log('Password updated successfully!');
-            setIsChanging(true)
-            return FirebaseContext.auth().currentUser.updatePassword(newPass);
-            
-            })
-            .catch(error => {
-            // Handle error.
-            });
-
-            
         } 
 
 
@@ -376,7 +382,7 @@ export default function ProfilePage() {
                         type="submit"
                         // bsSize="large"
                         disabled={!validateForm()}
-                        isLoading={isChanging}
+                        isLoading={isChangingP}
                         style={{
                             marginLeft: '5%',
                             width:'83%'
