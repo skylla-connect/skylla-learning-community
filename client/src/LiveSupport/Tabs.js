@@ -94,6 +94,20 @@ caption: {
     top: '0%',
     padding: 40,
     color: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      float: 'none',
+      width: '100%',
+    }
+    
+},
+
+captionParagraph: {
+  fontSize: '100%', 
+  lineHeight: 2, 
+  margin:'20px 0 0 0',
+  [theme.breakpoints.down('sm')]: {
+    textAlign: 'justify',
+  }
 },
 
 tab: {
@@ -197,7 +211,7 @@ export default function NavTabs() {
               <div className={classes.caption}>
                   <Typography style={{fontSize: '240%', margin:'auto', color:'auto'}}>How To Get a Reply Fast</Typography>
                   <Divider style={{margin: '0 0 20px 0'}}/>
-                  <Typography style={{fontSize: '100%', lineHeight: 2, margin:'20px 0 0 0'}}>
+                  <Typography className={classes.captionParagraph}>
                       When starting a live Chat please indicate the Fullname 
                       and email address associated with
                       your Namecheap account. This will help speed up our verification
@@ -215,7 +229,7 @@ export default function NavTabs() {
               <div className={classes.caption}>
                   <Typography style={{fontSize: '240%', margin:'auto', color:'auto'}}>More Tips</Typography>
                   <Divider style={{margin: '0 0 20px 0'}}/>
-                  <Typography style={{fontSize: '100%', lineHeight: 2, margin:'20px 0 0 0'}}>
+                  <Typography className={classes.captionParagraph}>
                       When starting a live Chat please indicate the Fullname 
                       and email address associated with
                       your Namecheap account. This will help speed up our verification
@@ -234,7 +248,7 @@ export default function NavTabs() {
               <div className={classes.caption}>
                   <Typography style={{fontSize: '240%', margin:'auto', color:'auto'}}>Give Feedback</Typography>
                   <Divider style={{margin: '0 0 20px 0'}}/>
-                  <Typography style={{fontSize: '100%', lineHeight: 2, margin:'20px 0 0 0'}}>
+                  <Typography className={classes.captionParagraph}>
                       When starting a live Chat please indicate the Fullname 
                       and email address associated with
                       your Namecheap account. This will help speed up our verification
