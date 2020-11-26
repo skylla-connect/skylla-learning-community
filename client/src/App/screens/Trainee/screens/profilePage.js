@@ -199,17 +199,38 @@ export default function ProfilePage() {
 
         async function handleChangeClick(event) {
             event.preventDefault();
-            setIsChanging(true);
-            let userCurrent = FirebaseContext.auth().currentUser;
+
+            const user = FirebaseContext.auth().currentUser;
             let db = FirebaseContext.firestore().collection("users/trainee/users");
             if(values.Oldpassword===currentUserDetails.password){
-                db.doc(userCurrent.uid).update({
+                db.doc(user.uid).update({
                     password: values.Newpassword
-                  });
-                  alert('Password changed successfully!')
+                    });
+                    alert('Password changed successfully!')
+                    setIsChanging(true)
             }else{
                 alert('The Old Password does not match the current one!')
+                console.log(currentUserDetails.password)
             }
+
+            // Get auth credentials from the user for re-authentication. The example below shows
+            // email and password credentials but there are multiple possible providers,
+            // such as GoogleAuthProvider or FacebookAuthProvider.
+            
+            const cred = FirebaseContext.auth.EmailAuthProvider.credential(user.email, currentUserDetails.password);
+            FirebaseContext.auth().currentUser.reauthenticateWithCredential(cred)
+            .then(() => {
+            // User successfully reauthenticated.
+            const newPass = values.Newpassword;
+            console.log('Password updated successfully!');
+            setIsChanging(true)
+            return FirebaseContext.auth().currentUser.updatePassword(newPass);
+            
+            })
+            .catch(error => {
+            // Handle error.
+            });
+
             
         } 
 
