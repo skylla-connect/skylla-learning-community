@@ -236,7 +236,7 @@ export default function ProfilePage() {
                     setIsChangingP(true);
                     clearState()
             }else{
-                alert('The Old Password does not match the current one!')
+                alert('Oops, please check Old Password!')
             }
         } 
 
