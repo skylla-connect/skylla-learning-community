@@ -9,7 +9,7 @@ import TextFieldMui from "../components/textField";
 import VisaLogo from "./static/Icon_Visa.png";
 import MasterLogo from "./static/Icon_MasterCard.png";
 import { dispatchCTX, stateCTX } from "../../session/checkout-context";
-import Navbar from '../components/navbar-checkout';
+import * as mq from '../../styles/media-queries';
 
 // MUI stuff
 import  makeStyles  from '@material-ui/core/styles/makeStyles';
@@ -20,13 +20,15 @@ import AddIcon from '@material-ui/icons/Add';
 import Card from '@material-ui/core/Card';
 import CardContent from "@material-ui/core/CardContent";
 import Typography from '@material-ui/core/Typography';
-import { FormGroup} from '../../components';
+import { FormGroup, Spinner} from '../../components';
 import Button from '@material-ui/core/Button';
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import {FormControl, withStyles, CardHeader, InputLabel, 
     MenuItem, Select, Table, TableBody, TableCell, TextField, TableRow, 
     TableFooter, RadioGroup, Paper, Radio, Accordion, IconButton, AccordionDetails, AccordionSummary } from '@material-ui/core';
+import useCallbackStatus from '../../utils/use-callback-status';
+import { withFirebase } from '../../../firebase';
 
 
 
@@ -499,16 +501,65 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const Checkout = ({...props}) => {
+const Checkout = (props) => {
     const dispatch = React.useContext(dispatchCTX);
     const context = React.useContext(stateCTX);
+    const [loading, setLoading] = React.useState(false)
     const classes = useStyles();
     const learnContent = ["content", "content", "content", "content", "content", "content"]
     const handleChangeEvent = (event) => {
         event.preventDefault();
         dispatch({type: "address", payload: event.target.value});
     };
-    console.log(context);
+    const handleCheckout = (event) => {
+        event.preventDefault();
+        setLoading(true);
+        const {cardDetails, billingAddress, totalPrice } = context;
+        const orderDetails = {
+            userId : props.firebase.auth.currentUser.uid,
+            course: data,
+            payment: context,
+        }
+        props.firebase.doAddItemToCart(orderDetails)
+        .then(() => {
+            setLoading(false)
+            props.history.push(`/cart/module/message`)
+        })
+    }
+    async function getModule(bookId) {
+        return await (props.firebase.doGetModule(bookId)
+        .then(snapshot => {
+             return snapshot.docs
+            }))
+      }
+    const { data, status, isPending, isRejected, isResolved, error, run} = useCallbackStatus()
+    React.useEffect(() => {
+      run(getModule(props.bookId))
+    },[]);
+    dispatch({type: "totals", payload: data.price || 50000.00})
+    if (isPending) {
+        return (
+          <div css={{marginTop: '2em', fontSize: '2em', textAlign: 'center'}}>
+            <Spinner />
+          </div>
+        )
+      }
+      if (isRejected) {
+        return (
+          <div css={{color: 'red'}}>
+            <p>Oh no, there was an error.</p>
+            <pre>{error.message}</pre>
+          </div>
+        )
+      }
+      if (isResolved && !data) {
+        return (
+          <div css={{color: 'red'}}>
+            <p>Hmmm... Something went wrong. Please try another book.</p>
+          </div>
+        )
+      }
+    const {title, author, coverImageUrl, publisher, synopsis} = data;
     return ( 
         <div className={classes.root}>
         <Grid container spacing={6} className={classes.grid}>
@@ -575,17 +626,17 @@ const Checkout = ({...props}) => {
                                     <TableBody>
                                         <TableRow>
                                             <TableCell>Original Price: </TableCell>
-                                            <TableCell>Ush. 50000.00</TableCell>
+                                            <TableCell>Ush. {props.price} || 50000.00</TableCell>
                                         </TableRow>
                                        <TableRow>
                                             <TableCell>Coupon Discounts: </TableCell>
-                                            <TableCell>Ugx. 0.00 </TableCell>
+                                            <TableCell>Ugx. {props.discount} || 0.00 </TableCell>
                                        </TableRow>
                                     </TableBody>
                                     <TableFooter>
                                         <TableRow>
                                             <TableCell>Total</TableCell>
-                                            <TableCell>Ugx. 50000.00 </TableCell>
+                                        <TableCell>Ugx. {props.price - props.discount} || 50000.00 </TableCell>
                                         </TableRow>
                                     </TableFooter>
                                 </Table>
@@ -600,6 +651,7 @@ const Checkout = ({...props}) => {
                                         variant="contained"
                                         color="primary"
                                         type="submit"
+                                        onClick={handleCheckout}
                                         >Complete Payment</Button>
                                 </FormGroup>
                             </div>
@@ -608,18 +660,43 @@ const Checkout = ({...props}) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={12}>
-            {/* <Card style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: colors.gray,
-                        height: '12vh',
-                        marginBottom: '20px',
-                    }}>
-                        <CardContent>
-                            <Typography variant="body">More about the module</Typography>
-                        </CardContent>
-                    </Card> */}
+            <div>
+      <div
+        css={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 2fr',
+          gridGap: '2em',
+          marginBottom: '1em',
+          [mq.small]: {
+            display: 'flex',
+            flexDirection: 'column',
+          },
+        }}
+      >
+        <img
+          src={coverImageUrl}
+          alt={`${title} book cover`}
+          css={{
+            width: '100%',
+            maxWidth: 200,
+          }}
+        />
+        <div>
+          <div css={{display: 'flex', position: 'relative'}}>
+            <div css={{flex: 1, justifyContent: 'space-between'}}>
+              <h1>{title}</h1>
+              <div>
+                <i>{author}</i>
+                <span css={{marginRight: 6, marginLeft: 6}}>|</span>
+                <i>{publisher}</i>
+              </div>
+            </div>
+          </div>
+          <br />
+          <p>{synopsis}</p>
+        </div>
+      </div>
+    </div>
             </Grid>
                
         </Grid>
@@ -628,4 +705,4 @@ const Checkout = ({...props}) => {
      );
 }
  
-export default Checkout;
+export default withFirebase(Checkout);

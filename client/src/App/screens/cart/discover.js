@@ -9,7 +9,7 @@ import modules from "./components/data/modules.json";
 
 //MUI stuff
 import  makeStyles  from '@material-ui/core/styles/makeStyles';
-import Tooltip from "@material-ui/core/Tooltip";
+import Tooltip from '@reach/tooltip';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { withFirebase } from '../../../firebase';
@@ -124,16 +124,16 @@ const Discover = (props) => {
         {hasSearched ? null : (
             <div css={{marginTop: 20, fontSize: '1.1em', textAlign: 'center'}}>
                 <p>Welcome to the discover page.</p>
-                <p>Here, let me load a few books for you...</p>
+                <p>Here, let me load a few modules for you...</p>
                 {isPending ? (
                 <div css={{width: '100%', margin: 'auto'}}>
                     <Spinner />
                 </div>
                 ) : isResolved && books.length ? (
-                <p>Here you go! Find more books with the search bar above.</p>
+                <p>Here you go! Find more modules with the search bar above.</p>
                 ) : isResolved && !books.length ? (
                 <p>
-                    Hmmm... I couldn't find any books to suggest for you. Sorry.
+                    Hmmm... I couldn't find any modules to suggest for you. Sorry.
                 </p>
                 ) : null}
             </div>

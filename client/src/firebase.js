@@ -33,26 +33,21 @@ class Firebase {
     doCreateNewUser = async (userCredentials) => 
     await this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);
 
-    doAddItemToCart = async (userCartDetails) => {
-        return await this.db.doc(`/cart/${userCartDetails.userId}`).get()
-        .then(data => {
-            if (data.exists){
+    doAddItemToOrders = async (userOrderDetails) => {
+        return await this.db.doc(`/orders/${userOrderDetails.userId}`).get()
+        .then(snapshot => {
+            if (snapshot.exists){
                 return this.db
-                .doc(`/cart/${userCartDetails.userId}/items/${userCartDetails.courseName}`)
-                .set(userCartDetails);
+                .doc(`/orders/${userOrderDetails.userId}/items/${userOrderDetails.courseName}`)
+                .set(userOrderDetails);
             } else {
-                return this.db.doc(`/cart/${userCartDetails.userId}`).set(userCartDetails);
+                return this.db.doc(`/orders/${userOrderDetails.userId}`).set(userOrderDetails);
             }
         });
     }
-    doRemoveCartItem = async (userId, courseName) => 
-    await this.db.doc(`/cart/${userId}/items/${courseName}`).delete();
 
     doGetUserOrders = (userId) => 
      this.db.doc(`/ordes/${userId}`).get();
-
-     doRemoveUserCart = async (userId) => 
-     await this.db.doc(`/cart/${userId}`).delete();
 
     doGetUserAdmin = (userId) => {
         return this.db.doc(`/users/admin/users/${userId}`)
@@ -78,9 +73,8 @@ class Firebase {
     doSearch = async (query) => {
         return this.db.collection("modules")
         .orderBy("title")
-        .where("title", ">=", query.upper())
-        .where("title", ">=", query.lower() + "uf8ff")
-        .stream()
+        .where("title", ">=", query)
+        .where("title", "<=", query + "z")
     }
 }
 export default Firebase;
