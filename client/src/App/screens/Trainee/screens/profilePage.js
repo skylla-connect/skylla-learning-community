@@ -312,21 +312,21 @@ export default function ProfilePage() {
                         <OutlinedInput
                             style={{ width:'100%' }}
                             id="outlined-adornment-password"
-                            type={values.showPassword ? 'text' : 'Oldpassword'}
+                            type= 'password'
                             value={values.Oldpassword}
                             onChange={handleChange('Oldpassword')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
+                            // endAdornment={
+                            // <InputAdornment position="end">
+                            //     <IconButton
+                            //     aria-label="toggle password visibility"
+                            //     onClick={handleClickShowPassword}
+                            //     onMouseDown={handleMouseDownPassword}
+                            //     edge="end"
+                            //     >
+                            //     {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                            //     </IconButton>
+                            // </InputAdornment>
+                            // }
                             labelWidth={100}
                         />
                     </FormControl>
@@ -336,21 +336,21 @@ export default function ProfilePage() {
                         <OutlinedInput
                             style={{ width:'100%' }}
                             id="outlined-adornment-password"
-                            type={values.showPassword ? 'text' : 'Newpassword'}
+                            type= 'password'
                             value={values.Newpassword}
                             onChange={handleChange('Newpassword')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
+                            // endAdornment={
+                            // <InputAdornment position="end">
+                            //     <IconButton
+                            //     aria-label="toggle password visibility"
+                            //     onClick={handleClickShowPassword}
+                            //     onMouseDown={handleMouseDownPassword}
+                            //     edge="end"
+                            //     >
+                            //     {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                            //     </IconButton>
+                            // </InputAdornment>
+                            // }
                             labelWidth={110}
                         />
                     </FormControl>
@@ -359,21 +359,21 @@ export default function ProfilePage() {
                         <OutlinedInput
                             style={{ width:'100%' }}
                             id="outlined-adornment-password"
-                            type={values.showPassword ? 'text' : 'ConfirmNewpassword'}
+                            type= 'password'
                             value={values.ConfirmNewpassword}
                             onChange={handleChange('ConfirmNewpassword')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
+                            // endAdornment={
+                            // <InputAdornment position="end">
+                            //     <IconButton
+                            //     aria-label="toggle password visibility"
+                            //     onClick={handleClickShowPassword}
+                            //     onMouseDown={handleMouseDownPassword}
+                            //     edge="end"
+                            //     >
+                            //     {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                            //     </IconButton>
+                            // </InputAdornment>
+                            // }
                             labelWidth={170}
                         />
                     </FormControl>

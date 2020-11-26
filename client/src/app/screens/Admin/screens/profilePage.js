@@ -74,16 +74,22 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const initialState = {
+    Oldpassword: '',
+    Newpassword: '',
+    ConfirmNewpassword: '',
+    showPassword: false,
+};
+
 
 export default function ProfilePage() {
     const classes = useStyles();
-    const [values, setValues] = React.useState({
-        Oldpassword: '',
-        Newpassword: '',
-        ConfirmNewpassword: '',
-        showPassword: false,
-      });
+    const [values, setValues] = React.useState(initialState);
       const [isChanging, setIsChanging] = React.useState(false);
+      const [isChangingP, setIsChangingP] = React.useState(false);
+      const clearState = () => {
+        setValues({ ...initialState });
+      };
         // const allInputs = {imgUrl: ''}
         const [imageAsFile, setImageAsFile] = React.useState('')
         const [imageAsUrl, setImageAsUrl] = React.useState({imgUrl: ''})
@@ -200,19 +206,41 @@ export default function ProfilePage() {
 
         async function handleChangeClick(event) {
             event.preventDefault();
-            setIsChanging(true);
-            let userCurrent = FirebaseContext.auth().currentUser;
+
+            const user = FirebaseContext.auth().currentUser;
             let db = FirebaseContext.firestore().collection("users/admin/users");
             if(values.Oldpassword===currentUserDetails.password){
-                db.doc(userCurrent.uid).update({
+                db.doc(user.uid).update({
                     password: values.Newpassword
-                  });
-                  alert('Password changed successfully!')
+                    });
+                    // Get auth credentials from the user for re-authentication. The example below shows
+                    // email and password credentials but there are multiple possible providers,
+                    // such as GoogleAuthProvider or FacebookAuthProvider.
+                    const cred = FirebaseContext.auth.EmailAuthProvider.credential(
+                        user.email, 
+                        currentUserDetails.password
+                    );
+                    FirebaseContext.auth().currentUser.reauthenticateWithCredential(cred)
+                    .then(() => {
+                    // User successfully reauthenticated.
+                    const newPass = values.Newpassword;
+                    console.log('Password updated successfully!');
+                    setIsChangingP(true)
+                    return FirebaseContext.auth().currentUser.updatePassword(newPass);
+                    
+                    
+                    })
+                    .catch((error) => { 
+                        console.log(error); 
+                    });
+                    
+                    alert('Password changed successfully!');
+                    setIsChangingP(true);
+                    clearState()
             }else{
                 alert('The Old Password does not match the current one!')
             }
-            
-        } 
+        }
 
         const handleSave = () => {
             window.location.reload()
@@ -288,21 +316,21 @@ export default function ProfilePage() {
                         <OutlinedInput
                             style={{ width:'100%' }}
                             id="outlined-adornment-password"
-                            type={values.showPassword ? 'text' : 'Oldpassword'}
+                            type= 'password'
                             value={values.Oldpassword}
                             onChange={handleChange('Oldpassword')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
+                            // endAdornment={
+                            // <InputAdornment position="end">
+                            //     <IconButton
+                            //     aria-label="toggle password visibility"
+                            //     onClick={handleClickShowPassword}
+                            //     onMouseDown={handleMouseDownPassword}
+                            //     edge="end"
+                            //     >
+                            //     {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                            //     </IconButton>
+                            // </InputAdornment>
+                            // }
                             labelWidth={100}
                         />
                     </FormControl>
@@ -312,21 +340,22 @@ export default function ProfilePage() {
                         <OutlinedInput
                             style={{ width:'100%' }}
                             id="outlined-adornment-password"
-                            type={values.showPassword ? 'text' : 'Newpassword'}
+                            // type={values.showPassword ? 'text' : 'Newpassword'}
+                            type= 'password'
                             value={values.Newpassword}
                             onChange={handleChange('Newpassword')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
+                            // endAdornment={
+                            // <InputAdornment position="end">
+                            //     <IconButton
+                            //     aria-label="toggle password visibility"
+                            //     onClick={handleClickShowPassword}
+                            //     onMouseDown={handleMouseDownPassword}
+                            //     edge="end"
+                            //     >
+                            //     {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                            //     </IconButton>
+                            // </InputAdornment>
+                            // }
                             labelWidth={110}
                         />
                     </FormControl>
@@ -335,21 +364,22 @@ export default function ProfilePage() {
                         <OutlinedInput
                             style={{ width:'100%' }}
                             id="outlined-adornment-password"
-                            type={values.showPassword ? 'text' : 'ConfirmNewpassword'}
+                            // type={values.showPassword ? 'text' : 'ConfirmNewpassword'}
+                            type= 'password'
                             value={values.ConfirmNewpassword}
                             onChange={handleChange('ConfirmNewpassword')}
-                            endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                                >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                </IconButton>
-                            </InputAdornment>
-                            }
+                            // endAdornment={
+                            // <InputAdornment position="end">
+                            //     <IconButton
+                            //     aria-label="toggle password visibility"
+                            //     onClick={handleClickShowPassword}
+                            //     onMouseDown={handleMouseDownPassword}
+                            //     edge="end"
+                            //     >
+                            //     {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                            //     </IconButton>
+                            // </InputAdornment>
+                            // }
                             labelWidth={170}
                         />
                     </FormControl>
@@ -358,7 +388,7 @@ export default function ProfilePage() {
                         type="submit"
                         // bsSize="large"
                         disabled={!validateForm()}
-                        isLoading={isChanging}
+                        isLoading={isChangingP}
                         style={{
                             marginLeft: '5%',
                             width:'83%'
