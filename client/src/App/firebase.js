@@ -55,6 +55,10 @@ class Firebase {
         return this.db.doc(`/users/trainee/users/${userId}`)
         .get() 
     }
+
+    doCreateNewModule = async (userCredentials) => 
+    await this.db.doc(`/users/admin/dashboard/module/modules${userCredentials.userId}`).set(userCredentials);
+    
 }
 export default Firebase;
 const FirebaseContext = React.createContext(null);
