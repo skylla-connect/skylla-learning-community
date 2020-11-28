@@ -1,0 +1,198 @@
+.head{
+    color: #fff;
+    padding: 20px 0 10px 30px;
+   
+}
+.head> img{
+    width: 10%;
+    margin: 35px auto auto -95em;
+}
+.head> p{
+    /* margin: auto auto auto auto; */
+    font-size:30px ;
+}
+/* .cart-CRT{
+    margin: 10px auto auto 63em;
+} */
+.BTN{
+    float: right;
+}
+.wrap-cartSuccess{
+    display: flex;
+}
+.cartSuccess-wrapper{
+    /* width: 90%; */
+    text-align: center;
+}
+.purchase-cart{
+    border: 1px solid black;
+    border-radius: 30px;
+    width: 25%;
+    height: 590px;
+    position: absolute;
+    margin: -5% auto auto 56%;
+    background-color: white;
+}
+.purchase-cart h3{
+    margin: 50px auto auto auto;
+}
+.purchase-cart p{
+    margin: 20px auto auto auto;
+}
+.purchase-cart .p-1{
+    width: 60%;
+    margin: 100px auto auto auto;
+    color: blue;
+    font-weight: bold;
+    font-size: large;
+}
+.purchase-cart .p-4{
+    color: blue;
+    font-weight: bold;
+    font-size: large;
+}
+.walk-cart{
+    width: 40%;
+    margin: 50px auto auto 100px;
+    display: flex;
+    height: 200px;
+    background-color: whitesmoke;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+.walk-cart h3{
+    margin: 70px auto auto auto;
+}
+.walk-cart p{
+    margin: 40px auto auto auto;
+    text-align: center;
+    width: 75%;
+}
+.walk-cart .icon{
+    margin:60px 10px auto 30%;
+}
+.course-cart{
+    width: 40%;
+    margin: 50px auto auto 100px;
+    /* display: flex; */
+    height: 200px;
+    background-color: whitesmoke;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+.course-cart .btn01{
+    width: 50%;
+}
+.course-cart .p-2{
+    margin: 60px auto auto auto;
+}
+.more-info-cart{
+    width: 92%;
+    margin: 70px auto auto 50px;
+    border-radius: 0%;
+    height: 100px;
+    background-color: whitesmoke;
+    border: 1px solid black;
+}
+.more-info-cart h3{
+    margin: 40px auto auto auto;
+}
+.cart-footer{
+    margin: 100px 0 0 0 ;
+}
+.flexwrap{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+@media only screen and (max-width:768px){
+    .header-cart{
+        color: #fff;
+        background-color: blue;
+        padding: 20px 0 10px 30px;
+        height: 200px;
+        /* width: 100%; */
+    }
+    .head> img{
+        width: 60%;
+        margin: 35px auto auto auto;
+    }
+    .purchase-cart{
+        border: 1px solid black;
+        border-radius: 7%;
+        width: 100%;
+        height: 600px;
+        position: relative;
+        margin: 10px auto auto 0;
+        background-color: white;
+    }
+    .walk-cart{
+        width: 100%;
+        margin: 20px auto auto 0;
+        border-radius: 0%;
+        /* width: 100%; */
+        display: flex;
+        height: 300px;
+        background-color: whitesmoke;
+        text-align: center;
+        border: 1px solid black;
+    }
+    .wrap-cartSuccess{
+        display: block;
+    }
+    .course-cart{
+        width: 100%;
+        margin: 20px auto auto 0;
+        border-radius: 0%;
+        height: 300px;
+        background-color: whitesmoke;
+        border: 1px solid black;
+    }
+    .cart-CRT{
+        margin: 1px 0 0 100px;
+    }
+    .header1 img{
+        width: 50%;
+        margin: 40px auto auto -260px;
+    }
+    .more-info-cart{
+        width: 100%;
+        margin: 50px auto auto 0px;
+        border-radius: 0%;
+        height: 100px;
+        background-color: whitesmoke;
+        border: 1px solid black;
+    }
+    .walk-cart .icon{
+        margin:60px 10px auto 0%;
+    }
+    
+}
+/* @media only screen and (max-width:1024px){
+    header{
+        color: #fff;
+        background-color: blue;
+        padding: 20px 0 10px 30px;
+        height: 200px;
+       
+    }
+    .CRT{
+        margin: -6px 0 0 800px;
+    }
+    header img{
+        width: 30%;
+        margin: 40px auto auto -500px;
+    }
+} */
+@media only screen and (max-width:280px){
+    .cart-CRT{
+        margin: 1px 0 0 90px
+    }
+}
+@media only screen and (max-width:240px){
+    .cart-CRT{
+        margin: 1px 0 0 40px
+    }
+}
