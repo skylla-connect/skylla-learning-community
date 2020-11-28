@@ -199,7 +199,8 @@ export default function NavTabs() {
                   <Typography className={classes.captionParagraph}>
                       When starting a live Chat please indicate the Fullname 
                       and email address associated with
-                      your Namecheap account. This will help speed up our verification
+                      your Skylla Learning Community account. 
+                      This will help speed up our verification
                       and investigation processes
                   </Typography>
               </div>  
@@ -217,7 +218,7 @@ export default function NavTabs() {
                   <Typography className={classes.captionParagraph}>
                       When starting a live Chat please indicate the Fullname 
                       and email address associated with
-                      your Namecheap account. This will help speed up our verification
+                      your Skylla Learning Community account. This will help speed up our verification
                       and investigation processes  
                   </Typography>
               </div>  
@@ -236,7 +237,7 @@ export default function NavTabs() {
                   <Typography className={classes.captionParagraph}>
                       When starting a live Chat please indicate the Fullname 
                       and email address associated with
-                      your Namecheap account. This will help speed up our verification
+                      your Skylla Learning Community account. This will help speed up our verification
                       and investigation processes 
                   </Typography>
               </div>  
