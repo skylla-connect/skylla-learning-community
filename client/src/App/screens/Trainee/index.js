@@ -109,11 +109,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'white',
     },
   },
-  absolute: {
-    position: 'absolute',
-    bottom: theme.spacing(2),
-    right: theme.spacing(3),
-  },
 }));
 
 // Define routes in the Trainees
@@ -198,11 +193,13 @@ export default function PersistentDrawerLeft() {
               >
                 <MenuIcon />
               </IconButton>
+
               <div style={{margin: 'auto'}}>
                 <Typography noWrap>
                     SKYLLA LEARNING COMMUNITY
                 </Typography>
               </div>
+
               <div style={{textAlign: 'center'}}>
                 <Avatar alt="Remy Sharp" src="" />
                 <Typography variant="body2">
@@ -257,6 +254,7 @@ export default function PersistentDrawerLeft() {
                   </Tooltip>
                 </Link>
               </div>
+              
             </Toolbar>
           </AppBar>
 

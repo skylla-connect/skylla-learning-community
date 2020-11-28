@@ -39,6 +39,7 @@ const App = () => {
     <React.Suspense fallback={<FullPageSpinner />}>
         {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </React.Suspense>
+    
   )
 }
 
