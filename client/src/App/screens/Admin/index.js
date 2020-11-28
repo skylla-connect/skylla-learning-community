@@ -18,6 +18,7 @@ import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
 import { SignUpPage } from './screens/addUsers';
 import DeleteUsers from './screens/deleteUsers';
+import CreateModule  from './screens/createModule';
 
 import {
   BrowserRouter as Router,
@@ -91,7 +92,7 @@ const routes = [
     path: "/add_module",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <div>Add modules</div>
+    main: () => <CreateModule />
   },
 
   {

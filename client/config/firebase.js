@@ -13,7 +13,6 @@ firebase.initializeApp({
 
 let db = firebase.firestore()
 
-
 export default {
   firebase, db
 }
