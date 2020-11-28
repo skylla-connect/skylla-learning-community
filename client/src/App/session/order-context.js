@@ -10,7 +10,7 @@ const orderReducer = (state = [], action) => {
             return [...state, action.payload]
           }
         case "fetch":
-            return [...action.payload]
+            return action.payload !== "undefined"? action.payload : null;
 
         default:
             return state;

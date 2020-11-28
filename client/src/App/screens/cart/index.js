@@ -46,7 +46,7 @@ function CartApp({match}) {
                   <Discover path={`${match.path}/discover`} />
                   <YourModules path={`${match.path}/finished`} />
                   <Product path={`${match.path}/module/:moduleId`} />
-                  <Checkout path={`${match.path}/checkout/:module`}/>
+                  <Checkout path={`${match.path}/checkout/:moduleId`}/>
               </Router>
             </OrderProvider>
           </Store>

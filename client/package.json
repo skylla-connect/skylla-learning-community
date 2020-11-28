@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.3.1",
     "firebase": "^7.24.0",
+    "mtn-pay": "0.0.5",
     "react": "^16.13.1",
     "react-async": "^7.0.6",
     "react-dom": "^16.13.1",

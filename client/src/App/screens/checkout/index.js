@@ -10,6 +10,7 @@ import VisaLogo from "./static/Icon_Visa.png";
 import MasterLogo from "./static/Icon_MasterCard.png";
 import { dispatchCTX, stateCTX } from "../../session/checkout-context";
 import * as mq from '../../styles/media-queries';
+import modules from "../cart/components/data/modules.json";
 
 // MUI stuff
 import  makeStyles  from '@material-ui/core/styles/makeStyles';
@@ -534,9 +535,10 @@ const Checkout = (props) => {
       }
     const { data, status, isPending, isRejected, isResolved, error, run} = useCallbackStatus()
     React.useEffect(() => {
-      run(getModule(props.bookId))
-    },[]);
-    dispatch({type: "totals", payload: data.price || 50000.00})
+      run(getModule(props.moduleId))
+      dispatch({type: "totals", payload: 50000.00})
+    },[]);;
+    const book = modules.find(item => item.id === props.moduleId);
     if (isPending) {
         return (
           <div css={{marginTop: '2em', fontSize: '2em', textAlign: 'center'}}>
@@ -552,14 +554,14 @@ const Checkout = (props) => {
           </div>
         )
       }
-      if (isResolved && !data) {
+      if (isResolved && !book) {
         return (
           <div css={{color: 'red'}}>
-            <p>Hmmm... Something went wrong. Please try another book.</p>
+            <p>Hmmm... Something went wrong. Please try another module.</p>
           </div>
         )
       }
-    const {title, author, coverImageUrl, publisher, synopsis} = data;
+    const {title, author, coverImageUrl, publisher, synopsis} = book;
     return ( 
         <div className={classes.root}>
         <Grid container spacing={6} className={classes.grid}>

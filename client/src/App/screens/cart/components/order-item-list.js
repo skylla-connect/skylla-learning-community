@@ -15,6 +15,7 @@ function ListItemList(props) {
     const getOrders = async (userId) => {
         return await (props.firebase.doGetUserOrders(userId)
         .then(snapshot => {
+          console.log(snapshot.docs);
             dispatch({type: "fetch", payload: snapshot.docs})
           return snapshot.docs;
         })
@@ -22,7 +23,7 @@ function ListItemList(props) {
       }
       const { data, isPending, run} = useCallbackStatus();
       React.useEffect(() => {
-        run(getOrders())
+        run(getOrders(props.firebase.auth.currentUser.uid))
       },[]);
   const listItems = modules.slice(1,5) || data
   dispatch({type: "fetch", payload: listItems})
