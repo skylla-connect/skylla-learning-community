@@ -21,8 +21,7 @@ import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
 import OpenWithIcon from '@material-ui/icons/OpenWith';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import SettingsInputAntennaIcon from '@material-ui/icons/SettingsInputAntenna';
-//  import Cart from '../../../client/src/app/components/Module/Module'
-
+import Footer from '../../../components/Footer/footer';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -57,20 +56,6 @@ function a11yProps(index) {
   };
 }
 
-// function LinkTab(props) {
-//   return (
-//     <Tab
-//       component="a"
-//       backgroundColor='#ddd'
-//       color='white'
-//       onClick={(event) => {
-//         event.preventDefault();
-//       }}
-//       {...props}
-//     />
-//   );
-// }
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -86,7 +71,7 @@ carouselImg: {
     margin: '0 0 0 10%',
 },
 caption: {
-    width: '35%',
+    width: '50%',
     height: 'auto',
     borderRadius: 70,
     margin: '0 10% 0 0',
@@ -272,48 +257,106 @@ export default function NavTabs() {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-          <h2 style={{textAlign:'center'}}>Our Services</h2>
+        
           <div className='services' >
-          
-            <div className='serv' >
-              <Card elevation='5' className='servs'> <SettingsInputAntennaIcon style={{color:'green'}}/>Train Software Developers and employ them</Card>
-              <Card elevation='5' className='servs'> <DeviceHubIcon style={{color:'orange'}}/>Develop Softwares</Card>
-              <Card elevation='5'className='servs'><SupervisedUserCircleIcon style={{color:'crimson'}}/> Hire Software Engineers</Card>
-              <Card elevation='5' className='servs'> <CloudDoneIcon style={{color:'darkblue'}}/>Cloud Consultancy</Card>
-              <Card elevation='5' className='servs'> <HealingIcon style={{color:'tomato'}}/>Technical support and software Maintainance and Upgrade</Card>
+            <div className='serv'>
+              <Typography variant="h4" style={{textAlign:'center'}}>
+                Our Services
+              </Typography>
+
+              <Card elevation='5' className='servs'> 
+                <Typography variant="body1" paragraph>
+                  <SettingsInputAntennaIcon style={{color:'green', marginRight: 10}}/>
+                  Train Software Developers and employ them
+                </Typography>
+                
+                <Typography variant="body1" paragraph>
+                  <DeviceHubIcon style={{color:'orange', marginRight: 10}}/>
+                  Develop Softwares
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  <SupervisedUserCircleIcon style={{color:'crimson', marginRight: 10}}/> 
+                  Hire Software Engineers
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  <CloudDoneIcon style={{color:'darkblue', marginRight: 10}}/>
+                  Cloud Consultancy
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  <HealingIcon style={{color:'tomato', marginRight: 10}}/>
+                  Technical support and software Maintainance and Upgrade
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  <DeveloperModeIcon  style={{color:'blueviolet', marginRight: 10}}/>
+                  Software Engineering and DevOp
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  <OpenWithIcon style={{color:'turquoise', marginRight: 10}}/>
+                  Remote and On Premise Infrastructure
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  <ContactSupportIcon style={{color:'yellowgreen', marginRight: 10}}/>
+                  Support Open Source Software
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  <ReceiptIcon style={{color:'magenta', marginRight: 10}}/>
+                  Sale Software
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  <SubscriptionsIcon style={{color:'rebeccapurple', marginRight: 10}}/>
+                  Software Subscription
+                </Typography>
+              </Card>
             </div>
 
-            <div className='serv2' >
-              <Card elevation='5' className='servs'> <DeveloperModeIcon  style={{color:'blueviolet'}}/>Software Engineering and DevOp</Card>
-              <Card elevation='5' className='servs'> <OpenWithIcon style={{color:'turquoise'}}/>Remote and On Premise Infrastructure</Card>
-              <Card elevation='5'className='servs'> <ContactSupportIcon style={{color:'yellowgreen'}}/>Support Open Source Software</Card>
-              <Card elevation='5'className='servs'> <ReceiptIcon style={{color:'magenta'}}/>Sale Software</Card>
-              <Card elevation='5'className='servs'> < SubscriptionsIcon style={{color:'rebeccapurple'}}/>Software Subscription</Card>
+            <div className='serv2'>
+              <Typography variant="h4" style={{textAlign:'center'}}>
+                Our Products
+              </Typography>
+
+              <Card elevation='5' className='servs'> 
+                <Typography variant="body1" paragraph>
+                  Softwares;
+                  Accounting Software,
+                  School Management Systems,
+                  Travel agency software,
+                  Cloud Consultancy,
+                  Software Installation,
+                  Support and Maintainance
+                  etc
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  We avail Software Engineers for hire
+                </Typography>
+
+                <Typography variant="body1" paragraph>
+                  Train and employ Software Developers/Engineers
+                </Typography>
+              </Card>
             </div>
-        </div>
-        <h2 style={{textAlign:'center'}}>Our Products</h2>
-        <div className='services'  >
-        <div className='serv' >
-            <Card elevation='5' className='servs'>Softwares</Card>
-            <Card elevation='5' className='servs'>We avail Software Engineers for hire </Card>
-            <Card elevation='5'className='servs'>We avail Software Engineers for hire</Card>
-          </div>
-          <div className='serv' >
-            <Card elevation='5' className='servs'>We avail Software Engineers for hire</Card>
-            <Card elevation='5' className='servs'>We avail Software Engineers for hire</Card>
-            <Card elevation='5' className='servs'>We avail Software Engineers for hire</Card>
- 
-          </div>
         </div>
       </TabPanel>
 
       <TabPanel value={value} index={2} >
-        purchase
+        How to purchase modules
       </TabPanel>
 
       <TabPanel value={value}index={3}>
-        Code &amp; Debug
+        Get Live Coding Suport from Skylla Senior developers
       </TabPanel>
+
+      <div style={{margin: 40}}>
+        <Footer />
+      </div>
     </div>
   );
 }
