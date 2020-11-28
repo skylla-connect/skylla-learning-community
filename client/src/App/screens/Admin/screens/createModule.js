@@ -18,7 +18,7 @@ const CreateModule = () => (
             Height: '100vh',
            }}>
             <Centered>
-                <div style={{marginBottom: '60px'}}>
+                <div>
                     <h5
                     style={{
                         fontSize: '16px',
