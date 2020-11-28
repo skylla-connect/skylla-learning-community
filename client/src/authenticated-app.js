@@ -11,7 +11,7 @@ import { FullPageSpinner } from './App/components';
 import Module from './App/screens/Trainee/screens/Module/Module';
 import Cart from './App/screens/Trainee/screens/cart/index';
 import Payment from './App/screens/Trainee/screens/cart/complete-payment/index';
-import LiveSupport from './App/screens/shared/LiveSupport/LiveSupport'
+import SuccessPage from './App/screens/Trainee/screens/cart/CartSucess/index';
 
 const Athenticated = () => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);
@@ -43,7 +43,7 @@ function Routes(props) {
                 <Route path={ROUTES.CART} component={Cart} />
                 <Route path={ROUTES.MODULES} component={Module} /> 
                 <Route path={ROUTES.PAYMENT} component={Payment} />
-                <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
+                <Route path={ROUTES.SUCCESS_PAGE} component={SuccessPage} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}

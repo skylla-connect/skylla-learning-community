@@ -28,6 +28,8 @@ import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import Footer from '../../../../../components/Footer/footer';
 import Countries from './country';
+import { Link } from 'react-router-dom';
+import *as ROUTES from '../../../../../config/routes';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -280,18 +282,20 @@ const CompletePayment = () => {
                       By completing your purchase you agree to the Terms of Service 
                   </Typography>
 
-                  <div className='btn-comp'>
-                    <Button
-                      variant='contained'
-                      color='secondary'
-                      style={{
-                        width: '100%',
-                        marginTop: '40px'
-                      }}
-                    >
-                      Complete Payment
-                    </Button>
-                  </div>
+                  <Link to={ROUTES.SUCCESS_PAGE}>
+                    <div className='btn-comp'>
+                      <Button
+                        variant='contained'
+                        color='secondary'
+                        style={{
+                          width: '100%',
+                          marginTop: '40px'
+                        }}
+                      >
+                        Complete Payment
+                      </Button>
+                    </div>
+                  </Link>
                 </Paper>
               </Grid>
             </Grid>
