@@ -5,20 +5,25 @@ import {
     Divider,
     Grid,
     Paper,
-    ButtonBase
+    ButtonBase,
+    TextField
 } from '@material-ui/core';
 import clsx from 'clsx';
-import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
 import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
 import LoaderButton from "../components/loader";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import FirebaseContext from 'firebase';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import TextFieldMui from "../../components/textField";
 // import {storage} from "firebase"
 import 'firebase/firestore';
 // import { UserContext } from './userContext';
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -61,12 +66,11 @@ const useStyles = makeStyles((theme) => ({
     },
 
     margin: {
-        margin: theme.spacing(3,13),
+        margin: theme.spacing(3,7),
     },
 
     textField: {
         width: '500px',
-        marginLeft: '5%',
         display: 'block'
     },
 }));
@@ -232,9 +236,11 @@ export default function ProfilePage() {
                         console.log(error); 
                     });
                     
-                    alert('Password changed successfully!');
+                    // alert('Password changed successfully!');
                     setIsChangingP(true);
                     clearState()
+                    // setIsChangingP(false);
+
             }else{
                 alert('Oops, please check Old Password!')
             }
@@ -242,6 +248,22 @@ export default function ProfilePage() {
     
       const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
+      };
+
+      const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setIsChangingP(false);
+      };
+
+      const closeUpload = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setIsChanging(false);
       };
 
   return (
@@ -271,72 +293,75 @@ export default function ProfilePage() {
                                 >
                                     UPLOAD
                                 </LoaderButton>
+                                <Snackbar open={isChanging} autoHideDuration={6000} onClose={closeUpload}>
+                                    <Alert onClose={closeUpload} severity="success">
+                                        Great! Photo updated successfully.
+                                    </Alert>
+                                </Snackbar>
                             </label>
-                            </form>
-                            <img 
-                                className={classes.pPic}  
-                                src={imageAsUrl.imgUrl || currentUserDetails.photo || 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'}
-                                alt=''
-                            />
-                        </ButtonBase>
+                        </form>
+                        <img 
+                            className={classes.pPic}  
+                            src={imageAsUrl.imgUrl || currentUserDetails.photo || 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'}
+                            alt=''
+                        />
+                    </ButtonBase>
 
-                        <Grid>
-                            <Grid alignItems='center' justify="center" container spacing={2} xs={4}>
-                                <Grid item>
-                                    <Typography gutterBottom variant="h4" align='center'>
-                                        {currentUserDetails.name}
-                                    </Typography>
-                                    <Typography variant="body2" align='center' style={{ cursor: 'pointer', }}>
-                                        {currentUserDetails.email}
-                                    </Typography>
-                                </Grid>
+                    <Grid>
+                        <Grid alignItems='center' justify="center" container spacing={2} xs={4}>
+                            <Grid item>
+                                <Typography gutterBottom variant="h4" align='center'>
+                                    {currentUserDetails.name}
+                                </Typography>
+                                <Typography variant="body2" align='center' style={{ cursor: 'pointer', }}>
+                                    {currentUserDetails.email}
+                                </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid alignItems='center' justify="center" container spacing={2} xs={12} sm={6}>
-                        <Typography gutterBottom variant="h5">
-                            Change Password
-                        </Typography>
-                        <form onSubmit={handleChangeClick}>
-                        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                            <InputLabel htmlFor="outlined-adornment-password">Old Password</InputLabel>
-                            <OutlinedInput
+                </Grid>
+                <Grid alignItems='center' justify="center" container spacing={2} xs={12} sm={6}>
+                    <form onSubmit={handleChangeClick}>
+                        <FormGroup className={clsx(classes.margin, classes.textField)} variant="outlined">
+                            <Typography gutterBottom variant="h5" align='center'>
+                                Change Password
+                            </Typography>
+                        </FormGroup>
+                        <FormGroup className={clsx(classes.margin)}>
+                            <TextFieldMui
                                 style={{ width:'100%' }}
-                                id="outlined-adornment-password"
+                                id='Old-Password'
                                 type= 'password'
                                 value={values.Oldpassword}
                                 onChange={handleChange('Oldpassword')}
-                                labelWidth={100}
+                                label='Old Password'
+                                variant="outlined"
                             />
-                        </FormControl>
-
-                        <Divider style={{ margin:'20px 23% 20px 18%', width:'60%' }}/>
+                        </FormGroup>
                         
-                        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                            <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
-                            <OutlinedInput
+                        <FormGroup className={classes.margin} variant="outlined">
+                            <TextFieldMui
                                 style={{ width:'100%' }}
-                                id="outlined-adornment-password"
-                                // type={values.showPassword ? 'text' : 'Newpassword'}
+                                id='New-Password'
                                 type= 'password'
                                 value={values.Newpassword}
                                 onChange={handleChange('Newpassword')}
-                                labelWidth={110}
+                                label='New Password'
+                                variant="outlined"
                             />
-                        </FormControl>
+                        </FormGroup>
 
-                        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                            <InputLabel htmlFor="outlined-adornment-password">Confirm New Password</InputLabel>
-                            <OutlinedInput
+                        <FormGroup className={classes.margin} variant="outlined">
+                            <TextFieldMui
                                 style={{ width:'100%' }}
-                                id="outlined-adornment-password"
-                                // type={values.showPassword ? 'text' : 'ConfirmNewpassword'}
+                                id=' Cofirm-New-Password'
                                 type= 'password'
                                 value={values.ConfirmNewpassword}
                                 onChange={handleChange('ConfirmNewpassword')}
-                                labelWidth={170}
+                                label='Cofirm New Password'
+                                variant="outlined"
                             />
-                        </FormControl>
+                        </FormGroup>
 
                         <LoaderButton
                             // block
@@ -345,12 +370,22 @@ export default function ProfilePage() {
                             disabled={!validateForm()}
                             isLoading={isChangingP}
                             style={{
-                                marginLeft: '5%',
-                                width:'83%'
+                                marginLeft: '9%',
+                                width:'82%'
                             }}
                         >
                             Change
                         </LoaderButton>
+                        <Snackbar open={isChangingP} autoHideDuration={6000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity="success">
+                                Great! Password changed successfully.
+                            </Alert>
+                        </Snackbar>
+                        <Snackbar open={isChangingP} autoHideDuration={6000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity="success">
+                                Oops! Password changed successfully.
+                            </Alert>
+                        </Snackbar>
                     </form>
                 </Grid>
             </Grid> 
