@@ -191,9 +191,9 @@ export default function ProfilePage() {
       
         function validateForm() {
             return (
-            values.Oldpassword.length > 0 &&     
+            values.Oldpassword.length > 5 &&     
             //more validation checks needed for the old Password
-            values.Newpassword.length > 0 &&
+            values.Newpassword.length > 5 &&
             values.Newpassword === values.ConfirmNewpassword
             );
         }
