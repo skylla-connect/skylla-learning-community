@@ -86,27 +86,24 @@ const initialState = {
 export default function ProfilePage() {
     const classes = useStyles();
     const [values, setValues] = React.useState(initialState);
-      const [isChanging, setIsChanging] = React.useState(false);
-      const [isChangingP, setIsChangingP] = React.useState(false);
-      const clearState = () => {
+    const [isChanging, setIsChanging] = React.useState(false);
+    const [isChangingP, setIsChangingP] = React.useState(false);
+    const clearState = () => {
         setValues({ ...initialState });
-      };
-        // const allInputs = {imgUrl: ''}
-        const [imageAsFile, setImageAsFile] = React.useState('')
-        const [imageAsUrl, setImageAsUrl] = React.useState({imgUrl: ''})
-      const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
+    };
+    // const allInputs = {imgUrl: ''}
+    const [imageAsFile, setImageAsFile] = React.useState('')
+    const [imageAsUrl, setImageAsUrl] = React.useState({imgUrl: ''})
+    const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
       
 
-      class userDetails {
+    class userDetails {
         constructor (name, email, password, photo ) {
             this.name = name;
             this.email = email;
             this.password = password;
             this.photo= photo;
         }
-        // toString() {
-        //     return this.name + ', ' + this.email + ', ' + this.password;
-        // }
     }
     
     // Firestore data converter
@@ -117,7 +114,7 @@ export default function ProfilePage() {
                 email: userDetails.email,
                 password: userDetails.password,
                 photo: userDetails.photo
-                }
+            }
         },
         fromFirestore: function(snapshot, options){
             const data = snapshot.data(options);
@@ -127,8 +124,7 @@ export default function ProfilePage() {
     }
 
     React.useEffect(() => {
-        let user1 = FirebaseContext.auth().currentUser;
-        // let uID = FirebaseContext.firestore().collection("users").doc(user1.uid)    
+        let user1 = FirebaseContext.auth().currentUser; 
         let db = FirebaseContext.firestore().collection("users/admin/users");
         let query = db.where('uid', '==', user1.uid);
 
@@ -208,13 +204,12 @@ export default function ProfilePage() {
 
         async function handleChangeClick(event) {
             event.preventDefault();
-
             const user = FirebaseContext.auth().currentUser;
             let db = FirebaseContext.firestore().collection("users/admin/users");
             if(values.Oldpassword===currentUserDetails.password){
                 db.doc(user.uid).update({
                     password: values.Newpassword
-                    });
+                });
                     // Get auth credentials from the user for re-authentication. The example below shows
                     // email and password credentials but there are multiple possible providers,
                     // such as GoogleAuthProvider or FacebookAuthProvider.
@@ -224,13 +219,11 @@ export default function ProfilePage() {
                     );
                     FirebaseContext.auth().currentUser.reauthenticateWithCredential(cred)
                     .then(() => {
-                    // User successfully reauthenticated.
-                    const newPass = values.Newpassword;
-                    console.log('Password updated successfully!');
-                    setIsChangingP(true)
-                    return FirebaseContext.auth().currentUser.updatePassword(newPass);
-                    
-                    
+                        // User successfully reauthenticated.
+                        const newPass = values.Newpassword;
+                        console.log('Password updated successfully!');
+                        setIsChangingP(true)
+                        return FirebaseContext.auth().currentUser.updatePassword(newPass);
                     })
                     .catch((error) => { 
                         console.log(error); 
@@ -253,17 +246,15 @@ export default function ProfilePage() {
       const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
           return;
-        }
-    
-        setIsChangingP(false);
+        }    
+            setIsChangingP(false);
       };
 
       const closeUpload = (event, reason) => {
         if (reason === 'clickaway') {
           return;
         }
-    
-        setIsChanging(false);
+            setIsChanging(false);
       };
 
   return (
@@ -273,16 +264,24 @@ export default function ProfilePage() {
                 <Grid item xs={12} sm={6}>
                     <ButtonBase className={classes.image}>
                         <form onSubmit={handleFireBaseUpload}>
-                            <input accept="image/*" className={classes.input} onChange={handleImageAsFile} id="icon-button-file" type="file" />
+                            <input 
+                                accept="image/*" 
+                                className={classes.input} 
+                                onChange={handleImageAsFile} 
+                                id="icon-button-file" 
+                                type="file" 
+                            />
                             <label htmlFor="icon-button-file">
-                                <IconButton type="submit" className={classes.uploadButton} color="primary" component="span">
-                                <PhotoCamera />
+                                <IconButton 
+                                    type="submit" 
+                                    className={classes.uploadButton} 
+                                    color="primary" 
+                                    component="span"
+                                >
+                                    <PhotoCamera />
                                 </IconButton>
-                                {/* <button disabled={!imageAsFile}>upload</button> */}
                                 <LoaderButton
-                                    // block
                                     type="submit"
-                                    // bsSize="large"
                                     disabled={!imageAsFile}
                                     isLoading={isChanging}
                                     style={{
@@ -302,11 +301,14 @@ export default function ProfilePage() {
                         </form>
                         <img 
                             className={classes.pPic}  
-                            src={imageAsUrl.imgUrl || currentUserDetails.photo || 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'}
+                            src={
+                                    imageAsUrl.imgUrl || 
+                                    currentUserDetails.photo || 
+                                    'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'
+                                }
                             alt=''
                         />
                     </ButtonBase>
-
                     <Grid>
                         <Grid alignItems='center' justify="center" container spacing={2} xs={4}>
                             <Grid item>
@@ -364,9 +366,7 @@ export default function ProfilePage() {
                         </FormGroup>
 
                         <LoaderButton
-                            // block
                             type="submit"
-                            // bsSize="large"
                             disabled={!validateForm()}
                             isLoading={isChangingP}
                             style={{
