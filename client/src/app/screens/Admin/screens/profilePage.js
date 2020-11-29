@@ -88,6 +88,7 @@ export default function ProfilePage() {
     const [values, setValues] = React.useState(initialState);
     const [isChanging, setIsChanging] = React.useState(false);
     const [isChangingP, setIsChangingP] = React.useState(false);
+    const [isnotChangingP, setIsnotChangingP] = React.useState(false);
     const clearState = () => {
         setValues({ ...initialState });
     };
@@ -210,32 +211,33 @@ export default function ProfilePage() {
                 db.doc(user.uid).update({
                     password: values.Newpassword
                 });
-                    // Get auth credentials from the user for re-authentication. The example below shows
-                    // email and password credentials but there are multiple possible providers,
-                    // such as GoogleAuthProvider or FacebookAuthProvider.
-                    const cred = FirebaseContext.auth.EmailAuthProvider.credential(
-                        user.email, 
-                        currentUserDetails.password
-                    );
-                    FirebaseContext.auth().currentUser.reauthenticateWithCredential(cred)
-                    .then(() => {
-                        // User successfully reauthenticated.
-                        const newPass = values.Newpassword;
-                        console.log('Password updated successfully!');
-                        setIsChangingP(true)
-                        return FirebaseContext.auth().currentUser.updatePassword(newPass);
-                    })
-                    .catch((error) => { 
-                        console.log(error); 
-                    });
-                    
-                    // alert('Password changed successfully!');
-                    setIsChangingP(true);
-                    clearState()
-                    // setIsChangingP(false);
+                // Get auth credentials from the user for re-authentication. The example below shows
+                // email and password credentials but there are multiple possible providers,
+                // such as GoogleAuthProvider or FacebookAuthProvider.
+                const cred = FirebaseContext.auth.EmailAuthProvider.credential(
+                    user.email, 
+                    currentUserDetails.password
+                );
+                FirebaseContext.auth().currentUser.reauthenticateWithCredential(cred)
+                .then(() => {
+                    // User successfully reauthenticated.
+                    const newPass = values.Newpassword;
+                    console.log('Password updated successfully!');
+                    setIsChangingP(true)
+                    return FirebaseContext.auth().currentUser.updatePassword(newPass);
+                })
+                .catch((error) => { 
+                    console.log(error); 
+                });
+                
+                // alert('Password changed successfully!');
+                setIsChangingP(true);
+                clearState()
+                // setIsChangingP(false);
 
             }else{
-                alert('Oops, please check Old Password!')
+                alert('Oops, please check Old Password!');
+                setIsnotChangingP(true);
             }
         }
     
@@ -255,6 +257,13 @@ export default function ProfilePage() {
           return;
         }
             setIsChanging(false);
+      };
+
+      const handleCloseNot = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+            setIsnotChangingP(false);
       };
 
   return (
@@ -329,7 +338,7 @@ export default function ProfilePage() {
                                 Change Password
                             </Typography>
                         </FormGroup>
-                        <FormGroup className={clsx(classes.margin)}>
+                        <FormGroup className={classes.margin}>
                             <TextFieldMui
                                 style={{ width:'100%' }}
                                 id='Old-Password'
@@ -381,9 +390,9 @@ export default function ProfilePage() {
                                 Great! Password changed successfully.
                             </Alert>
                         </Snackbar>
-                        <Snackbar open={isChangingP} autoHideDuration={6000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="success">
-                                Oops! Password changed successfully.
+                        <Snackbar open={isnotChangingP} autoHideDuration={6000} onClose={handleCloseNot}>
+                            <Alert onClose={handleCloseNot} severity="error">
+                                Oops! Check Old Password.
                             </Alert>
                         </Snackbar>
                     </form>
