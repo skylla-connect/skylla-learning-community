@@ -1,29 +1,27 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-    Typography, 
-    Divider,
+    Typography,
     Grid,
     Paper,
-    ButtonBase
+    ButtonBase,
 } from '@material-ui/core';
 import clsx from 'clsx';
-import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
 import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import LoaderButton from "../components/loader";
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import FirebaseContext from 'firebase';
-// import {storage} from "firebase"
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import TextFieldMui from "../../components/textField";
 import 'firebase/firestore';
-// import { UserContext } from './userContext';
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
 
-const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: 'transparent',
         width: '100%',
@@ -64,12 +62,11 @@ const useStyles = makeStyles((theme) => ({
     },
 
     margin: {
-        margin: theme.spacing(3,13),
+        margin: theme.spacing(3,7),
     },
 
     textField: {
         width: '500px',
-        marginLeft: '5%',
         display: 'block'
     },
 }));
@@ -86,7 +83,8 @@ export default function ProfilePage() {
     const classes = useStyles();
     const [values, setValues] = React.useState(initialState);
       const [isChanging, setIsChanging] = React.useState(false);
-      const [isChangingP, setIsChangingP] = React.useState(false);
+    const [isnotChangingP, setIsnotChangingP] = React.useState(false);
+    const [isChangingP, setIsChangingP] = React.useState(false);
         // const allInputs = {imgUrl: ''}
         const [imageAsFile, setImageAsFile] = React.useState('')
         const [imageAsUrl, setImageAsUrl] = React.useState({imgUrl: ''})
@@ -94,7 +92,6 @@ export default function ProfilePage() {
       const clearState = () => {
         setValues({ ...initialState });
       };
-
     //   console.log(imageAsFile)
         const handleImageAsFile = (e) => {
             const image = e.target.files[0]
@@ -232,27 +229,40 @@ export default function ProfilePage() {
                         console.log(error); 
                     });
                     
-                    alert('Password changed successfully!');
+                    // alert('Password changed successfully!');
                     setIsChangingP(true);
                     clearState()
             }else{
-                alert('Oops, please check Old Password!')
+                // alert('Oops, please check Old Password!')
+                setIsnotChangingP(true);
             }
         } 
 
 
+        const handleChange = (prop) => (event) => {
+            setValues({ ...values, [prop]: event.target.value });
+          };
     
-      const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-      };
+          const handleClose = (event, reason) => {
+            if (reason === 'clickaway') {
+              return;
+            }    
+                setIsChangingP(false);
+          };
     
-      const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
-      };
+          const closeUpload = (event, reason) => {
+            if (reason === 'clickaway') {
+              return;
+            }
+                setIsChanging(false);
+          };
     
-      const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-      };
+          const handleCloseNot = (event, reason) => {
+            if (reason === 'clickaway') {
+              return;
+            }
+                setIsnotChangingP(false);
+          };
 
   return (
     <Paper elevation={0} className={classes.root}>
@@ -261,31 +271,48 @@ export default function ProfilePage() {
                 <Grid item xs={12} sm={6}>
                     <ButtonBase className={classes.image}>
                         <form onSubmit={handleFireBaseUpload}>
-                        <input accept="image/*" className={classes.input} onChange={handleImageAsFile} id="icon-button-file" type="file" />
-                        <label htmlFor="icon-button-file">
-                            <IconButton type="submit" className={classes.uploadButton} color="primary" component="span">
-                            <PhotoCamera />
-                            </IconButton>
-                            {/* <button disabled={!imageAsFile}>upload</button> */}
-                            <LoaderButton
-                                // block
-                                type="submit"
-                                // bsSize="large"
-                                disabled={!imageAsFile}
-                                isLoading={isChanging}
-                                style={{
-                                    margin: '140px 0 0 90%',
-                                    width:'50%',
-                                    position: 'absolute',
-                                }}
-                            >
-                                UPLOAD
-                            </LoaderButton>
-                        </label>
+                            <input 
+                                accept="image/*" 
+                                className={classes.input} 
+                                onChange={handleImageAsFile} 
+                                id="icon-button-file" 
+                                type="file" 
+                            />
+                            <label htmlFor="icon-button-file">
+                                <IconButton 
+                                    type="submit" 
+                                    className={classes.uploadButton} 
+                                    color="primary" 
+                                    component="span"
+                                >
+                                    <PhotoCamera />
+                                </IconButton>
+                                <LoaderButton
+                                    type="submit"
+                                    disabled={!imageAsFile}
+                                    isLoading={isChanging}
+                                    style={{
+                                        margin: '140px 0 0 90%',
+                                        width:'50%',
+                                        position: 'absolute',
+                                    }}
+                                >
+                                    UPLOAD
+                                </LoaderButton>
+                                <Snackbar open={isChanging} autoHideDuration={6000} onClose={closeUpload}>
+                                    <Alert onClose={closeUpload} severity="success">
+                                        Great! Photo updated successfully.
+                                    </Alert>
+                                </Snackbar>
+                            </label>
                         </form>
                         <img 
                             className={classes.pPic}  
-                            src={imageAsUrl.imgUrl || currentUserDetails.photo || 'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'}
+                            src={
+                                    imageAsUrl.imgUrl || 
+                                    currentUserDetails.photo || 
+                                    'https://www.pngitem.com/pimgs/m/442-4426913_avatar-icon-png-white-png-download-white-person.png'
+                                }
                             alt=''
                         />
                     </ButtonBase>
@@ -303,97 +330,72 @@ export default function ProfilePage() {
                     </Grid>
                 </Grid>
                 <Grid alignItems='center' justify="center" container spacing={2} xs={12} sm={6}>
-                    <Typography gutterBottom variant="h5">
-                        Change Password
-                    </Typography>
                     <form onSubmit={handleChangeClick}>
-                    <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">Old Password</InputLabel>
-                        <OutlinedInput
-                            style={{ width:'100%' }}
-                            id="outlined-adornment-password"
-                            type= 'password'
-                            value={values.Oldpassword}
-                            onChange={handleChange('Oldpassword')}
-                            // endAdornment={
-                            // <InputAdornment position="end">
-                            //     <IconButton
-                            //     aria-label="toggle password visibility"
-                            //     onClick={handleClickShowPassword}
-                            //     onMouseDown={handleMouseDownPassword}
-                            //     edge="end"
-                            //     >
-                            //     {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                            //     </IconButton>
-                            // </InputAdornment>
-                            // }
-                            labelWidth={100}
-                        />
-                    </FormControl>
-                    <Divider style={{ margin:'20px 23% 20px 18%', width:'60%' }}/>
-                    <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
-                        <OutlinedInput
-                            style={{ width:'100%' }}
-                            id="outlined-adornment-password"
-                            type= 'password'
-                            value={values.Newpassword}
-                            onChange={handleChange('Newpassword')}
-                            // endAdornment={
-                            // <InputAdornment position="end">
-                            //     <IconButton
-                            //     aria-label="toggle password visibility"
-                            //     onClick={handleClickShowPassword}
-                            //     onMouseDown={handleMouseDownPassword}
-                            //     edge="end"
-                            //     >
-                            //     {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                            //     </IconButton>
-                            // </InputAdornment>
-                            // }
-                            labelWidth={110}
-                        />
-                    </FormControl>
-                    <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-                        <InputLabel htmlFor="outlined-adornment-password">Confirm New Password</InputLabel>
-                        <OutlinedInput
-                            style={{ width:'100%' }}
-                            id="outlined-adornment-password"
-                            type= 'password'
-                            value={values.ConfirmNewpassword}
-                            onChange={handleChange('ConfirmNewpassword')}
-                            // endAdornment={
-                            // <InputAdornment position="end">
-                            //     <IconButton
-                            //     aria-label="toggle password visibility"
-                            //     onClick={handleClickShowPassword}
-                            //     onMouseDown={handleMouseDownPassword}
-                            //     edge="end"
-                            //     >
-                            //     {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                            //     </IconButton>
-                            // </InputAdornment>
-                            // }
-                            labelWidth={170}
-                        />
-                    </FormControl>
-                    <LoaderButton
-                        // block
-                        type="submit"
-                        // bsSize="large"
-                        disabled={!validateForm()}
-                        isLoading={isChangingP}
-                        style={{
-                            marginLeft: '5%',
-                            width:'83%'
-                        }}
-                    >
-                        Change
-                    </LoaderButton>
+                        <FormGroup className={clsx(classes.margin, classes.textField)} variant="outlined">
+                            <Typography gutterBottom variant="h5" align='center'>
+                                Change Password
+                            </Typography>
+                        </FormGroup>
+                        <FormGroup className={classes.margin}>
+                            <TextFieldMui
+                                style={{ width:'100%' }}
+                                id='Old-Password'
+                                type= 'password'
+                                value={values.Oldpassword}
+                                onChange={handleChange('Oldpassword')}
+                                label='Old Password'
+                                variant="outlined"
+                            />
+                        </FormGroup>
+                        
+                        <FormGroup className={classes.margin} variant="outlined">
+                            <TextFieldMui
+                                style={{ width:'100%' }}
+                                id='New-Password'
+                                type= 'password'
+                                value={values.Newpassword}
+                                onChange={handleChange('Newpassword')}
+                                label='New Password'
+                                variant="outlined"
+                            />
+                        </FormGroup>
+
+                        <FormGroup className={classes.margin} variant="outlined">
+                            <TextFieldMui
+                                style={{ width:'100%' }}
+                                id=' Cofirm-New-Password'
+                                type= 'password'
+                                value={values.ConfirmNewpassword}
+                                onChange={handleChange('ConfirmNewpassword')}
+                                label='Cofirm New Password'
+                                variant="outlined"
+                            />
+                        </FormGroup>
+
+                        <LoaderButton
+                            type="submit"
+                            disabled={!validateForm()}
+                            isLoading={isChangingP}
+                            style={{
+                                marginLeft: '9%',
+                                width:'82%'
+                            }}
+                        >
+                            Change
+                        </LoaderButton>
+                        <Snackbar open={isChangingP} autoHideDuration={6000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity="success">
+                                Great! Password changed successfully.
+                            </Alert>
+                        </Snackbar>
+                        <Snackbar open={isnotChangingP} autoHideDuration={6000} onClose={handleCloseNot}>
+                            <Alert onClose={handleCloseNot} severity="error">
+                                Oops! Check Old Password.
+                            </Alert>
+                        </Snackbar>
                     </form>
                 </Grid>
-            </Grid>
-            {/* <Divider style={{ margin:'30px 0 50px 0' }}/> */}
+            </Grid> 
         </div>
     </Paper>
   );

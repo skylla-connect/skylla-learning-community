@@ -1,12 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-    Typography, 
-    Divider,
+    Typography,
     Grid,
     Paper,
     ButtonBase,
-    TextField
 } from '@material-ui/core';
 import clsx from 'clsx';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -17,9 +15,7 @@ import FirebaseContext from 'firebase';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import TextFieldMui from "../../components/textField";
-// import {storage} from "firebase"
 import 'firebase/firestore';
-// import { UserContext } from './userContext';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -236,7 +232,7 @@ export default function ProfilePage() {
                 // setIsChangingP(false);
 
             }else{
-                alert('Oops, please check Old Password!');
+                // alert('Oops, please check Old Password!');
                 setIsnotChangingP(true);
             }
         }
