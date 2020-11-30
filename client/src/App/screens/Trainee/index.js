@@ -268,9 +268,9 @@ export default function PersistentDrawerLeft() {
               </div>
 
               <div style={{textAlign: 'center'}}>
-                <Avatar alt="Remy Sharp" src={currentUserDetails.photo} />
+                <Avatar alt="Remy Sharp" style={{marginLeft:'30%'}} src={currentUserDetails.photo} />
                 <Typography variant="body2">
-                  Welcome <b>{currentUserDetails.name}</b>
+                  Welcome<br></br> <b>{currentUserDetails.name}</b>
                 </Typography>
               </div>
 
