@@ -19,6 +19,7 @@ import Footer from '../../components/Footer/footer';
 import { SignUpPage } from './screens/addUsers';
 import DeleteUsers from './screens/deleteUsers';
 import CreateModule  from './screens/createModule';
+import DeleteModules from './screens/deleteModules';
 
 import {
   BrowserRouter as Router,
@@ -99,7 +100,7 @@ const routes = [
     path: "/delete_module",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <div>Delete modules</div>
+    main: () => <DeleteModules />
   },
 
   {
