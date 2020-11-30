@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       width: '95%',
-      margin: '5% 0 0 2.5%'
+      margin: '2% 0 0 2.5%'
     },
 
     title: {
@@ -40,7 +40,7 @@ export default function ClassLink () {
 
 
   return (
-    <div style={{padding:20}}>
+    <div style={{padding:50}}>
     {liveClassDetails.map((liveclass) => (
     <Card key={liveclass.id} className={classes.root}>
       <CardContent>
