@@ -24,6 +24,8 @@ import SocialIcons from './components/social';
 import ProfilePage from './screens/profilePage';
 import LiveClass from './screens/liveClass';
 import *as ROUTES from '../../config/routes';
+import FirebaseContext from 'firebase';
+import 'firebase/firestore';
 import {
   BrowserRouter as Router,
   Switch,
@@ -175,6 +177,60 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
+
+
+  class userDetails {
+    constructor (name, email, password, photo ) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.photo= photo;
+    }
+    // toString() {
+    //     return this.name + ', ' + this.email + ', ' + this.password;
+    // }
+  }
+
+// Firestore data converter
+  var userDetailsConverter = {
+      toFirestore: function(userDetails) {
+          return {
+              name: userDetails.name,
+              email: userDetails.email,
+              password: userDetails.password,
+              photo: userDetails.photo
+              }
+      },
+      fromFirestore: function(snapshot, options){
+          const data = snapshot.data(options);
+          const det1 = new userDetails(data.name, data.email, data.password, data.photo);
+          return det1
+      }
+  }
+  React.useEffect(() => {
+        let user = FirebaseContext.auth().currentUser;   
+        let db = FirebaseContext.firestore().collection('users/trainee/users');
+        let query = db.where('userId', '==', user.uid);
+        
+        query.withConverter(userDetailsConverter).get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+            console.log('No matching documents.');
+            return;
+            }  
+
+            snapshot.forEach(doc => {
+                var x = doc.data();
+                setcurrentUserDetails(x)
+            // console.log(doc.id, '=>', x);
+            ;
+            })
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -212,9 +268,9 @@ export default function PersistentDrawerLeft() {
               </div>
 
               <div style={{textAlign: 'center'}}>
-                <Avatar alt="Remy Sharp" src="" />
+                <Avatar alt="Remy Sharp" src={currentUserDetails.photo} />
                 <Typography variant="body2">
-                  Trainee
+                  Welcome <b>{currentUserDetails.name}</b>
                 </Typography>
               </div>
 
