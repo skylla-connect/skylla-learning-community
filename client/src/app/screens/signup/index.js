@@ -56,6 +56,7 @@ const INITIAL_STATE = {
     email: '',
     passwordOne: '',
     passwordTwo: '',
+    photo: '',
     isPending: false,
     isChecked: false,
     error: null,
@@ -69,11 +70,12 @@ class SignUpFormBase extends Component {
     
     onSubmit = event => {
         this.setState({...this.state, isPending: true})
-        const { username, email, passwordOne } = this.state;
+        const { username, email, passwordOne, photo } = this.state;
         const newUser = {
             name: username,
             email: email,
             password: passwordOne,
+            photo: photo
         };
         let usersid;
         this.props.firebase
@@ -86,6 +88,7 @@ class SignUpFormBase extends Component {
                 name: newUser.name,
                 email: newUser.email,
                 password: newUser.password,
+                photo: newUser.photo,
                 createdAt: new Date().toISOString(),
                 userId: usersid,
                 role: 'trainee',
@@ -108,6 +111,7 @@ class SignUpFormBase extends Component {
             email,
             passwordOne,
             passwordTwo,
+            // photo,
             isPending,
             error,
             isChecked,

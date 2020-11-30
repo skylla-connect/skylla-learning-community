@@ -21,7 +21,7 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
 
-const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: 'transparent',
         width: '100%',
@@ -82,69 +82,17 @@ const initialState = {
 export default function ProfilePage() {
     const classes = useStyles();
     const [values, setValues] = React.useState(initialState);
-    const [isChanging, setIsChanging] = React.useState(false);
-    const [isChangingP, setIsChangingP] = React.useState(false);
+      const [isChanging, setIsChanging] = React.useState(false);
     const [isnotChangingP, setIsnotChangingP] = React.useState(false);
-    const clearState = () => {
+    const [isChangingP, setIsChangingP] = React.useState(false);
+        // const allInputs = {imgUrl: ''}
+        const [imageAsFile, setImageAsFile] = React.useState('')
+        const [imageAsUrl, setImageAsUrl] = React.useState({imgUrl: ''})
+      const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
+      const clearState = () => {
         setValues({ ...initialState });
-    };
-    // const allInputs = {imgUrl: ''}
-    const [imageAsFile, setImageAsFile] = React.useState('')
-    const [imageAsUrl, setImageAsUrl] = React.useState({imgUrl: ''})
-    const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
-      
-
-    class userDetails {
-        constructor (name, email, password, photo ) {
-            this.name = name;
-            this.email = email;
-            this.password = password;
-            this.photo= photo;
-        }
-    }
-    
-    // Firestore data converter
-    var userDetailsConverter = {
-        toFirestore: function(userDetails) {
-            return {
-                name: userDetails.name,
-                email: userDetails.email,
-                password: userDetails.password,
-                photo: userDetails.photo
-            }
-        },
-        fromFirestore: function(snapshot, options){
-            const data = snapshot.data(options);
-            const det1 = new userDetails(data.name, data.email, data.password, data.photo);
-            return det1
-        }
-    }
-
-    React.useEffect(() => {
-        let user1 = FirebaseContext.auth().currentUser; 
-        let db = FirebaseContext.firestore().collection("users/admin/users");
-        let query = db.where('uid', '==', user1.uid);
-
-        query.withConverter(userDetailsConverter).get()
-        .then(snapshot => {
-            if (snapshot.empty) {
-            console.log('No matching documents.');
-            return;
-            }  
-
-            snapshot.forEach(doc => {
-                var x = doc.data();
-                setcurrentUserDetails(x)
-            // console.log(doc.id, '=>', x);
-            ;
-            })
-        })
-        .catch(err => {
-            console.log('Error getting documents', err);
-        });
-    }, [userDetailsConverter])
-
-    //   console.log('Image as a file:' + imageAsFile)
+      };
+    //   console.log(imageAsFile)
         const handleImageAsFile = (e) => {
             const image = e.target.files[0]
         setImageAsFile(imageFile => (image))
@@ -175,92 +123,146 @@ export default function ProfilePage() {
                     FirebaseContext.storage().ref('users/' + userCurrent.uid + `/${imageAsFile.name}`).getDownloadURL()
                     .then(fireBaseUrl => {
                     setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
-                    console.log(imageAsUrl)
-                    let db = FirebaseContext.firestore().collection("users/admin/users");
+                    // console.log(fireBaseUrl)
+                    let db = FirebaseContext.firestore().collection("users/trainer/sys_trainers");
                     db.doc(userCurrent.uid).update({
                         photo: fireBaseUrl
                       });
-                      
                     })
                     setIsChanging(true);
                 }
             })
           })
-            // alert('Image updated successfully! Please refresh page')
+        //   window.location.reload();
           }
       
+
+      class userDetails {
+        constructor (name, email, password, photo ) {
+            this.name = name;
+            this.email = email;
+            this.password = password;
+            this.photo= photo;
+        }
+        // toString() {
+        //     return this.name + ', ' + this.email + ', ' + this.password;
+        // }
+    }
+    
+    // Firestore data converter
+    var userDetailsConverter = {
+        toFirestore: function(userDetails) {
+            return {
+                name: userDetails.name,
+                email: userDetails.email,
+                password: userDetails.password,
+                photo: userDetails.photo
+                }
+        },
+        fromFirestore: function(snapshot, options){
+            const data = snapshot.data(options);
+            const det1 = new userDetails(data.name, data.email, data.password, data.photo);
+            return det1
+        }
+    }
+
         function validateForm() {
             return (
-            values.Oldpassword.length > 5 &&     
-            //more validation checks needed for the old Password
+            values.Oldpassword.length > 5 &&     //more validation checks needed for the old Password
             values.Newpassword.length > 5 &&
             values.Newpassword === values.ConfirmNewpassword
             );
         }
         
+        React.useEffect(() => {
+            let user1 = FirebaseContext.auth().currentUser;
+            // let uID = FirebaseContext.firestore().collection("users").doc(user1.uid)    
+            let db = FirebaseContext.firestore().collection("users/trainer/sys_trainers");
+            let query = db.where('userId', '==', user1.uid);
+
+            query.withConverter(userDetailsConverter).get()
+            .then(snapshot => {
+                if (snapshot.empty) {
+                console.log('No matching documents.');
+                return;
+                }  
+
+                snapshot.forEach(doc => {
+                    var x = doc.data();
+                    setcurrentUserDetails(x)
+                // console.log(doc.id, '=>', x);
+                ;
+                })
+            })
+            .catch(err => {
+                console.log('Error getting documents', err);
+            });
+        }, [userDetailsConverter])
 
         async function handleChangeClick(event) {
             event.preventDefault();
+
             const user = FirebaseContext.auth().currentUser;
-            let db = FirebaseContext.firestore().collection("users/admin/users");
+            let db = FirebaseContext.firestore().collection("users/trainer/sys_trainers");
             if(values.Oldpassword===currentUserDetails.password){
                 db.doc(user.uid).update({
                     password: values.Newpassword
-                });
-                // Get auth credentials from the user for re-authentication. The example below shows
-                // email and password credentials but there are multiple possible providers,
-                // such as GoogleAuthProvider or FacebookAuthProvider.
-                const cred = FirebaseContext.auth.EmailAuthProvider.credential(
-                    user.email, 
-                    currentUserDetails.password
-                );
-                FirebaseContext.auth().currentUser.reauthenticateWithCredential(cred)
-                .then(() => {
+                    });
+                    // Get auth credentials from the user for re-authentication. The example below shows
+                    // email and password credentials but there are multiple possible providers,
+                    // such as GoogleAuthProvider or FacebookAuthProvider.
+                    const cred = FirebaseContext.auth.EmailAuthProvider.credential(
+                        user.email, 
+                        currentUserDetails.password
+                    );
+                    FirebaseContext.auth().currentUser.reauthenticateWithCredential(cred)
+                    .then(() => {
                     // User successfully reauthenticated.
                     const newPass = values.Newpassword;
                     console.log('Password updated successfully!');
                     setIsChangingP(true)
                     return FirebaseContext.auth().currentUser.updatePassword(newPass);
-                })
-                .catch((error) => { 
-                    console.log(error); 
-                });
-                
-                // alert('Password changed successfully!');
-                setIsChangingP(true);
-                clearState()
-                // setIsChangingP(false);
-
+                    
+                    
+                    })
+                    .catch((error) => { 
+                        console.log(error); 
+                    });
+                    
+                    // alert('Password changed successfully!');
+                    setIsChangingP(true);
+                    clearState()
             }else{
-                // alert('Oops, please check Old Password!');
+                // alert('Oops, please check Old Password!')
                 setIsnotChangingP(true);
             }
-        }
+        } 
+
+
+        const handleChange = (prop) => (event) => {
+            setValues({ ...values, [prop]: event.target.value });
+          };
     
-      const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-      };
-
-      const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }    
-            setIsChangingP(false);
-      };
-
-      const closeUpload = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-            setIsChanging(false);
-      };
-
-      const handleCloseNot = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-            setIsnotChangingP(false);
-      };
+          const handleClose = (event, reason) => {
+            if (reason === 'clickaway') {
+              return;
+            }    
+                setIsChangingP(false);
+          };
+    
+          const closeUpload = (event, reason) => {
+            if (reason === 'clickaway') {
+              return;
+            }
+                setIsChanging(false);
+          };
+    
+          const handleCloseNot = (event, reason) => {
+            if (reason === 'clickaway') {
+              return;
+            }
+                setIsnotChangingP(false);
+          };
 
   return (
     <Paper elevation={0} className={classes.root}>

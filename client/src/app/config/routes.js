@@ -11,5 +11,5 @@ export const ASSESSMENTS = '/assessments';
 export const HIRED = '/hired';
 export const INTERVIEWS = '/interviews';
 export const PAYMENT = '/payment';
-export const LIVE_SUPPORT ='/livesupport';
+export const LIVE_SUPPORT ='/support';
 export const SUCCESS_PAGE = '/success';

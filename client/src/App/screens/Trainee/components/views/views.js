@@ -5,8 +5,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import Tooltip from '@material-ui/core/Tooltip'
 import { Fab } from '@material-ui/core';
 import Support from '@material-ui/icons/ContactSupport';
-import { Link } from 'react-router-dom'
-import * as ROUTES from '../../../../config/routes' 
+// import { Link } from 'react-router-dom'
+import *as ROUTES from '../../../../config/routes' 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -122,13 +122,13 @@ export default function FullWidthGrid(props) {
         </div>
       </div>
 
-      <Link to={ROUTES.LIVE_SUPPORT}>
+      <a href={ROUTES.LIVE_SUPPORT}>
         <Tooltip title="support" aria-label="support">
           <Fab color="secondary" className={classes.absolute}>
             <Support />
           </Fab>
         </Tooltip>
-      </Link>
+      </a>
     </div>
   );
 }

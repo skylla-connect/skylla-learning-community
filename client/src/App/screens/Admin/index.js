@@ -19,6 +19,7 @@ import Footer from '../../components/Footer/footer';
 import { SignUpPage } from './screens/addUsers';
 import DeleteUsers from './screens/deleteUsers';
 import CreateModule  from './screens/createModule';
+import ProfilePage from './screens/profilePage';
 
 import {
   BrowserRouter as Router,
@@ -43,7 +44,7 @@ const routes = [
     exact: true,
     sidebar: () => <div></div>,
     main: () => <div>
-      Profile page
+      <ProfilePage />
     </div>
   },
 

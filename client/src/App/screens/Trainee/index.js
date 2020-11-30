@@ -21,6 +21,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Views from './components/views/views'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import SocialIcons from './components/social';
+import ProfilePage from './screens/profilePage';
 import *as ROUTES from '../../config/routes';
 import {
   BrowserRouter as Router,
@@ -128,7 +129,7 @@ const routes = [
     exact: true,
     sidebar: () => <div></div>,
     main: () => <div>
-      Profile page
+      <ProfilePage/>
     </div>
   },
 
