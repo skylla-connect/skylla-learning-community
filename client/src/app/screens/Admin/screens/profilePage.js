@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     uploadButton: {
         position: 'absolute',
         margin: '30% 0 0 70%',
-        backgroundColor: 'black'
+        backgroundColor: '#EDEDED'
     },
 
     margin: {
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     textField: {
-        width: '500px',
+        width: '400px',
         display: 'block'
     },
 }));
@@ -142,7 +142,7 @@ export default function ProfilePage() {
         .catch(err => {
             console.log('Error getting documents', err);
         });
-    }, [])
+    }, [userDetailsConverter])
 
     //   console.log('Image as a file:' + imageAsFile)
         const handleImageAsFile = (e) => {
@@ -290,7 +290,7 @@ export default function ProfilePage() {
                                     disabled={!imageAsFile}
                                     isLoading={isChanging}
                                     style={{
-                                        margin: '140px 0 0 90%',
+                                        margin: '200px 0 0 25%',
                                         width:'50%',
                                         position: 'absolute',
                                     }}
@@ -314,13 +314,15 @@ export default function ProfilePage() {
                             alt=''
                         />
                     </ButtonBase>
-                    <Grid>
-                        <Grid alignItems='center' justify="center" container spacing={2} xs={4}>
+                    <Grid style={{
+                        margin: 20
+                    }}>
+                        <Grid alignItems='left' justify="left" container spacing={2}>
                             <Grid item>
-                                <Typography gutterBottom variant="h4" align='center'>
+                                <Typography gutterBottom variant="h5" align='left'>
                                     {currentUserDetails.name}
                                 </Typography>
-                                <Typography variant="body2" align='center' style={{ cursor: 'pointer', }}>
+                                <Typography variant="body2" align='left' style={{ cursor: 'pointer', }}>
                                     {currentUserDetails.email}
                                 </Typography>
                             </Grid>
@@ -330,7 +332,7 @@ export default function ProfilePage() {
                 <Grid alignItems='center' justify="center" container spacing={2} xs={12} sm={6}>
                     <form onSubmit={handleChangeClick}>
                         <FormGroup className={clsx(classes.margin, classes.textField)} variant="outlined">
-                            <Typography gutterBottom variant="h5" align='center'>
+                            <Typography gutterBottom variant="h5" align='left'>
                                 Change Password
                             </Typography>
                         </FormGroup>
@@ -370,17 +372,19 @@ export default function ProfilePage() {
                             />
                         </FormGroup>
 
-                        <LoaderButton
-                            type="submit"
-                            disabled={!validateForm()}
-                            isLoading={isChangingP}
-                            style={{
-                                marginLeft: '9%',
-                                width:'82%'
-                            }}
-                        >
-                            Change
-                        </LoaderButton>
+                        <FormGroup className={classes.margin} variant="outlined">
+                            <LoaderButton
+                                type="submit"
+                                disabled={!validateForm()}
+                                isLoading={isChangingP}
+                                style={{
+                                    // marginLeft: '10%',
+                                    width:'100%'
+                                }}
+                            >
+                                Change
+                            </LoaderButton>
+                        </FormGroup>
                         <Snackbar open={isChangingP} autoHideDuration={6000} onClose={handleClose}>
                             <Alert onClose={handleClose} severity="success">
                                 Great! Password changed successfully.

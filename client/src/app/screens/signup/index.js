@@ -111,7 +111,7 @@ class SignUpFormBase extends Component {
             email,
             passwordOne,
             passwordTwo,
-            photo,
+            // photo,
             isPending,
             error,
             isChecked,
