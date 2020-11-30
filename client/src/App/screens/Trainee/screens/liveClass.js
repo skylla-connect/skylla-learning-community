@@ -40,7 +40,7 @@ export default function ClassLink () {
 
 
   return (
-    <div>
+    <div style={{padding:20}}>
     {liveClassDetails.map((liveclass) => (
     <Card key={liveclass.id} className={classes.root}>
       <CardContent>
