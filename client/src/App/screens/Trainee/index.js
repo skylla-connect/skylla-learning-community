@@ -22,6 +22,7 @@ import Views from './components/views/views'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import SocialIcons from './components/social';
 import ProfilePage from './screens/profilePage';
+import LiveClass from './screens/liveClass';
 import *as ROUTES from '../../config/routes';
 import {
   BrowserRouter as Router,
@@ -159,6 +160,15 @@ const routes = [
       Hire page
     </div>
   },
+
+  {
+    path: ROUTES.LIVE_CLASS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      <LiveClass/>
+    </div>
+  },
 ];
 
 export default function PersistentDrawerLeft() {
@@ -235,16 +245,18 @@ export default function PersistentDrawerLeft() {
                 </Typography>
               </div>
 
-              <div style={{textAlign: 'center'}}>
-                <img 
-                  src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
-                  alt=""
-                  width="20%" 
-                />
-                <Typography variant="body2">
-                  Join Live Class
-                </Typography>
-              </div>
+              {/* <div style={{textAlign: 'center'}}>
+                <Link to={ROUTES.LIVE_CLASS}>
+                  <img 
+                    src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
+                    alt=""
+                    width="20%" 
+                  />
+                  <Typography variant="body2" >
+                    Join Live Class
+                  </Typography>
+                </Link>
+              </div> */}
 
               <div style={{textAlign: 'center'}}>
                 <Link to={ROUTES.MODULES}>

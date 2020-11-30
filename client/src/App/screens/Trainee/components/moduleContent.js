@@ -15,7 +15,7 @@ const permissions = (props) => {
 
         <MenuList>
           <MenuItem>
-            <Link>Title</Link>
+            Title
           </MenuItem>
 
           <MenuItem ></MenuItem>

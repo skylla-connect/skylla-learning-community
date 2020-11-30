@@ -7,6 +7,7 @@ export const PASSWORD_RESET = '/resetpassword';
 export const CART = '/cart';
 export const MODULES = '/module';
 export const PROFILE = '/profile';
+export const LIVE_CLASS = '/liveclass';
 export const ASSESSMENTS = '/assessments';
 export const HIRED = '/hired';
 export const INTERVIEWS = '/interviews';
