@@ -280,7 +280,7 @@ export default function NavTabs() {
       </TabPanel>
 
       <TabPanel value={value} index={2} >
-        purchase
+        <Link to='/module'> purchase</Link> 
       </TabPanel>
 
       <TabPanel value={value}index={3}>

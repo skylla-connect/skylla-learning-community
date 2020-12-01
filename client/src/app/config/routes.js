@@ -6,3 +6,4 @@ export const TRAINEE = '/trainee';
 export const PASSWORD_RESET = '/resetpassword';
 export const LIVE_SUPPORT ='/livesupport'
 export const LIVE_SUPPORT2 ='/livesupport2'
+

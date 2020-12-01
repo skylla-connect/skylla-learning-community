@@ -40,6 +40,8 @@ function Routes(props) {
                 <Route path={ROUTES.TRAINEE} component={Trainee} />
                 <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 <Route path={ROUTES.LIVE_SUPPORT2} component={LiveSupport2} />
+        
+
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}
