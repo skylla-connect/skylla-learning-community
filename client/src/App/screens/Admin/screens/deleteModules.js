@@ -1,111 +1,135 @@
-import React, { Component } from 'react';
-import { Centered } from '../../../components';
-import app from 'firebase/app';
-import { withFirebase } from "../../../../App/firebase";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import Typography from '@material-ui/core/Typography';
+import FirebaseContext from 'firebase';
 import 'firebase/firestore';
-import { compose } from 'recompose';
-import {
-    Paper,
-    Table,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody
-} from '@material-ui/core'
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import Tooltip from '@material-ui/core/Tooltip';
+import Popper from '@material-ui/core/Popper';
+import Button from '@material-ui/core/Button';
+import Fade from '@material-ui/core/Fade';
+import Paper from '@material-ui/core/Paper';
 
-const DeleteModules = () => (
-    <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        textAlign: 'left !important'
-    }}>
-        <div style={{
-            width: '100%',
-            position: 'relative',
-            Height: '100vh',
-           }}>
-            <Centered>
-                <div>
-                    <h5
-                    style={{
-                        fontSize: '16px',
-                        textTransform: 'capitalize',
-                        color: '#000000',
-                        paddingBottom: '30px',
-                    }}>Delete module (s)</h5>
-                    <ModulesFetched />
-                </div>
-            </Centered>
-        </div>
-    </div>
-);
-
-
-class Modules {
-    constructor (module, description, content ) {
-        this.module = module;
-        this.description = description;
-        this.content = content;
-    }
-    toString() {
-        return this.module + ', ' + this.description + ', ' + this.content;
-    }
-}
-
-// Firestore data converter
-var ModuleConverter = {
-    toFirestore: function(mod) {
-        return {
-            module: mod.module,
-            state: mod.description,
-            content: mod.content
-            }
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      width: '95%',
+      margin: '2% 0 0 2.5%'
     },
-    fromFirestore: function(snapshot, options){
-        const data = snapshot.data(options);
-        return new Modules(data.module, data.description, data.content)
+
+    title: {
+        fontSize: 14,
+    },
+
+    fab: {
+        margin: theme.spacing(2),
+    },
+
+    typography: {
+        padding: theme.spacing(4),
+    },
+
+    typo: {
+        margin: theme.spacing(1)
     }
-}
+    
+}));
+  
+export default function ClassLink () {
+    const classes = useStyles();
+    const [liveClassDetails, setliveClassDetails] = React.useState([]);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [open, setOpen] = React.useState(false);
+    const [placement, setPlacement] = React.useState();
 
-class ModulesFetched extends Component {
-    constructor(props) {
-        super(props);
-        this.db = app.firestore();
-        this.state = {mydata: ''}
+    const handleClick = (newPlacement) => (event) => {
+        setAnchorEl(event.currentTarget);
+        setOpen((prev) => placement !== newPlacement || !prev);
+        setPlacement(newPlacement);
+    };
+
+    const handleClose = () => {
+        setOpen(false)
     }
-
-    componentDidMount(){
-        let data = [];
-
-        this.db.collection("users/admin/dashboard/module/modules")
-        .withConverter(ModuleConverter)
-        .get()
-        .then(function(querySnapshot) {
-            querySnapshot.forEach((doc,key) => {
-                data.push({
-                    module:doc.data().module, 
-                    description: doc.data().description,
-                    content:doc.data().content
-                });
+    
+        
+    React.useEffect(() => {
+        const fetchData = async () => {  
+            let db = FirebaseContext.firestore().collection('users/admin/dashboard/module/modules');
+            
+            db.onSnapshot(function(data){
+                setliveClassDetails(data.docs.map(doc => ({...doc.data(), id: doc.id})))
             });
-        });
-
-        this.setState({
-            mydata: data
-        })
-    }
+        };
+        fetchData();
+    }, []);
 
 
-   render () {
-       const { mydata } = this.state;
-       console.log(mydata.map(id => id))
-       
-    return (
-       <div>{ mydata }</div>
-    );
-   }
+  return (
+    <div style={{padding:50}}>
+        {liveClassDetails.map((liveclass) => (
+            <div key={liveclass.id} className={classes.root}>
+               <div>
+                    <div style={{
+                        display: 'flex'
+                    }}>
+                        <div>
+                            <Typography variant="h5" component="h5" className={classes.typo}>
+                                {liveclass.module}
+                            </Typography>
+
+                            <Typography variant="h6" component="p" className={classes.typo}>
+                                {liveclass.description}
+                            </Typography>
+
+                            
+                            <Typography variant="body2" component="p" className={classes.typo}>
+                                {liveclass.content}
+                            </Typography>
+                        </div>
+
+                        <div style={{
+                            margin: 50
+                        }}>
+                             <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
+                                {({ TransitionProps }) => (
+                                <Fade {...TransitionProps} timeout={350}>
+                                    <Paper>
+                                        <Typography className={classes.typography}>
+                                            Are you sure you want to delete this module ?
+                                            <Button>
+                                                Yes
+                                            </Button>
+                                            <Button onClick={handleClose}>
+                                                No
+                                            </Button>
+                                        </Typography>
+                                    </Paper>
+                                </Fade>
+                                )}
+                            </Popper>
+
+                            <Tooltip 
+                                title="delete module" 
+                                aria-label="delete module" 
+                                style={{
+                                    width: '37px',
+                                    height: '20px'
+                                }}
+                                onClick={handleClick('top')}
+                                >
+                                <Fab color="secondary" className={classes.fab}>
+                                    <DeleteForeverIcon />
+                                </Fab>
+                            </Tooltip>
+                        </div>
+                    </div>
+
+                    <hr />
+                </div>
+            </div>
+        ))}
+    </div>
+  );
 }
-
-export default compose(
-    withFirebase,
-)(DeleteModules);
