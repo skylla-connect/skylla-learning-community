@@ -26,10 +26,10 @@ class LiveSupport2 extends React.Component{
         return(
             <div className='suport'>
                 <div style={{margin:'30px 0 0 25px', textAlign:'center'}} >
-                    <Typography >
+                    <Typography style={{fontSize:'16.5px'}}>
                         To help Us serve you better, please provide some information before we begin your chat
                     </Typography>
-                    <Typography  className='if' >
+                    <Typography  className='if'style={{fontSize:'16.5px'}} >
                        If you have an account, please <Link to ='/login'>login</Link> for more tailored and personal service
                     </Typography>
                 </div>
