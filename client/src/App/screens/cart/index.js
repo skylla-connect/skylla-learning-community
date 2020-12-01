@@ -106,10 +106,14 @@ const NavLink = styled(Link)({
           }}
         >
           <li>
-            <NavLink to={`${match.url}/finished`}>Your Modules</NavLink>
+            <NavLink to={`${match.url}/finished`}>
+              Your Modules
+            </NavLink>
           </li>
           <li>
-            <NavLink to={`${match.url}/discover`}>Discover</NavLink>
+            <NavLink to={`${match.url}/discover`}>
+              Purchase Modules
+            </NavLink>
           </li>
         </ul>
       </nav>
