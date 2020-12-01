@@ -1,0 +1,93 @@
+.suport{
+    width: 80%;
+    margin: 5% 5% 2% 10%;
+    background-color: whitesmoke;
+    height: 60em;
+    border-top: 5px solid blue;
+    border-bottom: 5px solid blue ;
+}
+.help{
+   margin: 5% 15% 5% 19%;
+   width: 70%;
+}
+.qn{
+    height:200px;
+    border-radius: 5px;
+    width:40em;
+    margin:10px 0 0px 60px
+}
+ 
+.fom{
+    width:40em;
+    margin:10px 0 0px 40px
+   
+}
+.full{
+    width:40em;
+    margin:10px 0 0px 40px;
+    height:40px;
+    border-radius: 5px;
+}
+.ema{
+    width:40em;
+    margin:10px 0 30px 40px;
+    height:40px;
+    border-radius: 5px;
+}
+.end{
+    margin: 20px 0 0 0;
+    width:90%
+}
+
+
+
+
+/* for mobile */
+
+@media screen and (max-width:768px){
+    body,html{
+        width:'100%';
+        overflow-x: hidden !important;
+    }
+    .suport{
+        width: 100%;
+        margin: 5% 0% 2% 0;
+        background-color: whitesmoke;
+        height: 70em;
+        border-top: 5px solid blue;
+        border-bottom: 5px solid blue ;
+    }
+    .help{
+       margin: 5% 0% 0% 5%;
+       width: 100%;
+    }
+    .qn{
+        height:300px;
+        border-radius: 5px;
+        width:20em;
+        margin: 20px 0 0 0;
+    }
+     
+    .fom{
+        width:20em;
+        margin:10px 0 0px 0px
+       
+    }
+    .full{
+        width:20em;
+        margin:10px 0 0px 0px;
+        height:40px;
+        border-radius: 5px;
+    }
+    .ema{
+        width:20em;
+        margin:10px 0 30px 0px;
+        height:40px;
+        border-radius: 5px;
+    }
+    .end{
+        margin: 20px 40px 0 0px;
+        text-align: justify;
+    }
+   
+}

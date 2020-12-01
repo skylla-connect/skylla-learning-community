@@ -14,14 +14,14 @@ import CloudDoneIcon from '@material-ui/icons/CloudDone';
 import DeveloperModeIcon from '@material-ui/icons/DeveloperMode';
 import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 import HealingIcon from '@material-ui/icons/Healing';
-// import SettingsRemoteIcon from '@material-ui/icons/SettingsRemote';
+import {Link} from 'react-router-dom'
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
 import OpenWithIcon from '@material-ui/icons/OpenWith';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import SettingsInputAntennaIcon from '@material-ui/icons/SettingsInputAntenna';
-//  import Cart from '../../../client/src/app/components/Module/Module'
+// import LiveSupport2 from '../app/config/routes'
 
 
 function TabPanel(props) {
@@ -56,20 +56,6 @@ function a11yProps(index) {
     'aria-controls': `nav-tabpanel-${index}`,
   };
 }
-
-// function LinkTab(props) {
-//   return (
-//     <Tab
-//       component="a"
-//       backgroundColor='#ddd'
-//       color='white'
-//       onClick={(event) => {
-//         event.preventDefault();
-//       }}
-//       {...props}
-//     />
-//   );
-// }
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -251,7 +237,7 @@ export default function NavTabs() {
 
         <div className='para2'>
             <p style={{margin:'20px 0% 0 15%'}}>
-              Need help? We are always here for you  <button className='butt'>Live Support</button>
+              Need help? We are always here for you  <button className='butt'><Link to='/liveSupport2' style={{color:'white'}}> Live Support</Link></button>
             </p>
             
         </div>
