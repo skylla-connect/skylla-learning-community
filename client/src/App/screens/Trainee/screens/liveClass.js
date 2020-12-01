@@ -10,14 +10,31 @@ import 'firebase/firestore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      display: 'flex',
-      width: '95%',
+      width: '35%',
       margin: '2% 0 0 2.5%'
     },
 
     title: {
         fontSize: 14,
     },
+
+    active: {
+      backgroundColor: 'green',
+      width: 10,
+      height: 10,
+      float: 'right',
+      marginTop: '5%',
+      borderRadius: '50%',
+      animationName: '$active',
+      animationDuration: '1s',
+      animationTimingFunction: 'linear',
+      animationIterationCount:'infinite',
+    },
+
+    '@keyframes active': {
+      from: {opacity: 1},
+      to: {opacity: 0}
+    }
     
 }));
   
@@ -28,7 +45,7 @@ export default function ClassLink () {
         
     React.useEffect(() => {
         const fetchData = async () => {
-            let user = FirebaseContext.auth().currentUser;   
+            // let user = FirebaseContext.auth().currentUser;   
             let db = FirebaseContext.firestore().collection('users/admin/dashboard/module/modules');
             
             db.onSnapshot(function(data){
@@ -40,12 +57,43 @@ export default function ClassLink () {
 
 
   return (
-    <div style={{padding:50}}>
+    <div style={{paddingTop:50, display: 'flex',}}>    
+    <Card className={classes.root}>
+      <Typography variant="h5" component="h2" align='center'>
+          Pending Classes
+      </Typography>
     {liveClassDetails.map((liveclass) => (
-    <Card key={liveclass.id} className={classes.root}>
+      <div key={liveclass.id} >
       <CardContent>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h6" component="h2">
             {liveclass.module}
+        </Typography>
+        <Typography variant="body2" component="p">
+          {liveclass.description}
+        </Typography>
+        <Typography variant="body2" component="p">
+          {liveclass.content}
+        </Typography>
+      </CardContent>
+      {/* <CardActions>
+        <Button size="small"><a href={liveclass.link}>JOIN</a></Button>
+      </CardActions> */}
+      </div>
+    ))}
+    </Card>
+
+    <Card className={classes.root}>
+      <Typography variant="h5" component="h2" align='center'>
+          Ongoing Classes
+      </Typography>
+    {liveClassDetails.map((liveclass) => (
+      <div key={liveclass.id} >
+      <CardContent>
+        <Typography variant="h6" component="h2">
+            {liveclass.module} <div className={classes.active}/>
+        </Typography>
+        <Typography variant="body2" component="p">
+          {liveclass.description}
         </Typography>
         <Typography variant="body2" component="p">
           {liveclass.content}
@@ -54,8 +102,33 @@ export default function ClassLink () {
       <CardActions>
         <Button size="small"><a href={liveclass.link}>JOIN</a></Button>
       </CardActions>
-    </Card>
+      </div>
     ))}
+    </Card>
+
+    <Card className={classes.root}>
+      <Typography variant="h5" component="h2" align='center'>
+          Completed Classes
+      </Typography>
+    {liveClassDetails.map((liveclass) => (
+      <div key={liveclass.id} >
+      <CardContent>
+        <Typography variant="h6" component="h2">
+            {liveclass.module}
+        </Typography>
+        <Typography variant="body2" component="p">
+          {liveclass.description}
+        </Typography>
+        <Typography variant="body2" component="p">
+          {liveclass.content}
+        </Typography>
+      </CardContent>
+      {/* <CardActions>
+        <Button size="small"><a href={liveclass.link}>JOIN</a></Button>
+      </CardActions> */}
+      </div>
+    ))}
+    </Card>
     </div>
   );
 }
