@@ -30,6 +30,7 @@ import {FormControl, withStyles, CardHeader, InputLabel,
     TableFooter, RadioGroup, Paper, Radio, Accordion, IconButton, AccordionDetails, AccordionSummary } from '@material-ui/core';
 import useCallbackStatus from '../../utils/use-callback-status';
 import { withFirebase } from '../../../firebase';
+import { completePayment } from '../cart/sandbox';
 
 
 
@@ -304,10 +305,17 @@ const StyledToggleButton = withStyles({
   export function MoMoPay () {
       const [name, setName] = React.useState("momo");
       const [value, setValue] = React.useState("momo");
+      const [partyId, setPartyId] = React.useState("");
+      const dispatch = React.useContext(dispatchCTX);
+
       const handleChangeCard = (event) => {
           setValue(event.target.value);
           setName(event.target.name);
       }
+      const handleChangeEvent = (event) => {
+        setPartyId(event.target.value);
+        dispatch({type: "partyId", payload: event.target.value});
+    };
       return (
           <RadioGroup
           name={name}
@@ -326,62 +334,19 @@ const StyledToggleButton = withStyles({
     </AccordionSummary>
     <AccordionDetails>
     <Card style={{
+            width: "100%",
             backgroundColor: "#FFF",
             padding: "30px 25px"}}>
             <FormGroup style={{backgroundColor: "#fff"}}>
             <TextFieldMui 
                 type ="text"
                 variant="outlined"
-                label = "Name on Card"
+                label = "Phone number"
+                value={partyId}
+                onChange={handleChangeEvent}
                 inputProps ={{ style: {fontSize: '13.5px'}}}
                 />
             </FormGroup>
-            <FormGroup style={{backgroundColor: "#fff", marginTop: "10px" }}>
-            <TextFieldMui 
-                type ="text"
-                variant="outlined"
-                label = "Card Number"
-                inputProps ={{ style: {fontSize: '13.5px'}}}
-            />
-            </FormGroup>
-        <div style={{display: "flex", justifyContent: "space-between", marginTop: "10px"}} >
-            <div style={{ display: "flex"}}>
-                <FormGroup style={{width: "100px" ,backgroundColor: colors.base}}>
-                    <TextFieldMui 
-                        type ="text"
-                        variant="outlined"
-                        label = "MM"
-                        inputProps ={{ style: {fontSize: '13px'}}}
-                        />
-                </FormGroup>
-                <FormGroup style={{width: "100px", backgroundColor: colors.base}}>
-                    <TextFieldMui 
-                        inputProps ={{ style: {fontSize: '13px'}}}
-                        type ="text"
-                        variant="outlined"
-                        label = "YYYY"
-                        />
-                </FormGroup>
-            </div>
-            <FormGroup style={{width: "100px", backgroundColor: colors.base}}>
-                <TextFieldMui 
-                    type ="text"
-                    variant="outlined"
-                    inputProps ={{ style: {fontSize: '13.5px'}}}
-                    label = "CCV"
-                    />
-            </FormGroup>
-        </div>
-        <FormGroup style={{display: "flex", flexDirection: 'row', marginTop: "30px"}}>
-            <TextField
-            type="checkbox"
-            variant="outlined"
-            checked={true}
-            />
-            <Typography variant="caption" style={{paddingLeft: "30px"}}>
-                Remember this Card
-            </Typography>
-        </FormGroup>
         </Card>
     </AccordionDetails>
     </Accordion>
@@ -406,42 +371,6 @@ const StyledToggleButton = withStyles({
                 inputProps ={{ style: {fontSize: '13.5px'}}}
                 />
             </FormGroup>
-            <FormGroup style={{backgroundColor: "#fff", marginTop: "10px" }}>
-            <TextFieldMui 
-                type ="text"
-                variant="outlined"
-                label = "Card Number"
-                inputProps ={{ style: {fontSize: '13.5px'}}}
-            />
-            </FormGroup>
-        <div style={{display: "flex", justifyContent: "space-between", marginTop: "10px"}} >
-            <div style={{ display: "flex"}}>
-                <FormGroup style={{width: "100px" ,backgroundColor: colors.base}}>
-                    <TextFieldMui 
-                        type ="text"
-                        variant="outlined"
-                        label = "MM"
-                        inputProps ={{ style: {fontSize: '13px'}}}
-                        />
-                </FormGroup>
-                <FormGroup style={{width: "100px", backgroundColor: colors.base}}>
-                    <TextFieldMui 
-                        inputProps ={{ style: {fontSize: '13px'}}}
-                        type ="text"
-                        variant="outlined"
-                        label = "YYYY"
-                        />
-                </FormGroup>
-            </div>
-            <FormGroup style={{width: "100px", backgroundColor: colors.base}}>
-                <TextFieldMui 
-                    type ="text"
-                    variant="outlined"
-                    inputProps ={{ style: {fontSize: '13.5px'}}}
-                    label = "CCV"
-                    />
-            </FormGroup>
-        </div>
         </Card>
     </AccordionDetails>
     </Accordion> 
@@ -515,17 +444,21 @@ const Checkout = (props) => {
     const handleCheckout = (event) => {
         event.preventDefault();
         setLoading(true);
-        const {cardDetails, billingAddress, totalPrice } = context;
+        const {cardDetails, billingAddress, totalPrice, partyId } = context;
         const orderDetails = {
             userId : props.firebase.auth.currentUser.uid,
             course: data,
             payment: context,
         }
-        props.firebase.doAddItemToCart(orderDetails)
-        .then(() => {
-            setLoading(false)
-            props.history.push(`/cart/module/message`)
-        })
+        completePayment(partyId, "10000").then(() => {
+            return ( props.firebase.doAddItemToCart(orderDetails)
+            .then(() => {
+                setLoading(false)
+                props.history.push(`/cart/module/message`)
+            }).catch(err => console.log(err)))
+        }).catch(err => console.log(err))
+       
+       
     }
     async function getModule(bookId) {
         return await (props.firebase.doGetModule(bookId)
@@ -612,12 +545,15 @@ const Checkout = (props) => {
                     </FormGroup>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                <Card style={{
+                <Card css={{
                         display: 'flex',
                         flexDirection: "column",
                         justifyContent: 'center',
                         alignItems: 'center',
                         width: "165%",
+                        [mq.small]: {
+                            width: '100%'
+                        },
                         height: 'inherint',
                         // padding: "20px 15px"
                     }}>
@@ -628,17 +564,17 @@ const Checkout = (props) => {
                                     <TableBody>
                                         <TableRow>
                                             <TableCell>Original Price: </TableCell>
-                                            <TableCell>Ush. {props.price} || 50000.00</TableCell>
+                                            <TableCell>Ush. 50000.00</TableCell>
                                         </TableRow>
                                        <TableRow>
                                             <TableCell>Coupon Discounts: </TableCell>
-                                            <TableCell>Ugx. {props.discount} || 0.00 </TableCell>
+                                            <TableCell>Ugx. 0.00 </TableCell>
                                        </TableRow>
                                     </TableBody>
                                     <TableFooter>
                                         <TableRow>
                                             <TableCell>Total</TableCell>
-                                        <TableCell>Ugx. {props.price - props.discount} || 50000.00 </TableCell>
+                                        <TableCell>Ugx. 50000.00 </TableCell>
                                         </TableRow>
                                     </TableFooter>
                                 </Table>

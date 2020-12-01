@@ -7,6 +7,7 @@ const initialState = {
     cardDetails: {},
     billingAddress: "",
     totalPrice: 0,
+    partyId: "",
 }
 export const reducer = (state=initialState, action) =>{
     switch (action.type) {
@@ -30,6 +31,11 @@ export const reducer = (state=initialState, action) =>{
             return {
                 ...state 
             };
+        case "partyId":
+        state.partyId = action.payload;
+        return {
+            ...state 
+        };
         case "checkout":
             return initialState;    
         default:
