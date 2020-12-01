@@ -1,0 +1,22 @@
+.mymenu{
+    height: 150px;
+    width: 100%;
+    background-color: blue;
+    color:white;
+    text-align: center;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .mymenu{
+        height:250px;
+        width:100%;
+        background-color: blue;
+        color:white;
+        text-align: center;
+        font-size: smaller;
+    }
+    
+
+}

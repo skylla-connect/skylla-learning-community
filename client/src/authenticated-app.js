@@ -8,8 +8,9 @@ import Trainee from './app/screens/Trainee/index';
 import { useUser } from './App';
 import withAuthorization from './app/session/withAuthorization';
 import { FullPageSpinner } from './app/components';
-import LiveSupport from './LiveSupport/LiveSupport'
-import LiveSupport2 from './LiveSupport2/LiveSupport2'
+import LiveSupport from './LiveSupport/LiveSupport';
+import LiveSupport2 from './LiveSupport/LiveSupport';
+import  CartSuccess from './CartSuccess/CartSuccess'
 
 const Athenticated = () => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);
@@ -40,6 +41,7 @@ function Routes(props) {
                 <Route path={ROUTES.TRAINEE} component={Trainee} />
                 <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 <Route path={ROUTES.LIVE_SUPPORT2} component={LiveSupport2} />
+                <Route path={ROUTES.CARTSUCCESS} component={CartSuccess} />
         
 
                 <Route path="/">
