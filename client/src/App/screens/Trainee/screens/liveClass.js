@@ -11,7 +11,9 @@ import 'firebase/firestore';
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '35%',
-      margin: '2% 0 0 2.5%'
+      height: 500,
+      margin: '2% 0 0 2.5%',
+      overflowY:'auto'
     },
 
     title: {
@@ -59,11 +61,20 @@ export default function ClassLink () {
   return (
     <div style={{paddingTop:50, display: 'flex',}}>    
     <Card className={classes.root}>
-      <Typography variant="h5" component="h2" align='center'>
+      <Typography 
+        variant="h5" 
+        component="h2" 
+        align='center'
+        style={{
+          width: '23%',
+          position: 'fixed', 
+          backgroundColor: 'whitesmoke',
+        }}
+      >
           Pending Classes
       </Typography>
     {liveClassDetails.map((liveclass) => (
-      <div key={liveclass.id} >
+      <div key={liveclass.id} style={{paddingTop:20}}>
       <CardContent>
         <Typography variant="h6" component="h2">
             {liveclass.module}
@@ -83,11 +94,20 @@ export default function ClassLink () {
     </Card>
 
     <Card className={classes.root}>
-      <Typography variant="h5" component="h2" align='center'>
+    <Typography 
+        variant="h5" 
+        component="h2" 
+        align='center'
+        style={{
+          width: '23%',
+          position: 'fixed', 
+          backgroundColor: 'whitesmoke',
+        }}
+      >
           Ongoing Classes
       </Typography>
     {liveClassDetails.map((liveclass) => (
-      <div key={liveclass.id} >
+      <div key={liveclass.id} style={{paddingTop:20}}>
       <CardContent>
         <Typography variant="h6" component="h2">
             {liveclass.module} <div className={classes.active}/>
@@ -107,12 +127,21 @@ export default function ClassLink () {
     </Card>
 
     <Card className={classes.root}>
-      <Typography variant="h5" component="h2" align='center'>
+    <Typography 
+        variant="h5" 
+        component="h2" 
+        align='center'
+        style={{
+          width: '23%',
+          position: 'fixed', 
+          backgroundColor: 'whitesmoke',
+        }}
+      >
           Completed Classes
       </Typography>
     {liveClassDetails.map((liveclass) => (
-      <div key={liveclass.id} >
-      <CardContent>
+      <div key={liveclass.id} style={{paddingTop:20}}>
+      <CardContent style={{color: 'grey'}}>
         <Typography variant="h6" component="h2">
             {liveclass.module}
         </Typography>
