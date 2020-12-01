@@ -18,6 +18,7 @@
     "mtn-pay": "0.0.5",
     "react": "^16.13.1",
     "react-async": "^7.0.6",
+    "react-country-region-selector": "^3.0.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
     "react-redux": "^7.2.1",

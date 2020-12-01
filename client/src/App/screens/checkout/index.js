@@ -2,7 +2,7 @@
 import {jsx} from '@emotion/core';
 
 import React, { useState } from 'react';
-import { NavLink as Link } from "react-router-dom";
+import { CountryRegionData } from "react-country-region-selector";
 import * as colors from "../../styles/colors";
 import Footer from "../../components/Footer/footer";
 import TextFieldMui from "../components/textField";
@@ -435,10 +435,12 @@ const Checkout = (props) => {
     const dispatch = React.useContext(dispatchCTX);
     const context = React.useContext(stateCTX);
     const [loading, setLoading] = React.useState(false)
+    const [country, setCountry] = React.useState('select country');
     const classes = useStyles();
     const learnContent = ["content", "content", "content", "content", "content", "content"]
     const handleChangeEvent = (event) => {
         event.preventDefault();
+        setCountry(event.target.value)
         dispatch({type: "address", payload: event.target.value});
     };
     const handleCheckout = (event) => {
@@ -511,18 +513,21 @@ const Checkout = (props) => {
                     <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel id="demo-simple-select-outlined-label">Billing Address</InputLabel>
                         <Select
-                        style={{height: "35px"}}
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        value={learnContent}
-                        onChange={handleChangeEvent}
+                        style={{height: "35px", fontSize: '14px'}}
                         label="Billing Address"
+                        labelId="demo-simple-select-outlined-label"
+                        inputProps={{
+                            name: "Billing Address",
+                            id: "demo-simple-select-outlined"
+                        }}
+                        value={country}
+                        onChange={handleChangeEvent}
                         >
                          <MenuItem value="" disabled><em>Country</em></MenuItem>
-                        {learnContent.map( (item, index) => {
+                        {CountryRegionData.map( (item, index) => {
                             return (
-                                <MenuItem value={item} key={index}>
-                                    {item}
+                                <MenuItem value={item[0]} key={item[0]}>
+                                    {item[0]}
                                 </MenuItem>
                             );
                         })}
