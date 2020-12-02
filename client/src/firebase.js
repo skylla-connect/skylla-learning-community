@@ -33,32 +33,48 @@ class Firebase {
     doCreateNewUser = async (userCredentials) => 
     await this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);
 
+    doAddItemToOrders = async (userOrderDetails) => {
+        return await this.db.doc(`/orders/${userOrderDetails.userId}`).get()
+        .then(snapshot => {
+            if (snapshot.exists){
+                return this.db
+                .doc(`/orders/${userOrderDetails.userId}/items/${userOrderDetails.courseName}`)
+                .set(userOrderDetails);
+            } else {
+                return this.db.doc(`/orders/${userOrderDetails.userId}`).set(userOrderDetails);
+            }
+        });
+    }
+
+    doGetUserOrders = (userId) => 
+     this.db.doc(`/ordes/${userId}`).get();
+
     doGetUserAdmin = (userId) => {
-        this.db.doc(`/users/admin`)
-        .where("uid", "===", userId)
-        .limit(1)
+        return this.db.doc(`/users/admin/users/${userId}`)
         .get()
-        .then(data => {
-            return data
-        }); 
     }
     doGetUserTrainer = (userId) => {
-        this.db.doc(`/users/trainer`)
-        .where("uid", "===", userId)
-        .limit(1)
-        .get()
-        .then(data => {
-            return data
-        }); 
+        return this.db.doc(`/users/trainer/users/${userId}`)
+        .get() 
     }
     doGetUserTrainee = (userId) => {
-        this.db.doc(`/users/trainee`)
-        .where("uid", "===", userId)
-        .limit(1)
+        return this.db.doc(`/users/trainee/users/${userId}`)
+        .get() 
+    }
+    doGetModule = (moduleId) => {
+        return this.db.doc(`/modules/${moduleId}`)
+        .get() 
+    }
+    doGetModules = async () => {
+        const allModules = await this.db.collection(`/modules`)
         .get()
-        .then(data => {
-            return data
-        }); 
+        return allModules;
+    }
+    doSearch = async (query) => {
+        return this.db.collection("modules")
+        .orderBy("title")
+        .where("title", ">=", query)
+        .where("title", "<=", query + "z")
     }
 }
 export default Firebase;

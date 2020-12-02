@@ -16,7 +16,7 @@ const styles = {
 };
 const TextFieldMui = ({...props}) => {
     const [showPassword, setShowPassword] = useState(false);
-    if (props.type == "password") {
+    if (props.type === "password") {
         const handleClickShowPassword = () => setShowPassword(!showPassword);
         const {classes} = props;
         return ( 
