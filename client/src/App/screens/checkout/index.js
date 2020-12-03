@@ -437,7 +437,6 @@ const Checkout = (props) => {
     const [loading, setLoading] = React.useState(false)
     const [country, setCountry] = React.useState('select country');
     const classes = useStyles();
-    const learnContent = ["content", "content", "content", "content", "content", "content"]
     const handleChangeEvent = (event) => {
         event.preventDefault();
         setCountry(event.target.value)
@@ -459,7 +458,6 @@ const Checkout = (props) => {
                 props.history.push(`/cart/module/message`)
             }).catch(err => console.log(err)))
         }).catch(err => console.log(err))
-       
        
     }
     async function getModule(bookId) {
