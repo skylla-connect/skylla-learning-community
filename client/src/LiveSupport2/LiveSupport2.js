@@ -2,7 +2,7 @@ import React from 'react'
 import './LiveSupport2.css'
 import { Typography, Select, FormControl, Checkbox, Button} from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
-import Footer from '../app/components/Footer/footer'
+import Footer from '../App/components/Footer/footer'
 import {Link} from 'react-router-dom'
 
 

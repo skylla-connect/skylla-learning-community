@@ -4,7 +4,7 @@
     background-color: whitesmoke;
     height: 60em;
     border-top: 5px solid blue;
-    border-bottom: 5px solid blue ;
+    /* border-bottom: 5px solid blue ; */
 }
 
 .help{
