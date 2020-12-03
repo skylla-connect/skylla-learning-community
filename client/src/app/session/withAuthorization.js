@@ -15,6 +15,7 @@ class WithAuthorization extends React.Component {
             user: null,
             Role: "trainee",
             isLoading: true,
+            error: null,
         }
     }
     componentDidMount() {

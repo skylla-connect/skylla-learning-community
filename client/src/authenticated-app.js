@@ -1,3 +1,6 @@
+/** @jsx jsx */
+import {jsx} from '@emotion/core'
+
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
@@ -14,10 +17,34 @@ import Payment from './App/screens/Trainee/screens/cart/complete-payment/index';
 import SuccessPage from './App/screens/Trainee/screens/cart/CartSucess/index';
 // import LiveClass from './App/screens/Trainee/screens/liveClass';
 import LiveSupport from './App/screens/shared/LiveSupport/LiveSupport';
+import Product from './App/screens/productDetails';
+import CartApp  from './App/screens/cart';
+
+function NetworkError() {
+    return (
+      <div
+        css={{
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div>
+          <p css={{
+              fontSize: '18px',
+          }}>Sorry... something went wrong try refeshing the your browser, 
+              normally this happens due to bad internet connection.</p>
+        </div>
+      </div>
+    )
+  }
+  
+  export {NetworkError}
 
 const Athenticated = () => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);
-    const {user, isLoading} = useUser();
+    const {user, error, isLoading} = useUser();
 
     React.useLayoutEffect(() => {
         if (!isLoading) {
@@ -27,6 +54,11 @@ const Athenticated = () => {
     
       if (!firstAttemptFinished) {
           return <FullPageSpinner />
+      }
+      if (error) {
+          return (
+              <NetworkError/>
+          );
       }
     return ( 
         <Routes authUser={user}/>
@@ -48,6 +80,7 @@ function Routes(props) {
                 <Route path={ROUTES.SUCCESS_PAGE} component={SuccessPage} />
                 <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 {/* <Route path={ROUTES.LIVE_CLASS} component={LiveClass} /> */}
+                <Route path="/cart" component={CartApp} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}

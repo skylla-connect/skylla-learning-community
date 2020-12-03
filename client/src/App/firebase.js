@@ -42,6 +42,21 @@ class Firebase {
     // Create a new trainer
     doCreateNewTrainer = async (userCredentials) => 
     await this.db.doc(`/users/trainer/sys_trainers/${userCredentials.userId}`).set(userCredentials);
+    doAddItemToOrders = async (userOrderDetails) => {
+        return await this.db.doc(`/orders/${userOrderDetails.userId}`).get()
+        .then(snapshot => {
+            if (snapshot.exists){
+                return this.db
+                .doc(`/orders/${userOrderDetails.userId}/items/${userOrderDetails.courseName}`)
+                .set(userOrderDetails);
+            } else {
+                return this.db.doc(`/orders/${userOrderDetails.userId}`).set(userOrderDetails);
+            }
+        });
+    }
+
+    doGetUserOrders = (userId) => 
+     this.db.doc(`/ordes/${userId}`).get();
 
     doGetUserAdmin = (userId) => {
         return this.db.doc(`/users/admin/users/${userId}`)
@@ -59,6 +74,21 @@ class Firebase {
     doCreateNewModule = async (userCredentials) => 
     await this.db.doc(`/users/admin/dashboard/module/modules${userCredentials.userId}`).set(userCredentials);
     
+    doGetModule = (moduleId) => {
+        return this.db.doc(`/modules/${moduleId}`)
+        .get() 
+    }
+    doGetModules = async () => {
+        const allModules = await this.db.collection(`/modules`)
+        .get()
+        return allModules;
+    }
+    doSearch = async (query) => {
+        return this.db.collection("modules")
+        .orderBy("title")
+        .where("title", ">=", query)
+        .where("title", "<=", query + "z")
+    }
 }
 export default Firebase;
 const FirebaseContext = React.createContext(null);
