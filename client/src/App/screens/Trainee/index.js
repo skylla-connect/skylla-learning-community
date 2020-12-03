@@ -282,13 +282,16 @@ export default function PersistentDrawerLeft() {
               </div>
 
               <div style={{textAlign: 'center'}}>
-                <img 
-                  src="https://cdn0.iconfinder.com/data/icons/business-startup-10/50/57-128.png" 
-                  alt=""
-                  width="20%" />
-                <Typography variant="body2">
-                  Quiz &amp; Tests 
-                </Typography>
+                <Link to ={ROUTES.QUIZTESTS}>
+                  <img 
+                    src="https://cdn0.iconfinder.com/data/icons/business-startup-10/50/57-128.png" 
+                    alt=""
+                    width="20%" />
+                  <Typography variant="body2" style={{color:'white'}}>
+                    Quiz &amp; Tests 
+                  </Typography>
+                
+                </Link>
               </div>
 
               <div style={{textAlign: 'center'}}>

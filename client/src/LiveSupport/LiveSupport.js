@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper,Divider,Typography } from '@material-ui/core';
+import {Paper,Divider,Typography } from '@material-ui/core';
 import Footer from '../App/components/Footer/footer'
 import MenuLive from '../LiveSupport/MenuLive'
 import Tabs from '../LiveSupport/Tabs'

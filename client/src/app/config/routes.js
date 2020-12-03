@@ -14,3 +14,4 @@ export const INTERVIEWS = '/interviews';
 export const PAYMENT = '/payment';
 export const LIVE_SUPPORT ='/support';
 export const SUCCESS_PAGE = '/success';
+export const QUIZTESTS ='/quiz'
