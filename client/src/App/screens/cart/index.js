@@ -15,6 +15,7 @@ import Navbar from '../components/navbar-checkout';
 import YourModules from './imodules';
 import OrderProvider from '../../session/order-context';
 import Product from '../productDetails';
+import CartSuccess from './success-message';
 
 function CartApp({match}) {
     return (
@@ -46,6 +47,7 @@ function CartApp({match}) {
                   <Discover path={`${match.path}/discover`} />
                   <YourModules path={`${match.path}/finished`} />
                   <Product path={`${match.path}/module/:moduleId`} />
+                  <CartSuccess path={`${match.path}/successmessage`} />
                   <Checkout path={`${match.path}/checkout/:moduleId`}/>
               </Router>
             </OrderProvider>
@@ -112,7 +114,7 @@ const NavLink = styled(Link)({
           </li>
           <li>
             <NavLink to={`${match.url}/discover`}>
-              Purchase Modules
+              Purchase
             </NavLink>
           </li>
         </ul>

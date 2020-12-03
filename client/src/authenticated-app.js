@@ -11,7 +11,6 @@ import Trainee from './App/screens/Trainee/index';
 import { useUser } from './App';
 import withAuthorization from './App/session/withAuthorization';
 import { FullPageSpinner } from './App/components';
-import Product from './App/screens/productDetails';
 import CartApp  from './App/screens/cart';
 
 function NetworkError() {

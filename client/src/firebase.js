@@ -38,10 +38,10 @@ class Firebase {
         .then(snapshot => {
             if (snapshot.exists){
                 return this.db
-                .doc(`/orders/${userOrderDetails.userId}/items/${userOrderDetails.courseName}`)
-                .set(userOrderDetails);
+                .collection(`/orders/${userOrderDetails.userId}/items`)
+                .add(userOrderDetails);
             } else {
-                return this.db.doc(`/orders/${userOrderDetails.userId}`).set(userOrderDetails);
+                return this.db.collection(`/orders/${userOrderDetails.userId}/items`).add(userOrderDetails);
             }
         });
     }

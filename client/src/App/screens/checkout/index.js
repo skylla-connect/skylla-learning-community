@@ -451,13 +451,18 @@ const Checkout = (props) => {
             course: data,
             payment: context,
         }
-        completePayment(partyId, "10000").then(() => {
-            return ( props.firebase.doAddItemToCart(orderDetails)
+        props.firebase.doAddItemToOrders(orderDetails)
             .then(() => {
                 setLoading(false)
-                props.history.push(`/cart/module/message`)
-            }).catch(err => console.log(err)))
-        }).catch(err => console.log(err))
+                props.history.push(`/cart/successmessage`)
+            }).catch(err => console.log(err))
+        // completePayment(partyId, "10000").then(() => {
+        //     return ( props.firebase.doAddItemToCart(orderDetails)
+        //     .then(() => {
+        //         setLoading(false)
+        //         props.history.push(`/cart/successmessage`)
+        //     }).catch(err => console.log(err)))
+        // }).catch(err => console.log(err))
        
     }
     async function getModule(bookId) {

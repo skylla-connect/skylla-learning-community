@@ -5,10 +5,6 @@ import * as ROUTES from "./App/config/routes";
 import {SignUpPage} from './App/screens/signup/index';
 import SignInPage from './App/screens/login/index';
 import PasswordReset from './App/screens/resetPassword/index';
-import Product from './App/screens/productDetails';
-import Checkout from './App/screens/checkout';
-import Store from "./App/session/checkout-context";
-import CartApp from "./App/screens/cart";
 
 const Unathenticated = () => {
     return ( 
