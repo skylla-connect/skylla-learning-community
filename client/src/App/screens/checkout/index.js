@@ -25,14 +25,30 @@ import { FormGroup, Spinner} from '../../components';
 import Button from '@material-ui/core/Button';
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import ToggleButton from "@material-ui/lab/ToggleButton";
-import {FormControl, withStyles, CardHeader, InputLabel, 
-    MenuItem, Select, Table, TableBody, TableCell, TextField, TableRow, 
-    TableFooter, RadioGroup, Paper, Radio, Accordion, IconButton, AccordionDetails, AccordionSummary } from '@material-ui/core';
+import {
+    FormControl, 
+    withStyles, 
+    CardHeader, 
+    InputLabel, 
+    MenuItem, 
+    Select, 
+    Table, 
+    TableBody, 
+    TableCell, 
+    TextField, 
+    TableRow, 
+    TableFooter, 
+    RadioGroup, 
+    Paper, 
+    Radio, 
+    Accordion, 
+    IconButton, 
+    AccordionDetails, 
+    AccordionSummary 
+} from '@material-ui/core';
 import useCallbackStatus from '../../utils/use-callback-status';
 import { withFirebase } from '../../firebase';
 import { completePayment } from '../cart/sandbox';
-
-
 
 const StyledToggleButton = withStyles({
     root: {
@@ -400,20 +416,22 @@ const StyledToggleButton = withStyles({
     ];
     return (
         <FormGroup>
-        <Card>
-             <hr className={classes.divider}/>
-           <div style={{textAlign: 'center'}} className={`row ${classes.rowContainer}`}>
-      </div>
-          <StyledGroupButton value={alignment} exclusive onChange={handleChange}>
-            {children}
-          </StyledGroupButton>
-        </Card>
-         <Paper style={{padding: "20px", margin: "10px 0px"}}>
-         {
-         alignment === "left" ? <MoMoPay />:
-        <Savedcards />
-         }
-      </Paper>
+            <Card>
+                <hr className={classes.divider}/>
+            <div 
+                style={{textAlign: 'center'}} 
+                className={`row ${classes.rowContainer}`}
+                ></div>
+            <StyledGroupButton value={alignment} exclusive onChange={handleChange}>
+                {children}
+            </StyledGroupButton>
+            </Card>
+            <Paper style={{padding: "20px", margin: "10px 0px"}}>
+            {
+            alignment === "left" ? <MoMoPay />:
+            <Savedcards />
+            }
+        </Paper>
       </FormGroup>
       );
     }
@@ -421,6 +439,8 @@ const StyledToggleButton = withStyles({
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
+      width: '100%', 
+      margin: 'auto',
     },
     grid: {
       width: '100%', 
@@ -437,7 +457,7 @@ const Checkout = (props) => {
     const [loading, setLoading] = React.useState(false)
     const [country, setCountry] = React.useState('select country');
     const classes = useStyles();
-    const learnContent = ["content", "content", "content", "content", "content", "content"]
+    // const learnContent = ["content", "content", "content", "content", "content", "content"]
     const handleChangeEvent = (event) => {
         event.preventDefault();
         setCountry(event.target.value)
@@ -499,153 +519,184 @@ const Checkout = (props) => {
     const {title, author, coverImageUrl, publisher, synopsis} = book;
     return ( 
         <div className={classes.root}>
-        <Grid container spacing={6} className={classes.grid}>
-            <Grid container spacing={6} style={{
-                display: 'flex',
-                justifyContent: 'space-evenly',
-               }} className={classes.grid}>
-                <Grid item xs={12} sm={8} style={{marginTop: '40px'}}>
-                    <Typography variant="h6">Checkout</Typography>
-                    <FormGroup style={{
-                        width: "220px",
-                        height: "45px"
-                    }}>
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel id="demo-simple-select-outlined-label">Billing Address</InputLabel>
-                        <Select
-                        style={{height: "35px", fontSize: '14px'}}
-                        label="Billing Address"
-                        labelId="demo-simple-select-outlined-label"
-                        inputProps={{
-                            name: "Billing Address",
-                            id: "demo-simple-select-outlined"
-                        }}
-                        value={country}
-                        onChange={handleChangeEvent}
-                        >
-                         <MenuItem value="" disabled><em>Country</em></MenuItem>
-                        {CountryRegionData.map( (item, index) => {
-                            return (
-                                <MenuItem value={item[0]} key={item[0]}>
-                                    {item[0]}
-                                </MenuItem>
-                            );
-                        })}
-                        </Select>
-                    </FormControl>
-                    </FormGroup>
-                    <FormGroup>
-                        <ObjectViewCard 
-                        leftButtonContent={
-                        <span>
-                            <PhoneIphoneOutlined 
-                            // style={{color: colors.gray20}} 
-                            className={classes.icon}/> Mobile Money
-                        </span>} 
-                        rightButtonContent={
-                            <span>
-                             Credit or Debit Card
-                            </span>
-                        }/>
-                    </FormGroup>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                <Card css={{
-                        display: 'flex',
-                        flexDirection: "column",
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: "165%",
-                        [mq.small]: {
-                            width: '100%'
-                        },
-                        height: 'inherint',
-                        // padding: "20px 15px"
-                    }}>
-                        <CardHeader title="Summary"/>
-                        <CardContent>
+            <Grid container spacing={6} className={classes.grid}>
+                <Grid container spacing={6} style={{
+                    display: 'flex',
+                    justifyContent: 'space-evenly',
+                    }} className={classes.grid}>
+                        <Grid item xs={12} sm={8} style={{marginTop: '40px'}}>
+                            <Typography variant="h6" style={{
+                                margin: '20px'
+                            }}>
+                                Checkout
+                            </Typography>
+
+                            <FormGroup style={{
+                                // width: "220px",
+                                    height: "45px"
+                                }}>
+
+                                <FormControl variant="outlined" className={classes.formControl}>
+                                    <InputLabel id="demo-simple-select-outlined-label">
+                                        Billing Address
+                                    </InputLabel>
+                                    <Select
+                                    style={{height: "35px", fontSize: '14px'}}
+                                    label="Billing Address"
+                                    labelId="demo-simple-select-outlined-label"
+                                    inputProps={{
+                                        name: "Billing Address",
+                                        id: "demo-simple-select-outlined"
+                                    }}
+                                    value={country}
+                                    onChange={handleChangeEvent}
+                                    >
+                                    <MenuItem value="" disabled>
+                                        <em>Country</em>
+                                    </MenuItem>
+                                    
+                                    {CountryRegionData.map( (item, index) => {
+                                        return (
+                                            <MenuItem value={item[0]} key={item[0]}>
+                                                {item[0]}
+                                            </MenuItem>
+                                        );
+                                    })}
+                                    </Select>
+                                </FormControl>
+                            </FormGroup>
+
+                            <FormGroup>
+                                <ObjectViewCard 
+                                leftButtonContent={
+                                <span>
+                                    <PhoneIphoneOutlined 
+                                    // style={{color: colors.gray20}} 
+                                    className={classes.icon}/> Mobile Money
+                                </span>} 
+                                rightButtonContent={
+                                    <span>
+                                    Credit or Debit Card
+                                    </span>
+                                }/>
+                            </FormGroup>
+                        </Grid>
+
+                        <Grid item xs={12} sm={4}>
+                            <Card css={{
+                                display: 'flex',
+                                flexDirection: "column",
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                width: "165%",
+                                [mq.small]: {
+                                    width: '100%'
+                                },
+                                height: 'inherint',
+                                // padding: "20px 15px"
+                            }}>
+                                <CardHeader title="Summary"/>
+                                    <CardContent>
+                                        <div>
+                                            <Table>
+                                                <TableBody>
+                                                    <TableRow>
+                                                        <TableCell>Original Price: </TableCell>
+                                                        <TableCell>Ush. 50000.00</TableCell>
+                                                    </TableRow>
+                                                    
+                                                    <TableRow>
+                                                            <TableCell>Coupon Discounts: </TableCell>
+                                                            <TableCell>Ugx. 0.00 </TableCell>
+                                                    </TableRow>
+                                                </TableBody>
+
+                                                <TableFooter>
+                                                    <TableRow>
+                                                        <TableCell>Total</TableCell>
+                                                    <TableCell>Ugx. 50000.00 </TableCell>
+                                                    </TableRow>
+                                                </TableFooter>
+                                            </Table>
+                                        </div>
+
+                                        <Typography style={{padding: "20px 0px"}} variant="body2">
+                                            <span style={{fontWeight: 'bold', marginRight: 5}}>
+                                                SKYLLA
+                                            </span> 
+                                            is required bt law to collect applicable
+                                            taxes for purcharses made in some tax juridications
+                                        </Typography>
+                                        <Typography variant="subtitle2">
+                                            By completing your purcharse you have agreed to these 
+                                            <a href="#">
+                                                Terms and Conditions
+                                            </a>
+                                        </Typography>
+                                        <div>
+                                            <FormGroup style={{paddingTop: "20px"}}>
+                                                <Button style={{backgroundColor: '#FF0000'}}
+                                                    variant="contained"
+                                                    color="primary"
+                                                    type="submit"
+                                                    onClick={handleCheckout}
+                                                    >
+                                                        Complete Payment
+                                                </Button>
+                                            </FormGroup>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={12} sm={12}>
                             <div>
-                                <Table>
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell>Original Price: </TableCell>
-                                            <TableCell>Ush. 50000.00</TableCell>
-                                        </TableRow>
-                                       <TableRow>
-                                            <TableCell>Coupon Discounts: </TableCell>
-                                            <TableCell>Ugx. 0.00 </TableCell>
-                                       </TableRow>
-                                    </TableBody>
-                                    <TableFooter>
-                                        <TableRow>
-                                            <TableCell>Total</TableCell>
-                                        <TableCell>Ugx. 50000.00 </TableCell>
-                                        </TableRow>
-                                    </TableFooter>
-                                </Table>
-                            </div>
-                            <Typography style={{padding: "20px 0px"}} variant="body2"><span style={{fontWeight: 'bold'}}>SKYLLA</span> is required bt law to collect applicable
-                            taxes for purcharses made in some tax juridications</Typography>
-                            <Typography variant="subtitle2">By completing your purcharse you have agreed to these 
-                                <a href="#">Terms and Conditions</a></Typography>
+                                <div
+                                    css={{
+                                    display: 'grid',
+                                    gridTemplateColumns: '1fr 2fr',
+                                    gridGap: '2em',
+                                    marginBottom: '1em',
+                                    [mq.small]: {
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                    },
+                                    }}
+                                >
+                                <img
+                                    src={coverImageUrl}
+                                    alt={`${title} book cover`}
+                                    css={{
+                                        width: '100%',
+                                        maxWidth: 200,
+                                    }}
+                                />
                             <div>
-                                <FormGroup style={{paddingTop: "20px"}}>
-                                    <Button style={{backgroundColor: '#FF0000'}}
-                                        variant="contained"
-                                        color="primary"
-                                        type="submit"
-                                        onClick={handleCheckout}
-                                        >Complete Payment</Button>
-                                </FormGroup>
+
+                            <div css={{display: 'flex', position: 'relative'}}>
+                                <div css={{flex: 1, justifyContent: 'space-between'}}>
+                                    <h1>{title}</h1>
+                                    <div>
+                                        <i>{author}</i>
+                                        <span css={{marginRight: 6, marginLeft: 6}}>|</span>
+                                        <i>{publisher}</i>
+                                    </div>
+                                </div>
                             </div>
-                        </CardContent>
-                    </Card>
-                </Grid>
+                            <br />
+                            <p>
+                                {synopsis}
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </Grid>
-            <Grid item xs={12} sm={12}>
-            <div>
-      <div
-        css={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 2fr',
-          gridGap: '2em',
-          marginBottom: '1em',
-          [mq.small]: {
-            display: 'flex',
-            flexDirection: 'column',
-          },
-        }}
-      >
-        <img
-          src={coverImageUrl}
-          alt={`${title} book cover`}
-          css={{
-            width: '100%',
-            maxWidth: 200,
-          }}
-        />
-        <div>
-          <div css={{display: 'flex', position: 'relative'}}>
-            <div css={{flex: 1, justifyContent: 'space-between'}}>
-              <h1>{title}</h1>
-              <div>
-                <i>{author}</i>
-                <span css={{marginRight: 6, marginLeft: 6}}>|</span>
-                <i>{publisher}</i>
-              </div>
-            </div>
-          </div>
-          <br />
-          <p>{synopsis}</p>
-        </div>
-      </div>
-    </div>
+                    
             </Grid>
-               
-        </Grid>
-        <Footer/>
+            
+            <Footer/>
         </div>
-     );
+    );
 }
  
 export default withFirebase(Checkout);

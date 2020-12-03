@@ -38,17 +38,23 @@ export default function SimpleMenu() {
 
         <MenuList style={{display: 'flex', width: '90%'}}>
             <MenuItem>
+                
                 <Tooltip title="WhatsApp" aria-label="WhatsApp" style={{color: '#0000FF'}}>
                     <Fab color="primary" className={classes.fab}>
+                    <a href="https://wa.me/0753473059" target='_blank' rel="noopener noreferrer" >
                         <WhatsAppIcon style={{color: '#00E676'}} />
+                    </a>
                     </Fab>
                 </Tooltip>
+                
             </MenuItem>
 
             <MenuItem >
                 <Tooltip title="Twitter" aria-label="Twitter" style={{color: '#0000FF'}}>
                     <Fab color="primary" className={classes.fab}>
-                        <TwitterIcon style={{color: '#1DA1F2'}} />
+                        <a href="https://www.twitter.com/skyllaconnect" target='_blank' rel="noopener noreferrer" >
+                          <TwitterIcon style={{color: '#1DA1F2'}} />
+                        </a>
                     </Fab>
                 </Tooltip>
             </MenuItem>
@@ -56,7 +62,9 @@ export default function SimpleMenu() {
             <MenuItem>
                 <Tooltip title="Facebook" aria-label="Facebook" style={{color: '#0000FF'}}>
                     <Fab color="primary" className={classes.fab}>
-                        <FacebookIcon style={{color: '#6294E4'}} />
+                        <a href="https://skyllaconnect.com" target='_blank' rel="noopener noreferrer" >
+                          <FacebookIcon style={{color: '#6294E4'}} />
+                        </a>
                     </Fab>
                 </Tooltip>
             </MenuItem>
@@ -64,7 +72,9 @@ export default function SimpleMenu() {
             <MenuItem>
                 <Tooltip title="GitHub" aria-label="GitHub" style={{color: '#0000FF'}}>
                     <Fab color="primary" className={classes.fab}>
-                        <GitHubIcon style={{color: '#000000'}} />
+                        <a href="https://github.com/" target='_blank' rel="noopener noreferrer" >
+                          <GitHubIcon style={{color: '#000000'}} />
+                        </a>
                     </Fab>
                 </Tooltip>
             </MenuItem>

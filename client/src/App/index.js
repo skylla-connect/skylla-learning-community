@@ -4,9 +4,6 @@ import {
   Route, 
   Switch 
 } from 'react-router-dom';
-// import firebase from './firebase';
-
-// import { createBrowserHistory as history} from 'history';
 
 import './index.css';
 // Material UI

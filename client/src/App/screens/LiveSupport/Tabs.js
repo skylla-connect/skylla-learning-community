@@ -14,14 +14,15 @@ import CloudDoneIcon from '@material-ui/icons/CloudDone';
 import DeveloperModeIcon from '@material-ui/icons/DeveloperMode';
 import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 import HealingIcon from '@material-ui/icons/Healing';
-// import SettingsRemoteIcon from '@material-ui/icons/SettingsRemote';
+import {Link} from 'react-router-dom'
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
 import OpenWithIcon from '@material-ui/icons/OpenWith';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 import SettingsInputAntennaIcon from '@material-ui/icons/SettingsInputAntenna';
-import Footer from '../../../components/Footer/footer';
+import Footer from '../../components/Footer/footer';
+import *as ROUTE from '../../config/routes';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -251,7 +252,11 @@ export default function NavTabs() {
 
         <div className='para2'>
             <p style={{margin:'20px 0% 0 15%'}}>
-              Need help? We are always here for you  <button className='butt'>Live Support</button>
+              Need help? We are always here for you  
+              <button className='butt'>
+                <Link to={ROUTE.CHAT} style={{color:'white'}}> 
+                  Live Support
+                </Link></button>
             </p>
             
         </div>
@@ -349,6 +354,7 @@ export default function NavTabs() {
 
       <TabPanel value={value} index={2} >
         How to purchase modules
+        <Link to='/module'> purchase</Link> 
       </TabPanel>
 
       <TabPanel value={value}index={3}>

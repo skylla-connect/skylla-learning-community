@@ -2,7 +2,7 @@
 import {jsx} from '@emotion/core'
 
 import styled from '@emotion/styled'
-import React from "react";
+// import React from "react";
 
 import * as colors from "../../styles/colors";
 import Checkout from '../checkout/index';
@@ -82,8 +82,9 @@ const NavLink = styled(Link)({
         css={{
           position: 'sticky',
           top: '2em',
-          padding: '3em 1.5em',
-          border: `1px solid ${colors.gray10}`,
+          padding: '0em 1.5em',
+          border: `1px solid black`,
+          boxShadow: '0 0 4px 0 #888888',
           borderRadius: '3px',
           [mq.small]: {
             padding: '0.5em 1em',
@@ -105,14 +106,15 @@ const NavLink = styled(Link)({
             },
           }}
         >
+           <li>
+            <NavLink to={`${match.url}/discover`}>
+              Purchase Modules
+            </NavLink>
+          </li>
+          
           <li>
             <NavLink to={`${match.url}/finished`}>
               Your Modules
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={`${match.url}/discover`}>
-              Purchase Modules
             </NavLink>
           </li>
         </ul>

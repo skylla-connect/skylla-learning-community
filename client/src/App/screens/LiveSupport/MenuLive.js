@@ -7,7 +7,7 @@ class MenuLive extends Component{
         return(
             <div className='mymenu' >
 
-              <a href="#general" > <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' 
+              <a href="/trainee" > <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' 
                 alt='pic'
                     style={{
                       maxWidth:'15%',

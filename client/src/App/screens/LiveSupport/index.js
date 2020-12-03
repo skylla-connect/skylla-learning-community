@@ -1,6 +1,6 @@
 import React from 'react'
-import MenuLive from '../LiveSupport/MenuLive'
-import Tabs from '../LiveSupport/Tabs'
+import MenuLive from './MenuLive'
+import Tabs from './Tabs'
 
 
 export default function LiveSupport() {
