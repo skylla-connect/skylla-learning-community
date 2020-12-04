@@ -1,14 +1,15 @@
 /** @jsx jsx */
 import {jsx} from '@emotion/core'
 
-import React, { Component } from 'react';
+
+import { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUpLink } from '../signup';
-import { withFirebase } from '../../../firebase';
+import { withFirebase } from '../../../App/firebase';
 import * as ROUTES from '../../config/routes';
 // import * as colors from "../../styles/colors";
-import { Centered, FormGroup, Spinner } from '../../components';
+import { Centered, FormGroup } from '../../components';
 import SideBanner from '../components/sidebar';
 import { PasswordForgetLink } from '../resetPassword';
 import {Footer} from "../components/footer";

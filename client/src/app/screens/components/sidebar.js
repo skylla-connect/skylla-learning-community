@@ -2,7 +2,7 @@
 import {jsx} from '@emotion/core'
 import { Typography } from '@material-ui/core';
 
-import React from "react";
+// import React from "react";
 import { Centered } from '../../components';
 import * as colors from "../../styles/colors";
 

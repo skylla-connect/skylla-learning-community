@@ -16,7 +16,14 @@ import Menu from './components/menu';
 import Permissions from './components/permissions';
 import Mobile from './mob';
 import Views from './components/views/views';
+import ProfilePage from './screens/profilePage';
 import Footer from '../../components/Footer/footer';
+import *as ROUTES from '../../config/routes';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -92,6 +99,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Define routes in the Trainees
+const routes = [
+  {
+    path: ROUTES.TRAINER,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+       {/* Views */}
+       <Views />
+    </div>
+  },
+
+  {
+    path: ROUTES.PROFILE,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      <ProfilePage/>
+    </div>
+  },
+
+  {
+    path: ROUTES.INTERVIEWS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      Interviews page
+    </div>
+  },
+];
+
 export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
@@ -106,97 +144,129 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <div>
-      <div className={classes.root}>
-        <CssBaseline />
-          <AppBar
-            position="fixed"
-            className={clsx(classes.appBar, {
-              [classes.appBarShift]: open,
-            })}
-          >
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                edge="start"
-                className={clsx(classes.menuButton, open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <div style={{margin: 'auto'}}>
-                <Typography noWrap>
-                    SKYLLA LEARNING COMMUNITY
-                </Typography>
-              </div>
-            </Toolbar>
-          </AppBar>
-          <Drawer
-            className={classes.drawer}
-            variant="persistent"
-            anchor="left"
-            open={open}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-          >
-            <div className={classes.drawerHeader} open={open}>
-              <IconButton onClick={handleDrawerClose} style={{color: 'white'}}>
-                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-              </IconButton>
-            </div>
-            <Divider />
-            <div className={classes.paper}>
-              <Menu />
-            </div>
-
-            <Divider 
-              style={{
-                backgroundColor: 'white',
-                width: '90%',
-                margin: 'auto',
-            }}
-          />
-
-          <Button style={{
-              color: 'white',
-              textTransform: 'capitalize'
-          }}>
-            <Typography variant="h6" paragraph>
-                Module Content
-            </Typography>
-          </Button>
-
-            <div 
-                style={{
-                    margin: '-2px auto 0 auto',
-                    width: '90%',
-                }}>
-                <Divider  style={{ backgroundColor: 'white'}}/> 
-            </div>
-
-            <div className={classes.paper}> 
-                <Permissions />
-            </div>
-            </Drawer>
-            <main
-                className={clsx(classes.content, {
-                [classes.contentShift]: open,
-                })}
+    <Router>
+      <div>
+        <div className={classes.root}>
+          <CssBaseline />
+            <AppBar
+              position="fixed"
+              className={clsx(classes.appBar, {
+                [classes.appBarShift]: open,
+              })}
             >
+              <Toolbar>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={handleDrawerOpen}
+                  edge="start"
+                  className={clsx(classes.menuButton, open && classes.hide)}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <div style={{margin: 'auto'}}>
+                  <Typography noWrap>
+                      SKYLLA LEARNING COMMUNITY
+                  </Typography>
+                </div>
+              </Toolbar>
+            </AppBar>
+            <Drawer
+              className={classes.drawer}
+              variant="persistent"
+              anchor="left"
+              open={open}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+            >
+              <div className={classes.drawerHeader} open={open}>
+                <IconButton onClick={handleDrawerClose} style={{color: 'white'}}>
+                  {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                </IconButton>
+              </div>
+              <Divider />
+              <div className={classes.paper}>
+                <Menu />
+              </div>
+
+              <Divider 
+                style={{
+                  backgroundColor: 'white',
+                  width: '90%',
+                  margin: 'auto',
+              }}
+            />
+
+            <Button style={{
+                color: 'white',
+                textTransform: 'capitalize'
+            }}>
+              <Typography variant="h6" paragraph>
+                  Module Content
+              </Typography>
+            </Button>
+
+              <div 
+                  style={{
+                      margin: '-2px auto 0 auto',
+                      width: '90%',
+                  }}>
+                  <Divider  style={{ backgroundColor: 'white'}}/> 
+              </div>
+
+              <div className={classes.paper}> 
+                  <Permissions />
+              </div>
+
+              <Switch>
+                {routes.map((route, index) => (
+                  // You can render a <Route> in as many places
+                  // as you want in your app. It will render along
+                  // with any other <Route>s that also match the URL.
+                  // So, a sidebar or breadcrumbs or anything else
+                  // that requires you to render multiple things
+                  // in multiple places at the same URL is nothing
+                  // more than multiple <Route>s.
+                  <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    children={<route.sidebar />}
+                  />
+                ))}
+              </Switch>
+            </Drawer>
+              <main
+                  className={clsx(classes.content, {
+                  [classes.contentShift]: open,
+                  })}
+              >
                 <div className={classes.drawerHeader} style={{marginTop: -50}} />
-                {/* Views */}
-                <Views />
+                
+                <Switch>
+                  {routes.map((route, index) => (
+                    // Render more <Route>s with the same paths as
+                    // above, but different components this time.
+                    <Route
+                      key={index}
+                      path={route.path}
+                      exact={route.exact}
+                      children={<route.main />}
+                    />
+                  ))}
+                </Switch>
+
 
                 <div style={{marginTop: 40}}>
                   <Footer />
                 </div>
-            </main>
-      </div>
+              </main>
+        </div>
 
-      {/* mobile */}
-      <Mobile />
-    </div>
+        {/* mobile */}
+        <Mobile />
+      </div>
+    </Router>
   );
 }

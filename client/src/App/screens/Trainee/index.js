@@ -6,7 +6,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-// import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Footer from '../../components/Footer/footer';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,6 +21,17 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Views from './components/views/views'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import SocialIcons from './components/social';
+import ProfilePage from './screens/profilePage';
+import LiveClass from './screens/liveClass';
+import *as ROUTES from '../../config/routes';
+import FirebaseContext from 'firebase';
+import 'firebase/firestore';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -103,17 +113,124 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'white',
     },
   },
-  absolute: {
-    position: 'absolute',
-    bottom: theme.spacing(2),
-    right: theme.spacing(3),
-  },
 }));
+
+// Define routes in the Trainees
+const routes = [
+  {
+    path: ROUTES.TRAINEE,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+       {/* Views */}
+       <Views />
+    </div>
+  },
+
+  {
+    path: ROUTES.PROFILE,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      <ProfilePage/>
+    </div>
+  },
+
+  {
+    path: ROUTES.ASSESSMENTS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      Final Assessments page
+    </div>
+  },
+
+  {
+    path: ROUTES.INTERVIEWS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      Interviews page
+    </div>
+  },
+
+  {
+    path: ROUTES.HIRED,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      Hire page
+    </div>
+  },
+
+  {
+    path: ROUTES.LIVE_CLASS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      <LiveClass/>
+    </div>
+  },
+];
 
 export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
+
+
+  class userDetails {
+    constructor (name, email, password, photo ) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.photo= photo;
+    }
+    // toString() {
+    //     return this.name + ', ' + this.email + ', ' + this.password;
+    // }
+  }
+
+// Firestore data converter
+  var userDetailsConverter = {
+      toFirestore: function(userDetails) {
+          return {
+              name: userDetails.name,
+              email: userDetails.email,
+              password: userDetails.password,
+              photo: userDetails.photo
+              }
+      },
+      fromFirestore: function(snapshot, options){
+          const data = snapshot.data(options);
+          const det1 = new userDetails(data.name, data.email, data.password, data.photo);
+          return det1
+      }
+  }
+  React.useEffect(() => {
+        let user = FirebaseContext.auth().currentUser;   
+        let db = FirebaseContext.firestore().collection('users/trainee/users');
+        let query = db.where('userId', '==', user.uid);
+        
+        query.withConverter(userDetailsConverter).get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+            console.log('No matching documents.');
+            return;
+            }  
+
+            snapshot.forEach(doc => {
+                var x = doc.data();
+                setcurrentUserDetails(x)
+            // console.log(doc.id, '=>', x);
+            ;
+            })
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -124,15 +241,15 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <div>
-      <div className={classes.root}>
-        <CssBaseline />
-          <AppBar
-            position="fixed"
-            className={clsx(classes.appBar, {
-              [classes.appBarShift]: open,
-            })}
-          >
+      <div>
+        <div className={classes.root}>
+          <CssBaseline />
+            <AppBar
+              position="fixed"
+              className={clsx(classes.appBar, {
+                [classes.appBarShift]: open,
+              })}
+            >
             <Toolbar>
               <IconButton
                 color="inherit"
@@ -143,15 +260,17 @@ export default function PersistentDrawerLeft() {
               >
                 <MenuIcon />
               </IconButton>
+
               <div style={{margin: 'auto'}}>
                 <Typography noWrap>
                     SKYLLA LEARNING COMMUNITY
                 </Typography>
               </div>
+
               <div style={{textAlign: 'center'}}>
-                <Avatar alt="Remy Sharp" src="" />
+                <Avatar alt="Remy Sharp" style={{marginLeft:'27%'}} src={currentUserDetails.photo} />
                 <Typography variant="body2">
-                  Trainee
+                  Welcome<br></br> <b>{currentUserDetails.name}</b>
                 </Typography>
               </div>
 
@@ -177,40 +296,47 @@ export default function PersistentDrawerLeft() {
                   src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
                   alt=""
                   width="20%" />
-                 <Typography variant="body2">
+                <Typography variant="body2">
                   View Sessions
                 </Typography>
               </div>
 
-              <div style={{textAlign: 'center'}}>
-                <img 
-                  src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
-                  alt=""
-                  width="20%" 
-                />
-                <Typography variant="body2">
-                  Join Live Class
-                </Typography>
-              </div>
+              {/* <div style={{textAlign: 'center'}}>
+                <Link to={ROUTES.LIVE_CLASS}>
+                  <img 
+                    src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
+                    alt=""
+                    width="20%" 
+                  />
+                  <Typography variant="body2" >
+                    Join Live Class
+                  </Typography>
+                </Link>
+              </div> */}
 
               <div style={{textAlign: 'center'}}>
+                <Link to={ROUTES.MODULES}>
                   <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
                       <Fab color="primary" className={classes.fab}>
                         <AddShoppingCartIcon style={{}} />
                       </Fab>
                   </Tooltip>
+                </Link>
               </div>
+              
             </Toolbar>
           </AppBar>
-          <Drawer
-            className={classes.drawer}
-            variant="persistent"
-            anchor="left"
-            open={open}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-          >
+
+          <Router>
+            <Drawer
+              className={classes.drawer}
+              variant="persistent"
+              anchor="left"
+              open={open}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+            >
             <div className={classes.drawerHeader} open={open}>
               <IconButton onClick={handleDrawerClose} style={{color: 'white'}}>
                 {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -245,6 +371,23 @@ export default function PersistentDrawerLeft() {
               <SocialIcons />
             </div>
             
+            <Switch>
+              {routes.map((route, index) => (
+                // You can render a <Route> in as many places
+                // as you want in your app. It will render along
+                // with any other <Route>s that also match the URL.
+                // So, a sidebar or breadcrumbs or anything else
+                // that requires you to render multiple things
+                // in multiple places at the same URL is nothing
+                // more than multiple <Route>s.
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  children={<route.sidebar />}
+                />
+              ))}
+            </Switch>
           </Drawer>
           <main
             className={clsx(classes.content, {
@@ -252,13 +395,24 @@ export default function PersistentDrawerLeft() {
             })}
           >
             <div className={classes.drawerHeader} style={{marginTop: -50}} />
-            {/* Views */}
-            <Views />
+            <Switch>
+              {routes.map((route, index) => (
+                // Render more <Route>s with the same paths as
+                // above, but different components this time.
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  children={<route.main />}
+                />
+              ))}
+            </Switch>
 
             <div style={{marginTop: 40}}>
               <Footer />
             </div>
           </main>
+        </Router>
       </div>
 
       {/* mobile */}

@@ -5,6 +5,10 @@ import * as ROUTES from "./App/config/routes";
 import {SignUpPage} from './App/screens/signup/index';
 import SignInPage from './App/screens/login/index';
 import PasswordReset from './App/screens/resetPassword/index';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 68bf945508ae19ca4129083331dd0572b59e903d
 
 const Unathenticated = () => {
     return ( 

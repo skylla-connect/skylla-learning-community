@@ -45,13 +45,13 @@ const permissions = (props) => {
             supervise trainees
           </MenuItem>
 
-          <MenuItem>
+          {/* <MenuItem>
             <i className="material-icons" 
                 style={{color: '#CCCCCC', marginRight: '10px'}}>
                 cancel
             </i>
             delete module
-          </MenuItem>
+          </MenuItem> */}
 
           <MenuItem>
               <img 

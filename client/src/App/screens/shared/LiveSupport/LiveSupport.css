@@ -1,0 +1,270 @@
+.carousel-indicators {
+    margin-left: 50%;
+}
+
+.carousel-indicators li {
+    background-color: rgb(71, 9, 243); 
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+    margin-top: -70px;
+}
+
+body{
+    overflow-x: hidden !important;
+    width: 100%;
+}
+.all{
+    display: inline-flex;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    height: 90px;
+    border: 2px solid whitesmoke;
+    background-color: whitesmoke;
+    padding: 20px;
+    margin-top: 30px ;
+
+}
+
+.alls{
+    width: 100%;
+}
+.rog{
+    margin-left: 25px ;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    margin: 0px 0 0px 140px;
+    color: blue;
+}
+.para{
+    width: 90%;
+    margin: 5% 10% 0 5%;
+}
+.para2{
+background-color: whitesmoke;
+border: 2px solid whitesmoke;
+height: 100px;
+width: 100%;
+margin: 10px 0 30px 0;
+
+}
+.par{
+    margin: 0 5% 0 5%;
+}
+.butt{
+    background-color: orangered;
+    border-radius: 5px;
+    color: white;
+    margin-left: 8%;
+    text-decoration: none;
+    border-color: coral;
+    width: 13em;
+    padding: 16px;
+}
+.myphoto{
+    display: inline-flex;
+    width: 100%;
+}
+
+
+.avat2{
+    font-size:18px ;
+    margin-right:4% ;
+}
+.avat3{
+    width:60%;
+    height:70%;
+    margin-left: 8%;
+}
+.pala{
+    margin: 10% 10px 0 10px;
+}
+.avat4{
+    width:45%;
+    height:70%;
+}
+.palla{
+    width:45%;
+    
+}
+.radio{
+    text-align: center;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color:#ddd;
+    color: black;
+    overflow: hidden;
+    width: 100%;
+    height: 90px;
+    padding: 20px;
+    border: none;
+    margin-top: 30px ;
+  
+    
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    display: flex;
+    color: black;
+    text-align: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    /* padding: 14px 16px; */
+    font-size: 17px;
+    width: 25%;
+    padding: 14px 30px ;
+    text-decoration: none;
+    font-size: 17px;
+
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: lightslategray;
+    color: white;
+  }
+  
+  /* Add an active class to highlight the current page */
+  .topnav a.active:after {
+  
+    color: white;
+    content: '';
+    position: relative;
+    width: 1%;
+    height: 75px;
+    left: 30%;
+    top: -18px;
+    border-left: 20px outset transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #ffffff;
+  }
+  
+  /* Hide the link that should open and close the topnav on small screens */
+  .topnav .icon {
+    display: none;
+  }
+
+  /* .submenu {
+    height: 40px;
+    overflow: hidden;
+  }
+  
+  .submenu .activate:after {
+    content: '';
+    position: relative;
+    width: 0;
+    height: 75px;
+    left: 40%;
+    top: -39px;
+    border-left: 10px outset transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ffffff;
+  }
+ */
+
+
+
+
+
+    /* for mobile */
+
+@media only screen and (max-width: 768px) {
+    body{
+        overflow-x: hidden !important;
+        width: 100%;
+    }
+    .topnav {
+        background-color: rgb(133, 128, 128);
+        overflow: hidden;
+        width: 100%;
+        height: 130px;
+        padding: 17px;
+        width: 100%;
+        margin-top: 30px ;
+       
+      }
+      
+    .topnav a {
+        /* float: left; */
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+    }
+    .topnav a.active:after {
+        /* background-color: rgb(3, 3, 250); */
+        color: white;
+        position: relative;
+        height: 75px;
+        top: 59px;
+        border-left: 20px outset transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 20px solid #ffffff;
+      }
+   .alls{
+       width: 100%;
+   }
+   .all{
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    height: 150px;
+    border: 2px solid whitesmoke;
+    background-color: whitesmoke;
+    margin: 30px 10% 0 0%;
+
+
+  }
+ .rog{
+    margin: 0 10% 0 0%;
+    justify-content: center;
+    text-align: center;
+    color: blue;
+   }
+   .avat3{
+    width:50%;
+    height:50%;
+    margin: 0 10% 0 0;
+   
+    }
+    .avat4{
+        margin: 0 0 0 8em;
+        width: 100%;
+       
+        }
+    .avat2{
+        width:100%;
+        margin-right:-4% ;
+    }  
+    .myphoto{
+        display: block;
+    }
+    
+    .pala{
+        width: 80%;
+        margin: 0 10% 0 10%;
+    }
+    .palla{
+        width:100%;
+        
+    }
+    .para2{
+        background-color: whitesmoke;
+        border: 2px solid whitesmoke;
+        height: 100px;
+        width: 100%;
+        margin: 20px 0 30px 0;
+    }
+    .radio{
+        /* margin-left: 3%; */
+        text-align: center;
+    }
+}
