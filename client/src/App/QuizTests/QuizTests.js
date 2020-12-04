@@ -2,13 +2,58 @@ import  React from 'react';
 import './QuizTests.css';
 import {Typography, Divider, Button} from '@material-ui/core'
 import Radio from '@material-ui/core/Radio';
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+// import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import 'firebase/firestore'
+import { withFirebase } from '../firebase';
+import app from 'firebase/app'
 
 class QuizTests extends React.Component{
+    constructor(props) {
+        super(props);
+     
+        this.state = {
+          loading: false,
+          assessments:[],
+          users:[]
+        };
+        this.db  = app.firestore()
+      }
+     
+      componentDidMount() {
+        this.setState({ loading: true });
+        this.db.collection(`users/admin/dashboard/assessment/assessments`)
+        .get()
+        .then(querySnapshot =>{
+            const data = querySnapshot.docs.map(doc=> doc.data());
+            console.log(data)
+            this.setState({users:data})
+        })
+      }
     render(){
         return(
             <div>
+                <ul>
+                    {this.state.users.map(user => (
+                    <li key={user.uid}>
+                        <span>
+                        <strong>ID:</strong> {user.uid}
+                        </span>
+                        <span>
+                        <strong>Username:</strong> {user.email}
+                        </span>
+                        <span>
+                        <strong>Tittle:</strong> {user.tittle}
+                        </span>
+                        <span>
+                        <strong>Description:</strong> {user.tittle}
+                        </span>
+                        <span>
+                        <strong>Content:</strong> {user.tittle}
+                        </span>
+                    </li>
+                    ))}
+                </ul>
                 <div className='quizmenu'>
                     <a href="#general" > <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' 
                         alt='pic'
@@ -52,6 +97,4 @@ class QuizTests extends React.Component{
         )
     }
 }
-export default QuizTests;
-
-
+export default withFirebase(QuizTests);

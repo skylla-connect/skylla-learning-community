@@ -4,6 +4,8 @@ import MenuList from '@material-ui/core/MenuList';
 // import AddCircleIcon from '@material-ui/icons/AddCircle';
 // import Typography from '@material-ui/core/Typography';
 import './permissions.css'
+import *as ROUTES from '../../../config/routes';
+import {Link} from 'react-router-dom'
 
 const permissions = (props) => {
   return (
@@ -53,13 +55,15 @@ const permissions = (props) => {
             delete module
           </MenuItem> */}
 
-          <MenuItem>
+         <Link to={ROUTES.ASSESSMENTS}>
+         <MenuItem>
               <img 
               src="https://cdn0.iconfinder.com/data/icons/fatcow/32/document_mark_as_final.png" 
               alt="" 
               style={{ marginRight: '10px', width: '15%'}}
               /> create assessment
           </MenuItem>
+         </Link>
         </MenuList>
     </div>
   );
