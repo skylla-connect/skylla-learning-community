@@ -16,15 +16,13 @@ import Permissions from './components/permissions';
 import Mobile from './mob';
 import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
-import { SignUpPage } from './screens/addUsers';
-import DeleteUsers from './screens/deleteUsers';
-import CreateModule  from './screens/createModule';
-import ProfilePage from './screens/profilePage';
+import AddUsers from './screens/addUsers';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Link
 } from "react-router-dom";
 
 // Define routes in the admin dashboard
@@ -44,7 +42,7 @@ const routes = [
     exact: true,
     sidebar: () => <div></div>,
     main: () => <div>
-      <ProfilePage />
+      Profile page
     </div>
   },
 
@@ -79,21 +77,21 @@ const routes = [
     path: "/add_users",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <SignUpPage />
+    main: () => <AddUsers />
   },
 
   {
     path: "/delete_users",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <DeleteUsers />
+    main: () => <div>Delete users</div>
   },
 
   {
     path: "/add_module",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <CreateModule />
+    main: () => <div>Add modules</div>
   },
 
   {

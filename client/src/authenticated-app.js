@@ -72,7 +72,7 @@ function Routes(props) {
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}
                     {props.authUser.ROLE === "trainee" && <Redirect to={ROUTES.TRAINEE}/>}
-                </Route> 
+                </Route>
             </Switch>
         </Router>
     )

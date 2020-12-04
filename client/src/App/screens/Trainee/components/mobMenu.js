@@ -10,8 +10,6 @@ import Fab from '@material-ui/core/Fab';
 import Avatar from '@material-ui/core/Avatar';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
-import *as ROUTES from '../../../config/routes'
 
 const useStyles = makeStyles((theme) => ({
     fab: {
@@ -100,7 +98,7 @@ export default function SimpleMenu() {
                   width="20%" 
                 />
                 <Typography variant="body2" style={{margin: '15px 10px 0'}}>
-                  <Link to={ROUTES.MODULES}>Join Live Class</Link>
+                  Join Live Class
                 </Typography>
             </div>
         </MenuItem>

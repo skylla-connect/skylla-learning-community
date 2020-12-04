@@ -33,11 +33,10 @@ export function Spinner(props) {
 export function FullPageSpinner() {
   return (
     <Centered>
-      <p> Loading ... </p>
-      <div css={{
-        fontSize: '4em'}}>
-        <Spinner />
-      </div>
+    <div css={{
+      fontSize: '4em'}}>
+      <Spinner />
+    </div>
     </Centered>
   )
 }

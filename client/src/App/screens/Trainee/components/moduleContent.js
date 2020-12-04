@@ -3,8 +3,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import Typography from '@material-ui/core/Typography';
 import './permissions.css'
-// import *as ROUTES from '../../../config/routes'
-import { Link } from 'react-router-dom';
 
 const permissions = (props) => {
   return (
@@ -15,7 +13,7 @@ const permissions = (props) => {
 
         <MenuList>
           <MenuItem>
-            Title
+            Title 
           </MenuItem>
 
           <MenuItem ></MenuItem>

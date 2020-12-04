@@ -4,7 +4,6 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -30,11 +29,6 @@ class Firebase {
     doSignOut = () => this.auth.signOut();
 
     doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
-
-    // Get the user profile information corresponding to a userId
-    doGetTraineeProfile = async () => {
-        this.db.collection("/users/trainee/users")
-    };
 
     doCreateNewUser = async (userCredentials) => 
     await this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);

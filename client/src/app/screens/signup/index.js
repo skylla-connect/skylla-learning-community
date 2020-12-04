@@ -4,11 +4,12 @@ import {jsx} from '@emotion/core'
 import { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { withFirebase } from "../../../App/firebase";
+import { withFirebase } from "../../../firebase";
 
 import * as ROUTES from '../../config/routes';
 import SideBanner from '../components/sidebar';
 import { Centered, FormGroup } from '../../components';
+// import * as colors from "../../styles/colors";
 import './index.css';
 import { Footer } from '../components/footer';
 import ButtonMui from "../components/button";
@@ -56,26 +57,22 @@ const INITIAL_STATE = {
     email: '',
     passwordOne: '',
     passwordTwo: '',
-    photo: '',
     isPending: false,
     isChecked: false,
     error: null,
-};
-
+    };
 class SignUpFormBase extends Component {
     constructor(props) {
         super(props);
         this.state = { ...INITIAL_STATE };
     }
-    
     onSubmit = event => {
         this.setState({...this.state, isPending: true})
-        const { username, email, passwordOne, photo } = this.state;
+        const { username, email, passwordOne } = this.state;
         const newUser = {
             name: username,
             email: email,
             password: passwordOne,
-            photo: photo
         };
         let usersid;
         this.props.firebase
@@ -88,10 +85,8 @@ class SignUpFormBase extends Component {
                 name: newUser.name,
                 email: newUser.email,
                 password: newUser.password,
-                photo: newUser.photo,
                 createdAt: new Date().toISOString(),
                 userId: usersid,
-                role: 'trainee',
             };
             this.props.firebase.doCreateNewUser(userCredentials);
             this.setState({ ...INITIAL_STATE });
@@ -111,7 +106,6 @@ class SignUpFormBase extends Component {
             email,
             passwordOne,
             passwordTwo,
-            // photo,
             isPending,
             error,
             isChecked,
@@ -199,13 +193,13 @@ class SignUpFormBase extends Component {
                     marginTop: '8px',
                     padding: '10px',
                     fontSize: '14px'
-                }}>I agree to <Link to="#" css={{
+                }}>I agree to <a href="#" css={{
                     // backgroundColor: "#007bff",
-                    color: "#007bff" }}>Terms</Link> of service and to Skylla <Link to="#"
+                    color: "#007bff" }}>Terms</a> of service and to Skylla <a href="#"
                     css={{
                         // backgroundColor: "#007bff",
                         color: "#007bff"  
-                    }}>Polices</Link> </label>
+                    }}>Polices</a> </label>
             </FormGroup>
             <FormGroup css={{
                 paddingTop: '15px',

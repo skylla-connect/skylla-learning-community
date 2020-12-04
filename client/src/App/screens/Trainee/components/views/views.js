@@ -1,17 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+// import { Typography, Paper } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import Tooltip from '@material-ui/core/Tooltip'
-import { Fab } from '@material-ui/core';
-import Support from '@material-ui/icons/ContactSupport';
-// import { Link } from 'react-router-dom'
-import *as ROUTES from '../../../../config/routes' 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginTop: 50,
   },
   paper: {
     padding: theme.spacing(4),
@@ -29,13 +24,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
         width: '100%',
         padding: theme.spacing(20),
-    },
-
-    absolute: {
-      position: 'absolute',
-      bottom: theme.spacing(2),
-      right: theme.spacing(3),
-    },
+    }
   },
 
   paperOut: {
@@ -83,13 +72,7 @@ const useStyles = makeStyles((theme) => ({
     float: 'right',
     color: 'red',
     cursor: 'pointer',
-  },
-
-  absolute: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(3),
-  },
+  }
 }));
 
 export default function FullWidthGrid(props) {
@@ -108,27 +91,30 @@ export default function FullWidthGrid(props) {
         </Grid>
       </Grid>
 
+      {/* <Grid container spacing={3}>
+        <Grid item xs={8} sm>
+          <div className={classes.paperEditor}>
+            Editor Here
+          </div>
+        </Grid>
+        <Grid item xs={4} sm>
+          <div className={classes.paperOut}>
+            Output
+          </div>
+        </Grid> */}
+      {/* </Grid> */}
       <div className={classes.container}>
         <div className={classes.col}>
           <div className={classes.paperEditor}>
             Editor Here
           </div>
         </div>
-
         <div className={classes.colR}>
           <div className={classes.paperOut}>
             Output
           </div>
         </div>
       </div>
-
-      <a href={ROUTES.LIVE_SUPPORT}>
-        <Tooltip title="support" aria-label="support">
-          <Fab color="secondary" className={classes.absolute}>
-            <Support />
-          </Fab>
-        </Tooltip>
-      </a>
     </div>
   );
 }

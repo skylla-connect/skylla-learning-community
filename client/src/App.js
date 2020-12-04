@@ -1,8 +1,9 @@
 import React from 'react';
 import {FullPageSpinner} from './App/components';
-import { compose } from "recompose";
+import {  } from "recompose";
 import withAuthetication from "./App/session/withAuthetication";
 import AuthUserContext from "./App/session/context";
+
 
 
 const loadAuthenticatedApp = () => import('./authenticated-app')
@@ -40,7 +41,6 @@ const App = () => {
     <React.Suspense fallback={<FullPageSpinner />}>
         {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </React.Suspense>
-    
   )
 }
 

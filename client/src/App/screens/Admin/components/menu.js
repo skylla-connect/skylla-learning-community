@@ -6,18 +6,14 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import SpeedIcon from '@material-ui/icons/Speed';
 import { Link } from 'react-router-dom';
-import { withFirebase  } from '../../../firebase';
-import *as ROUTES from '../../../config/routes';
+// import './permissions.css'
 
-const menu = ({ firebase }) => {
+const menu = (props) => {
   return (
     <div>
       <MenuList>
         {/* home */}
-        <Link to={ROUTES.ADMIN} style={{
-          color: 'white', 
-          textDecoration: 'none'
-          }}>
+        <Link to="/admin" style={{color: 'white', textDecoration: 'none'}}>
           <MenuItem>
             <HomeIcon style={{
                 color: '#CCCCCC',
@@ -27,11 +23,7 @@ const menu = ({ firebase }) => {
         </Link>
 
         {/* profile */}
-        <Link to={ROUTES.PROFILE} style={{
-          color: 'white', 
-          textDecoration: 'none'
-          }}
-          >
+        <Link to="/profile" style={{color: 'white', textDecoration: 'none'}}>
           <MenuItem>
             <AccountBoxIcon style={{
               color: '#D5E8D4',
@@ -42,10 +34,7 @@ const menu = ({ firebase }) => {
         </Link>
 
         {/* Final assessment */}
-        <Link to={ROUTES.ASSESSMENTS} style={{
-          color: 'white', 
-          textDecoration: 'none'
-          }}>
+        <Link to="/assessment" style={{color: 'white', textDecoration: 'none'}}>
           <MenuItem>
             <SpeedIcon style={{
               color: '#D5E8D4',
@@ -55,10 +44,7 @@ const menu = ({ firebase }) => {
         </Link>
 
         {/* interviews */}
-        <Link to={ROUTES.INTERVIEWS} style={{
-          color: 'white', 
-          textDecoration: 'none'
-          }}>
+        <Link to="/interviews" style={{color: 'white', textDecoration: 'none'}}>
           <MenuItem>
               <AssessmentIcon style={{
               marginRight: '10px'
@@ -67,10 +53,7 @@ const menu = ({ firebase }) => {
         </Link>
 
         {/* Hire */}
-        <Link to={ROUTES.HIRED} style={{
-          color: 'white', 
-          textDecoration: 'none'
-          }}>
+        <Link to="/hire" style={{color: 'white', textDecoration: 'none'}}>
           <MenuItem>
               <img 
               src="https://cdn4.iconfinder.com/data/icons/pc_de_hamburg_icon_pack/32x32/hire-me.png" 
@@ -81,7 +64,7 @@ const menu = ({ firebase }) => {
         </Link>
 
         {/* Logout */}
-        <MenuItem onClick={firebase.doSignOut}>
+        <MenuItem>
           <i className="fa fa-power-off" style={{
             // fontSize:'36px',
             backgroundColor: '#DF8C42',
@@ -97,4 +80,4 @@ const menu = ({ firebase }) => {
   );
 }
 
-export default withFirebase (menu);
+export default menu;

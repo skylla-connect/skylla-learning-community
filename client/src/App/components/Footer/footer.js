@@ -5,7 +5,7 @@ import './footer.css';
 
 const Footer = () => {
     return (
-        <div style={{textAlign: 'center', padding: '40px'}}>
+        <div style={{textAlign: 'center'}}>
             <div>
                 <Typography>
                     &copy; {new Date().getFullYear()}  | Skylla Co. 

@@ -2,13 +2,8 @@ import React from 'react';
 // import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
-<<<<<<< HEAD
 import AuthUserContext from './context';
 import { withFirebase } from '../../firebase';
-=======
-import AuthUserContext from '../session/context';
-import { withFirebase } from '../../App/firebase';
->>>>>>> 68bf945508ae19ca4129083331dd0572b59e903d
 // import * as ROUTES from '../../app/config/routes';
 
 
