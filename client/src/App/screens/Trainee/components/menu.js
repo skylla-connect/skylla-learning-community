@@ -39,6 +39,45 @@ const menu = ({ firebase }) => {
           </MenuItem>
         </Link>
 
+        <Link to={ROUTES.LIVE_CLASS}  style={{
+          color: 'white', 
+          textDecoration: 'none'
+          }}>
+          <MenuItem>
+              <img 
+              src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
+              alt="" 
+              style={{ marginRight: '10px', width: '15%'}}
+              /> Join Live Class
+          </MenuItem>
+        </Link>
+
+        <Link to={ROUTES.LIVE_CLASS}  style={{
+          color: 'white', 
+          textDecoration: 'none'
+          }}>
+          <MenuItem>
+              <img 
+              src="https://cdn0.iconfinder.com/data/icons/business-startup-10/50/57-128.png" 
+              alt="" 
+              style={{ marginRight: '10px', width: '15%'}}
+              /> Quiz &amp; Tests 
+          </MenuItem>
+        </Link>
+
+        <Link to={ROUTES.LIVE_CLASS}  style={{
+          color: 'white', 
+          textDecoration: 'none'
+          }}>
+          <MenuItem>
+              <img 
+              src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
+              alt="" 
+              style={{ marginRight: '10px', width: '15%'}}
+              /> View Sessions
+          </MenuItem>
+        </Link>
+
         <Link to={ROUTES.ASSESSMENTS}  style={{
           color: 'white', 
           textDecoration: 'none'
@@ -72,19 +111,6 @@ const menu = ({ firebase }) => {
               alt="" 
               style={{ marginRight: '10px', width: '15%'}}
               /> Get Hired
-          </MenuItem>
-        </Link>
-
-        <Link to={ROUTES.LIVE_CLASS}  style={{
-          color: 'white', 
-          textDecoration: 'none'
-          }}>
-          <MenuItem>
-              <img 
-              src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
-              alt="" 
-              style={{ marginRight: '10px', width: '15%'}}
-              /> Join Live Class
           </MenuItem>
         </Link>
 

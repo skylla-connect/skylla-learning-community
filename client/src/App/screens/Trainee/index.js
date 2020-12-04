@@ -76,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     backgroundColor: '#0000FF',
     color: 'white',
+    overflow: 'hidden'
   },
   paper: {
     margin: 'auto',
@@ -270,7 +271,7 @@ export default function PersistentDrawerLeft() {
               <div style={{textAlign: 'center'}}>
                 <Avatar alt="Remy Sharp" style={{marginLeft:'27%'}} src={currentUserDetails.photo} />
                 <Typography variant="body2">
-                  Welcome<br></br> <b>{currentUserDetails.name}</b>
+                   <b>{currentUserDetails.name}</b>
                 </Typography>
               </div>
 
@@ -280,39 +281,6 @@ export default function PersistentDrawerLeft() {
                   Trainer
                 </Typography>
               </div>
-
-              <div style={{textAlign: 'center'}}>
-                <img 
-                  src="https://cdn0.iconfinder.com/data/icons/business-startup-10/50/57-128.png" 
-                  alt=""
-                  width="20%" />
-                <Typography variant="body2">
-                  Quiz &amp; Tests 
-                </Typography>
-              </div>
-
-              <div style={{textAlign: 'center'}}>
-                <img 
-                  src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
-                  alt=""
-                  width="20%" />
-                <Typography variant="body2">
-                  View Sessions
-                </Typography>
-              </div>
-
-              {/* <div style={{textAlign: 'center'}}>
-                <Link to={ROUTES.LIVE_CLASS}>
-                  <img 
-                    src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
-                    alt=""
-                    width="20%" 
-                  />
-                  <Typography variant="body2" >
-                    Join Live Class
-                  </Typography>
-                </Link>
-              </div> */}
 
               <div style={{textAlign: 'center'}}>
                 <Link to={ROUTES.MODULES}>
