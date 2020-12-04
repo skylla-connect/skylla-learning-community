@@ -3,6 +3,7 @@ import {jsx} from '@emotion/core';
 
 import React, { useState } from 'react';
 import { CountryRegionData } from "react-country-region-selector";
+import { compose } from "recompose";
 import * as colors from "../../styles/colors";
 import Footer from "../../components/Footer/footer";
 import TextFieldMui from "../components/textField";
@@ -31,6 +32,8 @@ import {FormControl, withStyles, CardHeader, InputLabel,
 import useCallbackStatus from '../../utils/use-callback-status';
 import { withFirebase } from '../../../firebase';
 import { completePayment } from '../cart/sandbox';
+import { withRouter } from 'react-router-dom';
+import { navigate } from '@reach/router';
 
 
 
@@ -448,13 +451,13 @@ const Checkout = (props) => {
         const {cardDetails, billingAddress, totalPrice, partyId } = context;
         const orderDetails = {
             userId : props.firebase.auth.currentUser.uid,
-            course: data,
+            course: book,
             payment: context,
         }
         props.firebase.doAddItemToOrders(orderDetails)
             .then(() => {
                 setLoading(false)
-                props.history.push(`/cart/successmessage`)
+                navigate(`/cart/successmessage`)
             }).catch(err => console.log(err))
         // completePayment(partyId, "10000").then(() => {
         //     return ( props.firebase.doAddItemToCart(orderDetails)
@@ -651,4 +654,6 @@ const Checkout = (props) => {
      );
 }
  
-export default withFirebase(Checkout);
+export default compose(
+    // withRouter,
+    withFirebase)(Checkout);

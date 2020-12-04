@@ -34,20 +34,12 @@ class Firebase {
     await this.db.doc(`/users/trainee/users/${userCredentials.userId}`).set(userCredentials);
 
     doAddItemToOrders = async (userOrderDetails) => {
-        return await this.db.doc(`/orders/${userOrderDetails.userId}`).get()
-        .then(snapshot => {
-            if (snapshot.exists){
-                return this.db
-                .collection(`/orders/${userOrderDetails.userId}/items`)
-                .add(userOrderDetails);
-            } else {
-                return this.db.collection(`/orders/${userOrderDetails.userId}/items`).add(userOrderDetails);
-            }
-        });
+        await this.db.collection(`/orders/${userOrderDetails.userId}/items`)
+        .add(userOrderDetails);  
     }
 
     doGetUserOrders = (userId) => 
-     this.db.doc(`/ordes/${userId}`).get();
+        this.db.doc(`/ordes/${userId}`).get();
 
     doGetUserAdmin = (userId) => {
         return this.db.doc(`/users/admin/users/${userId}`)
