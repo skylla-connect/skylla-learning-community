@@ -5,6 +5,7 @@ import { Centered, FormGroup } from '../../../components';
 import TextFieldMui from "../../components/textField";
 import ButtonMui from "../../components/button";
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';;
 
 const CreateModule = () => (
     <div style={{
@@ -37,6 +38,7 @@ const INITIAL_STATE = {
     module: '',
     description: '',
     content: '',
+    imgUrl: null,
     isPending: false,
     error: null,
 };
@@ -57,11 +59,17 @@ class ModuleForm extends Component {
         this.db.settings({
           timestampsInSnapshots: true
         });
-        
+
+        // make a reference to our firebase storage
+        // Create a root reference
+        let storageRef = app.storage().ref();
+
+
         this.db.collection(`users/admin/dashboard/module/modules`).add({
           module: this.state.module,
           description: this.state.description,
           content: this.state.content,
+          imgUrl: storageRef.child(`modules/${this.state.imgUrl}`),
           createdAt: new Date().toISOString(),
         })
         .then(function DocId(docRef) {
@@ -88,6 +96,7 @@ class ModuleForm extends Component {
             module,
             description,
             content,
+            imgUrl,
             isPending,
             error,
             } = this.state;   
@@ -95,7 +104,8 @@ class ModuleForm extends Component {
             const isInvalid =
             module === '' ||
             description === '' ||
-            content === ''
+            content === '' ||
+            imgUrl === ''
 
         return (
             <form onSubmit={this.addModule}  style={{
@@ -151,16 +161,30 @@ class ModuleForm extends Component {
                     />
                 </FormGroup>
 
+                <div style={{
+                    paddingTop: "18px"
+                    }}>
+                    <input
+                        accept="image/*"
+                        value={imgUrl}
+                        onChange={this.updateInput}
+                        id="contained-button-file"
+                        multiple
+                        type="file"
+                    />
+                </div>
+
                 <FormGroup style={{
                     paddingTop: '18px',
                     }}>
                     <ButtonMui
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    disabled={isInvalid}
-                    isPending={isPending}
-                    text="create module"
+                        startIcon={<CloudUploadIcon />}
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        disabled={isInvalid}
+                        isPending={isPending}
+                        text="create module"
                     />
                 </FormGroup>
                 {error && <p style={{
