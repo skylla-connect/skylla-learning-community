@@ -4,6 +4,7 @@ import { Typography, Select, FormControl, Checkbox, Button} from '@material-ui/c
 import TextField from '@material-ui/core/TextField'
 import Footer from '../app/components/Footer/footer'
 import {Link} from 'react-router-dom'
+import FirechatUI from "firechat";
 
 
 class LiveSupport2 extends React.Component{
@@ -20,6 +21,25 @@ class LiveSupport2 extends React.Component{
         this.setState({
             Email: event.target.value
         })
+    }
+    handleStartChat = (event) => {
+        this.listener = this.props.firebase.auth().onAuthStateChanged(function(user) {
+            // Once authenticated, instantiate Firechat with the logged in user
+            if (user) {
+              initChat(user);
+            }
+          });
+    
+          function initChat(user) {
+            // Get a Firebase Database ref
+            var chatRef = this.props.firebase.dbRef().ref("chat");
+    
+            // Create a Firechat instance
+            var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+    
+            // Set the Firechat user
+            chat.setUser(user.uid, user.displayName);
+          }
     }
  
     render(){
@@ -61,7 +81,7 @@ class LiveSupport2 extends React.Component{
                         }}
                     >
                      <option aria-label="None" value="" />
-                     <option >Product& Services</option>
+                     <option >Product & Services</option>
                      <option >Purchase Module</option>
                      <option >Code & Debug</option>
                 </Select>
@@ -93,15 +113,17 @@ class LiveSupport2 extends React.Component{
                             and process the personal data you submit and or/ any personal data that may be
                             necessary to support helping you with you request(s) <br/>
                             You also agree to our Privacy Policy, Terms of service and any related policies.<br/>
-                
-                        <Button variant='contained' color='secondary' 
-                         style={{
-                            margin: '30px 0 20px 30px',
-                            borderRadius:'5px',
-                            textTransform:'capitalize'
+                        <div id="firechat-wrapper">
+                            <Button variant='contained' color='secondary' 
+                            onClick={this.handleStartChat}
+                            style={{
+                                margin: '30px 0 20px 30px',
+                                borderRadius:'5px',
+                                textTransform:'capitalize'
 
-                         }} >Start Chat
-                         </Button>
+                            }} >Start Chat
+                            </Button>
+                         </div>
 
                  </div>
 

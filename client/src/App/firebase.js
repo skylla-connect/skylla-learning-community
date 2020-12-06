@@ -2,6 +2,7 @@ import React from 'react';
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/database';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
@@ -19,7 +20,9 @@ class Firebase {
         app.initializeApp(firebaseConfig);
         this.auth = app.auth();
         this.db = app.firestore()
+        this.ref = app.database()
     }
+    dbRef = () => this.ref;
     // *** Auth API ***
     doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
