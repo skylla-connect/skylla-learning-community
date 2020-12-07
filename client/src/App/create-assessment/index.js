@@ -61,8 +61,6 @@ const INITIAL_STATE ={
     tittle:'',
     description:'',
     content:'',
-    content2:'',
-    content3:'',
     username:'',
     user:null,
     error:''
@@ -110,8 +108,6 @@ class CreateAssessmentForm extends Component {
             tittle:this.state.tittle,
             description:this.state.description,
             content:this.state.content,
-            content2:this.state.content2,
-            content3:this.state.content3,
             createdAt: new Date().toISOString(),
         })
         .then(function DocId(docRef){
@@ -135,9 +131,6 @@ class CreateAssessmentForm extends Component {
             tittle,
             description,
             content,
-            content2,
-            content3,
-            username,
             error
         } = this.state
 
@@ -148,18 +141,19 @@ class CreateAssessmentForm extends Component {
 
             
     return (
-      <Container component="main" maxWidth="xs">
+      <Container component="main" style={{width:'65%'}} className='contain-assess'>
        <div >
     < CssBaseline />
     <form onSubmit={this.createAssessment}  className='form2'>
-        <TextField
+            <div style={{display:'flex'}}>
+            <TextField
                 label='username' 
                 name='username'
                 variant='outlined'
                 value={this.state.username}
                 onChange={this.onChange}
                 style={{margin:'20px 0 0 0',width:'100%'}}
-          />
+            />
                 <br  />
                 <TextField 
                     label='Tittle Question '
@@ -167,11 +161,12 @@ class CreateAssessmentForm extends Component {
                     value={tittle}
                     variant='outlined'
                     onChange={this.onChange}
-                    style={{margin:'20px 0 0 0',width:'100%'}}
+                    style={{margin:'20px 0 0 10px',width:'100%'}}
                 />
+                </div>
                  <br />
                 <TextField
-                    label='Description'
+                    label='Hint'
                     name='description'
                     variant='outlined'
                     value={description}
@@ -187,32 +182,11 @@ class CreateAssessmentForm extends Component {
                     value={content}
                     aria-label="minimum height" 
                     placeholder="Ask the Content of the Assement"
-                    rowsMin={3}
+                    rowsMin={10}
                     onChange={this.onChange}
                     style={{margin:'20px 0 0 0',width:'100%'}}
                 />
-                 <TextareaAutosize
-                    label="Content"
-                    variant="outlined"
-                    name="content2"
-                    value={content2}
-                    aria-label="minimum height" 
-                    placeholder="Ask the Content of the Assement"
-                    rowsMin={3}
-                    onChange={this.onChange}
-                    style={{margin:'20px 0 0 0',width:'100%'}}
-                />
-                 <TextareaAutosize
-                    label="Content"
-                    variant="outlined"
-                    name="content3"
-                    value={content3}
-                    aria-label="minimum height" 
-                    placeholder="Ask the Content of the Assement"
-                    rowsMin={3}
-                    onChange={this.onChange}
-                    style={{margin:'20px 0 0 0',width:'100%'}}
-                />
+
                 <br />
                 <Button 
                     type='submit' 
