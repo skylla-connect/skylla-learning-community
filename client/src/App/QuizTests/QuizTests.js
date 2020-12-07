@@ -15,7 +15,8 @@ class QuizTests extends React.Component{
         this.state = {
           loading: false,
           assessments:[],
-          users:[]
+          users:[],
+          color:null
         };
         this.db  = app.firestore()
       }
@@ -30,32 +31,16 @@ class QuizTests extends React.Component{
             this.setState({users:data})
         })
       }
+      radioHandler = (e) =>{
+         this.setState({
+             color :  e.target.value
+         })
+      }
     render(){
         return(
-            <div>
-                <ul>
-                    {this.state.users.map(user => (
-                    <li key={user.uid}>
-                        <span>
-                        <strong>ID:</strong> {user.uid}
-                        </span>
-                        <span>
-                        <strong>Username:</strong> {user.email}
-                        </span>
-                        <span>
-                        <strong>Tittle:</strong> {user.tittle}
-                        </span>
-                        <span>
-                        <strong>Description:</strong> {user.tittle}
-                        </span>
-                        <span>
-                        <strong>Content:</strong> {user.tittle}
-                        </span>
-                    </li>
-                    ))}
-                </ul>
-                <div className='quizmenu'>
-                    <a href="#general" > <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' 
+                <div>
+                    <div className='quizmenu'>
+                        <a href="#general" > <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' 
                         alt='pic'
                         style={{
                         maxWidth:'40%',
@@ -63,34 +48,71 @@ class QuizTests extends React.Component{
                         float:'left',
                         color:'white',
                         marginTop:'25px',
-                        
+
                         }}
                         />
-                   </a>
-                 
-                   < br/>
-                    <Typography 
+                        </a>
+                        < br/>
+                        <Typography 
                         style={{
                             color:'white',
                             textAlign: 'center',
                             fontSize:'30px'
-                        
+
                         }}
                         >
-                       Quiz&Tests
-                    </Typography>
-                </div>
-
+                        Quiz&Tests
+                        </Typography>
+                    </div>
                 <div className='quiz'>
-               <h1>Instructions:</h1> 
-                <p>Choose an answer and hit 'next'. You will receive your score and answers at the end</p>
-               <Typography  style={{fontSize: '100%', lineHeight: 2, margin:'20px 0 0 0'}}>What is user interface design?</Typography> 
-               <Divider style={{margin: '0 0 20px 0', width:'300px' ,height: '2px',}}/>
-               <FormControlLabel value="designing software around the needs of a user" control={<Radio />} label="Designing software around the needs of a user" /><br/>
-               <FormControlLabel value="making an app run fast" control={<Radio />} label="Making an app run fast" /><br/>
-               <FormControlLabel value="creating an app" control={<Radio />} label="Creating an app" /><br/>
-               
-                <Button variant='contained' color='secondary'style={{marginTop:'30px', width:'15%'}} >Next</Button>
+                   <div>
+                   {this.state.users.map(user => (
+                       <ul key={user.uid}>
+                           <h1>Instructions:</h1>
+                           <p>
+                                Choose an answer and hit 'next'. You will
+                                receive your score and answers at the end
+                            </p> 
+                           <li className='li-w'>
+                                <Typography  style={{fontSize: '100%', lineHeight: 2, margin:'20px 0 0 0'}}>{user.tittle}</Typography> 
+                           </li>
+                           <li className='li-w'>
+                                <p>Asked by :</p>
+                           </li>
+                            <Divider style={{margin: '0 0 20px 0', width:'300px' ,height: '2px',}}/>
+                            <li className='li-w'>
+                                <FormControlLabel 
+                                    value="designing software around the needs of a user" 
+                                    control={<Radio />} 
+                                    label={user.content}
+                                    value='black'
+                                    checked={this.state.color === 'black'} 
+                                    onChange={this.radioHandler}
+                                />
+                                <br/> 
+                                <FormControlLabel 
+                                    value="designing software around the needs of a user" 
+                                    control={<Radio />} 
+                                    label={user.content}
+                                    value='blue'
+                                    checked={this.state.color === 'blue'}
+                                    onChange={this.radioHandler}
+                                />
+                                <br/> 
+                                <FormControlLabel 
+                                    value="designing software around the needs of a user" 
+                                    control={<Radio />} 
+                                    label={user.content}
+                                    value='red'
+                                    checked={this.state.color === 'red'}
+                                    onChange={this.radioHandler}
+                                />
+                                <br/> 
+                            </li>
+                            <Button variant='contained' color='secondary'style={{marginTop:'30px', width:'15%'}} >Next</Button>
+                       </ul>
+                   ))}
+                   </div>
                 </div>
                 
             </div>
