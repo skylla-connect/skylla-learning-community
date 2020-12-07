@@ -73,8 +73,7 @@ class QuizTests extends React.Component{
                             
                             <h3 style={{fontSize:'bold'}}>Instructions:</h3>
                             <p>
-                                Choose an answer and hit 'next'. You will
-                                receive your score and answers at the end
+                                Answer the the following question in the editor provided below.
                             </p> 
                             
                             <li className='li-w'>
@@ -84,39 +83,14 @@ class QuizTests extends React.Component{
                                 <p> <strong >Asked by :</strong> {user.username} </p>
                             </li>
                             <li className='li-w'>
-                                <p><strong >Description :</strong>  {user.description} </p>
-                            </li>
-                            <li className='li-w'>
                                 <p><strong>Created On :</strong> {user.createdAt} </p>
                             </li>
                                 <Divider style={{margin: '0 0 20px 0', width:'300px' ,height: '2px',}}/>
                                 <li className='li-w'>
-                                    <FormControlLabel 
-                                        value="designing software around the needs of a user" 
-                                        control={<Radio />} 
-                                        label={user.content}
-                                        value='black'
-                                        checked={this.state.color === 'black'} 
-                                        onChange={this.radioHandler}
-                                    />
-                                    <br/> 
-                                    <FormControlLabel 
-                                        value="designing software around the needs of a user" 
-                                        control={<Radio />} 
-                                        label={user.content2}
-                                        value='blue'
-                                        checked={this.state.color === 'blue'}
-                                        onChange={this.radioHandler}
-                                    />
-                                    <br/> 
-                                    <FormControlLabel 
-                                        value="designing software around the needs of a user" 
-                                        control={<Radio />} 
-                                        label={user.content3}
-                                        value='red'
-                                        checked={this.state.color === 'red'}
-                                        onChange={this.radioHandler}
-                                    />
+                                <p><strong >Description :</strong>  {user.description} </p>
+                                </li>
+                                <li className='li-w'>
+                                 <p> {user.content}</p>
                                     <br/> 
                                 </li>
                                     <div className='button'>
