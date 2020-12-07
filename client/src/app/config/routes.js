@@ -13,3 +13,4 @@ export const INTERVIEWS = '/interviews';
 export const PAYMENT = '/payment';
 export const LIVE_SUPPORT ='/livesupport';
 export const SUCCESS_PAGE = '/success';
+export const LIVECODING = '/code';

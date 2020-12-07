@@ -6,7 +6,6 @@ import {SignUpPage} from './App/screens/signup/index';
 import SignInPage from './App/screens/login/index';
 import PasswordReset from './App/screens/resetPassword/index';
 
-
 const Unathenticated = () => {
     return ( 
         <Routes />
