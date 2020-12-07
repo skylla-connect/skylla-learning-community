@@ -77,7 +77,13 @@ class QuizTests extends React.Component{
                                 <Typography  style={{fontSize: '100%', lineHeight: 2, margin:'20px 0 0 0'}}>{user.tittle}</Typography> 
                            </li>
                            <li className='li-w'>
-                                <p>Asked by :</p>
+                            <p>Asked by : {user.username} </p>
+                           </li>
+                           <li className='li-w'>
+                            <p>Description : {user.description} </p>
+                           </li>
+                           <li className='li-w'>
+                            <p>Created On : {user.createdAt} </p>
                            </li>
                             <Divider style={{margin: '0 0 20px 0', width:'300px' ,height: '2px',}}/>
                             <li className='li-w'>
@@ -93,7 +99,7 @@ class QuizTests extends React.Component{
                                 <FormControlLabel 
                                     value="designing software around the needs of a user" 
                                     control={<Radio />} 
-                                    label={user.content}
+                                    label={user.content2}
                                     value='blue'
                                     checked={this.state.color === 'blue'}
                                     onChange={this.radioHandler}
@@ -102,7 +108,7 @@ class QuizTests extends React.Component{
                                 <FormControlLabel 
                                     value="designing software around the needs of a user" 
                                     control={<Radio />} 
-                                    label={user.content}
+                                    label={user.content3}
                                     value='red'
                                     checked={this.state.color === 'red'}
                                     onChange={this.radioHandler}
