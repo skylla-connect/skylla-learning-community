@@ -61,6 +61,9 @@ const INITIAL_STATE ={
     tittle:'',
     description:'',
     content:'',
+    content2:'',
+    content3:'',
+    username:'',
     user:null,
     error:''
 }
@@ -92,6 +95,7 @@ class CreateAssessmentForm extends Component {
             ...INITIAL_STATE,
         }
         this.db = app.firestore();
+        this.Authuser = app.auth().currentUser;
     }
 
     createAssessment = (event) =>{
@@ -100,10 +104,14 @@ class CreateAssessmentForm extends Component {
             timestampsInSnapshots : true
         })
         this.db.collection(`users/admin/dashboard/assessment/assessments`).add({
-            // user: this.state.user.email,
+            user: this.Authuser.email,
+            uid: this.Authuser.uid,
+            username: this.state.username,
             tittle:this.state.tittle,
             description:this.state.description,
             content:this.state.content,
+            content2:this.state.content2,
+            content3:this.state.content3,
             createdAt: new Date().toISOString(),
         })
         .then(function DocId(docRef){
@@ -127,6 +135,9 @@ class CreateAssessmentForm extends Component {
             tittle,
             description,
             content,
+            content2,
+            content3,
+            username,
             error
         } = this.state
 
@@ -145,13 +156,13 @@ class CreateAssessmentForm extends Component {
                 label='username' 
                 name='username'
                 variant='outlined'
-                // value={this.state.user.email}
-                // onChange={this.onChange}
+                value={this.state.username}
+                onChange={this.onChange}
                 style={{margin:'20px 0 0 0',width:'100%'}}
           />
                 <br  />
                 <TextField 
-                    label='Tittle'
+                    label='Tittle Question '
                     name='tittle'
                     value={tittle}
                     variant='outlined'
@@ -175,8 +186,30 @@ class CreateAssessmentForm extends Component {
                     name="content"
                     value={content}
                     aria-label="minimum height" 
-                    placeholder="Write the Content of the Assement"
-                    rowsMin={10}
+                    placeholder="Ask the Content of the Assement"
+                    rowsMin={3}
+                    onChange={this.onChange}
+                    style={{margin:'20px 0 0 0',width:'100%'}}
+                />
+                 <TextareaAutosize
+                    label="Content"
+                    variant="outlined"
+                    name="content2"
+                    value={content2}
+                    aria-label="minimum height" 
+                    placeholder="Ask the Content of the Assement"
+                    rowsMin={3}
+                    onChange={this.onChange}
+                    style={{margin:'20px 0 0 0',width:'100%'}}
+                />
+                 <TextareaAutosize
+                    label="Content"
+                    variant="outlined"
+                    name="content3"
+                    value={content3}
+                    aria-label="minimum height" 
+                    placeholder="Ask the Content of the Assement"
+                    rowsMin={3}
                     onChange={this.onChange}
                     style={{margin:'20px 0 0 0',width:'100%'}}
                 />
