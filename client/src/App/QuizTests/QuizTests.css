@@ -10,21 +10,37 @@
     margin: auto auto auto auto;
     
 }
+.card{
+    width:80%;
+    margin:20px auto 5px auto;
+}
 
 .li-w{
     list-style-type: none;
+}
+.button{
+    margin: 10px 0 0 80%;
+    
 }
 
 
 @media only screen and (max-width: 768px) {
     .quizmenu{
-        height:250px;
+        height:90px;
         width:100%;
         background-color: blue;
         color:white;
         text-align: center;
         font-size: smaller;
     }
+    .card{
+        width: 96%;
+    }
+    .button{
+        margin: 10px 0 0 80%;
+        
+    }
+
     
 
 }
