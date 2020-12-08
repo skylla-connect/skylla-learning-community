@@ -231,7 +231,7 @@ export default function PersistentDrawerLeft() {
         .catch(err => {
             console.log('Error getting documents', err);
         });
-  }, []);
+  }, [userDetailsConverter]);
 
   const handleDrawerOpen = () => {
     setOpen(true);

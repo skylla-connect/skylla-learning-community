@@ -4,11 +4,11 @@ import {jsx} from '@emotion/core'
 
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-
 import * as ROUTES from "./App/config/routes";
 import Admin from './App/screens/Admin/index';
 import Trainer from './App/screens/Trainer/index';
 import Trainee from './App/screens/Trainee/index';
+// import Payment from './App/complete-payment/index';
 import { useUser } from './App';
 import withAuthorization from './App/session/withAuthorization';
 import { FullPageSpinner } from './App/components';
@@ -80,8 +80,9 @@ function Routes(props) {
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}
                     {props.authUser.ROLE === "trainee" && <Redirect to={ROUTES.TRAINEE}/>}
-                </Route> 
+                </Route>
             </Switch>
         </Router>
     )
 }
+

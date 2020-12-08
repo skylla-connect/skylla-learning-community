@@ -1,0 +1,32 @@
+.quizmenu{
+    height: 90px;
+    width: 100%;
+    background-color: blue;
+    color:white;
+    text-align: center;
+}
+.quiz{
+    width: 80%;
+    margin: auto auto auto auto;
+    
+}
+
+.li-w{
+    list-style-type: none;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .quizmenu{
+        height:250px;
+        width:100%;
+        background-color: blue;
+        color:white;
+        text-align: center;
+        font-size: smaller;
+    }
+    
+
+}
+
+
