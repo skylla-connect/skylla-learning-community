@@ -8,7 +8,6 @@ import Trainee from './App/screens/Trainee/index';
 import { useUser } from './App';
 import withAuthorization from './App/session/withAuthorization';
 import { FullPageSpinner } from './App/components';
-import createAssessment from './App/create-assessment';
 
 const Athenticated = () => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);
@@ -37,8 +36,6 @@ function Routes(props) {
                 <Route path={ROUTES.ADMIN} component={Admin} />
                 <Route path={ROUTES.TRAINER} component={Trainer} />
                 <Route path={ROUTES.TRAINEE} component={Trainee} />
-                {/* <Route path={ROUTES.PAYMENT} component={Payment} /> */}
-                <Route path={ROUTES.ASSESSMENTS} component={createAssessment} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}

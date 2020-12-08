@@ -5,7 +5,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 // import Typography from '@material-ui/core/Typography';
 import './permissions.css'
 import { Link } from 'react-router-dom';
-import *as ROUTES from '../../../config/routes'
+// import *as ROUTES from '../../../config/routes'
 
 const permissions = (props) => {
   return (
@@ -63,13 +63,13 @@ const permissions = (props) => {
           </Link>
 
           {/* Create assesment */}
-          <Link to={ROUTES.ASSESSMENTS} style={{color: 'white', textDecoration: 'none'}}>
+          <Link to="/assignment" style={{color: 'white', textDecoration: 'none'}}>
             <MenuItem>
                 <img 
                 src="https://cdn0.iconfinder.com/data/icons/fatcow/32/document_mark_as_final.png" 
                 alt="" 
                 style={{ marginRight: '10px', width: '15%'}}
-                /> create assessment
+                /> create assignment
             </MenuItem>
           </Link>
         </MenuList>
