@@ -11,7 +11,7 @@
     
 }
 .card{
-    width:80%;
+    width:90%;
     margin:50px auto 5px auto;
 }
 
@@ -36,7 +36,7 @@
         width: 96%;
     }
     .button{
-        margin: 10px 0 0 80%;
+        margin: 10px 0 0 0;
         
     }
 }

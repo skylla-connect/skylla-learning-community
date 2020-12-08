@@ -8,6 +8,7 @@ import 'firebase/firestore'
 import { withFirebase } from '../firebase';
 import app from 'firebase/app'
 import Card from '@material-ui/core/Card'
+import Editor from './Editor';
 
 class QuizTests extends React.Component{
     constructor(props) {
@@ -93,14 +94,15 @@ class QuizTests extends React.Component{
                                  <p> {user.content}</p>
                                     <br/> 
                                 </li>
-                                    <div className='button'>
-                                        <Button variant='contained' color='primary' className='button'style={{width:'15%'}} >Next</Button>
-                                    </div>
+                                    
                         </ul>
                     ))}
                     </div>
                     </div>
+                    <Editor />
+                    <Button variant='contained' color='primary' className='button'style={{width:'15%', margin:'25px'}} type='submit' >Submit</Button>
                 </Card>
+                
                 
                 
             </div>
