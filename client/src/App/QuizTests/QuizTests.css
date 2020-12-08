@@ -1,5 +1,5 @@
 .quizmenu{
-    height: 90px;
+    height: 70px;
     width: 100%;
     background-color: blue;
     color:white;
@@ -7,22 +7,21 @@
 }
 .quiz{
     width: 80%;
-    margin: auto auto auto auto;
+    margin: 30px auto auto auto;
     
 }
 .card{
     width:80%;
-    margin:20px auto 5px auto;
+    margin:50px auto 5px auto;
 }
 
 .li-w{
     list-style-type: none;
 }
 .button{
-    margin: 10px 0 0 80%;
+    margin: 10px 0 0 0;
     
 }
-
 
 @media only screen and (max-width: 768px) {
     .quizmenu{
@@ -40,9 +39,6 @@
         margin: 10px 0 0 80%;
         
     }
-
-    
-
 }
 
 

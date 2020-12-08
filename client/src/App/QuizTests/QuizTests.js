@@ -44,7 +44,7 @@ class QuizTests extends React.Component{
                     <a href="#general" > <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' 
                         alt='pic'
                         style={{
-                        width:'20%',
+                        width:'10%',
                         height:'50%',
                         float:'left',
                         color:'white',
@@ -58,7 +58,7 @@ class QuizTests extends React.Component{
                     style={{
                         color:'white',
                         textAlign: 'center',
-                        fontSize:'30px'
+                        fontSize:'20px'
 
                     }}
                     >
@@ -71,7 +71,7 @@ class QuizTests extends React.Component{
                     {this.state.users.map(user => (
                         <ul key={user.uid}>
                             
-                            <h3 style={{fontSize:'bold'}}>Instructions:</h3>
+                            <h3><strong>Instructions:</strong></h3>
                             <p>
                                 Answer the the following question in the editor provided below.
                             </p> 
@@ -94,7 +94,7 @@ class QuizTests extends React.Component{
                                     <br/> 
                                 </li>
                                     <div className='button'>
-                                        <Button variant='contained' color='primary' className='button' >Next</Button>
+                                        <Button variant='contained' color='primary' className='button'style={{width:'15%'}} >Next</Button>
                                     </div>
                         </ul>
                     ))}
