@@ -421,10 +421,10 @@ they know what a "view" is supposed to be.
 `cd client`
 
 * Install node packages and dependencies: 
-`npm install`
+`yarn`
 
 * Run tests
-`npm test`
+`yarn test`
 
 * In the server folder, run;
 `cd server`
@@ -432,7 +432,7 @@ they know what a "view" is supposed to be.
 NOTE: 
 If you get into a situation where npm install found some vulnerabilities that needs to be fixed.
 run;
-`npm audit fix`
+`yarn audit fix`
 
 * Start server and the client application
 
