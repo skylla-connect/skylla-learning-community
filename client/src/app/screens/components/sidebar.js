@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import {jsx} from '@emotion/core'
 import { Typography } from '@material-ui/core';
