@@ -4,7 +4,7 @@ import { Typography, Select, FormControl, Checkbox, Button} from '@material-ui/c
 import TextField from '@material-ui/core/TextField'
 import Footer from '../app/components/Footer/footer'
 import {Link} from 'react-router-dom'
-import FirechatUI from "firechat";
+
 
 
 class LiveSupport2 extends React.Component{
@@ -23,23 +23,7 @@ class LiveSupport2 extends React.Component{
         })
     }
     handleStartChat = (event) => {
-        this.listener = this.props.firebase.auth().onAuthStateChanged(function(user) {
-            // Once authenticated, instantiate Firechat with the logged in user
-            if (user) {
-              initChat(user);
-            }
-          });
-    
-          function initChat(user) {
-            // Get a Firebase Database ref
-            var chatRef = this.props.firebase.dbRef().ref("chat");
-    
-            // Create a Firechat instance
-            var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-    
-            // Set the Firechat user
-            chat.setUser(user.uid, user.displayName);
-          }
+       
     }
  
     render(){
