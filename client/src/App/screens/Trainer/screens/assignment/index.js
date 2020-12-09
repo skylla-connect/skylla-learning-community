@@ -188,7 +188,7 @@ class CreateAssessmentForm extends Component {
                         type="submit"
                         disabled={isInvalid}
                         // isPending={isPending}
-                        text="create Assessment"
+                        text="create Assignment"
                         />
                     </FormGroup>
 

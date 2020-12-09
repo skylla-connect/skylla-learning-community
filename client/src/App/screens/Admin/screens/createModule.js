@@ -1,10 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'firebase/firestore';
 import app from 'firebase/app';
 import { Centered, FormGroup } from '../../../components';
 import TextFieldMui from "../../components/textField";
 import ButtonMui from "../../components/button";
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import FirebaseContext from 'firebase'
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  input: {
+    display: 'none',
+  },
+}));
 
 const CreateModule = () => (
     <div style={{
@@ -16,6 +29,7 @@ const CreateModule = () => (
             width: '100%',
             position: 'relative',
             Height: '100vh',
+            marginTop: 40
            }}>
             <Centered>
                 <div>
@@ -33,6 +47,8 @@ const CreateModule = () => (
     </div>
 );
 
+// const allInputs = {imgUrl: ''}
+
 const INITIAL_STATE = {
     module: '',
     description: '',
@@ -41,64 +57,72 @@ const INITIAL_STATE = {
     error: null,
 };
 
+// const AuthUser = app.auth().currentUser
 
-class ModuleForm extends Component {
+const ModuleForm = () => {
+    const [values , setValues] = React.useState(INITIAL_STATE)
+    const [imageAsFile, setImageAsFile] = React.useState('')
+    const [imageAsUrl, setImageAsUrl] = React.useState({imgUrl: ''})
+    const classes = useStyles();
 
-    constructor(props) {
-        super(props);
-        this.db = app.firestore();
-        this.state = {
-           ...INITIAL_STATE,
-        }
-    }
+    const handleImageAsFile = (e) => {
+        setImageAsFile(e.target.files[0]);
+    } 
 
-    addModule = (event) => {
+    const addModule = (event) => {
         event.preventDefault();
-        this.db.settings({
-          timestampsInSnapshots: true
-        });
+
+        app.firestore().settings({
+            timestampsInSnapshots: true
+          });
+
+        let storageRef  =  FirebaseContext.storage().ref()
+        console.log('start of upload')
+        if(imageAsFile === '') {
+            console.error(`not an image, the image file is a ${typeof(imageAsFile)}`)
+        }
+        const uploadTask = storageRef.child(`/modules/${imageAsFile.name}`).put(imageAsFile)
+        uploadTask.on('state_changed', 
+        (snapShot) => {
+            console.log(snapShot)
+        }, (err) => {
+            console.log(err)
+        }, () => {
+            FirebaseContext.storage().ref('modules').child(imageAsFile.name).getDownloadURL()
+            .then(fireBaseUrl => {
+                FirebaseContext.firestore().collection(`modules`).add({
+                    description: values.description,
+                    content: values.content,
+                    imageUrl : fireBaseUrl ,
+                    module: values.module,
+                    user: app.auth().currentUser.email,
+                    uid: app.auth().currentUser.uid,
+                   createdAt: new Date().toISOString(),
+                }).then(setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl})))
+                .then(function DocId(docRef) {
+                    return docRef.id;
+                })
         
-        this.db.collection(`users/admin/dashboard/module/modules`).add({
-          module: this.state.module,
-          description: this.state.description,
-          content: this.state.content,
-          createdAt: new Date().toISOString(),
+                .catch(error => {
+                    setValues(error, values.isPending = false);
+                });
+                setImageAsFile(imageAsFile)
+                setValues(INITIAL_STATE);
+            }) 
         })
-        .then(function DocId(docRef) {
-            return docRef.id;
-        })
-
-        .catch(error => {
-            this.setState({ error, isPending: false});
-        });
-
-        this.setState({
-            ...INITIAL_STATE
-        });
     };
+    const isInvalid =
+        values.module === '' ||
+        values.description === '' ||
+        values.content === ''
 
-    updateInput = e => {
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-    }
-
-    render() {
-        const {
-            module,
-            description,
-            content,
-            isPending,
-            error,
-            } = this.state;   
-
-            const isInvalid =
-            module === '' ||
-            description === '' ||
-            content === ''
+    const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+      };
 
         return (
-            <form onSubmit={this.addModule}  style={{
+            <div className={classes.root}>
+                <form onSubmit={addModule}  style={{
                 width: '600px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -112,9 +136,9 @@ class ModuleForm extends Component {
                         type="text"
                         id="name"
                         name="module"
-                        value={module}
+                        value={values.module}
                         placeholder="Name of the Module"
-                        onChange={this.updateInput}
+                        onChange={handleChange('module')}
                     />
                 </FormGroup>
 
@@ -127,8 +151,8 @@ class ModuleForm extends Component {
                         type="text"
                         id="desc"
                         name="description"
-                        value={description}
-                        onChange={this.updateInput}
+                        value={values.description}
+                        onChange={handleChange('description')}
                     />
                 </FormGroup>
 
@@ -139,18 +163,29 @@ class ModuleForm extends Component {
                         label="Content"
                         variant="outlined"
                         name="content"
-                        value={content}
+                        value={values.content}
                         aria-label="minimum height" 
                         placeholder="Write the Content of this module"
                         rowsMin={10}
-                        onChange={this.updateInput}
+                        onChange={handleChange('content')}
 
                         style={{
                             borderRadius: 5,
                         }}
                     />
                 </FormGroup>
-
+                <FormGroup style={{
+                    paddingTop: "18px"
+                    }}>
+                    <label>
+                        Attach an Image of the Module
+                    </label>
+                   <input
+                        accept="image/*"
+                        onChange={handleImageAsFile}
+                        type="file"
+                    />
+                </FormGroup>
                 <FormGroup style={{
                     paddingTop: '18px',
                     }}>
@@ -159,18 +194,18 @@ class ModuleForm extends Component {
                     color="primary"
                     type="submit"
                     disabled={isInvalid}
-                    isPending={isPending}
+                    isPending={values.isPending}
                     text="create module"
                     />
                 </FormGroup>
-                {error && <p style={{
+                 {values.error && <p style={{
                     paddingTop: '15px',
                     fontSize: '14px',
                     color: 'red',
-                }}>{error.message}</p>}
+                }}>{values.error.message}</p>}
             </form>
+            </div>
         );
-    }
 }
 
 export default CreateModule;

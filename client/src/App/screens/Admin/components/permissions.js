@@ -2,10 +2,8 @@ import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-// import Typography from '@material-ui/core/Typography';
 import './permissions.css'
 import { Link } from 'react-router-dom';
-// import *as ROUTES from '../../../config/routes'
 
 const permissions = (props) => {
   return (
@@ -59,17 +57,6 @@ const permissions = (props) => {
                   cancel
               </i>
               delete module
-            </MenuItem>
-          </Link>
-
-          {/* Create assesment */}
-          <Link to="/assignment" style={{color: 'white', textDecoration: 'none'}}>
-            <MenuItem>
-                <img 
-                src="https://cdn0.iconfinder.com/data/icons/fatcow/32/document_mark_as_final.png" 
-                alt="" 
-                style={{ marginRight: '10px', width: '15%'}}
-                /> create assignment
             </MenuItem>
           </Link>
         </MenuList>

@@ -19,6 +19,7 @@ import Views from './components/views/views';
 import ProfilePage from './screens/profilePage';
 import Footer from '../../components/Footer/footer';
 import *as ROUTES from '../../config/routes';
+import Assessments from './screens/assignment/index';
 import {
   BrowserRouter as Router,
   Switch,
@@ -127,6 +128,13 @@ const routes = [
     main: () => <div>
       Interviews page
     </div>
+  },
+
+  {
+    path: "/assignment",
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <Assessments />
   },
 ];
 
