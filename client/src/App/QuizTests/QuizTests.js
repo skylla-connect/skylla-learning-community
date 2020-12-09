@@ -100,7 +100,7 @@ class QuizTests extends React.Component{
                     </div>
                     </div>
                     <Editor />
-                    <Button variant='contained' color='primary' className='button'style={{width:'15%', margin:'25px'}} type='submit' >Submit</Button>
+                   
                 </Card>
                 
                 
