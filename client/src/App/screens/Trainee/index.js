@@ -179,21 +179,6 @@ export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
-<<<<<<< Updated upstream
-  const [liveClassDetails, setliveClassDetails] = React.useState({module:'', session:'', link:''});
-
-  class classDetails {
-    constructor (module, session, link ) {
-        this.module = module;
-        this.session = session;
-        this.link= link;
-    }
-    // toString() {
-    //     return this.name + ', ' + this.email + ', ' + this.password;
-    // }
-  }
-=======
->>>>>>> Stashed changes
   
   class userDetails {
     constructor (name, email, password, photo ) {
@@ -224,23 +209,6 @@ export default function PersistentDrawerLeft() {
       }
   }
 
-<<<<<<< Updated upstream
-  var classDetailsConverter = {
-    toFirestore: function(classDetails) {
-        return {
-            module: classDetails.module,
-            session: classDetails.session,
-            link: userDetails.link
-            }
-    },
-    fromFirestore: function(snapshot, options){
-        const data = snapshot.data(options);
-        const det1 = new classDetails(data.module, data.session, data.link);
-        return det1
-    }
-}
-=======
->>>>>>> Stashed changes
   React.useEffect(() => {
         let user = FirebaseContext.auth().currentUser;   
         let db = FirebaseContext.firestore().collection('users/trainee/users');
@@ -264,32 +232,6 @@ export default function PersistentDrawerLeft() {
             console.log('Error getting documents', err);
         });
   }, []);
-<<<<<<< Updated upstream
-
-  React.useEffect(() => {
-    let db = FirebaseContext.firestore().collection('users/trainer/dashboard/live_class/schedule');
-    let query = db.where('session', '==', 'evening');
-    
-    query.withConverter(classDetailsConverter).get()
-    .then(snapshot => {
-        if (snapshot.empty) {
-        console.log('No matching documents.');
-        return;
-        }  
-
-        snapshot.forEach(doc => {
-            var x = doc.data();
-            setliveClassDetails(x)
-        // console.log(doc.id, '=>', x);
-        ;
-        })
-    })
-    .catch(err => {
-        console.log('Error getting documents', err);
-    });
-  }, [classDetailsConverter]);
-=======
->>>>>>> Stashed changes
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -338,19 +280,6 @@ export default function PersistentDrawerLeft() {
                 <Typography variant="body2">
                   Trainer
                 </Typography>
-              </div>
-
-              <div style={{textAlign: 'center'}}>
-                <a href={liveClassDetails.link}>
-                  <img 
-                    src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
-                    alt=""
-                    width="20%" 
-                  />
-                  <Typography variant="body2" >
-                    Join Live Class
-                  </Typography>
-                </a>
               </div>
 
               <div style={{textAlign: 'center'}}>
