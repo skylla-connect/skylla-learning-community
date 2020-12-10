@@ -17,6 +17,7 @@ import Permissions from './components/permissions';
 import Mobile from './mob';
 import Views from './components/views/views';
 import ProfilePage from './screens/profilePage';
+import Schedule from './screens/schedule';
 import Footer from '../../components/Footer/footer';
 import *as ROUTES from '../../config/routes';
 import Assessments from './screens/assignment/index';
@@ -25,6 +26,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import FirebaseContext from 'firebase';
+import 'firebase/firestore';
 
 const drawerWidth = 240;
 
@@ -122,6 +125,15 @@ const routes = [
   },
 
   {
+    path: ROUTES.SCHEDULE,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      <Schedule/>
+    </div>
+  },
+
+  {
     path: ROUTES.INTERVIEWS,
     exact: true,
     sidebar: () => <div></div>,
@@ -142,6 +154,21 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [moduleDetails, setmoduleDetails] = React.useState([]);
+     
+        
+  React.useEffect(() => {
+      const fetchData = async () => {
+          let user = FirebaseContext.auth().currentUser;   
+          let db = FirebaseContext.firestore().collection('modules');
+            let query = db.where('trainer', '==', user.email);
+
+          query.onSnapshot(function(data){
+              setmoduleDetails(data.docs.map(doc => ({...doc.data(), id: doc.id})))
+          });
+      };
+      fetchData();
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -206,14 +233,21 @@ export default function PersistentDrawerLeft() {
               }}
             />
 
-            <Button style={{
+            <div style={{
                 color: 'white',
                 textTransform: 'capitalize'
             }}>
-              <Typography variant="h6" paragraph>
-                  Module Content
+              <Typography variant="h6" paragraph align='center'>
+                <u> My Modules</u>
               </Typography>
-            </Button>
+              {moduleDetails.map((module) => (
+                <div key={module.id}>
+                  <Typography paragraph align='center'>
+                      {module.module}
+                  </Typography>
+                </div>
+              ))}
+            </div>
 
               <div 
                   style={{

@@ -52,6 +52,7 @@ const CreateModule = () => (
 const INITIAL_STATE = {
     module: '',
     description: '',
+    trainer:'',
     content: '',
     isPending: false,
     error: null,
@@ -95,6 +96,7 @@ const ModuleForm = () => {
                     content: values.content,
                     imageUrl : fireBaseUrl ,
                     module: values.module,
+                    trainer: values.trainer,
                     user: app.auth().currentUser.email,
                     uid: app.auth().currentUser.uid,
                    createdAt: new Date().toISOString(),
@@ -114,6 +116,7 @@ const ModuleForm = () => {
     const isInvalid =
         values.module === '' ||
         values.description === '' ||
+        values.trainer === '' ||
         values.content === ''
 
     const handleChange = (prop) => (event) => {
@@ -153,6 +156,20 @@ const ModuleForm = () => {
                         name="description"
                         value={values.description}
                         onChange={handleChange('description')}
+                    />
+                </FormGroup>
+
+                <FormGroup  style={{
+                    paddingTop: "18px",
+                    }}>
+                    <TextFieldMui
+                        label="Trainer"
+                        variant="outlined"
+                        type="text"
+                        id="trainer"
+                        name="trainer"
+                        value={values.trainer}
+                        onChange={handleChange('trainer')}
                     />
                 </FormGroup>
 

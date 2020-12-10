@@ -1,0 +1,13 @@
+.schedule {
+    margin-top: 5%;
+}
+
+.formControl {
+    margin-top: 20px;
+    min-width: 120;
+}
+
+.select {
+    /* margin-top: theme.spacing(2), */
+    height: 40px;
+ }

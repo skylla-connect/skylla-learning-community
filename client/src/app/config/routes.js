@@ -8,6 +8,7 @@ export const PASSWORD_RESET = '/resetpassword';
 export const MODULES = '/module';
 export const PROFILE = '/profile';
 export const LIVE_CLASS = '/liveclass';
+export const SCHEDULE = '/scheduleclass';
 export const ASSESSMENTS = '/final_assessment';
 export const HIRED = '/hired';
 export const INTERVIEWS = '/interviews';

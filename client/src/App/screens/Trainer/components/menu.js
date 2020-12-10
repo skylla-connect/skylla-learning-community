@@ -4,6 +4,7 @@ import MenuList from '@material-ui/core/MenuList';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AssessmentIcon from '@material-ui/icons/Assessment';
+import TodayIcon from '@material-ui/icons/Today';
 import { withFirebase } from '../../../firebase';
 import { Link } from 'react-router-dom';
 import *as ROUTES from '../../../config/routes';
@@ -34,6 +35,17 @@ const menu = ({ firebase }) => {
               marginRight: '10px'
               }} 
             /> Profile
+          </MenuItem>
+        </Link>
+
+        <Link to={ROUTES.SCHEDULE}  style={{
+          color: 'white', 
+          textDecoration: 'none'
+          }}>
+          <MenuItem>
+              <TodayIcon style={{
+              marginRight: '10px'
+              }} /> Schedule Class
           </MenuItem>
         </Link>
 
