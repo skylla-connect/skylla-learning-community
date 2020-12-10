@@ -30,7 +30,8 @@
     "react-scripts": "^4.0.1",
     "react-slideshow-image": "^3.3.2",
     "recompose": "^0.30.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",
