@@ -3,6 +3,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import './permissions.css';
 import { Link } from 'react-router-dom';
+import TodayIcon from '@material-ui/icons/Today';
+import *as ROUTES from '../../../config/routes';
 
 const permissions = (props) => {
   return (
@@ -12,6 +14,17 @@ const permissions = (props) => {
         </Typography> */}
 
         <MenuList>
+          <Link to={ROUTES.SCHEDULE}  style={{
+            color: 'white', 
+            textDecoration: 'none'
+            }}>
+            <MenuItem>
+                <TodayIcon style={{
+                marginRight: '10px'
+                }} /> Schedule Class
+            </MenuItem>
+          </Link>
+
           <MenuItem>
             <img 
               src="https://cdn0.iconfinder.com/data/icons/fatcow/32x32/session_idle_time.png" 
@@ -43,14 +56,6 @@ const permissions = (props) => {
                     color: 'black'}} className='fas'>&#xf0c0;</i>
             supervise trainees
           </MenuItem>
-
-          {/* <MenuItem>
-            <i className="material-icons" 
-                style={{color: '#CCCCCC', marginRight: '10px'}}>
-                cancel
-            </i>
-            delete module
-          </MenuItem> */}
 
           {/* Create assesment */}
           <Link to="/assignment" style={{color: 'white', textDecoration: 'none'}}>

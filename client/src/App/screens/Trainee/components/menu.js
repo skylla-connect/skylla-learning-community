@@ -8,6 +8,7 @@ import SpeedIcon from '@material-ui/icons/Speed';
 import *as ROUTES from '../../../config/routes';
 import { withFirebase } from '../../../firebase';
 import { Link } from 'react-router-dom';
+import LiveClass from '../screens/liveClass';
 
 const menu = ({ firebase }) => {
 
@@ -39,18 +40,7 @@ const menu = ({ firebase }) => {
           </MenuItem>
         </Link>
 
-        <Link to={ROUTES.LIVE_CLASS}  style={{
-          color: 'white', 
-          textDecoration: 'none'
-          }}>
-          <MenuItem>
-              <img 
-              src="https://cdn3.iconfinder.com/data/icons/UltimateGnome/128x128/apps/gnome-session-switch.png" 
-              alt="" 
-              style={{ marginRight: '10px', width: '15%'}}
-              /> Join Live Class
-          </MenuItem>
-        </Link>
+        <LiveClass />
 
         <Link to={ROUTES.LIVE_CLASS}  style={{
           color: 'white', 

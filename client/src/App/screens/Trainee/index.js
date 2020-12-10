@@ -13,11 +13,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Menu from './components/menu';
-import Permissions from './components/moduleContent';
+// import Permissions from './components/moduleContent';
 import Mobile from './mob';
 import Avatar from '@material-ui/core/Avatar';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
 import Views from './components/views/views'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import SocialIcons from './components/social';
@@ -26,6 +24,8 @@ import LiveClass from './screens/liveClass';
 import *as ROUTES from '../../config/routes';
 import FirebaseContext from 'firebase';
 import 'firebase/firestore';
+import './index.css';
+import Button from '@material-ui/core/Button';
 import {
   BrowserRouter as Router,
   Switch,
@@ -76,7 +76,10 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     backgroundColor: '#0000FF',
     color: 'white',
-    overflow: 'hidden'
+    msOverflowStyle: 'none',
+    '&::-webkit-scrollbar': {
+        display: 'none'
+    },
   },
   paper: {
     margin: 'auto',
@@ -188,9 +191,6 @@ export default function PersistentDrawerLeft() {
         this.password = password;
         this.photo= photo;
     }
-    // toString() {
-    //     return this.name + ', ' + this.email + ', ' + this.password;
-    // }
   }
 
 // Firestore data converter
@@ -268,27 +268,31 @@ export default function PersistentDrawerLeft() {
                 </Typography>
               </div>
 
-              <div style={{textAlign: 'center'}}>
+              <div style={{
+                  textAlign: 'center', 
+                  margin: 'auto 15px auto 25px',
+                  display: 'flex'
+                }}>
                 <Avatar alt="Remy Sharp" style={{marginLeft:'27%'}} src={currentUserDetails.photo} />
-                <Typography variant="body2">
-                   <b>{currentUserDetails.name}</b>
+                <Typography variant="body2" style={{margin: 10}}>
+                  {currentUserDetails.name}
                 </Typography>
               </div>
 
-              <div style={{textAlign: 'center', margin: 15}}>
+              <div style={{
+                  textAlign: 'center', 
+                  margin: 'auto 15px auto 25px',
+                  display: 'flex'
+                }}>
                 <Avatar alt="Remy Sharp" src="" />
-                <Typography variant="body2">
+                <Typography variant="body2" style={{margin: 10}}>
                   Trainer
                 </Typography>
               </div>
 
               <div style={{textAlign: 'center'}}>
                 <Link to={ROUTES.MODULES}>
-                  <Tooltip title="Cart" aria-label="Cart" style={{color: '#0000FF',}}>
-                      <Fab color="primary" className={classes.fab}>
-                        <AddShoppingCartIcon style={{}} />
-                      </Fab>
-                  </Tooltip>
+                  <AddShoppingCartIcon style={{color: 'white'}} />
                 </Link>
               </div>
               
@@ -297,7 +301,7 @@ export default function PersistentDrawerLeft() {
 
           <Router>
             <Drawer
-              className={classes.drawer}
+              className={`drawer ${classes.drawer}`}
               variant="persistent"
               anchor="left"
               open={open}
@@ -314,26 +318,31 @@ export default function PersistentDrawerLeft() {
             <div className={classes.paper}>
               <Menu />
             </div>
-
+           
             <Divider 
-              style={{
-                backgroundColor: 'white',
-                width: '90%',
-                margin: 'auto',
+                style={{
+                  backgroundColor: 'white',
+                  width: '90%',
+                  margin: 'auto',
               }}
             />
 
-            <div className={classes.paper}> 
-              <Permissions />
+            <Button style={{
+                color: 'white',
+                textTransform: 'capitalize'
+            }}>
+              <Typography variant="h6" paragraph>
+                  Module Content
+              </Typography>
+            </Button>
+
+            <div 
+                style={{
+                    margin: '-2px auto 0 auto',
+                    width: '90%',
+                }}>
+                <Divider  style={{ backgroundColor: 'white'}}/> 
             </div>
-
-            <Divider 
-              style={{
-                backgroundColor: 'white',
-                width: '90%',
-                margin: 'auto',
-              }}
-            />
 
             <div className={classes.paper}> 
               <SocialIcons />

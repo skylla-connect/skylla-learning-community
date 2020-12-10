@@ -17,6 +17,7 @@ import Permissions from './components/permissions';
 import Mobile from './mob';
 import Views from './components/views/views';
 import ProfilePage from './screens/profilePage';
+import ScheduleClass from './screens/schedule';
 import Footer from '../../components/Footer/footer';
 import *as ROUTES from '../../config/routes';
 import Assessments from './screens/assignment/index';
@@ -136,6 +137,13 @@ const routes = [
     sidebar: () => <div></div>,
     main: () => <Assessments />
   },
+
+  {
+    path: "/scheduleclass",
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <ScheduleClass />
+  }
 ];
 
 export default function PersistentDrawerLeft() {
