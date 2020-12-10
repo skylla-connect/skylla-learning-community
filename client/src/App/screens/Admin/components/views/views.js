@@ -1,12 +1,34 @@
 import React from 'react';
+
+// material cores
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import ChartistGraph from "react-chartist";
+import ArrowUpward from "@material-ui/icons/ArrowUpward";
+import AccessTime from "@material-ui/icons/AccessTime";
+
+// material Icons
+import Store from "@material-ui/icons/Store";
+import DateRange from "@material-ui/icons/DateRange";
 import PersonIcon from '@material-ui/icons/Person';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import DvrIcon from '@material-ui/icons/Dvr';
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
 import SchoolIcon from '@material-ui/icons/School';
-import { Typography } from '@material-ui/core';
+
+// imported modules
+import {
+  topFourModules,
+  moduleCompletion,
+} from "./charts.js";
+import Card from "../card/Card";
+import CardHeader from "../card/CardHeader";
+import CardBody from "../card/CardBody";
+import CardFooter from "../card/CardFooter";
+import CardIcon from "../card/CardIcon";
+
+// styles
+import '../styles/css/graphs.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -94,7 +116,7 @@ export default function FullWidthGrid(props) {
                 />    
                 Announcements 
               <br />
-              {props.announce}
+              {props.active_users}
             </div>
         </Grid>
 
@@ -155,24 +177,63 @@ export default function FullWidthGrid(props) {
         </Grid>
 
         <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <Typography>
-                    Top 4 Modules
-                </Typography>
-                <Typography>
-                    130 enrollements in 4 top modules
-                </Typography>
-                {props.rank}
-            </div>
+          <div className={classes.paper}>
+            <Card chart>
+              <CardHeader color="warning">
+                <ChartistGraph
+                  className="ct-chart"
+                  data={moduleCompletion.data}
+                  type="Bar"
+                  options={moduleCompletion.options}
+                  responsiveOptions={moduleCompletion.responsiveOptions}
+                  listener={moduleCompletion.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <h4 className={classes.cardTitle}>
+                  Top 4 Modules
+                </h4>
+                <p className={classes.cardCategory}>
+                  130 enrollements in 4 top modules
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                  <AccessTime /> Results updated 2 day ago
+                </div>
+              </CardFooter>
+            </Card>
+          </div>
         </Grid>
 
         <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <Typography>
-                    Module completions
-                </Typography>
-                {props.completion}
-            </div>
+          <div className={classes.paper}>
+            <Card chart>
+              <CardHeader color="success">
+                <ChartistGraph
+                  className="ct-chart"
+                  data={topFourModules.data}
+                  type="Line"
+                  options={topFourModules.options}
+                  listener={topFourModules.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <h4 className={classes.cardTitle}>Module completions</h4>
+                <p className={classes.cardCategory}>
+                  <span className={classes.successText}>
+                    <ArrowUpward className={classes.upArrowCardCategory} /> 10%
+                  </span>{" "}
+                  increase in module completion.
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                  <AccessTime /> updated 4 minutes ago
+                </div>
+              </CardFooter>
+            </Card>
+          </div>
         </Grid>
       </Grid>
     </div>
