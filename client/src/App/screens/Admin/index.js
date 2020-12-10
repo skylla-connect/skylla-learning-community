@@ -18,6 +18,7 @@ import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
 import { SignUpPage } from './screens/addUsers';
 import DeleteUsers from './screens/deleteUsers';
+import ManageModules from './screens/deleteModule';
 import CreateModule  from './screens/createModule';
 import ProfilePage from './screens/profilePage';
 
@@ -100,7 +101,7 @@ const routes = [
     path: "/delete_module",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <div>Delete modules</div>
+    main: () => <ManageModules/>
   },
 ];
 

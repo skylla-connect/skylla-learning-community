@@ -52,6 +52,7 @@ const CreateModule = () => (
 const INITIAL_STATE = {
     module: '',
     description: '',
+    trainer: '',
     content: '',
     isPending: false,
     error: null,
@@ -95,11 +96,17 @@ const ModuleForm = () => {
                     content: values.content,
                     imageUrl : fireBaseUrl ,
                     module: values.module,
+                    trainer: values.trainer,
                     user: app.auth().currentUser.email,
                     uid: app.auth().currentUser.uid,
+                    modId: '',
                    createdAt: new Date().toISOString(),
                 }).then(setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl})))
                 .then(function DocId(docRef) {
+                    let x = docRef.id
+                    FirebaseContext.firestore().collection(`modules`).doc(x).update({
+                       modId: docRef.id,
+                    });
                     return docRef.id;
                 })
         
@@ -114,6 +121,7 @@ const ModuleForm = () => {
     const isInvalid =
         values.module === '' ||
         values.description === '' ||
+        values.trainer === '' ||
         values.content === ''
 
     const handleChange = (prop) => (event) => {
@@ -153,6 +161,20 @@ const ModuleForm = () => {
                         name="description"
                         value={values.description}
                         onChange={handleChange('description')}
+                    />
+                </FormGroup>
+
+                <FormGroup  style={{
+                    paddingTop: "18px",
+                    }}>
+                    <TextFieldMui
+                        label="Trainer"
+                        variant="outlined"
+                        type="email"
+                        id="trainer"
+                        name="trainer"
+                        value={values.trainer}
+                        onChange={handleChange('trainer')}
                     />
                 </FormGroup>
 
