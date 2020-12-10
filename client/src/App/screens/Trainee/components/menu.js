@@ -7,9 +7,58 @@ import AssessmentIcon from '@material-ui/icons/Assessment';
 import SpeedIcon from '@material-ui/icons/Speed';
 import *as ROUTES from '../../../config/routes';
 import { withFirebase } from '../../../firebase';
+import FirebaseContext from 'firebase';
 import { Link } from 'react-router-dom';
 
-const menu = ({ firebase }) => {
+const Menu = ({ firebase }) => {
+  const [liveClassDetails, setliveClassDetails] = React.useState({module:'', session:'', link:''});
+
+  class classDetails {
+    constructor (module, session, link ) {
+        this.module = module;
+        this.session = session;
+        this.link= link;
+    }
+  }
+
+// Firestore data converter
+  var classDetailsConverter = {
+    toFirestore: function(classDetails) {
+        return {
+            module: classDetails.module,
+            session: classDetails.session,
+            link: classDetails.link
+            }
+    },
+    fromFirestore: function(snapshot, options){
+        const data = snapshot.data(options);
+        const det1 = new classDetails(data.module, data.session, data.link);
+        return det1
+    }
+  }
+
+  React.useEffect(() => {
+    let db = FirebaseContext.firestore().collection('users/trainer/dashboard/live_class/schedule');
+    let query = db.where('session', '==', 'evening');
+    
+    query.withConverter(classDetailsConverter).get()
+    .then(snapshot => {
+        if (snapshot.empty) {
+        console.log('No matching documents.');
+        return;
+        }  
+
+        snapshot.forEach(doc => {
+            var x = doc.data();
+            setliveClassDetails(x)
+        // console.log(doc.id, '=>', x);
+        ;
+        })
+    })
+    .catch(err => {
+        console.log('Error getting documents', err);
+    });
+  }, [classDetailsConverter]);
 
   return (
     <div>
@@ -39,7 +88,7 @@ const menu = ({ firebase }) => {
           </MenuItem>
         </Link>
 
-        <Link to={ROUTES.LIVE_CLASS}  style={{
+        <a href={liveClassDetails.link}  style={{
           color: 'white', 
           textDecoration: 'none'
           }}>
@@ -50,7 +99,7 @@ const menu = ({ firebase }) => {
               style={{ marginRight: '10px', width: '15%'}}
               /> Join Live Class
           </MenuItem>
-        </Link>
+        </a>
 
         <Link to={ROUTES.LIVE_CLASS}  style={{
           color: 'white', 
@@ -130,4 +179,4 @@ const menu = ({ firebase }) => {
   );
 }
 
-export default withFirebase(menu);
+export default withFirebase(Menu);

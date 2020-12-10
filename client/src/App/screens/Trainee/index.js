@@ -179,6 +179,7 @@ export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
+<<<<<<< Updated upstream
   const [liveClassDetails, setliveClassDetails] = React.useState({module:'', session:'', link:''});
 
   class classDetails {
@@ -191,6 +192,8 @@ export default function PersistentDrawerLeft() {
     //     return this.name + ', ' + this.email + ', ' + this.password;
     // }
   }
+=======
+>>>>>>> Stashed changes
   
   class userDetails {
     constructor (name, email, password, photo ) {
@@ -221,6 +224,7 @@ export default function PersistentDrawerLeft() {
       }
   }
 
+<<<<<<< Updated upstream
   var classDetailsConverter = {
     toFirestore: function(classDetails) {
         return {
@@ -235,6 +239,8 @@ export default function PersistentDrawerLeft() {
         return det1
     }
 }
+=======
+>>>>>>> Stashed changes
   React.useEffect(() => {
         let user = FirebaseContext.auth().currentUser;   
         let db = FirebaseContext.firestore().collection('users/trainee/users');
@@ -258,6 +264,7 @@ export default function PersistentDrawerLeft() {
             console.log('Error getting documents', err);
         });
   }, []);
+<<<<<<< Updated upstream
 
   React.useEffect(() => {
     let db = FirebaseContext.firestore().collection('users/trainer/dashboard/live_class/schedule');
@@ -281,6 +288,8 @@ export default function PersistentDrawerLeft() {
         console.log('Error getting documents', err);
     });
   }, [classDetailsConverter]);
+=======
+>>>>>>> Stashed changes
 
   const handleDrawerOpen = () => {
     setOpen(true);
