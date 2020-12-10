@@ -7,6 +7,8 @@ import DvrIcon from '@material-ui/icons/Dvr';
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
 import SchoolIcon from '@material-ui/icons/School';
 import { Typography } from '@material-ui/core';
+import * as ROUTES from '../../../../config/routes';
+import {Link} from 'react-router-dom'; 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,7 +108,8 @@ export default function FullWidthGrid(props) {
                     marginBottom: '-25px',
                     marginRight: '20px'}} 
                     />    
-                   sessions
+                   
+                   <Link to={ROUTES.CHALLENGES} >sessions</Link>
                 <br />
                 {props.sessions}
             </div>
