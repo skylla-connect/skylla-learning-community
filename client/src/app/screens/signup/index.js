@@ -102,7 +102,7 @@ class SignUpFormBase extends Component {
             this.setState({ error, isPending: false});
             });
             event.preventDefault();
-        };
+    };
     onChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     };
