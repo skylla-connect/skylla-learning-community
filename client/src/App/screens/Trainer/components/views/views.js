@@ -5,7 +5,8 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import DvrIcon from '@material-ui/icons/Dvr';
 import SchoolIcon from '@material-ui/icons/School';
 import { Typography } from '@material-ui/core';
-
+import {Link} from 'react-router-dom';
+import * as ROUTES  from '../../../../config/routes';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -74,8 +75,9 @@ export default function FullWidthGrid(props) {
                     fontSize: '40px', 
                     marginBottom: '-25px',
                     marginRight: '20px'}} 
-                    />    
-                   sessions
+                    />   
+                    <Link to={ROUTES.CHALLENGES} >sessions</Link>
+                   
                 <br />
                 {props.sessions}
             </div>

@@ -54,7 +54,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 tab: {
-  '&:focus':{outline: 'none'},
+  '&:focus':{outline: 'none '},
+  width:500 ,
 }
 }));
 
@@ -74,7 +75,9 @@ export default function NavTab() {
         style={{
           backgroundColor:'lightgrey', 
           height: 'auto', 
+          margin:"auto",
           color:'black',
+          width:'40%',
           textTransform:'lowercase',
           }}
         >
@@ -89,7 +92,7 @@ export default function NavTab() {
               borderLeft: '20px solid transparent',
               borderRight: '20px solid transparent',              
               borderBottom: '16px solid white',
-              marginLeft: '10%',
+              marginLeft: '20%',
               backgroundColor: 'transparent',
               
             }
@@ -101,7 +104,8 @@ export default function NavTab() {
             {
               ...a11yProps(0)} 
               style={{color:'black', 
-              border: 'none'
+              border: 'none',
+             
             }}
           />
 

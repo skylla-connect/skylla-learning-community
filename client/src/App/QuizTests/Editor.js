@@ -11,6 +11,7 @@ import 'codemirror/mode/css/css';
 import 'codemirror/mode/javascript/javascript';
 import app from 'firebase/app'
 import Button from '@material-ui/core/Button';
+import FirebaseContext from 'firebase'
 
 class Editor extends Component{
   constructor(){
@@ -27,6 +28,7 @@ class Editor extends Component{
       });
       this.channel = this.pusher.subscribe('editor');
       this.db = app.firestore()
+      this.AuthUser = FirebaseContext.auth().currentUser
       
   }
 
@@ -35,7 +37,8 @@ class Editor extends Component{
     this.db.collection("users/trainer/dashboard/solutions/solutions").add({
       html:this.state.html,
       css:this.state.css,
-      js:this.state.js
+      js:this.state.js,
+      user:this.AuthUser.displayName
     })
   }
   componentDidUpdate(){

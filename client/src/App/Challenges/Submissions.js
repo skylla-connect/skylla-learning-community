@@ -2,7 +2,19 @@ import React from 'react';
 import app from 'firebase/app';
 import Card from '@material-ui/core/Card'
 import 'firebase/firestore'
+import { withStyles } from '@material-ui/core/styles';
 
+const useStyles = theme => ({
+    root: {
+      flexGrow: 1,
+    },
+    card: {
+        padding: theme.spacing(2),
+        maxWidth:  '70%',
+        margin: `${theme.spacing(1)}px auto`,
+        
+    },
+});
 class Submissions extends React.Component{
     constructor(){
         super();
@@ -22,21 +34,27 @@ class Submissions extends React.Component{
             console.log(data)
             this.setState({users:data})
         })
-      }
+      } 
+        
+      
     render(){
-
+        const { classes } = this.props;
         const {users } = this.state;
         return(
-            <div>
+            <div className={classes.root}>
                 {users.map(user =>(
                     <div key={user.id}>
-                        <Card elevation={3}>
+                        
+                        <Card elevation={3} className={classes.card}>
+                        <h4>Submitted by : <em>{user.user}</em> </h4>
+                        <hr/>
                             <h4>Html</h4>
                             {user.html}
-                            
+                           
+                            <hr/>
                             <h4>Css</h4>
                             {user.css}
-                            
+                             <hr/>
                             <h4>JavaScript</h4>
                             {user.js}
 
@@ -51,4 +69,4 @@ class Submissions extends React.Component{
     }
    
 }
-export default Submissions;
+export default withStyles(useStyles)(Submissions);
