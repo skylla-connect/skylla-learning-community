@@ -8,8 +8,6 @@ import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
 
 // material Icons
-import Store from "@material-ui/icons/Store";
-import DateRange from "@material-ui/icons/DateRange";
 import PersonIcon from '@material-ui/icons/Person';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import DvrIcon from '@material-ui/icons/Dvr';
@@ -25,7 +23,6 @@ import Card from "../card/Card";
 import CardHeader from "../card/CardHeader";
 import CardBody from "../card/CardBody";
 import CardFooter from "../card/CardFooter";
-import CardIcon from "../card/CardIcon";
 
 // styles
 import '../styles/css/graphs.css'
@@ -33,7 +30,7 @@ import '../styles/css/graphs.css'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginTop: 50
+    marginTop: 50,
   },
   paper: {
     padding: theme.spacing(4),
