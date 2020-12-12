@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';        
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import DvrIcon from '@material-ui/icons/Dvr';
 import SchoolIcon from '@material-ui/icons/School';
-import { Typography } from '@material-ui/core';
+import ChartistGraph from "react-chartist";
+import Card from "../../../Admin/components/card/Card";
+import CardHeader from "../../../Admin/components/card/CardHeader";
+import CardBody from "../../../Admin/components/card/CardBody";
+import CardFooter from "../../../Admin/components/card/CardFooter";
+import ArrowUpward from "@material-ui/icons/ArrowUpward";
+import AccessTime from "@material-ui/icons/AccessTime";
+import {
+  topFourModules,
+} from "../../../Admin/components/views/charts";
+import '../../../Admin/components/styles/css/graphs.css';
+import  FirebaseContext  from 'firebase';
+import Typography from "@material-ui/core/Typography";
+import CountUp from 'react-countup';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +45,41 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FullWidthGrid(props) {
   const classes = useStyles();
+  const [modules , setModules] = useState([]);
+  const [announcements , setAnnouncements] = useState([]);
+  const [sessions , setSessions] = useState([]);
+  const [activeUsers, setactiveUsers] = useState([]);
+
+  useEffect( () => {
+     // for Users
+     FirebaseContext.firestore().collection("users/trainee/users")
+     .get()
+     .then(snap =>{
+       setactiveUsers(snap.size)
+     })
+     
+     // modules
+    FirebaseContext.firestore().collection("modules")
+    .get()
+    .then(snap =>{
+      setModules(snap.size)
+    })
+
+    // sessions
+    FirebaseContext.firestore().collection("users/trainer/dashboard/session/session")
+    .get()
+    .then(snap =>{
+      setSessions(snap.size)
+    })
+
+     // Announcement
+     FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
+     .get()
+     .then(snap =>{
+       setAnnouncements(snap.size)
+     })
+ 
+  });
 
   return (
     <div className={classes.root}>
@@ -43,10 +91,11 @@ export default function FullWidthGrid(props) {
                     fontSize: '40px', 
                     marginBottom: '-25px',
                     marginRight: '20px'}} 
-                    />    
+                  />    
                     Trainer's Modules
-                <br />
-                {props.modules}
+                  <Typography variant="h4" paragraph>
+                    <CountUp end={modules} delay={2} redraw={true} />
+                  </Typography>
             </div>
         </Grid>
 
@@ -62,8 +111,9 @@ export default function FullWidthGrid(props) {
                     }} 
                 />    
                 Announcements 
-              <br />
-              {props.announce}
+                <Typography variant="h4" paragraph>
+                  <CountUp end={announcements} delay={2} redraw={true} />
+                </Typography>
             </div>
         </Grid>
 
@@ -76,8 +126,9 @@ export default function FullWidthGrid(props) {
                     marginRight: '20px'}} 
                     />    
                    sessions
-                <br />
-                {props.sessions}
+                   <Typography variant="h4" paragraph>
+                    <CountUp end={sessions} delay={2} redraw={true} />
+                  </Typography>
             </div>
         </Grid>
 
@@ -90,18 +141,40 @@ export default function FullWidthGrid(props) {
                   marginRight: '20px'}} 
                 />    
                    active users
-              <br />
-              {props.active_users}
+                  <Typography variant="h4" paragraph>
+                    <CountUp end={activeUsers} delay={2} redraw={true} />
+                  </Typography>
             </div>
         </Grid>
 
-        <Grid item xs={12}>
-            <div className={classes.paper}>
-                <Typography>
-                    Module completions
-                </Typography>
-                {props.completion}
-            </div>
+        <Grid item xs={12} sm={6}>
+          <div className={classes.paper}>
+            <Card chart>
+              <CardHeader color="success">
+                <ChartistGraph
+                  className="ct-chart"
+                  data={topFourModules.data}
+                  type="Line"
+                  options={topFourModules.options}
+                  listener={topFourModules.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <h4 className={classes.cardTitle}>Module completions</h4>
+                <p className={classes.cardCategory}>
+                  <span className={classes.successText}>
+                    <ArrowUpward className={classes.upArrowCardCategory} /> 10%
+                  </span>{" "}
+                  increase in module completion.
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                  <AccessTime /> updated 4 minutes ago
+                </div>
+              </CardFooter>
+            </Card>
+          </div>
         </Grid>
       </Grid>
     </div>
