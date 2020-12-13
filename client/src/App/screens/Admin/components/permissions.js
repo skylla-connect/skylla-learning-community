@@ -37,7 +37,7 @@ const permissions = (props) => {
                   style={{
                       marginRight: '10px',
                       width: '15%'}}/>
-              delete users
+              manage users
             </MenuItem>
           </Link>
 
@@ -56,7 +56,7 @@ const permissions = (props) => {
                   style={{color: '#CCCCCC', marginRight: '10px'}}>
                   cancel
               </i>
-              delete module
+              manage modules
             </MenuItem>
           </Link>
         </MenuList>

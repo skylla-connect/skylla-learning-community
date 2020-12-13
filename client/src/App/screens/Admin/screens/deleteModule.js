@@ -13,34 +13,6 @@ import MuiAlert from '@material-ui/lab/Alert';
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-
- // define a FirestoreDataConverter function for your class to use custom object.
- class moduleObj {
-    constructor(module, description, content) {
-        this.module = module;
-        this.description = description;
-        this.content = content
-    }
-    toString() {
-        return this.module + ' ' + this.description + ' ' + this.content
-    }
-} 
-
-// Firestore data converter
-let ModuleConverter = {
-    toFirestore: function(mod) {
-        return {
-            module: mod.module,
-            description: mod.description,
-            content: mod.content
-            }
-    },
-    fromFirestore: function(snapshot, options){
-        const data = snapshot.data(options);
-        return new moduleObj(data.module, data.description, data.content)
-    }
-}
-
   
 class DeleteUsers extends React.Component {
     constructor(props) {
@@ -49,7 +21,7 @@ class DeleteUsers extends React.Component {
         this.state = {
             columns: [
                 {
-                    title: 'Full Name', field: 'name',
+                    title: 'Module Name', field: 'module',
                     editComponent: props => (
                         <input
                             type="text"
@@ -60,17 +32,24 @@ class DeleteUsers extends React.Component {
                         />
                     )
                 },
+
+                { 
+                    title: 'Description',
+                    field: 'description', 
+                    type: 'string' 
+                },
         
                 { 
-                    title: 'Email',
-                    field: 'email', 
+                    title: 'Trainer',
+                    field: 'trainer', 
                     type: 'string' 
                 },
     
             ],
 
             data: [],
-            users: [],
+            modules: [],
+            key:'',
             error: null,
             open: false,
         }
@@ -89,16 +68,17 @@ class DeleteUsers extends React.Component {
         this.setState({open: false});
     };
 
-    deleteUserDetails(userId){
-        this.db.collection("users/admin/dashboard/module/modules")
+    deleteUserDetails(modId){
+        this.db.collection("modules")
             .get()
             .then(querySnapshot => {
             try {
-                let user = querySnapshot.docs;
-                user.map(doc => doc.ref.delete().where("uid", "==", userId).limit(1))
+                let module = querySnapshot.docs;
+                module.map(doc => doc.ref.delete().where("uid", "==", modId).limit(1))
                 this.setState({
-                    users: user
+                    modules: module
                 });
+                // console.log(module)
             } catch(error) {
                 this.setState({error});
             }
@@ -108,23 +88,24 @@ class DeleteUsers extends React.Component {
     }
 
     componentDidMount() {
-        this.db.collection("users/admin/dashboard/module/modules")
-            .onSnapshot(ModuleConverter => {
-            const user = ModuleConverter.docs.map(doc => doc.data().to);
-            this.setState({ users: user });
-        }); 
+        this.db.collection("modules")
+            .onSnapshot(querySnapshot => {
+            const module = querySnapshot.docs.map(doc => doc.data());
+            this.setState({ modules: module });
+            });
+            
     }
 
 
     render () {
-        let { users } = this.state;
-        users.map(user => (
-            <div key={user.uid}>
+        let { modules } = this.state;
+        modules.map(mod => (
+            <div key={mod.uid}>
                 <Typography variant="body1" paragraph>
-                    {user.module}
+                    {mod.module}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    {user.content}
+                    {mod.trainer}
                 </Typography>
             </div>
           ))
@@ -136,7 +117,7 @@ class DeleteUsers extends React.Component {
             margin: '70px auto',
         }}>
             <MaterialTable
-                title="Delete Trainer's Accounts"
+                title="Modules Created"
                 columns={this.state.columns}
                 style={{
                     backgroundColor: 'transparent',
@@ -148,7 +129,7 @@ class DeleteUsers extends React.Component {
                     Container: props => <Paper {...props} elevation={0}/>
                 }}
 
-                data={this.state.users}
+                data={this.state.modules}
 
                 editable={{
                      // Delete rows
@@ -178,12 +159,12 @@ class DeleteUsers extends React.Component {
             />
 
             {
-                this.state.users &&  <Snackbar 
+                this.state.users &&  <Snackbar s
                     open={this.state.open} 
                     autoHideDuration={6000} 
                     onClose={this.handleClose}>
                     <Alert onClose={this.handleClose} severity="success">
-                        You have deleted the module successfully!
+                        You have deleted module successfully!
                     </Alert>
                 </Snackbar>
             }
