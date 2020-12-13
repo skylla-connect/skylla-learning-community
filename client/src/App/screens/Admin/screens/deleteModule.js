@@ -159,12 +159,12 @@ class DeleteUsers extends React.Component {
             />
 
             {
-                this.state.users &&  <Snackbar 
+                this.state.users &&  <Snackbar s
                     open={this.state.open} 
                     autoHideDuration={6000} 
                     onClose={this.handleClose}>
                     <Alert onClose={this.handleClose} severity="success">
-                        You have deleted the user's account successfully!
+                        You have deleted module successfully!
                     </Alert>
                 </Snackbar>
             }
