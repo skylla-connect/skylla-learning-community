@@ -5,6 +5,7 @@ import { withFirebase } from '../firebase';
 import {Typography, List, ListItemText, ListItem} from '@material-ui/core'
 // import { withFirebase } from '../../../firebase';
 import {withStyles} from '@material-ui/core/styles'
+import Footer from '../components/Footer/footer'
 
 
 const useStyles = theme =>({
@@ -77,6 +78,7 @@ class FinalAssess extends React.Component{
                         />
                     </a>
                         < br/>
+
                     <Typography 
                     style={{
                         color:'white',
@@ -125,6 +127,7 @@ class FinalAssess extends React.Component{
                     ))
                     }
                     </div>
+                    <Footer />
             </div>
         )
     }
