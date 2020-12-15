@@ -9,6 +9,7 @@ export const MODULES = '/module';
 export const PROFILE = '/profile';
 export const LIVE_CLASS = '/liveclass';
 export const ASSESSMENTS = '/final_assessment';
+export const HIRE = '/hire';
 export const HIRED = '/hired';
 export const INTERVIEWS = '/interviews';
 export const PAYMENT = '/payment';

@@ -21,6 +21,7 @@ import DeleteUsers from './screens/deleteUsers';
 import ManageModules from './screens/deleteModule';
 import CreateModule  from './screens/createModule';
 import ProfilePage from './screens/profilePage';
+import Hire from './screens/hire';
 
 import {
   BrowserRouter as Router,
@@ -71,9 +72,7 @@ const routes = [
     path: "/hire",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <div>
-      Hire page
-    </div>
+    main: () => <Hire />
   },
 
   {

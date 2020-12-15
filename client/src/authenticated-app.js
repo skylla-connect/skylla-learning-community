@@ -76,7 +76,6 @@ function Routes(props) {
                 <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 <Route path={ROUTES.CHAT} component={Chat} />
                 <Route path="/cart" component={CartApp} />
-                <Route path={ROUTES.HIRED} component={Hired} />
 
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}

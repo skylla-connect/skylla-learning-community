@@ -9,13 +9,6 @@ import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
 import Typography from "@material-ui/core/Typography";
 
-// material Icons
-import PersonIcon from '@material-ui/icons/Person';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import DvrIcon from '@material-ui/icons/Dvr';
-import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
-import SchoolIcon from '@material-ui/icons/School';
-
 // imported modules
 import {
   topFourModules,
@@ -26,6 +19,7 @@ import Card from "../card/Card";
 import CardHeader from "../card/CardHeader";
 import CardBody from "../card/CardBody";
 import CardFooter from "../card/CardFooter";
+import './views.css'
 
 // styles
 import '../styles/css/graphs.css'
@@ -36,13 +30,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 50,
   },
   paper: {
-    padding: theme.spacing(4),
+    padding: theme.spacing(4, 2, 2, 2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    backgroundColor: '#EDEDED',
+    // backgroundColor: '#EDEDED',
     [theme.breakpoints.down('sm')]: {
         width: '100%'
     }
+  },  
+
+  paperOne: {
+    marginTop: '100px'
   },
 
   grid: {
@@ -128,140 +126,104 @@ export default function FullWidthGrid(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={6} className={classes.grid}>
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <PersonIcon style={{
-                  color: '#00BEF2', 
-                  fontSize: '40px', 
-                  marginBottom: '-50px',
-                  marginRight: '20px'
-                }} 
-                />
+      <Typography paragraph style={{
+        textAlign: 'center',
+        padding: '40px'
+      }}>
+        General Statistics
+      </Typography>
+
+      <Grid container spacing={3} className={classes.grid}>
+        <Grid item xs={6} sm={3}>
+            <div className={`card ${classes.paper}`}>
               Hired Trainees   
-              <Typography variant="h4" paragraph>
+              <Typography variant="h4" paragraph style={{
+                  color: '#00BEF2', 
+                }}>
                 <CountUp end={hired} delay={2} redraw={true} />
               </Typography>
             </div>
         </Grid>
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <PersonIcon style={{
-                  color: '#82B366', 
-                  fontSize: '60px', 
-                  marginBottom: '-50px',
-                  marginRight: '20px'
-                }} 
-                />    
+        <Grid item xs={6} sm={3}>
+            <div className={`card ${classes.paper}`}>
                 Enrolled trainees
 
-              <Typography variant="h4" paragraph>
+              <Typography variant="h4" paragraph style={{
+                  color: '#82B366', 
+                }} >
                 <CountUp end={count} delay={2} redraw={true} />
               </Typography>
             </div>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <GroupAddIcon style={{
-                  color: '#DF8C42', 
-                  fontSize: '40px', 
-                  marginBottom: '-50px',
-                  marginRight: '20px'}} 
-                />    
+        <Grid item xs={6} sm={3}>
+            <div className={`card ${classes.paper}`}>
                 active users
-             
-              <Typography variant="h4" paragraph>
+              <Typography variant="h4" paragraph style={{
+                  color: '#DF8C42', 
+                }} >
                 <CountUp end={activeUsers} delay={2} redraw={true} />
               </Typography>
             </div>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <img src="https://cdn4.iconfinder.com/data/icons/digital-marketing-gradient-rave-and-glow/512/Promotion-128.png" 
-                    alt=""
-                    style={{
-                        color: '#DF8C42', 
-                        width: '12%', 
-                        marginBottom: '-50px',
-                        marginRight: '20px'
-                    }} 
-                />    
+        <Grid item xs={6} sm={3}>
+            <div className={`card ${classes.paper}`}>
                 Announcements 
-                <Typography variant="h4" paragraph>
+                <Typography variant="h4" paragraph style={{
+                        color: '#DF8C42', 
+                    }} >
                   <CountUp end={announcements} delay={2} redraw={true} />
                 </Typography>
             </div>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <DvrIcon style={{
+        <Grid item xs={6} sm={3}>
+            <div className={`card ${classes.paper}`}>  
+                 Number of sessions
+                <Typography variant="h4" paragraph style={{
                     color: '#B20000', 
-                    fontSize: '40px', 
-                    marginBottom: '-50px',
-                    marginRight: '20px'}} 
-                    />    
-                   Number of sessions
-                <br />
-                <Typography variant="h4" paragraph>
+                  }}>
                   <CountUp end={sessions} delay={2} redraw={true} />
                 </Typography>
             </div>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-              <DvrIcon style={{
-                  color: '#FA6800', 
-                  fontSize: '40px', 
-                  marginBottom: '-50px',
-                  marginRight: '20px'
-                }} 
-              />    
+        <Grid item xs={6} sm={3}>
+            <div className={`card ${classes.paper}`}>
               Live Classes
-              <Typography variant="h4" paragraph>
+              <Typography variant="h4" paragraph style={{
+                  color: '#FA6800', 
+                }}>
                 <CountUp end={liveClass} delay={2} redraw={true} />
               </Typography>
             </div>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-              <QueuePlayNextIcon 
-                style={{
-                  color: '#33A64C', 
-                  fontSize: '40px', 
-                  marginBottom: '-50px',
-                  marginRight: '20px'
-                }} 
-              />   
+        <Grid item xs={6} sm={3}>
+            <div className={`card ${classes.paper}`}>
               Number of Trainers
-              <Typography variant="h4" paragraph>
+              <Typography variant="h4" paragraph  style={{
+                  color: '#33A64C', 
+                }} >
                 <CountUp end={trainers} delay={2} redraw={true} />
               </Typography>
             </div>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <SchoolIcon style={{
-                    color: '#FF0080', 
-                    fontSize: '40px', 
-                    marginBottom: '-25px',
-                    marginRight: '20px'
-                  }} 
-                />    
+        <Grid item xs={6} sm={3}>
+            <div className={`card ${classes.paper}`}>
                 Total Modules
-                <Typography variant="h4" paragraph>
+                <Typography variant="h4" paragraph style={{
+                    color: '#FF0080', 
+                  }} >
                   <CountUp end={modules} delay={2} redraw={true} />
                 </Typography>
             </div>
         </Grid>
-
+        
         <Grid item xs={12} sm={6}>
-          <div className={classes.paper}>
+          <div className={classes.paperOne}>
             <Card chart>
               <CardHeader color="warning">
                 <ChartistGraph
@@ -291,7 +253,7 @@ export default function FullWidthGrid(props) {
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <div className={classes.paper}>
+          <div className={classes.paperOne}>
             <Card chart>
               <CardHeader color="success">
                 <ChartistGraph
