@@ -12,6 +12,7 @@ node_modules/
 /build
 
 # misc
+.eslintcache
 .DS_Store
 .env
 .env.local
