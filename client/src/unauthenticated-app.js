@@ -13,20 +13,20 @@ import PasswordReset from './App/screens/resetPassword/index';
 
 const Unathenticated = () => {
     return ( 
-            <Routes />
+        <Routes />
      );
 } 
 export default Unathenticated;
 
 export const Routes = () => {
     return (
-            <Router>
-                <Switch>
-                    <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-                    <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-                    <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
-                    <Redirect to={ROUTES.SIGN_IN} />
-                </Switch>
-            </Router>
-)
-    }
+        <Router>
+            <Switch>
+                <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+                <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+                <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
+                <Redirect to={ROUTES.SIGN_IN} />
+            </Switch>
+        </Router>
+    )
+}
