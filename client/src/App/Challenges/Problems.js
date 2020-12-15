@@ -13,8 +13,11 @@ const useStyles = theme => ({
     card: {
         padding: theme.spacing(2),
         // margin: 'auto',
-        maxWidth:  '70%',
+        width:  '70%',
         margin: `${theme.spacing(1)}px auto`,
+        [theme.breakpoints.down('sm')]: {
+            width:'90%'
+        },
     },
     
 });

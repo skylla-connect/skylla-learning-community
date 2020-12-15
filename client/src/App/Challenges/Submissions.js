@@ -3,6 +3,7 @@ import app from 'firebase/app';
 import Card from '@material-ui/core/Card'
 import 'firebase/firestore'
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = theme => ({
     root: {
@@ -10,8 +11,11 @@ const useStyles = theme => ({
     },
     card: {
         padding: theme.spacing(2),
-        maxWidth:  '70%',
+        width:  '70%',
         margin: `${theme.spacing(1)}px auto`,
+        [theme.breakpoints.down('sm')]: {
+            width:'90%'
+        },
         
     },
 });
@@ -46,7 +50,10 @@ class Submissions extends React.Component{
                     <div key={user.id}>
                         
                         <Card elevation={3} className={classes.card}>
-                        <h4>Submitted by : <em>{user.user}</em> </h4>
+                            <Typography  variant='body2'>
+                                Submitted by : <em>{user.user}</em>
+                            </Typography>
+                        
                         <hr/>
                             <h4>Html</h4>
                             {user.html}

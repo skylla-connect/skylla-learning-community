@@ -50,13 +50,36 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor:'#ddd' ,
+    [theme.breakpoints.down('sm')]:{
+      width:'100%'
+    }
   },
 
 
 tab: {
   '&:focus':{outline: 'none '},
-  width:500 ,
-}
+  // width:500 ,
+  [theme.breakpoints.down('sm')]:{
+    width: 'auto' ,
+    margin: 'auto'
+  },
+  
+},
+app:{
+  backgroundColor:'lightgrey', 
+  height: 'auto', 
+  margin:"auto",
+  color:'black',
+  width:'40%',
+  textTransform:'lowercase',
+  alignItems:'center',    
+  [theme.breakpoints.down('sm')]:{
+    width:'100%',
+    alignItems:'center'
+  }
+
+},
+
 }));
 
 export default function NavTab() {
@@ -72,31 +95,25 @@ export default function NavTab() {
       <AppBar 
         elevation={0} 
         position="static" 
-        style={{
-          backgroundColor:'lightgrey', 
-          height: 'auto', 
-          margin:"auto",
-          color:'black',
-          width:'40%',
-          textTransform:'lowercase',
-          }}
+        className={classes.app}
         >
         <Tabs
         //   variant="fullWidth"
           value={value}
           onChange={handleChange}
-          TabIndicatorProps={{
-            style: {
-              height: "2px",
-              width: 0, 
-              borderLeft: '20px solid transparent',
-              borderRight: '20px solid transparent',              
-              borderBottom: '16px solid white',
-              marginLeft: '20%',
-              backgroundColor: 'transparent',
+          // className={classes.taps}
+          // TabIndicatorProps={{
+          //   style: {
+          //     height: "2px",
+          //     width: 0, 
+          //     borderLeft: '20px solid transparent',
+          //     borderRight: '20px solid transparent',              
+          //     borderBottom: '16px solid white',
+          //     alignItems: '20%',
+          //     backgroundColor: 'transparent',
               
-            }
-          }}
+          //   }
+          // }}
         >
           <Tab 
             className={classes.tab}
