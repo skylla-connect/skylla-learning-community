@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import *as ROUTE from '../../../../config/routes';
 import CountUp from 'react-countup';
 
 // material cores
@@ -135,6 +137,7 @@ export default function FullWidthGrid(props) {
 
       <Grid container spacing={3} className={classes.grid}>
         <Grid item xs={6} sm={3}>
+          <a href={ROUTE.HIRED}>
             <div className={`card ${classes.paper}`}>
               Hired Trainees   
               <Typography variant="h4" paragraph style={{
@@ -143,6 +146,7 @@ export default function FullWidthGrid(props) {
                 <CountUp end={hired} delay={2} redraw={true} />
               </Typography>
             </div>
+          </a>
         </Grid>
         <Grid item xs={6} sm={3}>
             <div className={`card ${classes.paper}`}>

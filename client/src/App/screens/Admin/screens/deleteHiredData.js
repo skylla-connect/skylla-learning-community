@@ -5,10 +5,27 @@ import MuiAlert from '@material-ui/lab/Alert';
 import MaterialTable from 'material-table';
 import app from 'firebase/app';
 import Typography from '@material-ui/core/Typography';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import Tooltip from '@material-ui/core/Tooltip';
+import Fab from '@material-ui/core/Fab';
+import { withStyles } from '@material-ui/core/styles';
+import *as ROUTE from '../../../config/routes';
+import { Link } from 'react-router-dom';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+
+const useStyles = (theme) => ({
+    fab: {
+      margin: theme.spacing(2),
+    },
+    absolute: {
+      position: 'absolute',
+      bottom: theme.spacing(2),
+      left: theme.spacing(3),
+    },
+});
   
 class ManageHiredTrainees extends React.Component {
     constructor(props) {
@@ -110,6 +127,8 @@ class ManageHiredTrainees extends React.Component {
   
     render () {
         let { modules } = this.state;
+        const { classes } = this.props;
+        
         modules.map(mod => (
             <div key={mod.uid}>
                 <Typography variant="body1" paragraph>
@@ -124,11 +143,23 @@ class ManageHiredTrainees extends React.Component {
   
         return (
         <div style={{
-            width: '100%',
+            width: '90%',
             margin: '70px auto',
         }}>
+            <Link to={ROUTE.ADMIN}>
+                <Tooltip title="Click to go back" aria-label="add">
+                    <Fab color="primary" className={classes.absolute}>
+                        <KeyboardBackspaceIcon />
+                    </Fab>
+                </Tooltip>
+            </Link>
+
+            <Typography variant="h5" paragraph>
+                Hired Trainees
+            </Typography>
+
             <MaterialTable
-                title="Modules Created"
+                title=""
                 columns={this.state.columns}
                 style={{
                     backgroundColor: 'transparent',
@@ -184,4 +215,4 @@ class ManageHiredTrainees extends React.Component {
     }
 }
 
-export default ManageHiredTrainees;
+export default withStyles(useStyles)(ManageHiredTrainees);

@@ -67,7 +67,7 @@ const menu = ({ firebase }) => {
         </Link>
 
         {/* Hire */}
-        <Link to={ROUTES.HIRED} style={{
+        <Link to={ROUTES.HIRE} style={{
           color: 'white', 
           textDecoration: 'none'
           }}>
