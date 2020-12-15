@@ -16,6 +16,7 @@ import SuccessPage from './App/screens/cart/components/CartSucess/index';
 import Chat from './App/screens/LiveSupport/LiveSupport2/index';
 import LiveSupport from './App/screens/LiveSupport/index';
 import CartApp  from './App/screens/cart';
+import Hired from './App/screens/Admin/screens/hire';
 
 function NetworkError() {
     return (
@@ -75,6 +76,7 @@ function Routes(props) {
                 <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 <Route path={ROUTES.CHAT} component={Chat} />
                 <Route path="/cart" component={CartApp} />
+                <Route path={ROUTES.HIRED} component={Hired} />
 
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
