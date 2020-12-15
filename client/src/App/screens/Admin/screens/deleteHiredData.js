@@ -11,6 +11,7 @@ import Fab from '@material-ui/core/Fab';
 import { withStyles } from '@material-ui/core/styles';
 import *as ROUTE from '../../../config/routes';
 import { Link } from 'react-router-dom';
+import Footer from '../../../components/Footer/footer';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -21,7 +22,7 @@ const useStyles = (theme) => ({
       margin: theme.spacing(2),
     },
     absolute: {
-      position: 'absolute',
+      position: 'fixed',
       bottom: theme.spacing(2),
       left: theme.spacing(3),
     },
@@ -210,6 +211,8 @@ class ManageHiredTrainees extends React.Component {
                     </Alert>
                 </Snackbar>
             }
+
+            <Footer />
         </div>
         )
     }
