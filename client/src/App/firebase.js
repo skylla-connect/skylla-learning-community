@@ -51,14 +51,14 @@ class Firebase {
         .get() 
     }
     // chat
-    doGetMessages = (roomID, startPos, endPos) => {
+    doGetMessages = async (roomID, startPos, endPos) => {
         if (endPos === undefined) {
             if (startPos > -10 && startPos < 0)
                 endPos = -1;
             else
                 endPos = startPos + 9
         }
-        this.db.collection(`/messages/${roomID}/dialogue`)
+        return await this.db.collection(`/messages/${roomID}/dialogue`)
         .orderBy("createdAt", 'asc').limitToLast(endPos)
         .then(snap => {
             let result = [];

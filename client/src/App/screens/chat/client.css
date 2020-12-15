@@ -1,0 +1,146 @@
+.msg_box {
+    position: fixed;
+    bottom: -5px;
+    width: 300px;
+    background: white;
+    border-radius: 5px 5px 0px 0px;    
+}
+
+.msg_head {
+    background: #0088cc;
+    color: white;
+    padding:18px 15px 19px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px 5px 0px 0px;    
+}
+.inputFields {
+    height: 190px;
+    padding: 15px;
+    padding-top: 5px;
+}
+
+.inputContainer {
+    padding: 8px 15px;
+    border-radius: 1px;
+    background-color: #fff;
+    position: relative;
+}
+
+.nameInput,
+.emailInput,
+.phoneInput {
+    box-shadow: 2px 2px 10px #C3C3C3;
+    border-radius: 0;
+    border: 1px solid #ECECEC;
+    width: 100%;
+    height: 25px;
+    padding-left: 10px;
+}
+
+.submitBtn {
+    margin: auto;
+    width: 100%;
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    color: white;
+    background: #0088cc;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.messages {
+    background: white;
+    height: 250px;
+    font-size: 12px;
+    padding: 15px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.msg_input {
+    width: 100%;
+    border: 1px solid white;
+    border-top: 1px solid #DDDDDD;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+}
+
+.msg_a {
+    position: relative;
+    background: #ABB3E8;
+    padding: 10px 15px;
+    min-height: 10px;
+    margin-bottom: 5px;
+    margin-right: 50px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.msg_a:before {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border: 10px solid;
+    border-color: transparent #ABB3E8 transparent transparent;
+    left: -20px;
+    top: 7px;
+}
+
+.msg_b {
+    background: #9CDE97;
+    padding: 10px 15px;
+    min-height: 15px;
+    margin-bottom: 5px;
+    position: relative;
+    margin-left: 50px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.msg_b:after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border: 10px solid;
+    border-color: transparent transparent transparent #9CDE97;
+    right: -20px;
+    top: 7px;
+}
+
+.timestamp {
+    text-align: right;
+    display: block;
+    font-size: 10px;
+}
+
+.typing {
+    font-size: 11px;
+    height: 20px;
+    padding: 0.5px;
+}
+
+.log {
+    color: gray;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+    text-align: center;
+}
+
+.inputMessage {
+    position: relative;
+    width: 290px;
+    height: 34px;
+    border-right: 0;
+    border-left: 0;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
