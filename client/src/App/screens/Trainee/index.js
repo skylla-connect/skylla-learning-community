@@ -32,6 +32,7 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import FinalAssessment from './screens/finalAssess/finalAsses';
 
 const drawerWidth = 240;
 
@@ -144,9 +145,7 @@ const routes = [
     path: ROUTES.ASSESSMENTS,
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <div>
-      Final Assessments page
-    </div>
+    main: () => <FinalAssessment />
   },
 
   {
