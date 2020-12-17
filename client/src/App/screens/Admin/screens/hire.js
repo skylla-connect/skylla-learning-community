@@ -40,7 +40,7 @@ class Hired extends Component {
         Physical_Address : address,
         Gender : gender
     }).then(function DocId(docRef) {
-        let x = docRef.id;
+        // let x = docRef.id;
         return docRef.id;
     })
 

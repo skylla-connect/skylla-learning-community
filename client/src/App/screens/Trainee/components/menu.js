@@ -42,7 +42,7 @@ const menu = ({ firebase }) => {
 
         <LiveClass />
 
-        <Link to={ROUTES.LIVE_CLASS}  style={{
+        <Link to={ROUTES.QUIZ}  style={{
           color: 'white', 
           textDecoration: 'none'
           }}>
@@ -55,7 +55,7 @@ const menu = ({ firebase }) => {
           </MenuItem>
         </Link>
 
-        <Link to={ROUTES.LIVE_CLASS}  style={{
+        <Link to={ROUTES.SESSIONS}  style={{
           color: 'white', 
           textDecoration: 'none'
           }}>

@@ -21,6 +21,8 @@ import ScheduleClass from './screens/schedule';
 import Footer from '../../components/Footer/footer';
 import *as ROUTES from '../../config/routes';
 import Assessments from './screens/assignment/index';
+import TEST from './screens/quiz/index';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -132,18 +134,25 @@ const routes = [
   },
 
   {
-    path: "/assignment",
+    path: ROUTES.ASSESSMENTS,
     exact: true,
     sidebar: () => <div></div>,
     main: () => <Assessments />
   },
 
   {
-    path: "/scheduleclass",
+    path: ROUTES.TEST,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <TEST />
+  },
+
+  {
+    path: ROUTES.SCHEDULE,
     exact: true,
     sidebar: () => <div></div>,
     main: () => <ScheduleClass />
-  }
+  },
 ];
 
 export default function PersistentDrawerLeft() {

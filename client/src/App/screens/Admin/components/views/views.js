@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import *as ROUTE from '../../../../config/routes';
 import CountUp from 'react-countup';
 
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
         width: '100%'
     }
-  }
+  },
 }));
 
 export default function FullWidthGrid(props) {
@@ -138,7 +138,7 @@ export default function FullWidthGrid(props) {
       <Grid container spacing={3} className={classes.grid}>
         <Grid item xs={6} sm={3}>
           <a href={ROUTE.HIRED}>
-            <div className={`card ${classes.paper}`}>
+            <div className={`SampleCards ${classes.paper}`}>
               Hired Trainees   
               <Typography variant="h4" paragraph style={{
                   color: '#00BEF2', 
@@ -149,7 +149,7 @@ export default function FullWidthGrid(props) {
           </a>
         </Grid>
         <Grid item xs={6} sm={3}>
-            <div className={`card ${classes.paper}`}>
+            <div className={`SampleCards ${classes.paper}`}>
                 Enrolled trainees
 
               <Typography variant="h4" paragraph style={{
@@ -161,7 +161,7 @@ export default function FullWidthGrid(props) {
         </Grid>
 
         <Grid item xs={6} sm={3}>
-            <div className={`card ${classes.paper}`}>
+            <div className={`SampleCards ${classes.paper}`}>
                 active users
               <Typography variant="h4" paragraph style={{
                   color: '#DF8C42', 
@@ -172,7 +172,7 @@ export default function FullWidthGrid(props) {
         </Grid>
 
         <Grid item xs={6} sm={3}>
-            <div className={`card ${classes.paper}`}>
+            <div className={`SampleCards ${classes.paper}`}>
                 Announcements 
                 <Typography variant="h4" paragraph style={{
                         color: '#DF8C42', 
@@ -183,7 +183,7 @@ export default function FullWidthGrid(props) {
         </Grid>
 
         <Grid item xs={6} sm={3}>
-            <div className={`card ${classes.paper}`}>  
+            <div className={`SampleCards ${classes.paper}`}>  
                  Number of sessions
                 <Typography variant="h4" paragraph style={{
                     color: '#B20000', 
@@ -194,7 +194,7 @@ export default function FullWidthGrid(props) {
         </Grid>
 
         <Grid item xs={6} sm={3}>
-            <div className={`card ${classes.paper}`}>
+            <div className={`SampleCards ${classes.paper}`}>
               Live Classes
               <Typography variant="h4" paragraph style={{
                   color: '#FA6800', 
@@ -205,7 +205,7 @@ export default function FullWidthGrid(props) {
         </Grid>
 
         <Grid item xs={6} sm={3}>
-            <div className={`card ${classes.paper}`}>
+            <div className={`SampleCards ${classes.paper}`}>
               Number of Trainers
               <Typography variant="h4" paragraph  style={{
                   color: '#33A64C', 
@@ -216,7 +216,7 @@ export default function FullWidthGrid(props) {
         </Grid>
 
         <Grid item xs={6} sm={3}>
-            <div className={`card ${classes.paper}`}>
+            <div className={`SampleCards ${classes.paper}`}>
                 Total Modules
                 <Typography variant="h4" paragraph style={{
                     color: '#FF0080', 

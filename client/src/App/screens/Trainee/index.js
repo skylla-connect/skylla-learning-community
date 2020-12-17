@@ -33,6 +33,7 @@ import {
   Link,
 } from "react-router-dom";
 import FinalAssessment from './screens/finalAssess/finalAsses';
+import Quiz from './screens/quiz/index';
 
 const drawerWidth = 240;
 
@@ -142,6 +143,13 @@ const routes = [
   },
 
   {
+    path: ROUTES.SESSIONS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>View Sections</div>
+  },
+
+  {
     path: ROUTES.ASSESSMENTS,
     exact: true,
     sidebar: () => <div></div>,
@@ -174,6 +182,13 @@ const routes = [
       <LiveClass/>
     </div>
   },
+
+  {
+    path: ROUTES.QUIZ,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <Quiz />
+  }
 ];
 
 export default function PersistentDrawerLeft() {
@@ -193,26 +208,30 @@ export default function PersistentDrawerLeft() {
   }
 
 // Firestore data converter
-  var userDetailsConverter = {
-      toFirestore: function(userDetails) {
-          return {
-              name: userDetails.name,
-              email: userDetails.email,
-              password: userDetails.password,
-              photo: userDetails.photo
-              }
-      },
-      fromFirestore: function(snapshot, options){
-          const data = snapshot.data(options);
-          const det1 = new userDetails(data.name, data.email, data.password, data.photo);
-          return det1
-      }
-  }
+ 
+
   React.useEffect(() => {
         let user = FirebaseContext.auth().currentUser;   
         let db = FirebaseContext.firestore().collection('users/trainee/users');
         let query = db.where('userId', '==', user.uid);
         
+
+        var userDetailsConverter = {
+          toFirestore: function(userDetails) {
+              return {
+                  name: userDetails.name,
+                  email: userDetails.email,
+                  password: userDetails.password,
+                  photo: userDetails.photo
+                  }
+          },
+          fromFirestore: function(snapshot, options){
+              const data = snapshot.data(options);
+              const det1 = new userDetails(data.name, data.email, data.password, data.photo);
+              return det1
+          }
+        }
+
         query.withConverter(userDetailsConverter).get()
         .then(snapshot => {
             if (snapshot.empty) {
@@ -230,7 +249,7 @@ export default function PersistentDrawerLeft() {
         .catch(err => {
             console.log('Error getting documents', err);
         });
-  }, [userDetailsConverter]);
+  });
 
   const handleDrawerOpen = () => {
     setOpen(true);

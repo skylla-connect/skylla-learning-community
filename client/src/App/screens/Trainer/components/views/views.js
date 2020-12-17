@@ -18,20 +18,26 @@ import '../../../Admin/components/styles/css/graphs.css';
 import  FirebaseContext  from 'firebase';
 import Typography from "@material-ui/core/Typography";
 import CountUp from 'react-countup';
+import '../../../Admin/components/views/views.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginTop: 50
   },
+
   paper: {
-    padding: theme.spacing(4),
+    padding: theme.spacing(4, 2, 2, 2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    backgroundColor: '#EDEDED',
+    // backgroundColor: '#EDEDED',
     [theme.breakpoints.down('sm')]: {
         width: '100%'
     }
+  },
+
+  paperOne: {
+    marginTop: '100px'
   },
 
   grid: {
@@ -83,72 +89,60 @@ export default function FullWidthGrid(props) {
 
   return (
     <div className={classes.root}>
+      <Typography paragraph style={{
+        textAlign: 'center',
+        padding: '40px'
+      }}>
+        General Statistics
+      </Typography>
+      
       <Grid container spacing={6} className={classes.grid}>
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <SchoolIcon style={{
+        <Grid item xs={6} sm={3}>
+            <div className={`SampleCards ${classes.paper}`}>  
+                Trainer's Modules
+                <Typography variant="h4" paragraph style={{
                     color: '#FF0080', 
-                    fontSize: '40px', 
-                    marginBottom: '-25px',
-                    marginRight: '20px'}} 
-                  />    
-                    Trainer's Modules
-                  <Typography variant="h4" paragraph>
-                    <CountUp end={modules} delay={2} redraw={true} />
-                  </Typography>
+                    }}>
+                  <CountUp end={modules} delay={2} redraw={true} />
+                </Typography>
             </div>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <img src="https://cdn4.iconfinder.com/data/icons/digital-marketing-gradient-rave-and-glow/512/Promotion-128.png" 
-                    alt=""
-                    style={{
-                        color: '#DF8C42', 
-                        width: '12%', 
-                        marginBottom: '-25px',
-                        marginRight: '20px'
-                    }} 
-                />    
+        <Grid item xs={6} sm={3}>
+            <div className={`SampleCards ${classes.paper}`}>  
                 Announcements 
-                <Typography variant="h4" paragraph>
+                <Typography variant="h4" paragraph  style={{
+                    color: '#DF8C42', 
+                  }}>
                   <CountUp end={announcements} delay={2} redraw={true} />
                 </Typography>
             </div>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <DvrIcon style={{
-                    color: '#B20000', 
-                    fontSize: '40px', 
-                    marginBottom: '-25px',
-                    marginRight: '20px'}} 
-                    />    
-                   sessions
-                   <Typography variant="h4" paragraph>
-                    <CountUp end={sessions} delay={2} redraw={true} />
-                  </Typography>
+        <Grid item xs={6} sm={3}>
+            <div className={`SampleCards ${classes.paper}`}>   
+              sessions
+              <Typography variant="h4" paragraph style={{
+                  color: '#B20000', 
+                }}>
+                <CountUp end={sessions} delay={2} redraw={true} />
+              </Typography>
             </div>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
-            <div className={classes.paper}>
-                <GroupAddIcon style={{
+        <Grid item xs={6} sm={3}>
+            <div className={`SampleCards ${classes.paper}`}> 
+              active users
+              <Typography variant="h4" paragraph style={{
                   color: '#DF8C42', 
-                  fontSize: '40px', 
-                  marginBottom: '-25px',
-                  marginRight: '20px'}} 
-                />    
-                   active users
-                  <Typography variant="h4" paragraph>
-                    <CountUp end={activeUsers} delay={2} redraw={true} />
-                  </Typography>
+                  }}>
+                <CountUp end={activeUsers} delay={2} redraw={true} />
+              </Typography>
             </div>
         </Grid>
 
         <Grid item xs={12} sm={6}>
-          <div className={classes.paper}>
+          <div className={classes.paperOne}>
             <Card chart>
               <CardHeader color="success">
                 <ChartistGraph

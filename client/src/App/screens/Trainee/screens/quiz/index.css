@@ -1,0 +1,49 @@
+.quizmenu {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.quizmenu:hover {
+    background-color: transparent;
+}
+
+.quiz {
+    width: 80%;
+    margin: 30px auto auto auto;
+    
+}
+.card {
+    /* width:90%; */
+    margin:50px auto 5px auto;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    border: none;
+}
+
+.li-w {
+    list-style-type: none;
+}
+.button {
+    margin: 10px 0 0 0;
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .quizmenu {
+        height:90px;
+        width:100%;
+        color:white;
+        text-align: center;
+        font-size: smaller;
+    }
+    .card {
+        width: 96%;
+    }
+    .button {
+        margin: 10px 0 0 0;
+        
+    }
+}
+
