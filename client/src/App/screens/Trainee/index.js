@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
-import *as ROUTE from '../../../../config/routes';
+import *as ROUTE from '../../config/routes';
 import CountUp from 'react-countup';
 
 // material cores
@@ -17,14 +17,14 @@ import {
   moduleCompletion,
 } from "./charts.js";
 import  FirebaseContext  from 'firebase';
-import Card from "../card/Card";
-import CardHeader from "../card/CardHeader";
-import CardBody from "../card/CardBody";
-import CardFooter from "../card/CardFooter";
+import Card from "./card/Card";
+import CardHeader from "./card/CardHeader";
+import CardBody from "./card/CardBody";
+import CardFooter from "./card/CardFooter";
 import './views.css'
 
 // styles
-import '../styles/css/graphs.css'
+import './styles/css/graphs.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
