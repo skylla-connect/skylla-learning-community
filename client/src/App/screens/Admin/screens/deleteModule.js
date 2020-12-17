@@ -116,8 +116,12 @@ class DeleteUsers extends React.Component {
             width: '80%',
             margin: '70px auto',
         }}>
+            <Typography variant="h6" paragraph>
+                Modules Created
+            </Typography>
+
             <MaterialTable
-                title="Modules Created"
+                title=""
                 columns={this.state.columns}
                 style={{
                     backgroundColor: 'transparent',

@@ -9,10 +9,6 @@ import *as ROUTES from '../../../config/routes';
 const permissions = (props) => {
   return (
     <div>
-        {/* <Typography variant="h6" paragraph>
-            Permissions
-        </Typography> */}
-
         <MenuList>
           <Link to={ROUTES.SCHEDULE}  style={{
             color: 'white', 
@@ -25,28 +21,35 @@ const permissions = (props) => {
             </MenuItem>
           </Link>
 
-          <MenuItem>
-            <img 
-              src="https://cdn0.iconfinder.com/data/icons/fatcow/32x32/session_idle_time.png" 
-              alt=""
-              style={{
-                  marginRight: '10px',
-                  width: '15%'
-                }}
-              />
-            add sessions 
-          </MenuItem>
-
-          <MenuItem >
-            <img 
-                src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
+          <Link to={ROUTES.QUIZ}  style={{
+            color: 'white', 
+              textDecoration: 'none'
+              }}>
+            <MenuItem>
+              <img 
+                src="https://cdn0.iconfinder.com/data/icons/fatcow/32x32/session_idle_time.png" 
                 alt=""
-                style={{ 
+                style={{
                     marginRight: '10px',
-                    width: '15%'}}
-                  />
-            create Quizes
-          </MenuItem>
+                    width: '15%'
+                  }}
+                />
+              add sessions 
+            </MenuItem>
+          </Link>
+
+          <Link to={ROUTES.TEST} style={{color: 'white', textDecoration: 'none'}}>
+            <MenuItem >
+              <img 
+                  src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
+                  alt=""
+                  style={{ 
+                      marginRight: '10px',
+                      width: '15%'}}
+                    />
+              create Quiz
+            </MenuItem>
+          </Link>
 
           <MenuItem>
             <i style={{ 
@@ -58,7 +61,7 @@ const permissions = (props) => {
           </MenuItem>
 
           {/* Create assesment */}
-          <Link to="/assignment" style={{color: 'white', textDecoration: 'none'}}>
+          <Link to={ROUTES.ASSESSMENTS} style={{color: 'white', textDecoration: 'none'}}>
             <MenuItem>
                 <img 
                 src="https://cdn0.iconfinder.com/data/icons/fatcow/32/document_mark_as_final.png" 

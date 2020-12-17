@@ -155,7 +155,7 @@ class ManageHiredTrainees extends React.Component {
                 </Tooltip>
             </Link>
 
-            <Typography variant="h5" paragraph>
+            <Typography variant="h6" paragraph>
                 Hired Trainees
             </Typography>
 

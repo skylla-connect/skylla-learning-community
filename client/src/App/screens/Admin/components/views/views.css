@@ -1,8 +1,8 @@
-.card {
+.SampleCards {
     display: block;
     top: 0px;
     position: relative;
-    background-color: #f2f8f9;
+    background-color: #f2f8f9 !important;
     border-radius: 4px;
     text-align: center;
     text-decoration: none;
@@ -12,12 +12,12 @@
     cursor: pointer;
 }
 
-.card:hover {
+.SampleCards:hover {
     transition: all 0.2s ease-out;
     box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
     top: -4px;
     border: 1px solid #cccccc;
-    background-color: white;
+    background-color: white !important;
 }
 
 /* .card::before {
@@ -35,6 +35,6 @@
     transition: transform 0.15s ease-out;
 } */
 
-.card:hover:before {
+.SampleCards:hover:before {
     transform: scale(2.15);
 }
