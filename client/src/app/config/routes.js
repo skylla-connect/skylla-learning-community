@@ -15,5 +15,12 @@ export const INTERVIEWS = '/interviews';
 export const PAYMENT = '/payment';
 export const LIVE_SUPPORT ='/support';
 export const SUCCESS_PAGE = '/success';
-export const CHAT ='/chat'
+export const CHAT ='/chat';
+export const ENROLLED = '/enrolled';
+export const ACTIVE_USERS = '/act-users';
+export const ANNOUNCEMENTS = '/announcements';
+export const SSESSIONS = '/sessions';
+export const N_TRAINERS = '/n-trainers';
+export const T_MODULES = '/t-modules';
+export const Live_CLASSES = '/liveclass';
 
