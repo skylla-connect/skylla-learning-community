@@ -149,6 +149,7 @@ export default function FullWidthGrid(props) {
           </a>
         </Grid>
         <Grid item xs={6} sm={3}>
+          <a href={ROUTE.ENROLLED}>
             <div className={`SampleCards ${classes.paper}`}>
                 Enrolled trainees
 
@@ -158,9 +159,11 @@ export default function FullWidthGrid(props) {
                 <CountUp end={count} delay={2} redraw={true} />
               </Typography>
             </div>
+          </a>
         </Grid>
 
         <Grid item xs={6} sm={3}>
+          <a href={ROUTE.ACTIVE_USERS}>
             <div className={`SampleCards ${classes.paper}`}>
                 active users
               <Typography variant="h4" paragraph style={{
@@ -169,9 +172,11 @@ export default function FullWidthGrid(props) {
                 <CountUp end={activeUsers} delay={2} redraw={true} />
               </Typography>
             </div>
+          </a>
         </Grid>
 
         <Grid item xs={6} sm={3}>
+          <a href={ROUTE.ANNOUNCEMENTS}>
             <div className={`SampleCards ${classes.paper}`}>
                 Announcements 
                 <Typography variant="h4" paragraph style={{
@@ -180,9 +185,11 @@ export default function FullWidthGrid(props) {
                   <CountUp end={announcements} delay={2} redraw={true} />
                 </Typography>
             </div>
+           </a>
         </Grid>
 
         <Grid item xs={6} sm={3}>
+          <a href={ROUTE.SSESSIONS}>
             <div className={`SampleCards ${classes.paper}`}>  
                  Number of sessions
                 <Typography variant="h4" paragraph style={{
@@ -191,9 +198,11 @@ export default function FullWidthGrid(props) {
                   <CountUp end={sessions} delay={2} redraw={true} />
                 </Typography>
             </div>
+            </a>
         </Grid>
 
         <Grid item xs={6} sm={3}>
+          <a href={ROUTE.LIVE_CLASS}>
             <div className={`SampleCards ${classes.paper}`}>
               Live Classes
               <Typography variant="h4" paragraph style={{
@@ -202,9 +211,11 @@ export default function FullWidthGrid(props) {
                 <CountUp end={liveClass} delay={2} redraw={true} />
               </Typography>
             </div>
+          </a>
         </Grid>
 
         <Grid item xs={6} sm={3}>
+          <a href={ROUTE.N_TRAINERS}>
             <div className={`SampleCards ${classes.paper}`}>
               Number of Trainers
               <Typography variant="h4" paragraph  style={{
@@ -213,9 +224,11 @@ export default function FullWidthGrid(props) {
                 <CountUp end={trainers} delay={2} redraw={true} />
               </Typography>
             </div>
+           </a>
         </Grid>
 
         <Grid item xs={6} sm={3}>
+          <a href={ROUTE.T_MODULES}>
             <div className={`SampleCards ${classes.paper}`}>
                 Total Modules
                 <Typography variant="h4" paragraph style={{
@@ -224,6 +237,7 @@ export default function FullWidthGrid(props) {
                   <CountUp end={modules} delay={2} redraw={true} />
                 </Typography>
             </div>
+          </a>
         </Grid>
         
         <Grid item xs={12} sm={6}>

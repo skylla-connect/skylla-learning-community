@@ -17,6 +17,11 @@ import Chat from './App/screens/LiveSupport/LiveSupport2/index';
 import LiveSupport from './App/screens/LiveSupport/index';
 import CartApp  from './App/screens/cart';
 import Hired from './App/screens/Admin/screens/deleteHiredData';
+import deleteUsers from './App/screens/Admin/screens/activeUsers';
+import ManageEnrolledTrainees from './App/screens/Admin/screens/enrolled'
+import numTrainers from './App/screens/Admin/screens/numTrainers';
+import TotalModules from './App/screens/Admin/screens/totalModules';
+import liveClass from './App/screens/Admin/screens/liveClass';
 
 function NetworkError() {
     return (
@@ -76,6 +81,11 @@ function Routes(props) {
                 <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 <Route path={ROUTES.CHAT} component={Chat} />
                 <Route path={ROUTES.HIRED} component={Hired} />
+                <Route path={ROUTES.ACTIVE_USERS} component={deleteUsers} />
+                <Route path={ROUTES.N_TRAINERS} component={numTrainers} />
+                <Route path={ROUTES.ENROLLED} component={ManageEnrolledTrainees} />
+                <Route path={ROUTES.T_MODULES} component={TotalModules} />
+                <Route path={ROUTES.Live_CLASSES} component={liveClass} />
                 <Route path="/cart" component={CartApp} />
 
                 <Route path="/">
