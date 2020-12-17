@@ -1,305 +1,417 @@
-import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-import *as ROUTE from '../../../../config/routes';
-import CountUp from 'react-countup';
-
-// material cores
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import ChartistGraph from "react-chartist";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import AccessTime from "@material-ui/icons/AccessTime";
-import Typography from "@material-ui/core/Typography";
-
-// imported modules
+import React from 'react';
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import Footer from '../../components/Footer/footer';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import Menu from './components/menu';
+// import Permissions from './components/moduleContent';
+import Mobile from './mob';
+import Avatar from '@material-ui/core/Avatar';
+import Views from './components/views/views'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import SocialIcons from './components/social';
+import ProfilePage from './screens/profilePage';
+import LiveClass from './screens/liveClass';
+import *as ROUTES from '../../config/routes';
+import FirebaseContext from 'firebase';
+import 'firebase/firestore';
+import './index.css';
+import Button from '@material-ui/core/Button';
 import {
-  topFourModules,
-  moduleCompletion,
-} from "./charts.js";
-import  FirebaseContext  from 'firebase';
-import Card from "../card/Card";
-import CardHeader from "../card/CardHeader";
-import CardBody from "../card/CardBody";
-import CardFooter from "../card/CardFooter";
-import './views.css'
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
+import FinalAssessment from './screens/finalAssess/finalAsses';
+import Quiz from './screens/quiz/index';
 
-// styles
-import '../styles/css/graphs.css'
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    marginTop: 50,
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
+  },
+  desktop: {
+    
+  },
+  appBar: {
+    backgroundColor: '#0000FF',
+    boxShadow: 'none',
+    borderLeft: '1px solid white',
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: '#0000FF',
+    color: 'white',
+    msOverflowStyle: 'none',
+    '&::-webkit-scrollbar': {
+        display: 'none'
+    },
   },
   paper: {
-    padding: theme.spacing(4, 2, 2, 2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    // backgroundColor: '#EDEDED',
-    [theme.breakpoints.down('sm')]: {
-        width: '100%'
-    }
-  },  
-
-  paperOne: {
-    marginTop: '100px'
+    margin: 'auto',
+    width: '80%'
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
   },
 
-  grid: {
-    width: '90%', 
-    margin: 'auto',
-    [theme.breakpoints.down('sm')]: {
-        width: '100%'
-    }
+  fab: {
+    margin: theme.spacing(0),
+    backgroundColor: 'white',
+    '&:hover': {
+      backgroundColor: 'white',
+    },
   },
 }));
 
-export default function FullWidthGrid(props) {
+// Define routes in the Trainees
+const routes = [
+  {
+    path: ROUTES.TRAINEE,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+       {/* Views */}
+       <Views />
+    </div>
+  },
+
+  {
+    path: ROUTES.PROFILE,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      <ProfilePage/>
+    </div>
+  },
+
+  {
+    path: ROUTES.SESSIONS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>View Sections</div>
+  },
+
+  {
+    path: ROUTES.ASSESSMENTS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <FinalAssessment />
+  },
+
+  {
+    path: ROUTES.INTERVIEWS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      Interviews page
+    </div>
+  },
+
+  {
+    path: ROUTES.HIRED,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      Hire page
+    </div>
+  },
+
+  {
+    path: ROUTES.LIVE_CLASS,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <div>
+      <LiveClass/>
+    </div>
+  },
+
+  {
+    path: ROUTES.QUIZ,
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <Quiz />
+  }
+];
+
+export default function PersistentDrawerLeft() {
   const classes = useStyles();
-  const [count , setCount] = useState([])
-  const [activeUsers, setactiveUsers] = useState([])
-  const [liveClass , setLiveClass] = useState([])
-  const [trainers , setTrainers] = useState([])
-  const [modules , setModules] = useState([])
-  const [sessions , setSessions] = useState([])
-  const [announcements , setAnnouncements] = useState([])
-  const [hired , setHired] = useState([])
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(true);
+  const [currentUserDetails, setcurrentUserDetails] = React.useState({name:'', email:'', password:'', photo: ''})
 
-  useEffect( () => {
-    // statistics 
 
-    // for Modules purchased
-    FirebaseContext.firestore().collection("orders/8XAMQYBG1zOq6iCe7e2W9jajvSs2/items")
-    .get()
-    .then(querySnapshot => {
-      setCount(querySnapshot.size)
-    }); 
+  class userDetails {
+    constructor (name, email, password, photo ) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.photo= photo;
+    }
+  }
 
-    // for Users
-    FirebaseContext.firestore().collection("users/trainee/users")
-    .get()
-    .then(snap =>{
-      setactiveUsers(snap.size)
-    })
+// Firestore data converter
+ 
 
-    // for Live class
-    FirebaseContext.firestore().collection("users/trainer/dashboard/live_class/schedule")
-    .get()
-    .then(snap =>{
-      setLiveClass(snap.size)
-    })
+  React.useEffect(() => {
+        let user = FirebaseContext.auth().currentUser;   
+        let db = FirebaseContext.firestore().collection('users/trainee/users');
+        let query = db.where('userId', '==', user.uid);
+        
 
-    // for trainers
-    FirebaseContext.firestore().collection("users/trainer/sys_trainers")
-    .get()
-    .then(snap =>{
-      setTrainers(snap.size)
-    })
+        var userDetailsConverter = {
+          toFirestore: function(userDetails) {
+              return {
+                  name: userDetails.name,
+                  email: userDetails.email,
+                  password: userDetails.password,
+                  photo: userDetails.photo
+                  }
+          },
+          fromFirestore: function(snapshot, options){
+              const data = snapshot.data(options);
+              const det1 = new userDetails(data.name, data.email, data.password, data.photo);
+              return det1
+          }
+        }
 
-    // modules
-    FirebaseContext.firestore().collection("modules")
-    .get()
-    .then(snap =>{
-      setModules(snap.size)
-    })
+        query.withConverter(userDetailsConverter).get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+            console.log('No matching documents.');
+            return;
+            }  
 
-    // sessions
-    FirebaseContext.firestore().collection("users/trainer/dashboard/session/session")
-    .get()
-    .then(snap =>{
-      setSessions(snap.size)
-    })
-
-    // Announcement
-    FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
-    .get()
-    .then(snap =>{
-      setAnnouncements(snap.size)
-    })
-
-    // Hired
-    FirebaseContext.firestore().collection("users/admin/dashboard/hired_trainees/hired")
-    .get()
-    .then(snap =>{
-      setHired(snap.size)
-    })
+            snapshot.forEach(doc => {
+                var x = doc.data();
+                setcurrentUserDetails(x)
+            // console.log(doc.id, '=>', x);
+            ;
+            })
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
   });
 
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <div className={classes.root}>
-      <Typography paragraph style={{
-        textAlign: 'center',
-        padding: '40px'
-      }}>
-        General Statistics
-      </Typography>
+      <div>
+        <div className={classes.root}>
+          <CssBaseline />
+            <AppBar
+              position="fixed"
+              className={clsx(classes.appBar, {
+                [classes.appBarShift]: open,
+              })}
+            >
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
 
-      <Grid container spacing={3} className={classes.grid}>
-        <Grid item xs={6} sm={3}>
-          <a href={ROUTE.HIRED}>
-            <div className={`SampleCards ${classes.paper}`}>
-              Hired Trainees   
-              <Typography variant="h4" paragraph style={{
-                  color: '#00BEF2', 
+              <div style={{margin: 'auto'}}>
+                <Typography noWrap>
+                    SKYLLA LEARNING COMMUNITY
+                </Typography>
+              </div>
+
+              <div style={{
+                  textAlign: 'center', 
+                  margin: 'auto 15px auto 25px',
+                  display: 'flex'
                 }}>
-                <CountUp end={hired} delay={2} redraw={true} />
-              </Typography>
-            </div>
-          </a>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <a href={ROUTE.ENROLLED}>
-            <div className={`SampleCards ${classes.paper}`}>
-                Enrolled trainees
-
-              <Typography variant="h4" paragraph style={{
-                  color: '#82B366', 
-                }} >
-                <CountUp end={count} delay={2} redraw={true} />
-              </Typography>
-            </div>
-          </a>
-        </Grid>
-
-        <Grid item xs={6} sm={3}>
-          <a href={ROUTE.ACTIVE_USERS}>
-            <div className={`SampleCards ${classes.paper}`}>
-                active users
-              <Typography variant="h4" paragraph style={{
-                  color: '#DF8C42', 
-                }} >
-                <CountUp end={activeUsers} delay={2} redraw={true} />
-              </Typography>
-            </div>
-          </a>
-        </Grid>
-
-        <Grid item xs={6} sm={3}>
-          <a href={ROUTE.ANNOUNCEMENTS}>
-            <div className={`SampleCards ${classes.paper}`}>
-                Announcements 
-                <Typography variant="h4" paragraph style={{
-                        color: '#DF8C42', 
-                    }} >
-                  <CountUp end={announcements} delay={2} redraw={true} />
+                <Avatar alt="Remy Sharp" style={{marginLeft:'27%'}} src={currentUserDetails.photo} />
+                <Typography variant="body2" style={{margin: 10}}>
+                  {currentUserDetails.name}
                 </Typography>
-            </div>
-           </a>
-        </Grid>
+              </div>
 
-        <Grid item xs={6} sm={3}>
-          <a href={ROUTE.SSESSIONS}>
-            <div className={`SampleCards ${classes.paper}`}>  
-                 Number of sessions
-                <Typography variant="h4" paragraph style={{
-                    color: '#B20000', 
-                  }}>
-                  <CountUp end={sessions} delay={2} redraw={true} />
-                </Typography>
-            </div>
-            </a>
-        </Grid>
-
-        <Grid item xs={6} sm={3}>
-          <a href={ROUTE.LIVE_CLASS}>
-            <div className={`SampleCards ${classes.paper}`}>
-              Live Classes
-              <Typography variant="h4" paragraph style={{
-                  color: '#FA6800', 
+              <div style={{
+                  textAlign: 'center', 
+                  margin: 'auto 15px auto 25px',
+                  display: 'flex'
                 }}>
-                <CountUp end={liveClass} delay={2} redraw={true} />
-              </Typography>
-            </div>
-          </a>
-        </Grid>
-
-        <Grid item xs={6} sm={3}>
-          <a href={ROUTE.N_TRAINERS}>
-            <div className={`SampleCards ${classes.paper}`}>
-              Number of Trainers
-              <Typography variant="h4" paragraph  style={{
-                  color: '#33A64C', 
-                }} >
-                <CountUp end={trainers} delay={2} redraw={true} />
-              </Typography>
-            </div>
-           </a>
-        </Grid>
-
-        <Grid item xs={6} sm={3}>
-          <a href={ROUTE.T_MODULES}>
-            <div className={`SampleCards ${classes.paper}`}>
-                Total Modules
-                <Typography variant="h4" paragraph style={{
-                    color: '#FF0080', 
-                  }} >
-                  <CountUp end={modules} delay={2} redraw={true} />
+                <Avatar alt="Remy Sharp" src="" />
+                <Typography variant="body2" style={{margin: 10}}>
+                  Trainer
                 </Typography>
-            </div>
-          </a>
-        </Grid>
-        
-        <Grid item xs={12} sm={6}>
-          <div className={classes.paperOne}>
-            <Card chart>
-              <CardHeader color="warning">
-                <ChartistGraph
-                  className="ct-chart"
-                  data={moduleCompletion.data}
-                  type="Bar"
-                  options={moduleCompletion.options}
-                  responsiveOptions={moduleCompletion.responsiveOptions}
-                  listener={moduleCompletion.animation}
-                />
-              </CardHeader>
-              <CardBody>
-                <h4 className={classes.cardTitle}>
-                  Top 4 Modules
-                </h4>
-                <p className={classes.cardCategory}>
-                  130 enrollements in 4 top modules
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <div className={classes.stats}>
-                  <AccessTime /> Results updated 2 day ago
-                </div>
-              </CardFooter>
-            </Card>
-          </div>
-        </Grid>
+              </div>
 
-        <Grid item xs={12} sm={6}>
-          <div className={classes.paperOne}>
-            <Card chart>
-              <CardHeader color="success">
-                <ChartistGraph
-                  className="ct-chart"
-                  data={topFourModules.data}
-                  type="Line"
-                  options={topFourModules.options}
-                  listener={topFourModules.animation}
+              <div style={{textAlign: 'center'}}>
+                <Link to={ROUTES.MODULES}>
+                  <AddShoppingCartIcon style={{color: 'white'}} />
+                </Link>
+              </div>
+              
+            </Toolbar>
+          </AppBar>
+
+          <Router>
+            <Drawer
+              className={`drawer ${classes.drawer}`}
+              variant="persistent"
+              anchor="left"
+              open={open}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+            >
+            <div className={classes.drawerHeader} open={open}>
+              <IconButton onClick={handleDrawerClose} style={{color: 'white'}}>
+                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+              </IconButton>
+            </div>
+            <Divider />
+            <div className={classes.paper}>
+              <Menu />
+            </div>
+           
+            <Divider 
+                style={{
+                  backgroundColor: 'white',
+                  width: '90%',
+                  margin: 'auto',
+              }}
+            />
+
+            <Button style={{
+                color: 'white',
+                textTransform: 'capitalize'
+            }}>
+              <Typography variant="h6" paragraph>
+                  Module Content
+              </Typography>
+            </Button>
+
+            <div 
+                style={{
+                    margin: '-2px auto 0 auto',
+                    width: '90%',
+                }}>
+                <Divider  style={{ backgroundColor: 'white'}}/> 
+            </div>
+
+            <div className={classes.paper}> 
+              <SocialIcons />
+            </div>
+            
+            <Switch>
+              {routes.map((route, index) => (
+                // You can render a <Route> in as many places
+                // as you want in your app. It will render along
+                // with any other <Route>s that also match the URL.
+                // So, a sidebar or breadcrumbs or anything else
+                // that requires you to render multiple things
+                // in multiple places at the same URL is nothing
+                // more than multiple <Route>s.
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  children={<route.sidebar />}
                 />
-              </CardHeader>
-              <CardBody>
-                <h4 className={classes.cardTitle}>Module completions</h4>
-                <p className={classes.cardCategory}>
-                  <span className={classes.successText}>
-                    <ArrowUpward className={classes.upArrowCardCategory} /> 10%
-                  </span>{" "}
-                  increase in module completion.
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <div className={classes.stats}>
-                  <AccessTime /> updated 4 minutes ago
-                </div>
-              </CardFooter>
-            </Card>
-          </div>
-        </Grid>
-      </Grid>
+              ))}
+            </Switch>
+          </Drawer>
+          <main
+            className={clsx(classes.content, {
+              [classes.contentShift]: open,
+            })}
+          >
+            <div className={classes.drawerHeader} style={{marginTop: -50}} />
+            <Switch>
+              {routes.map((route, index) => (
+                // Render more <Route>s with the same paths as
+                // above, but different components this time.
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  children={<route.main />}
+                />
+              ))}
+            </Switch>
+
+            <div style={{marginTop: 40}}>
+              <Footer />
+            </div>
+          </main>
+        </Router>
+      </div>
+
+      {/* mobile */}
+      <Mobile />
     </div>
   );
 }
