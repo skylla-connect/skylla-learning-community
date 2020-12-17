@@ -25,6 +25,7 @@ const useStyles = (theme) => ({
       position: 'fixed',
       bottom: theme.spacing(2),
       left: theme.spacing(3),
+      zIndex: 999
     },
 });
   
@@ -34,6 +35,28 @@ class ActiveUsers extends React.Component {
         this.db = app.firestore();
         this.state = {
             columns: [
+                {
+                    title: 'Photo',
+                    field: 'photo',
+                    minWidth: 100,
+                    maxWidth: 150,
+                    render: (row) => (
+                        <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            // height: '80px'
+                        }}
+                        >
+                        <img
+                            style={{ height: 'auto', maxWidth: '80px' }}
+                            alt="No images"
+                            src={row.photo}
+                        />
+                        </div>
+                    ) 
+                },
                 {
                     title: 'Full Name', field: 'name',
                     editComponent: props => (

@@ -192,26 +192,27 @@ export default function PersistentDrawerLeft() {
     }
   }
 
-// Firestore data converter
-  var userDetailsConverter = {
-      toFirestore: function(userDetails) {
-          return {
-              name: userDetails.name,
-              email: userDetails.email,
-              password: userDetails.password,
-              photo: userDetails.photo
-              }
-      },
-      fromFirestore: function(snapshot, options){
-          const data = snapshot.data(options);
-          const det1 = new userDetails(data.name, data.email, data.password, data.photo);
-          return det1
+    React.useEffect(() => {
+      let user = FirebaseContext.auth().currentUser;   
+      let db = FirebaseContext.firestore().collection('users/trainee/users');
+      let query = db.where('userId', '==', user.uid);
+
+      // Firestore data converter
+      var userDetailsConverter = {
+          toFirestore: function(userDetails) {
+              return {
+                  name: userDetails.name,
+                  email: userDetails.email,
+                  password: userDetails.password,
+                  photo: userDetails.photo
+                  }
+          },
+          fromFirestore: function(snapshot, options){
+              const data = snapshot.data(options);
+              const det1 = new userDetails(data.name, data.email, data.password, data.photo);
+              return det1
+          }
       }
-  }
-  React.useEffect(() => {
-        let user = FirebaseContext.auth().currentUser;   
-        let db = FirebaseContext.firestore().collection('users/trainee/users');
-        let query = db.where('userId', '==', user.uid);
         
         query.withConverter(userDetailsConverter).get()
         .then(snapshot => {
@@ -230,7 +231,7 @@ export default function PersistentDrawerLeft() {
         .catch(err => {
             console.log('Error getting documents', err);
         });
-  }, [userDetailsConverter]);
+  });
 
   const handleDrawerOpen = () => {
     setOpen(true);

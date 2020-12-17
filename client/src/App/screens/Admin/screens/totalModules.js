@@ -34,6 +34,47 @@ class TotalModules extends React.Component {
         this.db = app.firestore();
         this.state = {
             columns: [
+                { 
+                    title: 'Image',
+                    field: 'imageUrl', 
+                    minWidth: 100,
+                    maxWidth: 150,
+                    render: (row) => (
+                        <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: '80px'
+                        }}
+                        >
+                        <img
+                            style={{ height: 'auto', maxWidth: '100px' }}
+                            alt="No images"
+                            src={row.imageUrl}
+                        />
+                        </div>
+                    ) 
+                },
+
+                { 
+                    title: 'Module',
+                    field: 'module', 
+                    type: 'string' 
+                },
+
+                { 
+                    title: 'Description',
+                    field: 'description', 
+                    type: 'string' 
+                },
+
+                { 
+                    title: 'Trainer',
+                    field: 'trainer', 
+                    type: 'string' 
+                },
+
                 {
                     title: 'Module Content', field: 'content',
                     editComponent: props => (
@@ -46,29 +87,6 @@ class TotalModules extends React.Component {
                         />
                     )
                 },
-  
-                { 
-                    title: 'Description',
-                    field: 'description', 
-                    type: 'string' 
-                },
-        
-                { 
-                    title: 'Image',
-                    field: 'imageUrl', 
-                    type: 'string' 
-                },
-                { 
-                    title: 'Module',
-                    field: 'module', 
-                    type: 'string' 
-                },
-                { 
-                    title: 'Trainer',
-                    field: 'trainer', 
-                    type: 'string' 
-                },
-    
             ],
   
             data: [],
@@ -151,7 +169,7 @@ class TotalModules extends React.Component {
             </Link>
 
             <Typography variant="h5" paragraph>
-                Total Modules
+                Modules Details
             </Typography>
 
             <MaterialTable
