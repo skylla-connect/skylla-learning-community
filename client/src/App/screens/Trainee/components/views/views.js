@@ -8,12 +8,6 @@ import Support from '@material-ui/icons/ContactSupport';
 import Announcements from './announcements';
 // import { Link } from 'react-router-dom'
 import *as ROUTES from '../../../../config/routes' 
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import FirebaseContext from 'firebase'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -109,50 +103,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FullWidthGrid(props) {
   const classes = useStyles();
-  // const [annts , setAnnts] = React.useState([])
-
-  // React.useEffect( () => {
-  //   FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
-  //   .get().then((querySnapshot) => {
-  //     const tempDoc = []
-  //     querySnapshot.forEach((doc) => {
-  //        tempDoc.push({ id: doc.id, ...doc.data() })
-  //     })
-  //     return setAnnts(tempDoc)
-  //  })
-  // //  const fetchData = async () => {   
-  // //   let db = FirebaseContext.firestore().collection('users/admin/dashboard/anouncement/anouncement');
-    
-  // //   db.onSnapshot(function(data){
-  // //     setAnnts([data.docs.map(doc => ({...doc.data(), id: doc.id}))]);
-  // //     // console.log(annts);
-  // //   });
-  // // };
-  // // fetchData();
-  // }, []);
 
   return (
     <div className={classes.root}>
       <Grid container spacing={6} className={classes.grid}>
         <Grid item xs={12}>
-          {/* <div className={classes.paper}>
-            <CloseIcon className={classes.anno} />
-              Announcements  {annts.author} 
-            <br />
-            {annts && annts.map((anno) => (
-      <div key={anno.id} >
-        
-            
-                    <Typography>
-                        {anno.content}
-                    </Typography>
-                    <Typography>
-                        {anno.author}
-                    </Typography>
-           
-      </div>
-       ))}
-          </div> */}
           <Announcements/>
         </Grid>
       </Grid>
