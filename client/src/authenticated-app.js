@@ -98,3 +98,15 @@ function Routes(props) {
     )
 }
 
+
+// import React from 'react';
+// import Interviews from './App/screens/Admin/screens/interviews';
+
+// const App = () =>{
+//   return(
+//     <div>
+//       <Interviews />
+//     </div>
+//   )
+// }
+// export default App;
