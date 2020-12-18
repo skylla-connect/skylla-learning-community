@@ -24,23 +24,24 @@ export default function SimpleAccordion() {
      
         
   React.useEffect( () => {
-    FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
-    .get().then((querySnapshot) => {
-      const tempDoc = []
-      querySnapshot.forEach((doc) => {
-         tempDoc.push({ id: doc.id, ...doc.data() })
-      })
-      return setAnnts(tempDoc)
-   })
-  //  const fetchData = async () => {   
-  //   let db = FirebaseContext.firestore().collection('users/admin/dashboard/anouncement/anouncement');
+//     FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
+//     .get().then((querySnapshot) => {
+//       const tempDoc = []
+//       querySnapshot.forEach((doc) => {
+//          tempDoc.push({ id: doc.id, ...doc.data() });
+//          setAnnts([doc.data()]);
+//       })
+//         console.log(tempDoc);
+//    })
+   const fetchData = async () => {   
+    let db = FirebaseContext.firestore().collection('users/admin/dashboard/anouncement/anouncement');
     
-  //   db.onSnapshot(function(data){
-  //     setAnnts([data.docs.map(doc => ({...doc.data(), id: doc.id}))]);
-  //     // console.log(annts);
-  //   });
-  // };
-  // fetchData();
+    db.onSnapshot(function(data){
+      setAnnts([data.docs.map(doc => ({...doc.data(), id: doc.id}))]);
+      console.log(annts);
+    });
+  };
+  fetchData();
   }, []);
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -58,16 +59,16 @@ export default function SimpleAccordion() {
         >
         <Typography className={classes.heading}>ANNOUNCEMENTS {annts.author}</Typography>
         </AccordionSummary>
-        {annts.map((anno) => (
-            <AccordionDetails key={anno.id}>                
-                <Typography>
-                    {anno.content}
-                </Typography>
-                <Typography>
-                    {anno.author}
-                </Typography>            
-            </AccordionDetails>        
-        ))}
+            {annts.map((anno) => (
+                <AccordionDetails key={anno.id}>                
+                    <Typography>
+                        {anno.Content}
+                    </Typography>
+                    <Typography>
+                        {anno.Author}
+                    </Typography>            
+                </AccordionDetails>        
+            ))}
       </Accordion>
     </div>
   );
