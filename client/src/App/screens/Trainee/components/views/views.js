@@ -109,33 +109,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FullWidthGrid(props) {
   const classes = useStyles();
-  const [annts , setAnnts] = React.useState([])
+  // const [annts , setAnnts] = React.useState([])
 
-  React.useEffect( () => {
-    FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
-    .get().then((querySnapshot) => {
-      const tempDoc = []
-      querySnapshot.forEach((doc) => {
-         tempDoc.push({ id: doc.id, ...doc.data() })
-      })
-      return setAnnts(tempDoc)
-   })
-  //  const fetchData = async () => {   
-  //   let db = FirebaseContext.firestore().collection('users/admin/dashboard/anouncement/anouncement');
+  // React.useEffect( () => {
+  //   FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
+  //   .get().then((querySnapshot) => {
+  //     const tempDoc = []
+  //     querySnapshot.forEach((doc) => {
+  //        tempDoc.push({ id: doc.id, ...doc.data() })
+  //     })
+  //     return setAnnts(tempDoc)
+  //  })
+  // //  const fetchData = async () => {   
+  // //   let db = FirebaseContext.firestore().collection('users/admin/dashboard/anouncement/anouncement');
     
-  //   db.onSnapshot(function(data){
-  //     setAnnts([data.docs.map(doc => ({...doc.data(), id: doc.id}))]);
-  //     // console.log(annts);
-  //   });
-  // };
-  // fetchData();
-  });
+  // //   db.onSnapshot(function(data){
+  // //     setAnnts([data.docs.map(doc => ({...doc.data(), id: doc.id}))]);
+  // //     // console.log(annts);
+  // //   });
+  // // };
+  // // fetchData();
+  // }, []);
 
   return (
     <div className={classes.root}>
       <Grid container spacing={6} className={classes.grid}>
         <Grid item xs={12}>
-          <div className={classes.paper}>
+          {/* <div className={classes.paper}>
             <CloseIcon className={classes.anno} />
               Announcements  {annts.author} 
             <br />
@@ -152,7 +152,8 @@ export default function FullWidthGrid(props) {
            
       </div>
        ))}
-          </div>
+          </div> */}
+          <Announcements/>
         </Grid>
       </Grid>
 

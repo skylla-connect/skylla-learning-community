@@ -23,28 +23,24 @@ export default function SimpleAccordion() {
   const [annts, setAnnts] = React.useState([]);
      
         
-  React.useEffect(() => {
-    let mounted = true;
-    //   const fetchData = async () => {
-        //   let user = FirebaseContext.auth().currentUser;   
-          let db = FirebaseContext.firestore().collection('/users/admin/dashboard/anouncement/anouncement');
-        //   let query = db.where('trainer', '==', user.email);
-
-        db.get()
-        .then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-                if (mounted)
-                setAnnts(doc.data);
-            });
-        })
-        .catch(function(error) {
-            console.log("Error getting documents: ", error);
-        });
-    //   };
-    //   fetchData();
-    return () => { mounted = false };
+  React.useEffect( () => {
+    FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
+    .get().then((querySnapshot) => {
+      const tempDoc = []
+      querySnapshot.forEach((doc) => {
+         tempDoc.push({ id: doc.id, ...doc.data() })
+      })
+      return setAnnts(tempDoc)
+   })
+  //  const fetchData = async () => {   
+  //   let db = FirebaseContext.firestore().collection('users/admin/dashboard/anouncement/anouncement');
+    
+  //   db.onSnapshot(function(data){
+  //     setAnnts([data.docs.map(doc => ({...doc.data(), id: doc.id}))]);
+  //     // console.log(annts);
+  //   });
+  // };
+  // fetchData();
   }, []);
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -53,8 +49,8 @@ export default function SimpleAccordion() {
 
   return (
     <div className={classes.root}>
-    {annts.map((anno) => (
-      <Accordion key={anno.id} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+    
+      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
@@ -62,18 +58,17 @@ export default function SimpleAccordion() {
         >
         <Typography className={classes.heading}>ANNOUNCEMENTS {annts.author}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
-            
-                    <Typography>
-                        {anno.content}
-                    </Typography>
-                    <Typography>
-                        {anno.author}
-                    </Typography>
-           
-        </AccordionDetails>
+        {annts.map((anno) => (
+            <AccordionDetails key={anno.id}>                
+                <Typography>
+                    {anno.content}
+                </Typography>
+                <Typography>
+                    {anno.author}
+                </Typography>            
+            </AccordionDetails>        
+        ))}
       </Accordion>
-       ))}
     </div>
   );
 }
