@@ -10,7 +10,7 @@ import Footer from '../components/Footer/footer'
 
 const useStyles = theme =>({
     root: {
-        flexGrow:1
+        flexGrow:1,
     },
     card:{
         padding: theme.spacing(2),

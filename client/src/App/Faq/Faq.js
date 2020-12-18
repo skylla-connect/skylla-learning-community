@@ -1,14 +1,23 @@
 import React from 'react';
-import {Typography, InputBase,Grid,Paper,Button,} from '@material-ui/core'
+import {Typography, InputBase,Grid,Paper} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import { fade, makeStyles } from '@material-ui/core/styles';
-
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      backgroundColor:'lightblue'
+      width:'90%',
+      // backgroundColor:'blue',
+      margin:'5% 5%  5%  5% '
     },
+     heading: {
+     fontSize: theme.typography.pxToRem(15),
+     fontWeight: theme.typography.fontWeightRegular,
+  },
     title: {
         flexGrow: 1,
         display: 'none',
@@ -20,7 +29,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    margin:'90px 0 0 0'
+    margin:'40px 0 0 0',
+    height:'50px'
+    },
+    accordion: {
+       marginTop:'15px'
     },
     search: {
       position: 'relative',
@@ -30,15 +43,15 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: fade(theme.palette.common.white, 0.25),
       },
       marginLeft: 0,
-      width: '100%',
+      width: '90%',
       [theme.breakpoints.up('sm')]: {
         marginLeft: theme.spacing(1),
         width: 'auto',
       },
     },
     searchIcon: {
-      padding: theme.spacing(0, 2),
-      height: '100%',
+      padding: theme.spacing(0, 1),
+      height: '90%',
       position: 'absolute',
       pointerEvents: 'none',
       display: 'flex',
@@ -49,15 +62,11 @@ const useStyles = makeStyles((theme) => ({
       color: 'inherit',
     },
     inputInput: {
-        // backgroundColor:'red'
       padding: theme.spacing(1, 1, 1, 0),
-      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+      paddingLeft: `calc(1em + ${theme.spacing(3)}px)`,
       transition: theme.transitions.create('width'),
       width: '100%',
-    //   backgroundColor:'red',
-      color:'gray',
-      border:'3px solid white',
-      borderRadius:'10px',
+      color:'black',
       [theme.breakpoints.up('sm')]: {
         width: '12ch',
         '&:focus': {
@@ -95,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
 
                     }}
                     >
-                    Frequently Ask Questions
+                    FAQ
                     </Typography>
                 </div>
 
@@ -104,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
                             <Grid item xs={6}>
                                <Paper className={classes.paper}>
                                  <Typography className={classes.title} variant="h6" noWrap>
-                                   Hi Angel,
+                                   Hi,
                                    How can we help you?
                                  </Typography>
                                </Paper>
@@ -117,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
                                     <SearchIcon />
                                     </div>
                                     <InputBase
-                                    placeholder="Type key word to find answers……"
+                                    placeholder="search……"
                                     classes={{
                                         root: classes.inputRoot,  
                                         input: classes.inputInput,
@@ -127,30 +136,72 @@ const useStyles = makeStyles((theme) => ({
                             </div>
                             </Paper>
                             </Grid>
-                    
-
                         </Grid>
-
+                        {/* gjghjghgh */}
+                    <div className={classes.accordion}>
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                                >
+                                <Typography className={classes.heading}>How to purchase a module</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                     go to the  trainees dashboard select cart and follow the procedures. 
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
+                                >
+                                <Typography className={classes.heading}>How to get Live Support</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                go to the  trainees dashboard select support icon and follow the procedures. 
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>  
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
+                                >
+                                <Typography className={classes.heading}>How to start Live Chat</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                    Click Live support page and follow continue.....
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion> 
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
+                                >
+                                <Typography className={classes.heading}>How to join learning community</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                    create an account login and purchase a module
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion> 
+                     </div>
                 </div>
-                <div>
-                    {/* <Typography> How can we help you</Typography> */}
-                    {/* <InputBase
-                        placeholder="Type key word to find answers…"
-                        classes={{
-                            root: classes.inputRoot,  
-                            input: classes.inputInput,
-                        }}
-                        inputProps={{ 'aria-label': 'search' }}
-                    /> */}
-                    {/* <input type='text' placeholder='Type key word to find answers…' /> */}
-                    
-                </div>
-                
-
-               
             </div>
-        )
-    
+        )    
 }
 
 export default Faq;
+
+
+
