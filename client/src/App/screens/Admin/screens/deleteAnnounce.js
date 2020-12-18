@@ -12,8 +12,6 @@ import { withStyles } from '@material-ui/core/styles';
 import *as ROUTE from '../../../config/routes';
 import { Link } from 'react-router-dom';
 import Footer from '../../../components/Footer/footer';
-import Avatar from '@material-ui/core/Avatar';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -27,61 +25,32 @@ const useStyles = (theme) => ({
       position: 'fixed',
       bottom: theme.spacing(2),
       left: theme.spacing(3),
+      zIndex: 999
     },
 });
   
-class NumberOfTrainers extends React.Component {
+class ManageHiredTrainees extends React.Component {
     constructor(props) {
         super(props);
         this.db = app.firestore();
         this.state = {
             columns: [
-                {
-                    title: 'Photo',
-                    field: 'photo',
-                    render: (row) => (
-                        <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                        >
-                        <ListItemAvatar>
-                            <Avatar 
-                                alt="" 
-                                src={row.photo}
-                            />
-                        </ListItemAvatar>
-                        </div>
-                    ) 
-                },
-
-                {
-                    title: 'Full Name', field: 'name',
-                    editComponent: props => (
-                        <input
-                            type="text"
-                            value={props.value}
-                            onChange={
-                                e => props.onChange(e.target.value)
-                            }
-                        />
-                    )
-                },
-  
                 { 
-                    title: 'Email',
-                    field: 'email', 
+                    title: 'Date & Time',
+                    field: 'createdAt', 
                     type: 'string' 
                 },
         
                 { 
-                    title: 'CreatedAt',
-                    field: 'createdAt', 
+                    title: 'Author',
+                    field: 'Author', 
                     type: 'string' 
                 },
-    
+                { 
+                    title: 'Content',
+                    field: 'Content', 
+                    type: 'string' 
+                },
             ],
   
             data: [],
@@ -106,7 +75,7 @@ class NumberOfTrainers extends React.Component {
     };
   
     deleteUserDetails(modId){
-        this.db.collection("users/trainer/sys_trainers")
+        this.db.collection("users/admin/dashboard/anouncement/anouncement")
             .get()
             .then(querySnapshot => {
             try {
@@ -125,7 +94,7 @@ class NumberOfTrainers extends React.Component {
     }
   
     componentDidMount() {
-        this.db.collection("users/trainer/sys_trainers")
+        this.db.collection("users/admin/dashboard/anouncement/anouncement")
             .onSnapshot(querySnapshot => {
             const module = querySnapshot.docs.map(doc => doc.data());
             this.setState({ modules: module });
@@ -163,8 +132,8 @@ class NumberOfTrainers extends React.Component {
                 </Tooltip>
             </Link>
 
-            <Typography variant="h5" paragraph>
-                Number Of Trainers
+            <Typography variant="h6" paragraph>
+                Annoucements
             </Typography>
 
             <MaterialTable
@@ -196,6 +165,14 @@ class NumberOfTrainers extends React.Component {
                         }, 1000)
                     }),
                 }}
+
+                localization={{ 
+                    body: { 
+                        editRow: { 
+                            deleteText: 'Are you sure you want to delete this announcement ?' 
+                        },
+                    } 
+                }}
   
                 options={{
                     exportButton: true,
@@ -215,7 +192,7 @@ class NumberOfTrainers extends React.Component {
                     autoHideDuration={6000} 
                     onClose={this.handleClose}>
                     <Alert onClose={this.handleClose} severity="success">
-                        You have deleted module successfully!
+                        You have deleted one annoucement successfully!
                     </Alert>
                 </Snackbar>
             }
@@ -226,4 +203,4 @@ class NumberOfTrainers extends React.Component {
     }
 }
 
-export default withStyles(useStyles)(NumberOfTrainers);
+export default withStyles(useStyles)(ManageHiredTrainees);

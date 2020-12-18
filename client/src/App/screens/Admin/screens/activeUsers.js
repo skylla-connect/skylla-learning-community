@@ -57,6 +57,7 @@ class ActiveUsers extends React.Component {
                         </div>
                     ) 
                 },
+                
                 {
                     title: 'Full Name', field: 'name',
                     editComponent: props => (

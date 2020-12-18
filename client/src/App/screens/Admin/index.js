@@ -22,6 +22,7 @@ import ManageModules from './screens/deleteModule';
 import CreateModule  from './screens/createModule';
 import ProfilePage from './screens/profilePage';
 import FinalAssessment from './screens/finalAsessessment';
+import Announcements from './screens/addAnnounce';
 
 import Hire from './screens/hire';
 
@@ -101,6 +102,13 @@ const routes = [
     exact: true,
     sidebar: () => <div></div>,
     main: () => <ManageModules/>
+  },
+
+  {
+    path: "/announcements",
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <Announcements/>
   },
 ];
 

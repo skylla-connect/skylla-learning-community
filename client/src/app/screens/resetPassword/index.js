@@ -17,6 +17,7 @@ const PasswordForgetPage = () => (
     <div css={{
         display: 'flex',
         flexDirection: 'row',
+        backgroundColor: 'white'
     }}>
         <SideBanner/>
         <div css={{

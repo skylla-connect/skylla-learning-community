@@ -107,12 +107,12 @@ h5 {
 
 h6 {
   font-size: 1em;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: 500;
 }
 
 body {
-  background-color: #fff;
+  /* background-color: #fff; */
   color: #3c4858;
 }
 
