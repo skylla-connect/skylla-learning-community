@@ -7,7 +7,6 @@ import {Typography, List, ListItemText, ListItem} from '@material-ui/core'
 import {withStyles} from '@material-ui/core/styles'
 import Footer from '../components/Footer/footer'
 
-
 const useStyles = theme =>({
     root: {
         flexGrow:1,
