@@ -21,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
       bottom: theme.spacing(2),
       right: theme.spacing(3),
     },
+    list: {
+        '&:hover': {
+            backgroundColor: 'transparent'
+        }
+    }
 }));
 
 export default function SimpleMenu() {
@@ -37,7 +42,7 @@ export default function SimpleMenu() {
         </div>
 
         <MenuList style={{display: 'flex', width: '90%'}}>
-            <MenuItem>
+            <MenuItem className={classes.list}>
                 
                 <Tooltip title="WhatsApp" aria-label="WhatsApp" style={{color: '#0000FF'}}>
                     <Fab color="primary" className={classes.fab}>
@@ -49,7 +54,7 @@ export default function SimpleMenu() {
                 
             </MenuItem>
 
-            <MenuItem >
+            <MenuItem className={classes.list}>
                 <Tooltip title="Twitter" aria-label="Twitter" style={{color: '#0000FF'}}>
                     <Fab color="primary" className={classes.fab}>
                         <a href="https://www.twitter.com/skyllaconnect" target='_blank' rel="noopener noreferrer" >
@@ -59,7 +64,7 @@ export default function SimpleMenu() {
                 </Tooltip>
             </MenuItem>
 
-            <MenuItem>
+            <MenuItem className={classes.list}>
                 <Tooltip title="Facebook" aria-label="Facebook" style={{color: '#0000FF'}}>
                     <Fab color="primary" className={classes.fab}>
                         <a href="https://skyllaconnect.com" target='_blank' rel="noopener noreferrer" >
@@ -69,7 +74,7 @@ export default function SimpleMenu() {
                 </Tooltip>
             </MenuItem>
 
-            <MenuItem>
+            <MenuItem className={classes.list}>
                 <Tooltip title="GitHub" aria-label="GitHub" style={{color: '#0000FF'}}>
                     <Fab color="primary" className={classes.fab}>
                         <a href="https://github.com/" target='_blank' rel="noopener noreferrer" >

@@ -3,7 +3,6 @@
 
 import {jsx} from '@emotion/core'
 
-
 import { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -14,7 +13,7 @@ import * as ROUTES from '../../config/routes';
 import { Centered, FormGroup } from '../../components';
 import SideBanner from '../components/sidebar';
 import { PasswordForgetLink } from '../resetPassword';
-import {Footer} from "../components/footer";
+import Footer from "../../components/Footer/footer";
 import TextFieldMui from '../components/textField';
 import ButtonMui from '../components/button';
 

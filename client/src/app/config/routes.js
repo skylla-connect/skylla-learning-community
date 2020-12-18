@@ -10,6 +10,7 @@ export const MODULES = '/module';
 export const PROFILE = '/profile';
 export const LIVE_CLASS = '/liveclass';
 export const ASSESSMENTS = '/assessments';
+export const FINALASSESSMENT = '/finalassess';
 export const SESSIONS = '/sessions';
 export const FINALASSESS = '/final';
 export const TEST = '/test';

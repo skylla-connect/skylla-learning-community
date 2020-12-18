@@ -215,13 +215,15 @@ export default function PersistentDrawerLeft() {
                 <Menu />
               </div>
 
-              <Divider 
-                style={{
-                  backgroundColor: 'white',
-                  width: '90%',
-                  margin: 'auto',
-              }}
-            />
+              <div 
+                  style={{
+                      margin: '-2px auto 0 auto',
+                      width: '90%',
+                  }}>
+                  <hr  style={{ 
+                    backgroundColor: 'white'
+                  }}/> 
+              </div>
 
             <Button style={{
                 color: 'white',
@@ -237,7 +239,9 @@ export default function PersistentDrawerLeft() {
                       margin: '-2px auto 0 auto',
                       width: '90%',
                   }}>
-                  <Divider  style={{ backgroundColor: 'white'}}/> 
+                  <hr  style={{ 
+                    backgroundColor: 'white'
+                  }}/> 
               </div>
 
               <div className={classes.paper}> 

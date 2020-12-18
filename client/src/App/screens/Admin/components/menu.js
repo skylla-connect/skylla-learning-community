@@ -42,7 +42,7 @@ const menu = ({ firebase }) => {
         </Link>
 
         {/* Final assessment */}
-        <Link to={ROUTES.ASSESSMENTS} style={{
+        <Link to={ROUTES.FINALASSESSMENT} style={{
           color: 'white', 
           textDecoration: 'none'
           }}>

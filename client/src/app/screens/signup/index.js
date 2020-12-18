@@ -11,7 +11,7 @@ import * as ROUTES from '../../config/routes';
 import SideBanner from '../components/sidebar';
 import { Centered, FormGroup } from '../../components';
 import './index.css';
-import { Footer } from '../components/footer';
+import Footer from "../../components/Footer/footer";
 import ButtonMui from "../components/button";
 import TextFieldMui from "../components/textField";
 
@@ -28,14 +28,17 @@ const SignUpPage = () => (
             Height: '100vh',
            }}>
             <Centered>
-                <div css={{marginBottom: '60px'}}>
+                <div>
                     <h5
                     css={{
                         fontSize: '16px',
                         textTransform: 'capitalize',
                         color: '#000000',
-                        paddingBottom: '30px',
-                    }}>create account</h5>
+                        paddingBottom: '20px',
+                        paddingTop: '30px',
+                    }}>create trainee's account</h5>
+
+                    {/* Sign up form */}
                     <SignUpForm />
 
                     <p css={{
@@ -134,33 +137,35 @@ class SignUpFormBase extends Component {
             alignItems: 'stretch',
         }}>
              <FormGroup>
-            <TextFieldMui
-                label="Full Name"
-                variant="outlined"
-                type="text"
-                id="username"
-                name="username"
-                value={username}
-                placeholder="Name"
-                onChange={this.onChange}
+                <TextFieldMui
+                    label="Full Name"
+                    variant="outlined"
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={username}
+                    placeholder="Name"
+                    onChange={this.onChange}
                 />
             </FormGroup>
+
              <FormGroup css={{
-                 paddingTop: "18px"
-             }}>
-            <TextFieldMui 
-                label="E-mail Address"
-                variant="outlined"
-                type="email"
-                id="email"
-                name="email"
-                value={email}
-                onChange={this.onChange}
+                    paddingTop: "18px"
+                }}>
+                <TextFieldMui 
+                    label="E-mail Address"
+                    variant="outlined"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={email}
+                    onChange={this.onChange}
                 />
             </FormGroup>
+
              <FormGroup css={{
                 paddingTop: '18px',
-            }}>
+                }}>
                 <TextFieldMui 
                 label="Password"
                 id="passwordOne"
@@ -171,9 +176,10 @@ class SignUpFormBase extends Component {
                 onChange={this.onChange}
                 />
             </FormGroup>
-             <FormGroup css={{
+
+            <FormGroup css={{
                 paddingTop: '18px',
-            }}>
+                }}>
                 <TextFieldMui 
                 label="Confirm Password"
                 id="passwordTwo"
@@ -184,12 +190,13 @@ class SignUpFormBase extends Component {
                 onChange={this.onChange}
                 />
             </FormGroup>
+
             <FormGroup css={{display: 'flex', 
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            marginTop: '8px',
-        }}>
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+                marginTop: '8px',
+                }}>
                 <input css={{
                    marginLeft: '0'
                 }} id="terms" type='checkbox'
@@ -208,9 +215,10 @@ class SignUpFormBase extends Component {
                         color: "#007bff"  
                     }}>Polices</Link> </label>
             </FormGroup>
+
             <FormGroup css={{
                 paddingTop: '15px',
-            }}>
+                }}>
                 <ButtonMui
                 variant="contained"
                 color="primary"
@@ -220,6 +228,7 @@ class SignUpFormBase extends Component {
                 text="create account"
                 />
             </FormGroup>
+            
             {error && <p css={{
                 paddingTop: '15px',
                 fontSize: '14px',

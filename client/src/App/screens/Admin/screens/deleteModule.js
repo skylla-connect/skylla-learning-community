@@ -20,6 +20,29 @@ class DeleteUsers extends React.Component {
         this.db = app.firestore();
         this.state = {
             columns: [
+                { 
+                    title: 'Image',
+                    field: 'imageUrl', 
+                    minWidth: 100,
+                    maxWidth: 150,
+                    render: (row) => (
+                        <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: '80px'
+                        }}
+                        >
+                        <img
+                            style={{ height: 'auto', maxWidth: '100px' }}
+                            alt="No images"
+                            src={row.imageUrl}
+                        />
+                        </div>
+                    ) 
+                },
+
                 {
                     title: 'Module Name', field: 'module',
                     editComponent: props => (
@@ -113,7 +136,7 @@ class DeleteUsers extends React.Component {
 
         return (
         <div style={{
-            width: '80%',
+            width: '90%',
             margin: '70px auto',
         }}>
             <Typography variant="h6" paragraph>

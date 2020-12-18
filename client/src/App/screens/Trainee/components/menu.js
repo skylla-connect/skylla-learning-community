@@ -9,6 +9,7 @@ import *as ROUTES from '../../../config/routes';
 import { withFirebase } from '../../../firebase';
 import { Link } from 'react-router-dom';
 import LiveClass from '../screens/liveClass';
+import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
 const menu = ({ firebase }) => {
 
@@ -40,6 +41,20 @@ const menu = ({ firebase }) => {
           </MenuItem>
         </Link>
 
+        <Link to={ROUTES.SESSIONS}  style={{
+          color: 'white', 
+          textDecoration: 'none'
+          }}>
+          <MenuItem>
+              <ViewModuleIcon style={{ 
+                marginRight: '10px', 
+                width: '15%',
+                color: 'pink'
+              }}
+              /> Module Content
+          </MenuItem>
+        </Link>
+
         <LiveClass />
 
         <Link to={ROUTES.QUIZ}  style={{
@@ -52,19 +67,6 @@ const menu = ({ firebase }) => {
               alt="" 
               style={{ marginRight: '10px', width: '15%'}}
               /> Quiz &amp; Tests 
-          </MenuItem>
-        </Link>
-
-        <Link to={ROUTES.SESSIONS}  style={{
-          color: 'white', 
-          textDecoration: 'none'
-          }}>
-          <MenuItem>
-              <img 
-              src="https://cdn3.iconfinder.com/data/icons/brain-games/128/Quiz-Games-red.png" 
-              alt="" 
-              style={{ marginRight: '10px', width: '15%'}}
-              /> View Sessions
           </MenuItem>
         </Link>
 

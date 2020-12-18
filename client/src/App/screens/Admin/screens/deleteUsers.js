@@ -8,7 +8,8 @@ import { compose } from 'recompose';
 import Typography from '@material-ui/core/Typography';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-
+import Avatar from '@material-ui/core/Avatar';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -20,6 +21,30 @@ class DeleteUsers extends React.Component {
         this.db = app.firestore();
         this.state = {
             columns: [
+                { 
+                    title: 'Photo',
+                    field: 'imageUrl', 
+                    // minWidth: 100,
+                    // maxWidth: 150,
+                    render: (row) => (
+                        <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            // height: '80px'
+                        }}
+                        >
+                            <ListItemAvatar>
+                                <Avatar 
+                                    alt="" 
+                                    src={row.photo}
+                                />
+                            </ListItemAvatar>
+                        </div>
+                    ) 
+                },
+
                 {
                     title: 'Full Name', field: 'name',
                     editComponent: props => (
@@ -84,7 +109,7 @@ class DeleteUsers extends React.Component {
             .onSnapshot(querySnapshot => {
             const user = querySnapshot.docs.map(doc => doc.data());
             this.setState({ users: user });
-            });
+        });
             
     }
 
@@ -105,7 +130,7 @@ class DeleteUsers extends React.Component {
 
         return (
         <div style={{
-            width: '80%',
+            width: '90%',
             margin: '70px auto',
         }}>
             <Typography variant="h6" paragraph>

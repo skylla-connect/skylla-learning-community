@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';        
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import DvrIcon from '@material-ui/icons/Dvr';
-import SchoolIcon from '@material-ui/icons/School';
 import ChartistGraph from "react-chartist";
 import Card from "../../../Admin/components/card/Card";
 import CardHeader from "../../../Admin/components/card/CardHeader";
@@ -19,6 +16,7 @@ import  FirebaseContext  from 'firebase';
 import Typography from "@material-ui/core/Typography";
 import CountUp from 'react-countup';
 import '../../../Admin/components/views/views.css';
+import *as ROUTE from '../../../../config/routes';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -131,6 +129,7 @@ export default function FullWidthGrid(props) {
         </Grid>
 
         <Grid item xs={6} sm={3}>
+          <a href={ROUTE.ACTIVE_USERS}>
             <div className={`SampleCards ${classes.paper}`}> 
               active users
               <Typography variant="h4" paragraph style={{
@@ -139,6 +138,7 @@ export default function FullWidthGrid(props) {
                 <CountUp end={activeUsers} delay={2} redraw={true} />
               </Typography>
             </div>
+          </a>
         </Grid>
 
         <Grid item xs={12} sm={6}>

@@ -12,6 +12,8 @@ import { withStyles } from '@material-ui/core/styles';
 import *as ROUTE from '../../../config/routes';
 import { Link } from 'react-router-dom';
 import Footer from '../../../components/Footer/footer';
+import Avatar from '@material-ui/core/Avatar';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -38,22 +40,20 @@ class ActiveUsers extends React.Component {
                 {
                     title: 'Photo',
                     field: 'photo',
-                    minWidth: 100,
-                    maxWidth: 150,
                     render: (row) => (
                         <div
                         style={{
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            // height: '80px'
                         }}
                         >
-                        <img
-                            style={{ height: 'auto', maxWidth: '80px' }}
-                            alt="No images"
-                            src={row.photo}
-                        />
+                        <ListItemAvatar>
+                            <Avatar 
+                                alt="" 
+                                src={row.photo}
+                            />
+                        </ListItemAvatar>
                         </div>
                     ) 
                 },
