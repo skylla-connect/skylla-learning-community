@@ -18,6 +18,7 @@ import '../../../Admin/components/styles/css/graphs.css';
 import  FirebaseContext  from 'firebase';
 import Typography from "@material-ui/core/Typography";
 import CountUp from 'react-countup';
+import *as ROUTES from '../../../../config/routes';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -100,6 +101,7 @@ export default function FullWidthGrid(props) {
         </Grid>
 
         <Grid item xs={12} sm={6}>
+            <a href={ROUTES.TN_ANOUNC}>
             <div className={classes.paper}>
                 <img src="https://cdn4.iconfinder.com/data/icons/digital-marketing-gradient-rave-and-glow/512/Promotion-128.png" 
                     alt=""
@@ -115,6 +117,7 @@ export default function FullWidthGrid(props) {
                   <CountUp end={announcements} delay={2} redraw={true} />
                 </Typography>
             </div>
+            </a>
         </Grid>
 
         <Grid item xs={12} sm={6}>

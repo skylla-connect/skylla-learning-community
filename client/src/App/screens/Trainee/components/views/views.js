@@ -99,12 +99,14 @@ export default function FullWidthGrid(props) {
     <div className={classes.root}>
       <Grid container spacing={6} className={classes.grid}>
         <Grid item xs={12}>
+          <a href={ROUTES.TR_ANOUNC}>
           <div className={classes.paper}>
             <CloseIcon className={classes.anno} />
               Announcements   
             <br />
             {props.announce}
           </div>
+          </a>
         </Grid>
       </Grid>
 

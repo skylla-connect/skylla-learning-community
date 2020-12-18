@@ -22,6 +22,8 @@ import ManageEnrolledTrainees from './App/screens/Admin/screens/enrolled'
 import numTrainers from './App/screens/Admin/screens/numTrainers';
 import TotalModules from './App/screens/Admin/screens/totalModules';
 import liveClass from './App/screens/Admin/screens/liveClass';
+import anouncement from './App/screens/Trainee/screens/anouncement';
+import Anouncement from './App/screens/Trainer/screens/anouncement';
 
 function NetworkError() {
     return (
@@ -87,7 +89,8 @@ function Routes(props) {
                 <Route path={ROUTES.T_MODULES} component={TotalModules} />
                 <Route path={ROUTES.Live_CLASSES} component={liveClass} />
                 <Route path="/cart" component={CartApp} />
-
+                <Route path={ROUTES.TR_ANOUNC} component={anouncement} />
+                <Route path={ROUTES.TN_ANOUNC} component={Anouncement} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}

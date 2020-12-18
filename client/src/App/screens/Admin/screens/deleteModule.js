@@ -44,6 +44,11 @@ class DeleteUsers extends React.Component {
                     field: 'trainer', 
                     type: 'string' 
                 },
+                { 
+                    title: 'Trainer',
+                    field: 'imageUrl', 
+                    type: 'image' 
+                },
     
             ],
 
@@ -107,6 +112,7 @@ class DeleteUsers extends React.Component {
                 <Typography variant="body1" paragraph>
                     {mod.trainer}
                 </Typography>
+               
             </div>
           ))
 

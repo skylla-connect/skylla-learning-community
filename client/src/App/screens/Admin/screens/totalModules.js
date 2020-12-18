@@ -55,7 +55,7 @@ class TotalModules extends React.Component {
         
                 { 
                     title: 'Image',
-                    field: 'imageUrl', 
+                    field: 'imageUrl',
                     type: 'string' 
                 },
                 { 
@@ -128,10 +128,10 @@ class TotalModules extends React.Component {
         modules.map(mod => (
             <div key={mod.uid}>
                 <Typography variant="body1" paragraph>
-                    {mod.Contact}
+                    {mod.Author}
                 </Typography>
                 <Typography variant="body1" paragraph>
-                    {mod.trainer}
+                    {mod.Content}
                 </Typography>
             </div>
           ))
