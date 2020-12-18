@@ -5,6 +5,7 @@ import * as ROUTES from "./App/config/routes";
 import {SignUpPage} from './App/screens/signup/index';
 import SignInPage from './App/screens/login/index';
 import PasswordReset from './App/screens/resetPassword/index';
+import Faq from './App/Faq/Faq';
 
 
 const Unathenticated = () => {
@@ -21,6 +22,7 @@ export const Routes = () => {
                     <Route path={ROUTES.SIGN_IN} component={SignInPage} />
                     <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
                     <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
+                    <Route path ={ROUTES.FAQ} component={Faq} />
                     <Redirect to={ROUTES.SIGN_IN} />
                 </Switch>
             </Router>

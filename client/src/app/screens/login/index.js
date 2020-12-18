@@ -18,6 +18,7 @@ import TextFieldMui from '../components/textField';
 import ButtonMui from '../components/button';
 
 
+
 const SignInPage = () => (
     <div css={{
         display: 'flex',
@@ -43,7 +44,8 @@ const SignInPage = () => (
                         alignItems: 'center',
                     }}>
                         <PasswordForgetLink />
-                        <Link to="#" css={{fontSize: '14px', color: 'black'}}>
+
+                        <Link to= {ROUTES.FAQ} css={{fontSize: '14px', color: 'black'}}>
                             FAQs
                         </Link>
                     </div>

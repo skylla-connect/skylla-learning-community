@@ -17,6 +17,7 @@ import LiveSupport from './LiveSupport/LiveSupport';
 import QuizTests from './App/QuizTests/QuizTests'
 import FinalAssess from './App/FinalAssess/FinalAssess'
 
+
 const Athenticated = () => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);
     const {user, isLoading} = useUser();
@@ -51,6 +52,7 @@ function Routes(props) {
                 <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 <Route path ={ROUTES.QUIZTESTS} component={QuizTests} /> 
                 <Route path ={ROUTES.FINALASSESS} component={FinalAssess} />
+                
                 {/* <Route path={ROUTES.LIVE_CLASS} component={LiveClass} /> */}
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
