@@ -5,8 +5,15 @@ import CloseIcon from '@material-ui/icons/Close';
 import Tooltip from '@material-ui/core/Tooltip'
 import { Fab } from '@material-ui/core';
 import Support from '@material-ui/icons/ContactSupport';
+import Announcements from './announcements';
 // import { Link } from 'react-router-dom'
 import *as ROUTES from '../../../../config/routes' 
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import FirebaseContext from 'firebase'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,10 +97,39 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(2),
     right: theme.spacing(3),
   },
+
+  root1: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
 }));
 
 export default function FullWidthGrid(props) {
   const classes = useStyles();
+  const [annts , setAnnts] = React.useState([])
+
+  React.useEffect( () => {
+    FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
+    .get().then((querySnapshot) => {
+      const tempDoc = []
+      querySnapshot.forEach((doc) => {
+         tempDoc.push({ id: doc.id, ...doc.data() })
+      })
+      return setAnnts(tempDoc)
+   })
+  //  const fetchData = async () => {   
+  //   let db = FirebaseContext.firestore().collection('users/admin/dashboard/anouncement/anouncement');
+    
+  //   db.onSnapshot(function(data){
+  //     setAnnts([data.docs.map(doc => ({...doc.data(), id: doc.id}))]);
+  //     // console.log(annts);
+  //   });
+  // };
+  // fetchData();
+  });
 
   return (
     <div className={classes.root}>
@@ -101,9 +137,21 @@ export default function FullWidthGrid(props) {
         <Grid item xs={12}>
           <div className={classes.paper}>
             <CloseIcon className={classes.anno} />
-              Announcements   
+              Announcements  {annts.author} 
             <br />
-            {props.announce}
+            {annts && annts.map((anno) => (
+      <div key={anno.id} >
+        
+            
+                    <Typography>
+                        {anno.content}
+                    </Typography>
+                    <Typography>
+                        {anno.author}
+                    </Typography>
+           
+      </div>
+       ))}
           </div>
         </Grid>
       </Grid>
