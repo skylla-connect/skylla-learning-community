@@ -76,7 +76,7 @@ export default function FullWidthGrid(props) {
                     marginBottom: '-25px',
                     marginRight: '20px'}} 
                     />   
-                    <Link to={ROUTES.CHALLENGES} >sessions</Link>
+                    <Link to={ROUTES.PROBLEMS} >sessions</Link>
                    
                 <br />
                 {props.sessions}

@@ -7,6 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import app from 'firebase/app';
 import NavTab from './Tabs';
+import {Link} from 'react-router-dom';
+import * as ROUTES from '../../App/config/routes'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -62,7 +64,27 @@ const useStyles = makeStyles((theme) => ({
           width:'70%',
          margin: theme.spacing(0),
         }
+      },
+      links:{
+        display:'flex',
+        marginRight:'100px',
+        alignItems:'center', 
+        margin:'auto',
+        float:'right'
+      },
+      link1:{
+       margin:'50px',
+       color:'white',
+       fontSize:'20px',
+       
+      },
+      link:{
+        marginRight:'20px',
+        color:'white',
+       fontSize:'20px',
+       
       }
+
    
 }));
 
@@ -78,15 +100,21 @@ export default function Challenges() {
               <div className={classes.logoBody}>
                 <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' alt='pic'  className={classes.logo}  /> 
               </div>
-            <Typography variant="body"  color="inherit" className={classes.title} >
-              challenges
-            </Typography>
+              <div className={classes.links}>
+              <div>
+                <Link to={ROUTES.PROBLEMS} className={classes.link1} >Problems</Link>
+              </div>
+              <div>
+                <Link to={ROUTES.SUBMISSIONS} className={classes.link} >Submissions</Link>
+              </div>
+              </div>
+            
           </div>
         </div>
 
-        <div>
+        {/* <div className={classes.tabs}>
             <NavTab />
-        </div>
+        </div> */}
 
     </div>
   );

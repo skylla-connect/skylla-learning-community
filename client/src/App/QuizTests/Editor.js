@@ -21,6 +21,7 @@ class Editor extends Component{
         html:'',
         css:'',
         js:'',
+        counter:0
       };
       this.pusher = new Pusher('d855047d1bed3308cabe',{
         cluster:'eu',
@@ -38,7 +39,8 @@ class Editor extends Component{
       html:this.state.html,
       css:this.state.css,
       js:this.state.js,
-      user:this.AuthUser.displayName
+      user:this.AuthUser.displayName,
+      counter:this.state.counter + 1,
     })
   }
   componentDidUpdate(){
@@ -56,6 +58,7 @@ class Editor extends Component{
         html : data.html,
         css : data.css,
         js: data.js,
+        
       });
       
     });
@@ -154,9 +157,6 @@ class Editor extends Component{
                   }}
                 />
               </div>
-
-              
-          
 
           </section>
 

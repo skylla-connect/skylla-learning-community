@@ -16,3 +16,6 @@ export const LIVE_SUPPORT ='/support';
 export const SUCCESS_PAGE = '/success';
 export const QUIZTESTS ='/quiz'
 export const CHALLENGES = '/challenges';
+export const PROBLEMS = '/problems';
+export const SUBMISSIONS ='/submission';
+

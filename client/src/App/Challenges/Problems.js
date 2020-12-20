@@ -5,6 +5,7 @@ import { withFirebase } from '../firebase';
 import app from 'firebase/app'
 import Card from '@material-ui/core/Card'
 import { withStyles } from '@material-ui/core/styles';
+import Challenges from './Challenges';
 
 const useStyles = theme => ({
     root: {
@@ -49,17 +50,21 @@ class Problems extends React.Component{
     render(){
         const { classes } = this.props;
         return(
-            <div className={classes.root}>
+           <div>
+               <Challenges />
+                <div className={classes.root}>
                 
-                <Card elevation={3} className={classes.card}>
+                <Card elevation={0} className={classes.card}>
                     <div >
                     <div>
+                        <Typography component='ol'>
                     {this.state.users.map(user => (
+                        <Typography component='li'>
                         <ul key={user.uid}>
                             
                             
                             <li className='li-w'>
-                                    <Typography variant='h6' style={{ lineHeight: 2, margin:'20px 0 0 0'}}><p> Qn: {user.tittle}</p></Typography> 
+                                    <Typography variant='h6' style={{ lineHeight: 2, margin:'20px 0 0 10px'}}><p> Qn: {user.tittle}</p></Typography> 
                             </li>
                             <li className='li-w'>
                                 <Typography variant='p' > <strong >Created by :</strong> {user.username}</Typography>
@@ -79,7 +84,9 @@ class Problems extends React.Component{
                                 </li>
                                     
                         </ul>
+                        </Typography>
                     ))}
+                    </Typography>
                     </div>
                     </div>
                     
@@ -89,6 +96,7 @@ class Problems extends React.Component{
                 
                 
             </div>
+           </div>
         )
     }
 }

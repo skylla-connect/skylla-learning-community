@@ -16,6 +16,8 @@ import SuccessPage from './App/screens/Trainee/screens/cart/CartSucess/index';
 import LiveSupport from './LiveSupport/LiveSupport';
 import QuizTests from './App/QuizTests/QuizTests'
 import Challenges from './App/Challenges/Challenges';
+import Problems from './App/Challenges/Problems';
+import Submissions from './App/Challenges/Submissions';
 
 const Athenticated = () => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);
@@ -51,6 +53,8 @@ function Routes(props) {
                 <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 <Route path ={ROUTES.QUIZTESTS} component={QuizTests} /> 
                 <Route path={ROUTES.CHALLENGES} component={Challenges} />
+                <Route path={ROUTES.PROBLEMS} component={Problems} />
+                <Route path={ROUTES.SUBMISSIONS} component ={Submissions} />
                 {/* <Route path={ROUTES.LIVE_CLASS} component={LiveClass} /> */}
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
