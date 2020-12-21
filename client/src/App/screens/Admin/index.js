@@ -21,6 +21,9 @@ import DeleteUsers from './screens/deleteUsers';
 import ManageModules from './screens/deleteModule';
 import CreateModule  from './screens/createModule';
 import ProfilePage from './screens/profilePage';
+import FinalAssessment from './screens/finalAsessessment';
+import Announcements from './screens/addAnnounce';
+
 import Hire from './screens/hire';
 
 import {
@@ -51,12 +54,10 @@ const routes = [
   },
 
   {
-    path: "/final_assessment",
+    path: "/finalassess",
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <div>
-      Final Assessments page
-    </div>
+    main: () => <FinalAssessment />
   },
 
   {
@@ -101,6 +102,13 @@ const routes = [
     exact: true,
     sidebar: () => <div></div>,
     main: () => <ManageModules/>
+  },
+
+  {
+    path: "/announcements",
+    exact: true,
+    sidebar: () => <div></div>,
+    main: () => <Announcements/>
   },
 ];
 

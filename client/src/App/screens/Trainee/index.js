@@ -25,7 +25,6 @@ import *as ROUTES from '../../config/routes';
 import FirebaseContext from 'firebase';
 import 'firebase/firestore';
 import './index.css';
-import Button from '@material-ui/core/Button';
 import {
   BrowserRouter as Router,
   Switch,
@@ -337,13 +336,15 @@ export default function PersistentDrawerLeft() {
               <Menu />
             </div>
            
-            <Divider 
+            {/* <div 
                 style={{
-                  backgroundColor: 'white',
-                  width: '90%',
-                  margin: 'auto',
-              }}
-            />
+                    margin: '-2px auto 0 auto',
+                    width: '90%',
+                }}>
+                <hr  style={{ 
+                  backgroundColor: 'white'
+                }}/> 
+            </div>
 
             <Button style={{
                 color: 'white',
@@ -352,14 +353,14 @@ export default function PersistentDrawerLeft() {
               <Typography variant="h6" paragraph>
                   Module Content
               </Typography>
-            </Button>
+            </Button> */}
 
             <div 
                 style={{
                     margin: '-2px auto 0 auto',
                     width: '90%',
                 }}>
-                <Divider  style={{ backgroundColor: 'white'}}/> 
+                <Divider /> 
             </div>
 
             <div className={classes.paper}> 

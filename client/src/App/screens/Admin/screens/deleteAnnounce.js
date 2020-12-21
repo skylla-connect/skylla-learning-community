@@ -1,75 +1,58 @@
 import React from 'react';
-import MaterialTable from 'material-table';
-import { Paper } from '@material-ui/core';
-import app from 'firebase/app';
-import { withFirebase } from "../../../../App/firebase";
-import 'firebase/firestore';
-import { compose } from 'recompose';
-import Typography from '@material-ui/core/Typography';
 import Snackbar from '@material-ui/core/Snackbar';
+import { Paper } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
-
+import MaterialTable from 'material-table';
+import app from 'firebase/app';
+import Typography from '@material-ui/core/Typography';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import Tooltip from '@material-ui/core/Tooltip';
+import Fab from '@material-ui/core/Fab';
+import { withStyles } from '@material-ui/core/styles';
+import *as ROUTE from '../../../config/routes';
+import { Link } from 'react-router-dom';
+import Footer from '../../../components/Footer/footer';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+
+const useStyles = (theme) => ({
+    fab: {
+      margin: theme.spacing(2),
+    },
+    absolute: {
+      position: 'fixed',
+      bottom: theme.spacing(2),
+      left: theme.spacing(3),
+      zIndex: 999
+    },
+});
   
-class DeleteUsers extends React.Component {
+class ManageHiredTrainees extends React.Component {
     constructor(props) {
         super(props);
         this.db = app.firestore();
         this.state = {
             columns: [
                 { 
-                    title: 'Image',
-                    field: 'imageUrl', 
-                    minWidth: 100,
-                    maxWidth: 150,
-                    render: (row) => (
-                        <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            height: '80px'
-                        }}
-                        >
-                        <img
-                            style={{ height: 'auto', maxWidth: '100px' }}
-                            alt="No images"
-                            src={row.imageUrl}
-                        />
-                        </div>
-                    ) 
-                },
-
-                {
-                    title: 'Module Name', field: 'module',
-                    editComponent: props => (
-                        <input
-                            type="text"
-                            value={props.value}
-                            onChange={
-                                e => props.onChange(e.target.value)
-                            }
-                        />
-                    )
-                },
-
-                { 
-                    title: 'Description',
-                    field: 'description', 
+                    title: 'Date & Time',
+                    field: 'createdAt', 
                     type: 'string' 
                 },
         
                 { 
-                    title: 'Trainer',
-                    field: 'trainer', 
+                    title: 'Author',
+                    field: 'Author', 
                     type: 'string' 
                 },
-    
+                { 
+                    title: 'Content',
+                    field: 'Content', 
+                    type: 'string' 
+                },
             ],
-
+  
             data: [],
             modules: [],
             key:'',
@@ -77,7 +60,7 @@ class DeleteUsers extends React.Component {
             open: false,
         }
     }
-
+  
     // handle click a way 
     handleClick = () => {
         this.setState({open: true});
@@ -90,9 +73,9 @@ class DeleteUsers extends React.Component {
     
         this.setState({open: false});
     };
-
+  
     deleteUserDetails(modId){
-        this.db.collection("modules")
+        this.db.collection("users/admin/dashboard/anouncement/anouncement")
             .get()
             .then(querySnapshot => {
             try {
@@ -106,41 +89,51 @@ class DeleteUsers extends React.Component {
                 this.setState({error});
             }
         });
-
+  
         this.handleClick()
     }
-
+  
     componentDidMount() {
-        this.db.collection("modules")
+        this.db.collection("users/admin/dashboard/anouncement/anouncement")
             .onSnapshot(querySnapshot => {
             const module = querySnapshot.docs.map(doc => doc.data());
             this.setState({ modules: module });
-            });
+        });
             
     }
-
-
+  
+  
     render () {
         let { modules } = this.state;
+        const { classes } = this.props;
+        
         modules.map(mod => (
             <div key={mod.uid}>
                 <Typography variant="body1" paragraph>
-                    {mod.module}
+                    {mod.Contact}
                 </Typography>
                 <Typography variant="body1" paragraph>
                     {mod.trainer}
                 </Typography>
             </div>
           ))
-
-
+  
+  
         return (
         <div style={{
             width: '90%',
             margin: '70px auto',
         }}>
+            <Link to={ROUTE.ADMIN}>
+                <Tooltip title="Click to go back" aria-label="add">
+                    <Fab color="primary" className={classes.absolute}>
+                        <KeyboardBackspaceIcon />
+                    </Fab>
+                </Tooltip>
+            </Link>
+
             <Typography variant="h6" paragraph>
-                Modules Created
+                Annoucements
             </Typography>
 
             <MaterialTable
@@ -150,14 +143,14 @@ class DeleteUsers extends React.Component {
                     backgroundColor: 'transparent',
                     borderStyle: 'none',
                 }}
-
+  
                 // overriding the container
                 components={{
                     Container: props => <Paper {...props} elevation={0}/>
                 }}
-
+  
                 data={this.state.modules}
-
+  
                 editable={{
                      // Delete rows
                     onRowDelete: oldData =>
@@ -173,6 +166,14 @@ class DeleteUsers extends React.Component {
                     }),
                 }}
 
+                localization={{ 
+                    body: { 
+                        editRow: { 
+                            deleteText: 'Are you sure you want to delete this announcement ?' 
+                        },
+                    } 
+                }}
+  
                 options={{
                     exportButton: true,
                     actionsColumnIndex: -1,
@@ -184,23 +185,22 @@ class DeleteUsers extends React.Component {
                     }
                 }}
             />
-
+  
             {
                 this.state.users &&  <Snackbar s
                     open={this.state.open} 
                     autoHideDuration={6000} 
                     onClose={this.handleClose}>
                     <Alert onClose={this.handleClose} severity="success">
-                        You have deleted module successfully!
+                        You have deleted one annoucement successfully!
                     </Alert>
                 </Snackbar>
             }
+
+            <Footer />
         </div>
         )
     }
 }
 
-export default compose(
-    withFirebase,
-)(DeleteUsers)
-  
+export default withStyles(useStyles)(ManageHiredTrainees);
