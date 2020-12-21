@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Badge from '@material-ui/core/Badge';
 import Typography from '@material-ui/core/Typography';
+import Bell from '@material-ui/icons/Notifications';
 import FirebaseContext from 'firebase'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -15,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+    fontWeight: 'bold',
   },
 
   tAnno: {
@@ -35,6 +37,8 @@ export default function SimpleAccordion() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState('panel1');
   const [annts, setAnnts] = React.useState([]);
+  const [count, setCount] = React.useState([]);
+  // const [isNew, setIsNew] = React.useState('');
      
         
   React.useEffect( () => {
@@ -44,9 +48,27 @@ export default function SimpleAccordion() {
       querySnapshot.forEach((doc) => {
          tempDoc.push({ id: doc.id, ...doc.data() });
       })
-        setAnnts(tempDoc)
+        setAnnts(tempDoc);
+        setCount(querySnapshot.size);
+        
         // console.log(tempDoc);
     })
+
+    // const fetchNew = () => {
+    //   let db = FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement");
+    //   let query = db.where('createdAt', '==', new Date());
+    //   query.get().then((querySnapshot) => {
+    //     const temDoc = []
+    //     querySnapshot.forEach((doc) => {
+    //       temDoc.push({ id: doc.id, ...doc.data() });
+    //     })
+    //     setIsNew('New');
+    //     setCount(querySnapshot.size);
+    //     // console.log(tempDoc);
+    // })
+    // }
+
+    // fetchNew();
   }, []);
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -55,28 +77,33 @@ export default function SimpleAccordion() {
 
   return (
     <div >
-    
       <Accordion className={classes.root} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
         >
-        <Typography className={classes.heading}>ANNOUNCEMENTS</Typography>
+          <Badge badgeContent={count} color="primary">
+            <Typography className={classes.heading}>ANNOUNCEMENTS</Typography>
+          </Badge>
         </AccordionSummary>
             {annts.map((anno) => (
-                <div key={anno.id}>
+              <div key={anno.id}>
                 <AccordionDetails >                
-                    <Typography className={classes.cAnno}gutterBottom>
-                        {anno.Content}
-                    </Typography>
-                    <Typography className={classes.tAnno} gutterBottom>
-                        {new Date(anno.createdAt).toLocaleDateString("en-US")}<br></br>
-                        {anno.Author}
-                </Typography>       
+                  <Typography className={classes.cAnno}gutterBottom>
+                    {anno.Content}
+                  </Typography>
+                  <Typography className={classes.tAnno} gutterBottom>
+                      {new Date(anno.createdAt).toLocaleDateString("en-US")}<br></br>
+                      {anno.Author}
+                  </Typography>       
                 </AccordionDetails> 
-            </div>     
-            ))}
+              </div>     
+            ))}{annts.length === 0 && (
+                <div style={{color: 'red'}}>
+                  <Bell style={{color: 'grey'}}/>All cleared Up! There are no Announcements
+                </div>
+              )}
       </Accordion>
     </div>
   );
