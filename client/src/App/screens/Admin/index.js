@@ -23,7 +23,8 @@ import CreateModule  from './screens/createModule';
 import ProfilePage from './screens/profilePage';
 import FinalAssessment from './screens/finalAsessessment';
 import Announcements from './screens/addAnnounce';
-
+import Interviews from './screens/interviews';
+import *as ROUTES from '../../config/routes';
 import Hire from './screens/hire';
 
 import {
@@ -61,12 +62,10 @@ const routes = [
   },
 
   {
-    path: "/interviews",
+    path: ROUTES.INTERVIEWS,
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <div>
-      Interviews page
-    </div>
+    main: () => <Interviews />
   },
 
   {
