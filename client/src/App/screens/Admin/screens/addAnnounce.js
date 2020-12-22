@@ -31,7 +31,7 @@ const Announcements = () => {
             Content : values.content,
             uid : FirebaseContext.auth().currentUser.uid,
             createdAt : new Date().toISOString(),
-            Date: values.date
+            Date: new Date().getDay()
         }).then(function DocId(docRef) {
             let x = docRef.id
             return docRef.id;
@@ -76,7 +76,7 @@ const Announcements = () => {
                         />
                     </FormGroup>
 
-                    <FormGroup>
+                    {/* <FormGroup>
                         <TextFieldMui
                             required
                             variant='outlined'
@@ -89,7 +89,7 @@ const Announcements = () => {
                             onChange={handleChange('date')}
                             autoFocus
                         />
-                    </FormGroup>
+                    </FormGroup> */}
 
                     <FormGroup css={{
                         paddingTop: "18px"

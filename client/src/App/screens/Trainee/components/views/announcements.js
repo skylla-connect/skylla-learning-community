@@ -57,8 +57,9 @@ export default function SimpleAccordion() {
 
     const fetchNew = () => {
       let db = FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement");
-      let query = db.where('Date', '==', new Date());
-      db.get().then((querySnapshot) => {
+      var startfulldate = new Date();
+      let query = db.where('Date', '<=', startfulldate.getDate());
+      query.get().then((querySnapshot) => {
         const temDoc = []
         querySnapshot.forEach((doc) => {
           temDoc.push({ id: doc.id, ...doc.data() });
@@ -67,7 +68,7 @@ export default function SimpleAccordion() {
         setIsNew('New');
         setCount(querySnapshot.size);
         // console.log(tempDoc);
-    })
+      })
     }
 
     fetchNew();
@@ -89,24 +90,24 @@ export default function SimpleAccordion() {
             <Typography className={classes.heading}>ANNOUNCEMENTS</Typography>
           </Badge>
         </AccordionSummary>
-            {annts.map((anno) => (
-              <div key={anno.id}>
-                <Badge badgeContent={isNew} color='secondary'/>
-                <AccordionDetails >                
-                  <Typography className={classes.cAnno}gutterBottom>
-                    {anno.Content}
-                  </Typography>
-                  <Typography className={classes.tAnno} gutterBottom>
-                      {new Date(anno.createdAt).toDateString('en-US')}<br></br>
-                      {anno.Author}
-                  </Typography>       
-                </AccordionDetails> 
-              </div>     
-            ))}{annts.length === 0 && (
-                <div style={{color: 'red'}}>
-                  <Bell style={{color: 'grey'}}/>All cleared Up! There are no Announcements
-                </div>
-              )}
+          {annts.map((anno) => (
+            <div key={anno.id}>
+              <Badge badgeContent={isNew} color='secondary'/>
+              <AccordionDetails >                
+                <Typography className={classes.cAnno}gutterBottom>
+                  {anno.Content}
+                </Typography>
+                <Typography className={classes.tAnno} gutterBottom>
+                    {new Date(anno.createdAt).toDateString('en-US')}<br></br>
+                    {anno.Author}
+                </Typography>       
+              </AccordionDetails> 
+            </div>     
+          ))}{annts.length === 0 && (
+              <div style={{color: 'red'}}>
+                <Bell style={{color: 'grey'}}/>All cleared Up! There are no Announcements
+              </div>
+            )}
       </Accordion>
     </div>
   );
