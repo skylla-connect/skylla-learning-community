@@ -38,37 +38,39 @@ export default function SimpleAccordion() {
   const [expanded, setExpanded] = React.useState('panel1');
   const [annts, setAnnts] = React.useState([]);
   const [count, setCount] = React.useState([]);
-  // const [isNew, setIsNew] = React.useState('');
+  const [isNew, setIsNew] = React.useState('');
+  // const currentDate = ;
      
         
   React.useEffect( () => {
-    FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
-    .get().then((querySnapshot) => {
-      const tempDoc = []
-      querySnapshot.forEach((doc) => {
-         tempDoc.push({ id: doc.id, ...doc.data() });
-      })
-        setAnnts(tempDoc);
-        setCount(querySnapshot.size);
-        
-        // console.log(tempDoc);
-    })
-
-    // const fetchNew = () => {
-    //   let db = FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement");
-    //   let query = db.where('createdAt', '==', new Date());
-    //   query.get().then((querySnapshot) => {
-    //     const temDoc = []
-    //     querySnapshot.forEach((doc) => {
-    //       temDoc.push({ id: doc.id, ...doc.data() });
-    //     })
-    //     setIsNew('New');
+    // FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
+    // .get().then((querySnapshot) => {
+    //   const tempDoc = []
+    //   querySnapshot.forEach((doc) => {
+    //      tempDoc.push({ id: doc.id, ...doc.data() });
+    //   })
+    //     setAnnts(tempDoc);
     //     setCount(querySnapshot.size);
+        
     //     // console.log(tempDoc);
     // })
-    // }
 
-    // fetchNew();
+    const fetchNew = () => {
+      let db = FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement");
+      let query = db.where('Date', '==', new Date());
+      db.get().then((querySnapshot) => {
+        const temDoc = []
+        querySnapshot.forEach((doc) => {
+          temDoc.push({ id: doc.id, ...doc.data() });
+        })
+        setAnnts(temDoc);
+        setIsNew('New');
+        setCount(querySnapshot.size);
+        // console.log(tempDoc);
+    })
+    }
+
+    fetchNew();
   }, []);
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -89,12 +91,13 @@ export default function SimpleAccordion() {
         </AccordionSummary>
             {annts.map((anno) => (
               <div key={anno.id}>
+                <Badge badgeContent={isNew} color='secondary'/>
                 <AccordionDetails >                
                   <Typography className={classes.cAnno}gutterBottom>
                     {anno.Content}
                   </Typography>
                   <Typography className={classes.tAnno} gutterBottom>
-                      {new Date(anno.createdAt).toLocaleDateString("en-US")}<br></br>
+                      {new Date(anno.createdAt).toDateString('en-US')}<br></br>
                       {anno.Author}
                   </Typography>       
                 </AccordionDetails> 

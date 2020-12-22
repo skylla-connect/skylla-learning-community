@@ -10,6 +10,7 @@ import ButtonMui from "../../components/button";
 const INITIAL_VALUES = {
     author : '',
     content : '',
+    date: ''
 }
 
 const Announcements = () => {
@@ -29,7 +30,8 @@ const Announcements = () => {
             Author : values.author,
             Content : values.content,
             uid : FirebaseContext.auth().currentUser.uid,
-            createdAt : new Date().toISOString()
+            createdAt : new Date().toISOString(),
+            Date: values.date
         }).then(function DocId(docRef) {
             let x = docRef.id
             return docRef.id;
@@ -70,6 +72,21 @@ const Announcements = () => {
                             value={values.author}
                             name='author'
                             onChange={handleChange('author')}
+                            autoFocus
+                        />
+                    </FormGroup>
+
+                    <FormGroup>
+                        <TextFieldMui
+                            required
+                            variant='outlined'
+                            style={{ margin:'0 0 20px 0'}}
+                            label='Date'
+                            fullWidth
+                            type='date'
+                            value={values.date}
+                            name='date'
+                            onChange={handleChange('date')}
                             autoFocus
                         />
                     </FormGroup>
