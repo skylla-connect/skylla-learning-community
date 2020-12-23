@@ -12,6 +12,8 @@ import { withStyles } from '@material-ui/core/styles';
 import *as ROUTE from '../../../config/routes';
 import { Link } from 'react-router-dom';
 import Footer from '../../../components/Footer/footer';
+import Avatar from '@material-ui/core/Avatar';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -34,6 +36,27 @@ class NumberOfTrainers extends React.Component {
         this.db = app.firestore();
         this.state = {
             columns: [
+                {
+                    title: 'Photo',
+                    field: 'photo',
+                    render: (row) => (
+                        <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                        >
+                        <ListItemAvatar>
+                            <Avatar 
+                                alt="" 
+                                src={row.photo}
+                            />
+                        </ListItemAvatar>
+                        </div>
+                    ) 
+                },
+
                 {
                     title: 'Full Name', field: 'name',
                     editComponent: props => (

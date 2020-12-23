@@ -21,7 +21,7 @@ const permissions = (props) => {
             </MenuItem>
           </Link>
 
-          <Link to={ROUTES.QUIZ}  style={{
+          {/* <Link to={ROUTES.QUIZ}  style={{
             color: 'white', 
               textDecoration: 'none'
               }}>
@@ -36,7 +36,7 @@ const permissions = (props) => {
                 />
               add sessions 
             </MenuItem>
-          </Link>
+          </Link> */}
 
           <Link to={ROUTES.TEST} style={{color: 'white', textDecoration: 'none'}}>
             <MenuItem >
@@ -52,11 +52,14 @@ const permissions = (props) => {
           </Link>
 
           <MenuItem>
-            <i style={{ 
-                    marginRight: '10px',
-                    width: '15%',
-                    fontSize: '18px',
-                    color: 'black'}} className='fas'>&#xf0c0;</i>
+            <img 
+              src="https://cdn0.iconfinder.com/data/icons/fatcow/32x32/session_idle_time.png" 
+              alt=""
+              style={{
+                  marginRight: '10px',
+                  width: '15%'
+                }}
+              />
             supervise trainees
           </MenuItem>
 

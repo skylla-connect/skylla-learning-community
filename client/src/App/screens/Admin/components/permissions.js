@@ -4,6 +4,7 @@ import MenuList from '@material-ui/core/MenuList';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import './permissions.css'
 import { Link } from 'react-router-dom';
+import SettingsVoiceIcon from '@material-ui/icons/SettingsVoice';
 
 const permissions = (props) => {
   return (
@@ -53,6 +54,14 @@ const permissions = (props) => {
                 cancel
             </i>
             manage modules
+          </MenuItem>
+        </Link>
+
+        {/* Announcement */}
+        <Link to="/announcements" style={{color: 'white', textDecoration: 'none'}}>
+          <MenuItem>
+            <SettingsVoiceIcon style={{ color: '#7ADF78', marginRight: '10px'}}/>
+            Announcements
           </MenuItem>
         </Link>
       </MenuList>

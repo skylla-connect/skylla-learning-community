@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { withFirebase } from '../../../App/firebase';
 import * as ROUTES from '../../config/routes';
 import { Centered, FormGroup } from '../../components';
-import { Footer } from '../components/footer';
+import Footer from "../../components/Footer/footer";
 import SideBanner from '../components/sidebar';
 // import * as colors from "../../styles/colors";
 import TextFieldMui from '../components/textField';
@@ -17,6 +17,7 @@ const PasswordForgetPage = () => (
     <div css={{
         display: 'flex',
         flexDirection: 'row',
+        backgroundColor: 'white'
     }}>
         <SideBanner/>
         <div css={{

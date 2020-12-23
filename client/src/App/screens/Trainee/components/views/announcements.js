@@ -4,6 +4,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
+import Bell from '@material-ui/icons/Notifications';
 import FirebaseContext from 'firebase'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Footer from '../../../../components/Footer/footer';
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+    fontWeight: 'bold',
   },
 
   tAnno: {
@@ -62,18 +63,30 @@ export default function SimpleAccordion() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState('panel1');
   const [annts, setAnnts] = React.useState([]);
+  const [count, setCount] = React.useState([]);
+  const [isNew, setIsNew] = React.useState('');
+  // const currentDate = ;
      
         
   React.useEffect( () => {
-    FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement")
-    .get().then((querySnapshot) => {
-      const tempDoc = []
-      querySnapshot.forEach((doc) => {
-         tempDoc.push({ id: doc.id, ...doc.data() });
-      })
-        setAnnts(tempDoc)
+
+    const fetchNew = () => {
+      let db = FirebaseContext.firestore().collection("users/admin/dashboard/anouncement/anouncement");
+      var startfulldate = new Date();
+      let query = db.where('Date', '<=', startfulldate.getDate());
+      query.get().then((querySnapshot) => {
+        const temDoc = []
+        querySnapshot.forEach((doc) => {
+          temDoc.push({ id: doc.id, ...doc.data() });
+        })
+        setAnnts(temDoc);
+        setIsNew('New');
+        setCount(querySnapshot.size);
         // console.log(tempDoc);
-    })
+      })
+    }
+
+    fetchNew();
   }, []);
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -118,6 +131,12 @@ export default function SimpleAccordion() {
                   </AccordionDetails> 
               </div>     
             ))}
+
+            {annts.length === 0 && (
+              <div style={{color: 'red'}}>
+                <Bell style={{color: 'grey'}}/>All cleared Up! There are no Announcements
+              </div>
+            )}
         </Accordion>
       </div>
 
