@@ -5,9 +5,6 @@ import { Centered, FormGroup } from '../../../components';
 import TextFieldMui from "../../components/textField";
 import ButtonMui from "../../components/button";
 import './schedule.css';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 
 const CreateModule = () => (
     <div style={{

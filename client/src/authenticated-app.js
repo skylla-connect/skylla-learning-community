@@ -22,7 +22,7 @@ import ManageEnrolledTrainees from './App/screens/Admin/screens/enrolled'
 import numTrainers from './App/screens/Admin/screens/numTrainers';
 import TotalModules from './App/screens/Admin/screens/totalModules';
 import liveClass from './App/screens/Admin/screens/liveClass';
-import ManageAnnouncement from './App/screens/Admin/screens/deleteAnnounce';
+import Announcement from './App/screens/Trainee/components/views/announcements';
 
 function NetworkError() {
     return (
@@ -87,7 +87,7 @@ function Routes(props) {
                 <Route path={ROUTES.ENROLLED} component={ManageEnrolledTrainees} />
                 <Route path={ROUTES.T_MODULES} component={TotalModules} />
                 <Route path={ROUTES.Live_CLASSES} component={liveClass} />
-                <Route path={ROUTES.ANNOUNCEMENTS} component={ManageAnnouncement} />
+                <Route path={ROUTES.ANNOUNCEMENTS} component={Announcement} />
                 <Route path="/cart" component={CartApp} />
 
                 <Route path="/">
