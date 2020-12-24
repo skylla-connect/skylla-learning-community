@@ -21,59 +21,36 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
         display: 'none',
+        width:'50%',
         [theme.breakpoints.up('sm')]: {
           display: 'block',
         },
       },
-    paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    margin:'40px 0 0 0',
-    height:'50px'
-    },
     accordion: {
-       marginTop:'15px'
+       margin:'auto',
+       width:'80%',
+       [theme.breakpoints.down('sm')]:{
+        width:'96%',
+       
+      }
     },
-    search: {
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: fade(theme.palette.common.white, 0.25),
-      },
-      marginLeft: 0,
-      width: '90%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-      },
+    logo:{
+      width:'10%',
+      height:'50%',
+      float:'left',
+      color:'white',
+      marginTop:'20px',
+      alignItems:'center',
+      [theme.breakpoints.down('sm')]:{
+        width:'30%'
+      }
+
     },
-    searchIcon: {
-      padding: theme.spacing(0, 1),
-      height: '90%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    inputRoot: {
-      color: 'inherit',
-    },
-    inputInput: {
-      padding: theme.spacing(1, 1, 1, 0),
-      paddingLeft: `calc(1em + ${theme.spacing(3)}px)`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      color:'black',
-      [theme.breakpoints.up('sm')]: {
-        width: '12ch',
-        '&:focus': {
-          width: '20ch',
-        },
-      },
-    },
+    menu:{
+      width:'100%',
+      backgroundColor:'blue',
+      height:'70px'
+    }
   }));
 
   function Faq() { 
@@ -81,21 +58,13 @@ const useStyles = makeStyles((theme) => ({
       const classes = useStyles();
         return(
             <div>
-                <div className='quizmenu'>
-                    <a href="#general" > <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' 
+                <div className={classes.menu}>
+                     <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' 
+                       className={classes.logo}
                         alt='pic'
-                        style={{
-                        width:'10%',
-                        height:'50%',
-                        float:'left',
-                        color:'white',
-                        marginTop:'25px',
-
-                        }}
-                        />
-                    </a>
-                        < br/>
-
+                        
+                      />
+                      <br/>
                     <Typography 
                     style={{
                         color:'white',
@@ -107,63 +76,41 @@ const useStyles = makeStyles((theme) => ({
                     FAQ
                     </Typography>
                 </div>
+                
 
                 <div className={classes.root}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={6}>
-                               <Paper className={classes.paper}>
-                                 <Typography className={classes.title} variant="h6" noWrap>
-                                   Hi,
-                                   How can we help you?
-                                 </Typography>
-                               </Paper>
-                            </Grid>
-
-                            <Grid item xs={6}>
-                            <Paper className={classes.paper}>
-                                <div className={classes.search}>
-                                    <div className={classes.searchIcon}>
-                                    <SearchIcon />
-                                    </div>
-                                    <InputBase
-                                    placeholder="search……"
-                                    classes={{
-                                        root: classes.inputRoot,  
-                                        input: classes.inputInput,
-                                    }}
-                                    inputProps={{ 'aria-label': 'search' }}
-                                    />
-                            </div>
-                            </Paper>
-                            </Grid>
-                        </Grid>
-                        {/* gjghjghgh */}
+                    <div>
+                      <Typography variant='h4' style={{textAlign:'center'}}>
+                        Frequently Asked Questions
+                      </Typography>
+                    </div>
                     <div className={classes.accordion}>
-                        <Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                >
-                                <Typography className={classes.heading}>How to purchase a module</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                     go to the  trainees dashboard select cart and follow the procedures. 
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
                         <Accordion>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                                 >
-                                <Typography className={classes.heading}>How to get Live Support</Typography>
+                                <Typography className={classes.heading}>How to get started ?</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                            
+                              <Typography>
+                                  please go to skyllaconnect.com then Skylla Learning Community then purchase  a module
+                              </Typography>
+                            </AccordionDetails>
+                        </Accordion>  
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
+                                >
+                                <Typography className={classes.heading}>How to purchase a module ?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                go to the  trainees dashboard select support icon and follow the procedures. 
+                                    After you apply, you'll be sent an email detailing next steps
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>  
@@ -173,11 +120,11 @@ const useStyles = makeStyles((theme) => ({
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                                 >
-                                <Typography className={classes.heading}>How to start Live Chat</Typography>
+                                <Typography className={classes.heading}>Is there an age limit for candidates considered for the fellowship ?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    Click Live support page and follow continue.....
+                                   You must be alteast 15 years and above to  be admitted into the program and to sign Skylla's employment contract.
                                 </Typography>
                             </AccordionDetails>
                         </Accordion> 
@@ -187,14 +134,96 @@ const useStyles = makeStyles((theme) => ({
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                                 >
-                                <Typography className={classes.heading}>How to join learning community</Typography>
+                                <Typography className={classes.heading}>Do I need a university degree before purchasing a module with Skylla Learning Community ?</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography>
-                                    create an account login and purchase a module
+                                    No, you do not need a university degree
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion> <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
+                                >
+                                <Typography className={classes.heading}> How to become a software developer ?</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                  Step #1: Be Clear About Your End Goal<br/>
+                                  Step #2: Select A Language to Learn<br/>
+                                  Step #3: Read and write Codes Written by Experienced Developers<br/>
+                                  Step #4: Practice software development…and practice some more <br/>
+                                  Step #5: Use tools that real software developers use<br/>
+                                  Step #6: Find A Community of Software Engineers<br/>
+                                  Step #7: Build Projects<br/>
+                                  Step #8: Accept the job offer and officially become a software engineer!
+
                                 </Typography>
                             </AccordionDetails>
                         </Accordion> 
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
+                                >
+                                <Typography className={classes.heading}>For how long does it take for me to become a software developer ?</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                  The length of time it takes to become a software engineer can depend upon a student’s background 
+                                  knowledge and their commitment and dedication to completing their modules
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion> 
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
+                                >
+                                <Typography className={classes.heading}> How much does a module cost ?</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                    No, you do not need a university degree
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion> 
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
+                                >
+                                <Typography className={classes.heading}>For how long does each module take ?</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                    No, you do not need a university degree
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion> 
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
+                                >
+                                <Typography className={classes.heading}>What is the cloud ?</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography>
+                                  It is a collection of networked computer hardware that works together to 
+                                  provide many aspects of computing in the form of online services. You can't
+                                  physically touch the hardware itself in the public cloud, but you control it 
+                                  remotely via web interfaces. One of the central features of the cloud is virtualisation
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion> 
+
                      </div>
                 </div>
             </div>
