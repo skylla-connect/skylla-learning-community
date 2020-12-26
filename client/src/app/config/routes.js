@@ -28,4 +28,7 @@ export const SSESSIONS = '/sessions';
 export const N_TRAINERS = '/n-trainers';
 export const T_MODULES = '/t-modules';
 export const Live_CLASSES = '/liveclass';
+export const CHALLENGES = '/challenges';
+export const PROBLEMS = '/problems';
+export const SUBMISSIONS ='/submission';
 

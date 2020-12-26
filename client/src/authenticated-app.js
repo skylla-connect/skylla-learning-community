@@ -23,6 +23,10 @@ import numTrainers from './App/screens/Admin/screens/numTrainers';
 import TotalModules from './App/screens/Admin/screens/totalModules';
 import liveClass from './App/screens/Admin/screens/liveClass';
 import Announcement from './App/screens/Trainee/components/views/announcements';
+import Submissions from './App/screens/Trainer/screens/quiz/submissions';
+import Challenges from './App/screens/Trainer/screens/quiz/challenges';
+import Problems from './App/screens/Trainer/screens/quiz/problems';
+
 
 function NetworkError() {
     return (
@@ -32,12 +36,13 @@ function NetworkError() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          width: '50%'
         }}
       >
         <div>
           <p css={{
               fontSize: '18px',
-          }}>Sorry... something went wrong try refeshing the your browser, 
+          }}>Sorry... something went wrong try refeshing your browser, 
               normally this happens due to bad internet connection.</p>
         </div>
       </div>
@@ -88,6 +93,9 @@ function Routes(props) {
                 <Route path={ROUTES.T_MODULES} component={TotalModules} />
                 <Route path={ROUTES.Live_CLASSES} component={liveClass} />
                 <Route path={ROUTES.ANNOUNCEMENTS} component={Announcement} />
+                <Route path={ROUTES.CHALLENGES} component={Challenges} />
+                <Route path={ROUTES.PROBLEMS} component={Problems} />
+                <Route path={ROUTES.SUBMISSIONS} component ={Submissions} />
                 <Route path="/cart" component={CartApp} />
 
                 <Route path="/">

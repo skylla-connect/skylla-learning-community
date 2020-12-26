@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
     }
   },
 
-  paperOne: {
-    marginTop: '100px'
-  },
+  // paperOne: {
+  //   marginTop: '100px'
+  // },
 
   grid: {
     width: '90%', 
@@ -53,6 +53,7 @@ export default function FullWidthGrid(props) {
   const [announcements , setAnnouncements] = useState([]);
   const [sessions , setSessions] = useState([]);
   const [activeUsers, setactiveUsers] = useState([]);
+  const [submissions , setSubmissions] = useState([]);
 
   useEffect( () => {
      // for Users
@@ -81,6 +82,13 @@ export default function FullWidthGrid(props) {
      .get()
      .then(snap =>{
        setAnnouncements(snap.size)
+     })
+
+     // Announcement
+     FirebaseContext.firestore().collection("users/trainer/dashboard/solutions/solutions")
+     .get()
+     .then(snap =>{
+       setSubmissions(snap.size)
      })
  
   });
@@ -137,6 +145,19 @@ export default function FullWidthGrid(props) {
                   }}>
                 <CountUp end={activeUsers} delay={2} redraw={true} />
               </Typography>
+            </div>
+          </a>
+        </Grid>
+
+        <Grid item xs={6} sm={3}>
+          <a href={ROUTE.SUBMISSIONS}>
+            <div className={`SampleCards ${classes.paper}`}>  
+                Challenges &amp; Submissions
+                <Typography variant="h4" paragraph style={{
+                    color: '#FF0080', 
+                    }}>
+                  <CountUp end={submissions} delay={2} redraw={true} />
+                </Typography>
             </div>
           </a>
         </Grid>

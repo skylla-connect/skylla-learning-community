@@ -36,7 +36,7 @@ import {
 // Define routes in the admin dashboard
 const routes = [
   {
-    path: "/admin",
+    path: ROUTES.ADMIN,
     exact: true,
     sidebar: () => <div></div>,
     main: () => <div>
@@ -46,7 +46,7 @@ const routes = [
   },
 
   {
-    path: "/profile",
+    path: ROUTES.PROFILE,
     exact: true,
     sidebar: () => <div></div>,
     main: () => <div>
@@ -55,7 +55,7 @@ const routes = [
   },
 
   {
-    path: "/finalassess",
+    path: ROUTES.FINALASSESS,
     exact: true,
     sidebar: () => <div></div>,
     main: () => <FinalAssessment />
@@ -69,7 +69,7 @@ const routes = [
   },
 
   {
-    path: "/hire",
+    path: ROUTES.HIRE,
     exact: true,
     sidebar: () => <div></div>,
     main: () => <Hire />
