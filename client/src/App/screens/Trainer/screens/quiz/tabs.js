@@ -9,7 +9,6 @@ import Box from '@material-ui/core/Box';
 import Submissions from './submissions';
 import Problems from './problems';
 
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -69,7 +68,8 @@ app:{
   color:'black',
   width:'40%',
   textTransform:'lowercase',
-  alignItems:'center',    
+  alignItems:'center',  
+  position: 'fixed',  
   [theme.breakpoints.down('sm')]:{
     width:'100%',
     alignItems:'center'
@@ -91,7 +91,7 @@ export default function NavTab() {
     <div className={classes.roots}>
       <AppBar 
         elevation={0} 
-        position="static" 
+        position="fixed" 
         className={classes.app}
         >
         <Tabs

@@ -5,20 +5,25 @@ import 'firebase/firestore'
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Challenges from './challenges';
+import Footer from '../../../../components/Footer/footer';
+
 const useStyles = theme => ({
     root: {
       flexGrow: 1,
+      marginTop: theme.spacing(10),
+      backgroundColor: 'transparent',
     },
     card: {
         padding: theme.spacing(5),
         width:  '80%',
+        backgroundColor: 'transparent',
         margin: `${theme.spacing(1)}px auto`,
         [theme.breakpoints.down('sm')]: {
             width:'90%',
             padding: theme.spacing(2),
         },
         list:{
-            margin: 20,
+            margin: 30,
         }
         
     },
@@ -77,6 +82,8 @@ class Submissions extends React.Component{
                         </Typography>
                     </Card>  
                 </div>
+
+                <Footer />
             </div>
         );
 
