@@ -28,7 +28,7 @@ const menu = ({ firebase }) => {
           </MenuItem>
         </Link>
 
-        <Link to={ROUTES.PROFILE}  style={{
+        {/* <Link to={ROUTES.PROFILE}  style={{
           color: 'white', 
           textDecoration: 'none'
           }}>
@@ -39,7 +39,7 @@ const menu = ({ firebase }) => {
               }} 
             /> Profile
           </MenuItem>
-        </Link>
+        </Link> */}
 
         <Link to={ROUTES.SESSIONS}  style={{
           color: 'white', 

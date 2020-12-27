@@ -22,11 +22,11 @@ const SignUpPage = () => (
             position: 'relative',
             Height: '100vh',
            }}>
-            <Centered>
-                <div css={{marginBottom: '60px'}}>
+            {/* <Centered> */}
+                <div css={{marginBottom: '100px'}}>
                     <h5
                     css={{
-                        fontSize: '16px',
+                        fontSize: '20px',
                         textTransform: 'capitalize',
                         color: '#000000',
                         paddingBottom: '30px',
@@ -34,7 +34,7 @@ const SignUpPage = () => (
 
                     <SignUpForm />
                 </div>
-            </Centered>
+            {/* </Centered> */}
         </div>
     </div>
 );

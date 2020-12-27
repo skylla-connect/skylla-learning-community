@@ -10,6 +10,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import { SignUpPage } from './addUsers';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -133,8 +134,9 @@ class DeleteUsers extends React.Component {
             width: '90%',
             margin: '70px auto',
         }}>
+            <SignUpPage/>
             <Typography variant="h6" paragraph>
-                Delete Trainer's Accounts
+                View Trainer Accounts
             </Typography>
 
             <MaterialTable

@@ -11,7 +11,7 @@ const permissions = (props) => {
     <div>
       <MenuList>
         {/* add users */}
-        <Link to="/add_users" style={{color: 'white', textDecoration: 'none'}}>
+        {/* <Link to="/add_users" style={{color: 'white', textDecoration: 'none'}}>
           <MenuItem>
             <img 
               src="https://cdn2.iconfinder.com/data/icons/humano2/128x128/actions/contact-new.png" 
@@ -23,13 +23,13 @@ const permissions = (props) => {
               />
             add users 
           </MenuItem>
-        </Link>
+        </Link> */}
 
-        {/* delete users */}
+        {/* manage users */}
         <Link to="/delete_users" style={{color: 'white', textDecoration: 'none'}}>
           <MenuItem >
             <img 
-                src="https://cdn2.iconfinder.com/data/icons/aspneticons_v1.0_Nov2006/user2-delete-16x16.gif" 
+                src="https://cdn0.iconfinder.com/data/icons/seo-web-4-1/128/Vigor_User-Avatar-Profile-Photo-02-512.png" 
                 alt=""
                 style={{
                     marginRight: '10px',

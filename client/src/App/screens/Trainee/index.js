@@ -22,6 +22,7 @@ import SocialIcons from './components/social';
 import ProfilePage from './screens/profilePage';
 import LiveClass from './screens/liveClass';
 import *as ROUTES from '../../config/routes';
+import PopUp from './components/acPopup';
 import FirebaseContext from 'firebase';
 import 'firebase/firestore';
 import './index.css';
@@ -290,10 +291,11 @@ export default function PersistentDrawerLeft() {
                   margin: 'auto 15px auto 25px',
                   display: 'flex'
                 }}>
-                <Avatar alt="Remy Sharp" style={{marginLeft:'27%'}} src={currentUserDetails.photo} />
+                {/* <Avatar alt="Remy Sharp" style={{marginLeft:'27%'}} src={currentUserDetails.photo} />
                 <Typography variant="body2" style={{margin: 10}}>
                   {currentUserDetails.name}
-                </Typography>
+                </Typography> */}
+                <PopUp/>
               </div>
 
               <div style={{
