@@ -130,7 +130,7 @@ export default function PositionedPopper() {
       </Popper>
       <Grid container justify="center">
         <Grid item>
-            <Avatar alt="Profile-Pic" onClick={handleClick('bottom-start')} style={{marginLeft:'27%'}} src={currentUserDetails.photo} />
+            <Avatar alt="Profile-Pic" onClick={handleClick('bottom-start')} style={{marginLeft:'27%', cursor:'pointer'}} src={currentUserDetails.photo} />
         </Grid>
       </Grid>
     </div>
