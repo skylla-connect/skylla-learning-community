@@ -106,7 +106,7 @@ const menu = ({ firebase }) => {
           </MenuItem>
         </Link>
 
-        <MenuItem onClick={firebase.doSignOut}>
+        {/* <MenuItem onClick={firebase.doSignOut}>
           <i className="fa fa-power-off" style={{
             // fontSize:'36px',
             backgroundColor: '#DF8C42',
@@ -116,7 +116,7 @@ const menu = ({ firebase }) => {
             marginRight: '10px'
             }}>
           </i>Logout
-        </MenuItem>
+        </MenuItem> */}
       </MenuList>
     </div>
   );

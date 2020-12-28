@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
+import { withFirebase } from '../../../firebase';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import *as ROUTES from '../../../config/routes';
 import {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PositionedPopper() {
+function AccountPop({ firebase }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
@@ -119,8 +120,20 @@ export default function PositionedPopper() {
                         </Typography>
                     </Grid>
                     <Grid item style={{marginLeft:'10%'}}>
-                    <Button variant="contained" color="primary" style={{margin:'10% 0 0 0%', position: 'absolute', textDecoration:'none'}}>
+                    <Button variant="contained" color="primary" style={{margin:'0% 0 0 0%', position: 'absolute', textDecoration:'none'}}>
                         Manage Account
+                    </Button>
+                    <Button 
+                      onClick={firebase.doSignOut} 
+                      // variant="outlined" 
+                      color="primary" 
+                      style={{
+                        margin:'12% 0 0 24%', 
+                        position: 'absolute', 
+                        textDecoration:'none'
+                      }}
+                    >
+                        Logout
                     </Button>
                     </Grid>
                 </Grid>
@@ -137,3 +150,5 @@ export default function PositionedPopper() {
     </ClickAwayListener>
   );
 }
+
+export default withFirebase(AccountPop);
