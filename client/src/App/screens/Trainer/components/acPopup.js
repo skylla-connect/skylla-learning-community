@@ -118,7 +118,7 @@ function AccountPop({ firebase }) {
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper style={{marginTop: 12,}}>
-                <Avatar alt="Profile-Pic" style={{marginLeft:'5%', width: '39%', height: 150, objectFit: 'scale-down'}} src={currentUserDetails.photo} />
+                <img alt="" style={{marginLeft:'5%', width: '39%', height: 'auto'}} src={currentUserDetails.photo} />
                 <Grid container justify='left' spacing={0}>
                     <Grid item>
                         <Typography variant="h5" style={{margin: '10px 10px 10px 50px'}}>
