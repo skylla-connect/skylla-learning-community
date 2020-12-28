@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Menu from './components/menu';
+import PopUp from './components/acPopup';
 import Permissions from './components/permissions';
 import Mobile from './mob';
 import Views from './components/views/views';
@@ -194,6 +195,17 @@ export default function PersistentDrawerLeft() {
                       SKYLLA LEARNING COMMUNITY
                   </Typography>
                 </div>
+                <div style={{
+                  textAlign: 'center', 
+                  margin: 'auto 15px auto 25px',
+                  display: 'flex'
+                }}>
+                {/* <Avatar alt="Remy Sharp" style={{marginLeft:'27%'}} src={currentUserDetails.photo} />
+                <Typography variant="body2" style={{margin: 10}}>
+                  {currentUserDetails.name}
+                </Typography> */}
+                <PopUp/>
+              </div>
               </Toolbar>
             </AppBar>
             <Drawer

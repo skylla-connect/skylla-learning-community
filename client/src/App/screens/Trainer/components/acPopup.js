@@ -45,7 +45,7 @@ function AccountPop({ firebase }) {
 
   React.useEffect(() => {
         let user = FirebaseContext.auth().currentUser;   
-        let db = FirebaseContext.firestore().collection('users/trainee/users');
+        let db = FirebaseContext.firestore().collection('users/trainer/sys_trainers');
         let query = db.where('userId', '==', user.uid);
         
 
@@ -105,11 +105,20 @@ function AccountPop({ firebase }) {
       onClickAway={handleClickAway}
     >
     <div className={classes.root}>
-      <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
+      <Popper open={open} anchorEl={anchorEl} placement={placement} transition 
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'start',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper style={{marginTop: 12,}}>
-                <Avatar alt="Profile-Pic" style={{marginLeft:'5%', width: '59%', height: 150, objectFit: 'scale-down'}} src={currentUserDetails.photo} />
+                <Avatar alt="Profile-Pic" style={{marginLeft:'5%', width: '39%', height: 150, objectFit: 'scale-down'}} src={currentUserDetails.photo} />
                 <Grid container justify='left' spacing={0}>
                     <Grid item>
                         <Typography variant="h5" style={{margin: '10px 10px 10px 50px'}}>
