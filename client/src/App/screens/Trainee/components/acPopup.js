@@ -109,26 +109,26 @@ function AccountPop({ firebase }) {
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Paper style={{marginTop: 12,}}>
-                <img alt='' style={{marginLeft:'5%', width: '39%', height: 'auto', }} src={currentUserDetails.photo} />
+                <img alt='' style={{marginLeft:'2%', width: '39%', height: 'auto', }} src={currentUserDetails.photo} />
                 <Grid container justify='left' spacing={0}>
                     <Grid item>
-                        <Typography variant="h5" style={{margin: '10px 10px 10px 50px'}}>
+                        <Typography variant="h5" style={{margin: '10px 0px 10px 25px'}}>
                         {currentUserDetails.name}
                         </Typography>
-                        <Typography variant="body2" gutterBottom align='left' style={{ margin: 'auto auto 10px 50px' }}>
+                        <Typography variant="body2" gutterBottom align='left' style={{ margin: 'auto auto 10px 25px' }}>
                             {currentUserDetails.email}
                         </Typography>
                     </Grid>
                     <Grid item>
-                      <Button variant="contained" color="primary" style={{margin:'0% 0 0 25%', position: 'relative', textDecoration:'none'}}>
+                      <Button variant="contained" color="primary" style={{marginRight: 10, float:'right', position: 'relative', textDecoration:'none'}}>
                           Manage Account
                       </Button>
                       <Button 
                         onClick={firebase.doSignOut} 
-                        // variant="outlined" 
+                        variant="outlined" 
                         color="primary" 
                         style={{
-                          margin:'2% 0 0 64%', 
+                          margin:'2% 0 5px 62%',
                           position: 'relative', 
                           textDecoration:'none'
                         }}
