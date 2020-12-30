@@ -128,6 +128,7 @@ class SignInFormBase extends Component {
                     disabled={isInvalid}
                     isPending={isPending}
                     text="login"
+                    id="btn"
                 />
             </FormGroup>
             {error && <p css={{

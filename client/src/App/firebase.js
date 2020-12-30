@@ -14,6 +14,10 @@ const firebaseConfig = {
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 };
 
+if (!app.apps.length) {
+  app.initializeApp(firebaseConfig);
+}
+
 class Firebase {
     constructor() {
         app.initializeApp(firebaseConfig);
