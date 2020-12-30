@@ -11,34 +11,34 @@ const PATTERNS = {
   email: /\S+@\S+\.\S+/,
 };
 
-const defaultParseShape = PropTypes.shape({
-  ...ReactNative.Text.propTypes,
-  type: PropTypes.oneOf(Object.keys(PATTERNS)).isRequired,
-});
+// const defaultParseShape = PropTypes.shape({
+//   ...ReactNative.Text.propTypes,
+//   type: PropTypes.oneOf(Object.keys(PATTERNS)).isRequired,
+// });
 
-const customParseShape = PropTypes.shape({
-  ...ReactNative.Text.propTypes,
-  pattern: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)]).isRequired,
-});
+// const customParseShape = PropTypes.shape({
+//   ...ReactNative.Text.propTypes,
+//   pattern: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(RegExp)]).isRequired,
+// });
 
 class ParsedText extends React.Component {
   static displayName = 'ParsedText';
 
-  static propTypes = {
-    ...ReactNative.Text.propTypes,
-    parse: PropTypes.arrayOf(
-      PropTypes.oneOfType([defaultParseShape, customParseShape]),
-    ),
-    childrenProps: PropTypes.shape(ReactNative.Text.propTypes),
-  };
+  // static propTypes = {
+  //   ...ReactNative.Text.propTypes,
+  //   parse: PropTypes.arrayOf(
+  //     PropTypes.oneOfType([defaultParseShape, customParseShape]),
+  //   ),
+  //   childrenProps: PropTypes.shape(ReactNative.Text.propTypes),
+  // };
 
-  static defaultProps = {
-    parse: null,
-  };
+  // static defaultProps = {
+  //   parse: null,
+  // };
 
-  setNativeProps(nativeProps) {
-    this._root.setNativeProps(nativeProps);
-  }
+  // setNativeProps(nativeProps) {
+  //   this._root.setNativeProps(nativeProps);
+  // }
 
   getPatterns() {
     return this.props.parse.map((option) => {

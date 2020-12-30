@@ -63,7 +63,7 @@ export default class MessageImage extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {},
   image: {
     width: 150,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'contain',
   },
-});
+};
 
 MessageImage.defaultProps = {
   currentMessage: {

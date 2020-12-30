@@ -10,14 +10,46 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { FlatList, View, StyleSheet, Keyboard, Text } from 'react-native';
-
-import LoadEarlier from './LoadEarlier';
+import {Spinner }from '../../../components';
 import Message from './Message';
 import Color from './Color';
 import WebScrollView from './WebScrollView';
-import TouchableOpacity from './TouchableOpacity';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
+
+const styles = {
+  container: {
+    flex: 1,
+  },
+  contentContainerStyle: {
+    justifyContent: 'flex-end',
+  },
+  headerWrapper: {
+    flex: 1,
+  },
+  listStyle: {
+    flex: 1,
+  },
+  scrollToBottomStyle: {
+    opacity: 0.8,
+    position: 'absolute',
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    right: 10,
+    bottom: 30,
+    zIndex: 999,
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    backgroundColor: Color.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: Color.black,
+    shadowOpacity: 0.5,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 1,
+  },
+}
+
 
 export default class MessageContainer extends React.PureComponent {
   state = {
@@ -50,7 +82,7 @@ export default class MessageContainer extends React.PureComponent {
         return this.props.renderLoadEarlier(loadEarlierProps);
       }
       return (
-        <LoadEarlier {...loadEarlierProps} />
+        <Spinner {...loadEarlierProps} />
       );
     }
     return null;
@@ -96,11 +128,11 @@ export default class MessageContainer extends React.PureComponent {
     return <Message {...messageProps} />;
   };
 
-  renderHeaderWrapper = () => <View style={styles.headerWrapper}>{this.renderLoadEarlier()}</View>;
+  renderHeaderWrapper = () => <div style={{...styles.headerWrapper}}>{this.renderLoadEarlier()}</div>;
 
   renderScrollToBottomWrapper() {
     const scrollToBottomComponent = (
-      <div style={styles.scrollToBottomStyle}>
+      <div style={{...styles.scrollToBottomStyle}}>
         <Button onPress={this.scrollToBottom} hitSlop={{ top: 5, left: 5, right: 5, bottom: 5 }}>
           <Typography>V</Typography>
         </Button>
@@ -109,9 +141,9 @@ export default class MessageContainer extends React.PureComponent {
 
     if (this.props.scrollToBottomComponent) {
       return (
-        <TouchableOpacity onPress={this.scrollToBottom} hitSlop={{ top: 5, left: 5, right: 5, bottom: 5 }}>
+        <Button onPress={this.scrollToBottom} hitSlop={{ top: 5, left: 5, right: 5, bottom: 5 }}>
           {this.props.scrollToBottomComponent}
-        </TouchableOpacity>);
+        </Button>);
     }
     return scrollToBottomComponent;
   }
@@ -120,15 +152,11 @@ export default class MessageContainer extends React.PureComponent {
 
   render() {
     if (this.props.messages.length === 0) {
-      return <div style={styles.container} />;
+      return <div style={{...styles.container}} />;
     }
     return (
       <div
         style={{ flex: 1 }}
-        onLayout={() => {
-          // this.flatListRef.current.scrollTo({x: 0, y: 0, animated: true});
-        }
-      }
       >
         {this.state.showScrollBottom && this.props.scrollToBottom ? this.renderScrollToBottomWrapper() : null}
         <WebScrollView
@@ -139,7 +167,7 @@ export default class MessageContainer extends React.PureComponent {
           automaticallyAdjustContentInsets={false}
           inverted={this.props.inverted}
           data={this.props.messages}
-          style={styles.listStyle}
+          style={{...styles.listStyle}}
           contentContainerStyle={styles.contentContainerStyle}
           renderItem={this.renderRow}
           ListFooterComponent={this.renderHeaderWrapper}
@@ -150,39 +178,6 @@ export default class MessageContainer extends React.PureComponent {
   }
 }
 
-const styles = {
-  container: {
-    flex: 1,
-  },
-  contentContainerStyle: {
-    justifyContent: 'flex-end',
-  },
-  headerWrapper: {
-    flex: 1,
-  },
-  listStyle: {
-    flex: 1,
-  },
-  scrollToBottomStyle: {
-    opacity: 0.8,
-    position: 'absolute',
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    right: 10,
-    bottom: 30,
-    zIndex: 999,
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-    backgroundColor: Color.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: Color.black,
-    shadowOpacity: 0.5,
-    shadowOffset: { width: 0, height: 0 },
-    shadowRadius: 1,
-  },
-}
 
 MessageContainer.defaultProps = {
   messages: [],

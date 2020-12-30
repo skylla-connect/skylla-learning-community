@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { compose } from "recompose";
 
 import * as ROUTES from "./app/config/routes";
 import Admin from './app/screens/Admin/index';
@@ -10,11 +11,26 @@ import withAuthorization from './app/session/withAuthorization';
 import { FullPageSpinner } from './app/components';
 import LiveSupport from './LiveSupport/LiveSupport'
 import LiveSupport2 from './LiveSupport2/LiveSupport2'
+import  Support  from './app/screens/chat'
+import { withFirebase } from './app/firebase';
 
-const Athenticated = () => {
+const Athenticated = (props) => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);
     const {user, isLoading} = useUser();
 
+    React.useEffect(() => {
+        props.firebase.requestFirebaseNotificationPermission()
+        .then((firebaseToken) => {
+        // eslint-disable-next-line no-console
+            console.log(firebaseToken);
+            // if (user.ROLE === "admin") {
+                props.firebase.doSetTokens({'id':user.userId,'admin-access-token':firebaseToken})
+            // }
+        })
+        .catch((err) => {
+            return err;
+        });
+    })
     React.useLayoutEffect(() => {
         if (!isLoading) {
           setFirstAttemptFinished(true)
@@ -24,12 +40,15 @@ const Athenticated = () => {
       if (!firstAttemptFinished) {
           return <FullPageSpinner />
       }
+      
     return ( 
         <Routes authUser={user}/>
      );
 } 
 const condition = (authUser) => authUser;
-export default withAuthorization(condition)(Athenticated);
+export default compose(
+    withFirebase,
+    withAuthorization(condition))(Athenticated);
 
 function Routes(props) {
     return (
@@ -40,8 +59,7 @@ function Routes(props) {
                 <Route path={ROUTES.TRAINEE} component={Trainee} />
                 <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 <Route path={ROUTES.LIVE_SUPPORT2} component={LiveSupport2} />
-        
-
+                <Route path="/livechat/:roomId" component={Support} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}

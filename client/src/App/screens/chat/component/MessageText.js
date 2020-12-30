@@ -7,21 +7,54 @@ import ParsedText from './ParsedText';
 
 const WWW_URL_PATTERN = /^www\./i;
 
+const textStyle = {
+  fontSize: 16,
+  lineHeight: 20,
+  marginTop: 5,
+  marginBottom: 5,
+  marginLeft: 10,
+  marginRight: 10,
+};
+
+const styles = {
+  left: {
+    container: {},
+    text: {
+      color: 'black',
+      ...textStyle,
+    },
+    link: {
+      color: 'black',
+      textDecorationLine: 'underline',
+    },
+  },
+  right: {
+    container: {},
+    text: {
+      color: 'white',
+      ...textStyle,
+    },
+    link: {
+      color: 'white',
+      textDecorationLine: 'underline',
+    },
+  }
+};
 export default class MessageText extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     return this.props.currentMessage.text !== nextProps.currentMessage.text;
   }
   render() {
-    const linkStyle = StyleSheet.flatten([styles[this.props.position].link, this.props.linkStyle[this.props.position]]);
+    const linkStyle = {...styles[this.props.position].link, ...this.props.linkStyle[this.props.position]};
     return (
-      <div style={[styles[this.props.position].container, this.props.containerStyle[this.props.position]]}>
+      <div style={{...styles[this.props.position].container, ...this.props.containerStyle[this.props.position]}}>
         <ParsedText
-          style={[
-            styles[this.props.position].text,
-            this.props.textStyle[this.props.position],
-            this.props.customTextStyle,
-          ]}
+          style={{
+            ...styles[this.props.position].text,
+            ...this.props.textStyle[this.props.position],
+            ...this.props.customTextStyle,
+          }}
           parse={[
             ...this.props.parsePatterns(linkStyle),
           ]}
@@ -34,40 +67,6 @@ export default class MessageText extends React.Component {
   }
 
 }
-
-const textStyle = {
-  fontSize: 16,
-  lineHeight: 20,
-  marginTop: 5,
-  marginBottom: 5,
-  marginLeft: 10,
-  marginRight: 10,
-};
-
-const styles = {
-  left: StyleSheet.create({
-    container: {},
-    text: {
-      color: 'black',
-      ...textStyle,
-    },
-    link: {
-      color: 'black',
-      textDecorationLine: 'underline',
-    },
-  }),
-  right: StyleSheet.create({
-    container: {},
-    text: {
-      color: 'white',
-      ...textStyle,
-    },
-    link: {
-      color: 'white',
-      textDecorationLine: 'underline',
-    },
-  }),
-};
 
 MessageText.contextTypes = {
   actionSheet: PropTypes.func,
@@ -103,5 +102,5 @@ MessageText.propTypes = {
   }),
   parsePatterns: PropTypes.func,
   textProps: PropTypes.object,
-  customTextStyle: Text.propTypes.style,
+  customTextStyle: Typography.propTypes.style,
 };

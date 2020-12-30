@@ -1,7 +1,18 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-
+const styles = {
+  container: {
+    height: '100%',
+    minHeight: '100%',
+    width: '100%',
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column-reverse',
+    flex: 1,
+    alignItems: 'stretch',
+  },
+};
 export default class WebScrollView extends Component {
   renderItem =(item, index) => {
     const { renderItem } = this.props;
@@ -15,7 +26,7 @@ export default class WebScrollView extends Component {
       messages = data.slice().reverse();
     }
     return (
-      <div style={styles.container}>
+      <div style={{...styles.container}}>
         {ListHeaderComponent()}
         {messages.map(this.renderItem)}
         {ListFooterComponent()}
@@ -23,19 +34,6 @@ export default class WebScrollView extends Component {
     );
   }
 }
-
-const styles = {
-  container: {
-    height: '100%',
-    minHeight: '100%',
-    width: '100%',
-    overflow: 'auto',
-    display: 'flex',
-    flexDirection: 'column-reverse',
-    flex: 1,
-    alignItems: 'stretch',
-  },
-};
 
 WebScrollView.defaultProps = {
   data: [],

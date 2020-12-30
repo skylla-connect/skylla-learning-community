@@ -5,7 +5,7 @@ import * as ROUTES from "./app/config/routes";
 import {SignUpPage} from './app/screens/signup/index';
 import SignInPage from './app/screens/login/index';
 import PasswordReset from './app/screens/resetPassword/index';
-import { Client } from './app/screens/chat/client';
+import  Client  from './app/screens/chat/client'
 
 
 const Unathenticated = () => {

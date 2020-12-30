@@ -10,21 +10,6 @@ import Color from './Color';
 import { TIME_FORMAT } from './Constant';
 import { Typography } from '@material-ui/core';
 
-export default function Time(
-  { position, containerStyle, currentMessage, timeFormat, textStyle, timeTextStyle },
-  context,
-) {
-  return (
-    <div style={[styles[position].container, containerStyle[position]]}>
-      <Typography style={[styles[position].text, textStyle[position], timeTextStyle[position]]}>
-        {moment(currentMessage.createdAt)
-          .locale(context.getLocale())
-          .format(timeFormat)}
-      </Typography>
-    </div>
-  );
-}
-
 const containerStyle = {
   marginLeft: 10,
   marginRight: 10,
@@ -57,6 +42,22 @@ const styles = {
     },
   }
 };
+export default function Time(
+  { position, containerStyle, currentMessage, timeFormat, textStyle, timeTextStyle },
+  context,
+) {
+  return (
+    <div style={{...styles[position].container, ...containerStyle[position]}}>
+      <Typography style={{...styles[position].text, ...textStyle[position], ...timeTextStyle[position]}}>
+        {moment(currentMessage.createdAt)
+          .locale(context.getLocale())
+          .format(timeFormat)}
+      </Typography>
+    </div>
+  );
+}
+
+
 
 Time.contextTypes = {
   getLocale: PropTypes.func,

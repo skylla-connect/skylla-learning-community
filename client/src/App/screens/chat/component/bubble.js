@@ -3,9 +3,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Text, Clipboard, StyleSheet, View, ViewPropTypes } from 'react-native';
-
-
 import MessageText from './MessageText';
 import MessageImage from './MessageImage';
 import MessageVideo from './MessageVideo';
@@ -16,6 +13,75 @@ import Color from './Color';
 import { isSameUser, isSameDay } from './utils';
 import { Typography, Button } from '@material-ui/core';
 
+const styles = {
+  left: {
+    container: {
+      flex: 1,
+      alignItems: 'flex-start',
+    },
+    wrapper: {
+      borderRadius: 15,
+      backgroundColor: Color.leftBubbleBackground,
+      marginRight: 60,
+      minHeight: 20,
+      justifyContent: 'flex-end',
+    },
+    containerToNext: {
+      borderBottomLeftRadius: 3,
+    },
+    containerToPrevious: {
+      borderTopLeftRadius: 3,
+    },
+    bottom: {
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+    },
+  },
+  right: {
+    container: {
+      flex: 1,
+      alignItems: 'flex-end',
+    },
+    wrapper: {
+      borderRadius: 15,
+      backgroundColor: Color.defaultBlue,
+      marginLeft: 60,
+      minHeight: 20,
+      justifyContent: 'flex-end',
+    },
+    containerToNext: {
+      borderBottomRightRadius: 3,
+    },
+    containerToPrevious: {
+      borderTopRightRadius: 3,
+    },
+    bottom: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+    },
+  },
+  tick: {
+    fontSize: 10,
+    backgroundColor: Color.backgroundTransparent,
+    color: Color.white,
+  },
+  tickView: {
+    flexDirection: 'row',
+    marginRight: 10,
+  },
+  username: {
+    top: -3,
+    left: 0,
+    fontSize: 12,
+    backgroundColor: 'transparent',
+    color: '#aaa',
+  },
+  usernameView: {
+    flexDirection: 'row',
+    marginHorizontal: 10,
+  },
+};
+
 export default class Bubble extends React.Component {
 
   handleBubbleToNext() {
@@ -23,10 +89,10 @@ export default class Bubble extends React.Component {
       isSameUser(this.props.currentMessage, this.props.nextMessage) &&
       isSameDay(this.props.currentMessage, this.props.nextMessage)
     ) {
-      return StyleSheet.flatten([
-        styles[this.props.position].containerToNext,
-        this.props.containerToNextStyle[this.props.position],
-      ]);
+      return ({
+        ...styles[this.props.position].containerToNext,
+        ...this.props.containerToNextStyle[this.props.position],
+      });
     }
     return null;
   }
@@ -36,10 +102,10 @@ export default class Bubble extends React.Component {
       isSameUser(this.props.currentMessage, this.props.previousMessage) &&
       isSameDay(this.props.currentMessage, this.props.previousMessage)
     ) {
-      return StyleSheet.flatten([
-        styles[this.props.position].containerToPrevious,
-        this.props.containerToPreviousStyle[this.props.position],
-      ]);
+      return ({
+        ...styles[this.props.position].containerToPrevious,
+        ...this.props.containerToPreviousStyle[this.props.position],
+      });
     }
     return null;
   }
@@ -87,10 +153,10 @@ export default class Bubble extends React.Component {
     }
     if (currentMessage.sent || currentMessage.received || currentMessage.pending) {
       return (
-        <div style={styles.tickView}>
-          {currentMessage.sent && <Typography style={[styles.tick, this.props.tickStyle]}>✓</Typography>}
-          {currentMessage.received && <Typography style={[styles.tick, this.props.tickStyle]}>✓</Typography>}
-          {currentMessage.pending && <Typography style={[styles.tick, this.props.tickStyle]}>🕓</Typography>}
+        <div style={{...styles.tickView}}>
+          {currentMessage.sent && <Typography style={{...styles.tick, ...this.props.tickStyle}}>✓</Typography>}
+          {currentMessage.received && <Typography style={{...styles.tick, ...this.props.tickStyle}}>✓</Typography>}
+          {currentMessage.pending && <Typography style={{...styles.tick, ...this.props.tickStyle}}>🕓</Typography>}
         </div>
       );
     }
@@ -115,8 +181,8 @@ export default class Bubble extends React.Component {
         return null;
       }
       return (
-        <div style={styles.usernameView}>
-          <Typography style={[styles.username, this.props.usernameStyle]}>~ {currentMessage.user.name}</Typography>
+        <div style={{...styles.usernameView}}>
+          <Typography style={{...styles.username, ...this.props.usernameStyle}}>~ {currentMessage.user.name}</Typography>
         </div>
       );
     }
@@ -132,18 +198,17 @@ export default class Bubble extends React.Component {
 
   render() {
     return (
-      <div style={[styles[this.props.position].container, this.props.containerStyle[this.props.position]]}>
+      <div style={{...styles[this.props.position].container, ...this.props.containerStyle[this.props.position]}}>
         <div
-          style={[
-            styles[this.props.position].wrapper,
-            this.props.wrapperStyle[this.props.position],
-            this.handleBubbleToNext(),
-            this.handleBubbleToPrevious(),
-          ]}
+          style={{
+            ...styles[this.props.position].wrapper,
+            ...this.props.wrapperStyle[this.props.position],
+            ...this.handleBubbleToNext(),
+            ...this.handleBubbleToPrevious(),
+          }}
         >
           <Button
             onClick={this.onLongPress}
-            accessibilityTraits="text"
             {...this.props.touchableProps}
           >
             <div>
@@ -151,7 +216,7 @@ export default class Bubble extends React.Component {
               {this.renderMessageImage()}
               {this.renderMessageVideo()}
               {this.renderMessageText()}
-              <div style={[styles[this.props.position].bottom, this.props.bottomContainerStyle[this.props.position]]}>
+              <div style={{...styles[this.props.position].bottom, ...this.props.bottomContainerStyle[this.props.position]}}>
                 {this.renderUsername()}
                 {this.renderTime()}
                 {this.renderTicks()}
@@ -165,74 +230,7 @@ export default class Bubble extends React.Component {
 
 }
 
-const styles = {
-  left: StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'flex-start',
-    },
-    wrapper: {
-      borderRadius: 15,
-      backgroundColor: Color.leftBubbleBackground,
-      marginRight: 60,
-      minHeight: 20,
-      justifyContent: 'flex-end',
-    },
-    containerToNext: {
-      borderBottomLeftRadius: 3,
-    },
-    containerToPrevious: {
-      borderTopLeftRadius: 3,
-    },
-    bottom: {
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-    },
-  }),
-  right: StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'flex-end',
-    },
-    wrapper: {
-      borderRadius: 15,
-      backgroundColor: Color.defaultBlue,
-      marginLeft: 60,
-      minHeight: 20,
-      justifyContent: 'flex-end',
-    },
-    containerToNext: {
-      borderBottomRightRadius: 3,
-    },
-    containerToPrevious: {
-      borderTopRightRadius: 3,
-    },
-    bottom: {
-      flexDirection: 'row',
-      justifyContent: 'flex-end',
-    },
-  }),
-  tick: {
-    fontSize: 10,
-    backgroundColor: Color.backgroundTransparent,
-    color: Color.white,
-  },
-  tickView: {
-    flexDirection: 'row',
-    marginRight: 10,
-  },
-  username: {
-    top: -3,
-    left: 0,
-    fontSize: 12,
-    backgroundColor: 'transparent',
-    color: '#aaa',
-  },
-  usernameView: {
-    flexDirection: 'row',
-    marginHorizontal: 10,
-  },
-};
+
 
 Bubble.contextTypes = {
   actionSheet: PropTypes.func,
@@ -281,26 +279,26 @@ Bubble.propTypes = {
   currentMessage: PropTypes.object,
   nextMessage: PropTypes.object,
   previousMessage: PropTypes.object,
-  containerStyle: PropTypes.shape({
-    left: ViewPropTypes.style,
-    right: ViewPropTypes.style,
-  }),
-  wrapperStyle: PropTypes.shape({
-    left: ViewPropTypes.style,
-    right: ViewPropTypes.style,
-  }),
-  bottomContainerStyle: PropTypes.shape({
-    left: ViewPropTypes.style,
-    right: ViewPropTypes.style,
-  }),
-  tickStyle: Text.propTypes.style,
-  usernameStyle: Text.propTypes.style,
-  containerToNextStyle: PropTypes.shape({
-    left: ViewPropTypes.style,
-    right: ViewPropTypes.style,
-  }),
-  containerToPreviousStyle: PropTypes.shape({
-    left: ViewPropTypes.style,
-    right: ViewPropTypes.style,
-  }),
+  // containerStyle: PropTypes.shape({
+  //   left: ViewPropTypes.style,
+  //   right: ViewPropTypes.style,
+  // }),
+  // wrapperStyle: PropTypes.shape({
+  //   left: ViewPropTypes.style,
+  //   right: ViewPropTypes.style,
+  // }),
+  // bottomContainerStyle: PropTypes.shape({
+  //   left: ViewPropTypes.style,
+  //   right: ViewPropTypes.style,
+  // }),
+  // tickStyle: Text.propTypes.style,
+  // usernameStyle: Text.propTypes.style,
+  // containerToNextStyle: PropTypes.shape({
+  //   left: ViewPropTypes.style,
+  //   right: ViewPropTypes.style,
+  // }),
+  // containerToPreviousStyle: PropTypes.shape({
+  //   left: ViewPropTypes.style,
+  //   right: ViewPropTypes.style,
+  // }),
 };

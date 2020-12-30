@@ -5,8 +5,10 @@ import React from 'react';
 
 import { MIN_COMPOSER_HEIGHT, DEFAULT_PLACEHOLDER } from './Constant';
 import Color from './Color';
+import { TextField, withStyles } from '@material-ui/core';
 
-export default class Composer extends React.Component {
+
+class Composer extends React.Component {
   onContentSizeChange(e) {
     const { contentSize } = e.nativeEvent;
 
@@ -38,41 +40,31 @@ export default class Composer extends React.Component {
 
   render() {
     return (
-      <textarea
-        testID={this.props.placeholder}
-        accessible
+      <TextField
         onKeyDown={e => this.onKeyDown(e)}
-        accessibilityLabel={this.props.placeholder}
         placeholder={this.props.placeholder}
-        placeholderTextColor={this.props.placeholderTextColor}
         multiline={this.props.multiline}
         onChange={event => this.onChangeText(event.target.value)}
-        style={{ ...styles.textInput, ...this.props.textInputStyle }}
+        style={{ 
+          marginLeft: 10,
+          fontSize: 16,
+          lineHeight: '16px',
+          paddingTop: 3,
+          paddingBottom: 3,
+          outline: 'none',
+          border: 'none',
+          overflow: 'auto',
+          boxShadow: 'none',
+          resize: 'none',
+          width: '100%', ...this.props.textInputStyle }}
         value={this.props.text}
-        enablesReturnKeyAutomatically
-        underlineColorAndroid="transparent"
-        keyboardAppearance={this.props.keyboardAppearance}
         {...this.props.textInputProps}
       />
     );
   }
 }
+export default (Composer)
 
-const styles = {
-  textInput: {
-    marginLeft: 10,
-    fontSize: 16,
-    lineHeight: '16px',
-    paddingTop: 3,
-    paddingBottom: 3,
-    outline: 'none',
-    border: 'none',
-    overflow: 'auto',
-    boxShadow: 'none',
-    resize: 'none',
-    width: '100%',
-  },
-};
 
 
 Composer.defaultProps = {
@@ -89,16 +81,16 @@ Composer.defaultProps = {
   onInputSizeChanged: () => {},
 };
 
-Composer.propTypes = {
-  composerHeight: PropTypes.number,
-  text: PropTypes.string,
-  placeholder: PropTypes.string,
-  placeholderTextColor: PropTypes.string,
-  textInputProps: PropTypes.object,
-  onTextChanged: PropTypes.func,
-  onInputSizeChanged: PropTypes.func,
-  multiline: PropTypes.bool,
-  // textInputStyle: TextInput.propTypes.style,
-  textInputAutoFocus: PropTypes.bool,
-  keyboardAppearance: PropTypes.string,
-};
+// Composer.propTypes = {
+//   composerHeight: PropTypes.number,
+//   text: PropTypes.string,
+//   placeholder: PropTypes.string,
+//   placeholderTextColor: PropTypes.string,
+//   textInputProps: PropTypes.object,
+//   onTextChanged: PropTypes.func,
+//   onInputSizeChanged: PropTypes.func,
+//   multiline: PropTypes.bool,
+//   // textInputStyle: TextInput.propTypes.style,
+//   textInputAutoFocus: PropTypes.bool,
+//   keyboardAppearance: PropTypes.string,
+// };

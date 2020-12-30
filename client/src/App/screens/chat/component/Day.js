@@ -10,27 +10,6 @@ import { isSameDay } from './utils';
 import { DATE_FORMAT } from './Constant';
 import Typography from "@material-ui/core/Typography";
 
-export default function Day(
-  { dateFormat, currentMessage, previousMessage, nextMessage, containerStyle, wrapperStyle, textStyle, inverted },
-  context,
-) {
-  if (!isSameDay(currentMessage, inverted ? previousMessage : nextMessage)) {
-    return (
-      <div style={[styles.container, containerStyle]}>
-        <div style={wrapperStyle}>
-          <Typography style={[styles.text, textStyle]}>
-            {moment(currentMessage.createdAt)
-              .locale(context.getLocale())
-              .format(dateFormat)
-              .toUpperCase()}
-          </Typography>
-        </div>
-      </div>
-    );
-  }
-  return null;
-}
-
 const styles = {
   container: {
     alignItems: 'center',
@@ -45,6 +24,28 @@ const styles = {
     fontWeight: '600',
   },
 }
+
+export default function Day(
+  { dateFormat, currentMessage, previousMessage, nextMessage, containerStyle, wrapperStyle, textStyle, inverted },
+  context,
+) {
+  if (!isSameDay(currentMessage, inverted ? previousMessage : nextMessage)) {
+    return (
+      <div style={{...styles.container, ...containerStyle}}>
+        <div style={wrapperStyle}>
+          <Typography style={{...styles.text, ...textStyle}}>
+            {moment(currentMessage.createdAt)
+              .locale(context.getLocale())
+              .format(dateFormat)
+              .toUpperCase()}
+          </Typography>
+        </div>
+      </div>
+    );
+  }
+  return null;
+}
+
 
 Day.contextTypes = {
   getLocale: PropTypes.func,

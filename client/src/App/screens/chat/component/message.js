@@ -1,4 +1,3 @@
-/* eslint react-native/no-inline-styles: 0 */
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -93,6 +92,7 @@ export default class Message extends React.Component {
 
   render() {
     const sameUser = isSameUser(this.props.currentMessage, this.props.nextMessage);
+    const {inverted, containerStyle} = this.props;
     return (
       <div>
         {this.renderDay()}
@@ -100,12 +100,12 @@ export default class Message extends React.Component {
           this.renderSystemMessage()
         ) : (
           <div
-            style={[
-              styles[this.props.position],
-              { marginBottom: sameUser ? 2 : 10 },
-              !this.props.inverted && { marginBottom: 2 },
-              this.props.containerStyle[this.props.position],
-            ]}
+            style={{
+              ...styles[this.props.position],
+              marginBottom: sameUser ? 2 : 10,
+              // !inverted &&  marginBottom: 2,
+              ...containerStyle[this.props.position],
+            }}
           >
             {this.props.position === 'left' ? this.renderAvatar() : null}
             {this.renderBubble()}
@@ -145,8 +145,8 @@ Message.propTypes = {
   previousMessage: PropTypes.object,
   user: PropTypes.object,
   inverted: PropTypes.bool,
-  containerStyle: PropTypes.shape({
-    left: ViewPropTypes.style,
-    right: ViewPropTypes.style,
-  }),
+  // containerStyle: PropTypes.shape({
+  //   left: ViewPropTypes.style,
+  //   right: ViewPropTypes.style,
+  // }),
 };

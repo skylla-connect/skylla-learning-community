@@ -8,44 +8,34 @@ import Send from './Send';
 import Actions from './Actions';
 import Color from './Color';
 
-export default class InputToolbar extends React.Component {
+
+const styles = {
+  container: {
+    borderTopColor: Color.defaultColor,
+    backgroundColor: Color.white,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  primary: {
+    display: "flex",
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  accessory: {
+    height: 44,
+  },
+}
+
+class InputToolbar extends React.Component {
   constructor(props) {
     super(props);
-
-    this.keyboardWillShow = this.keyboardWillShow.bind(this);
-    this.keyboardWillHide = this.keyboardWillHide.bind(this);
 
     this.state = {
       position: 'static',
     };
   }
-
-  componentDidMount() {
-    this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
-    this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
-  }
-
-  componentWillUnmount() {
-    this.keyboardWillShowListener.remove();
-    this.keyboardWillHideListener.remove();
-  }
-
-  keyboardWillShow() {
-    if (this.state.position !== 'relative') {
-      this.setState({
-        position: 'relative',
-      });
-    }
-  }
-
-  keyboardWillHide() {
-    if (this.state.position !== 'absolute') {
-      this.setState({
-        position: 'absolute',
-      });
-    }
-  }
-
+  
   renderActions() {
     if (this.props.renderActions) {
       return this.props.renderActions(this.props);
@@ -74,18 +64,17 @@ export default class InputToolbar extends React.Component {
     if (this.props.renderAccessory) {
       return (
         <div 
-        style={[styles.accessory, this.props.accessoryStyle]}>
+        style={{...styles.accessory, ...this.props.accessoryStyle}}>
           {this.props.renderAccessory(this.props)}
         </div>
       );
     }
     return null;
   }
-
   render() {
     return (
-      <div style={[styles.container, this.props.containerStyle, { position: this.state.position, height: this.props.composerHeight }]}>
-        <div style={[styles.primary, this.props.primaryStyle]}>
+      <div style={{...styles.container, ...this.props.containerStyle, position: this.state.position, height: this.props.composerHeight }}>
+        <div style={{...styles.primary, ...this.props.primaryStyle}}>
           {this.renderActions()}
           {this.renderComposer()}
           {this.renderSend()}
@@ -95,24 +84,7 @@ export default class InputToolbar extends React.Component {
     );
   }
 }
-
-const styles = {
-  container: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: Color.defaultColor,
-    backgroundColor: Color.white,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-  primary: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-  },
-  accessory: {
-    height: 44,
-  },
-}
+export default InputToolbar
 
 InputToolbar.defaultProps = {
   renderAccessory: null,

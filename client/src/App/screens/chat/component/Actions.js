@@ -1,6 +1,6 @@
 /* eslint no-use-before-define: ["error", { "variables": false }] */
 
-import { Typography } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -37,8 +37,8 @@ export default class Actions extends React.Component {
       return this.props.icon();
     }
     return (
-      <div style={[styles.wrapper, this.props.wrapperStyle]}>
-        <Typography style={[styles.iconText, this.props.iconTextStyle]}>+</Typography>
+      <div style={{...styles.wrapper, ...this.props.wrapperStyle}}>
+        <Typography style={{...styles.iconText, ...this.props.iconTextStyle}}>+</Typography>
       </div>
     );
   }
@@ -46,7 +46,7 @@ export default class Actions extends React.Component {
   render() {
     return (
       <Button
-        style={[styles.container, this.props.containerStyle]}
+        style={{...styles.container, ...this.props.containerStyle}}
         onClick={this.props.onPressActionButton || this.onActionsPress}
       >
         {this.renderIcon()}
@@ -92,13 +92,13 @@ Actions.defaultProps = {
   wrapperStyle: {},
 };
 
-Actions.propTypes = {
-  onSend: PropTypes.func,
-  options: PropTypes.object,
-  optionTintColor: PropTypes.string,
-  icon: PropTypes.func,
-  onPressActionButton: PropTypes.func,
-  // wrapperStyle: ViewPropTypes.style,
-  // containerStyle: ViewPropTypes.style,
-  iconTextStyle: Typography.propTypes.style,
-};
+// Actions.propTypes = {
+//   onSend: PropTypes.func,
+//   options: PropTypes.object,
+//   optionTintColor: PropTypes.string,
+//   icon: PropTypes.func,
+//   onPressActionButton: PropTypes.func,
+//   // wrapperStyle: ViewPropTypes.style,
+//   // containerStyle: ViewPropTypes.style,
+//   iconTextStyle: Typography.propTypes.style,
+// };

@@ -8,7 +8,7 @@ import Color from './Color';
 import { Typography } from '@material-ui/core';
 
 const { carrot, emerald, peterRiver, wisteria, alizarin, turquoise, midnightBlue } = Color;
-const styles = makeStyles((theme) =>  ({
+const styles = {
     avatarStyle: {
       display: 'flex',
       justifyContent: 'center',
@@ -26,9 +26,8 @@ const styles = makeStyles((theme) =>  ({
       backgroundColor: Color.backgroundTransparent,
       fontWeight: '100',
     },
-  }));
+  };
 export default class Avatar extends React.Component {
-  classes = styles();
   setAvatarColor() {
     const userName = this.props.user.name || '';
     const name = userName.toUpperCase().split(' ');
@@ -56,15 +55,15 @@ export default class Avatar extends React.Component {
     if (typeof this.props.user.avatar === 'function') {
       return this.props.user.avatar();
     } if (typeof this.props.user.avatar === 'string') {
-      return <Image source={{ uri: this.props.user.avatar }} style={[styles.avatarStyle, this.props.avatarStyle]} />;
+      return <img src={{ uri: this.props.user.avatar }} style={{...styles.avatarStyle, ...this.props.avatarStyle}} />;
     } if (typeof this.props.user.avatar === 'number') {
-      return <Image source={this.props.user.avatar} style={[styles.avatarStyle, this.props.avatarStyle]} />;
+      return <img src={this.props.user.avatar} style={{...styles.avatarStyle, ...this.props.avatarStyle}} />;
     }
     return null;
   }
 
   renderInitials() {
-    return <Typography style={[styles.textStyle, this.props.textStyle]}>{this.avatarName}</Typography>;
+    return <Typography style={{...styles.textStyle, ...this.props.textStyle}}>{this.avatarName}</Typography>;
   }
 
   render() {
@@ -72,22 +71,20 @@ export default class Avatar extends React.Component {
       // render placeholder
       return (
         <div
-          style={[this.classes.avatarStyle, this.classes.avatarTransparent, this.props.avatarStyle]}
-          accessibilityTraits="image"
+          style={{...styles.avatarStyle, ...styles.avatarTransparent, ...this.props.avatarStyle}}
         />
       );
     }
     if (this.props.user.avatar) {
       return (
         <Button
-          disabled={!this.props.onPress}
+          disabled={!this.props.onClick}
           onClick={() => {
-            const { onPress, ...other } = this.props;
-            if (this.props.onPress) {
-              this.props.onPress(other);
+            const { onClick, ...other } = this.props;
+            if (this.props.onClick) {
+              this.props.onClick(other);
             }
           }}
-          accessibilityTraits="image"
         >
           {this.renderAvatar()}
         </Button>
@@ -127,6 +124,6 @@ Avatar.defaultProps = {
 Avatar.propTypes = {
   user: PropTypes.object,
   onPress: PropTypes.func,
-  avatarStyle: Image.propTypes.style,
-  textStyle: Text.propTypes.style,
+  // avatarStyle: Image.propTypes.style,
+  // textStyle: Text.propTypes.style,
 };
