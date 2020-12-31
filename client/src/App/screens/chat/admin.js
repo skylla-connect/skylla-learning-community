@@ -1,14 +1,15 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { withFirebase } from '../../firebase';
 import { ChatUI } from './component/Chat';
-import md5 from './lib/md5'
+import md5 from './lib/md5';
+import { Notifications } from "react-push-notification";
 
 const Admin = (props) => {
   const [messages, setMessages] = useState([]);
   const user = props.firebase.auth.currentUser
   const admin = props.friend
   // const dummy = React.useRef();
-  console.log(user);
+  // console.log(user);
   // const scrollToBottom = () => {
   //   dummy.current.scrollIntoView({ behavior: 'smooth' });
   // }
@@ -117,6 +118,7 @@ const Admin = (props) => {
           }) 
   return (
       <div>
+        <Notifications />
         {renderAdmins()}
         <ChatUI
         user={{

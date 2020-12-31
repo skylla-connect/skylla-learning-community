@@ -10,6 +10,7 @@ import { FullPageSpinner } from '../app/components'
 import withAuthorization from '../app/session/withAuthorization'
 import { useUser } from '../App'
 import client from '../app/utils/api-client'
+import addNotification from "react-push-notification";
 
 
  
@@ -24,7 +25,6 @@ const LiveSupport2 = (props) => {
         props.firebase.doGetTokens()
         .then(snapshot => {
             snapshot.docs.map(doc => {
-                console.log(doc.data());
                 tokenList.push(doc.data()['admin-access-token'])
             })
         })
@@ -44,17 +44,28 @@ const LiveSupport2 = (props) => {
     const handleEmail=(event)=>{
         setEmail(event.target.value)
     }
-    console.log(tokenList)
+
+    const options = {
+        title: 'Please Enter Room',
+        subtitle: user.name, //optional
+        message: `RoomId is ${user.userId}`, //optional
+        onClick: ( e ) => {props.history.push(`/livechat/${user.userId}`)}, //optional, onClick callback.
+        theme: 'darkblue', //optional, default: undefined
+        duration: 3000000, //optional, default: 5000,
+        backgroundTop: 'green', //optional, background color of top container.
+        backgroundBottom: 'darkgreen', //optional, background color of bottom container.
+        colorTop: 'green', //optional, font color of top container.
+        colorBottom: 'darkgreen', //optional, font color of bottom container.
+        closeButton: 'Go away', //optional, text or html/jsx element for close text. Default: Close,
+        native: true, //optional, makes the push notification a native OS notification
+        // icon?: string, // optional, Native only. Sets an icon for the notification.
+        vibrate: 5, // optional, Native only. Sets a vibration for the notification.
+        silent: false // optional, Native only. Makes the notification silent.
+     
+    };
+     
     const handleStartChat = (event) => {
-        const notificationData = {
-            tokens: tokenList,
-            data: { 
-                title: FullName,
-                roomId: user.userId,
-            }
-            
-          };
-          client('broadcast', {body: notificationData})
+          addNotification(options)  
           .then(() => {
             props.history.push(`/livechat/${user.userId}`)
         })

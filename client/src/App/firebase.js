@@ -53,6 +53,7 @@ class Firebase {
     onMessageListener = () =>
     new Promise((resolve) => {
         this.messaging.onMessage((payload) => {
+            console.log(payload);
         resolve(payload);
         });
     });

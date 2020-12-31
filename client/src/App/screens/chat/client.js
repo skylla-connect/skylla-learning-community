@@ -89,7 +89,7 @@ props.firebase.onMessageListener()
     const noteTitle = payload.data.title;
     const noteOptions = {
       body: payload.data.roomId,
-      icon: "typewriter.jpg", //this is my image in my public folder
+      // icon: "typewriter.jpg", //this is my image in my public folder
     };
 
     console.log("title ", noteTitle, " ", payload.data.roomId);

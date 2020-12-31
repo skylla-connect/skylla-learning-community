@@ -26,3 +26,6 @@ messaging.setBackgroundMessageHandler(function(payload) {
     console.log(event)
     return event;
     });
+    // messaging.onMessage((payload) => {
+    //     console.log('message recieved',payload);
+    // })
