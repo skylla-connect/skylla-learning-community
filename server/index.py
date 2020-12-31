@@ -31,7 +31,11 @@ db = firestore.client()
 def sendNotificationToClient(tokens, data):
     #  Send a message to the devices corresponding to the provided
     #  registration tokens.
-    return messaging.MulticastMessage(tokens, data)
+    
+    message = messaging.MulticastMessage(tokens, data)
+    response = messaging.send_multicast(message)
+    print('{0} messages'.format(response.success_count))
+    return (jsonify({'msg': 'done'}))
       
 # Setup the flask app by creating an instance of Flask
 app = Flask(__name__, static_url_path='')  
