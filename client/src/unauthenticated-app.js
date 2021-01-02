@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
-import * as ROUTES from "./app/config/routes";
-import {SignUpPage} from './app/screens/signup/index';
-import SignInPage from './app/screens/login/index';
-import PasswordReset from './app/screens/resetPassword/index';
-import  Client  from './app/screens/chat/client'
+import * as ROUTES from "./App/config/routes";
+import {SignUpPage} from './App/screens/signup/index';
+import SignInPage from './App/screens/login/index';
+import PasswordReset from './App/screens/resetPassword/index';
+import  Client  from './App/screens/chat/client'
 
 
 const Unathenticated = () => {

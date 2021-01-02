@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,WACI,wBAAgC,CAChC,UACJ","file":"1.fcbc2092.chunk.css","sourcesContent":[".btn:hover {\r\n    background-color: rgb(2, 2, 161);\r\n    color: white;\r\n}"]}

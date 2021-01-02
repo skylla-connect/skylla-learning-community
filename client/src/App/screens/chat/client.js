@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { withFirebase } from '../../firebase';
 import { Actions, ChatUI, Composer, InputToolbar } from './component/Chat';
 import Send from './component/Send';
-import md5 from './lib/md5'
+import md5 from 'md5'
 import uuid from "uuid";
 
 const Client = (props) => {

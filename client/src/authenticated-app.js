@@ -2,17 +2,17 @@ import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { compose } from "recompose";
 
-import * as ROUTES from "./app/config/routes";
-import Admin from './app/screens/Admin/index';
-import Trainer from './app/screens/Trainer/index';
-import Trainee from './app/screens/Trainee/index';
+import * as ROUTES from "./App/config/routes";
+import Admin from './App/screens/Admin/index';
+import Trainer from './App/screens/Trainer/index';
+import Trainee from './App/screens/Trainee/index';
 import { useUser } from './App';
-import withAuthorization from './app/session/withAuthorization';
-import { FullPageSpinner } from './app/components';
+import withAuthorization from './App/session/withAuthorization';
+import { FullPageSpinner } from './App/components';
 import LiveSupport from './LiveSupport/LiveSupport'
 import LiveSupport2 from './LiveSupport2/LiveSupport2'
-import  Support  from './app/screens/chat'
-import { withFirebase } from './app/firebase';
+import  Support  from './App/screens/chat'
+import { withFirebase } from './App/firebase';
 
 const Athenticated = (props) => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);

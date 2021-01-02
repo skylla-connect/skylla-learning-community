@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { withFirebase } from '../../firebase';
 import { ChatUI } from './component/Chat';
-import md5 from './lib/md5';
+import md5 from 'md5';
 import { Notifications } from "react-push-notification";
 
 const Admin = (props) => {

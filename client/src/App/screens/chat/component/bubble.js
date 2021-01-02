@@ -2,7 +2,6 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import MessageText from './MessageText';
 import MessageImage from './MessageImage';
 import MessageVideo from './MessageVideo';

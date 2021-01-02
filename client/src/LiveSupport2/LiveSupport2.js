@@ -2,14 +2,14 @@ import React from 'react'
 import './LiveSupport2.css'
 import { Typography, Select, FormControl, Checkbox, Button} from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
-import Footer from '../app/components/Footer/footer'
+import Footer from '../App/components/Footer/footer'
 import {Link, withRouter} from 'react-router-dom'
-import { withFirebase } from '../app/firebase'
+import { withFirebase } from '../App/firebase'
 import { compose } from "recompose";
-import { FullPageSpinner } from '../app/components'
-import withAuthorization from '../app/session/withAuthorization'
+import { FullPageSpinner } from '../App/components'
+import withAuthorization from '../App/session/withAuthorization'
 import { useUser } from '../App'
-import client from '../app/utils/api-client'
+import client from '../App/utils/api-client'
 import addNotification from "react-push-notification";
 
 
@@ -141,7 +141,7 @@ const LiveSupport2 = (props) => {
                         and process the personal data you submit and or/ any personal data that may be
                         necessary to support helping you with you request(s) <br/>
                         You also agree to our Privacy Policy, Terms of service and any related policies.<br/>
-                    <div id="firechat-wrapper">
+                    <div id="firechat-wrApper">
                         <Button variant='contained' color='secondary' 
                         onClick={handleStartChat}
                         style={{

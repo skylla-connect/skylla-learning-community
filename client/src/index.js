@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 // import Container from './App/index';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Firebase, { FirebaseContext } from './app/firebase';
-import './app/bootstrap';
+import Firebase, { FirebaseContext } from './App/firebase';
+import './App/bootstrap';
 import { registerServiceWorker } from './register-sw'
 
 ReactDOM.render(
@@ -15,7 +15,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
+// If you want your App to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 // serviceWorker.register();
