@@ -33,6 +33,8 @@ import {
 } from "react-router-dom";
 import FinalAssessment from './screens/finalAssess/finalAsses';
 import Quiz from './screens/quiz/index';
+import PurhaseModule from '../cart/discover';
+
 
 const drawerWidth = 240;
 
@@ -142,10 +144,10 @@ const routes = [
   },
 
   {
-    path: ROUTES.SESSIONS,
+    path: '/cart/discover',
     exact: true,
     sidebar: () => <div></div>,
-    main: () => <div>View Sections</div>
+    main: () => <PurhaseModule />
   },
 
   {
@@ -160,7 +162,7 @@ const routes = [
     exact: true,
     sidebar: () => <div></div>,
     main: () => <div>
-      Interviews page
+      No information found
     </div>
   },
 
@@ -169,7 +171,7 @@ const routes = [
     exact: true,
     sidebar: () => <div></div>,
     main: () => <div>
-      Hire page
+      No information found
     </div>
   },
 
@@ -290,7 +292,11 @@ export default function PersistentDrawerLeft() {
                   margin: 'auto 15px auto 25px',
                   display: 'flex'
                 }}>
-                <Avatar alt="Remy Sharp" style={{marginLeft:'27%'}} src={currentUserDetails.photo} />
+                <Avatar 
+                  alt="Remy Sharp" 
+                  style={{marginLeft:'27%', position: 'relative', marginTop: 10}} 
+                  src={currentUserDetails.photo} 
+                />
                 <Typography variant="body2" style={{margin: 10}}>
                   {currentUserDetails.name}
                 </Typography>

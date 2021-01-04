@@ -41,7 +41,7 @@ const menu = ({ firebase }) => {
           </MenuItem>
         </Link>
 
-        <Link to={ROUTES.SESSIONS}  style={{
+        <a href="/cart/discover"  style={{
           color: 'white', 
           textDecoration: 'none'
           }}>
@@ -51,9 +51,9 @@ const menu = ({ firebase }) => {
                 width: '15%',
                 color: 'pink'
               }}
-              /> Module Content
+              />Modules
           </MenuItem>
-        </Link>
+        </a>
 
         <LiveClass />
 

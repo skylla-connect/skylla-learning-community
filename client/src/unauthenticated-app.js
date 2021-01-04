@@ -14,7 +14,7 @@ import PasswordReset from './App/screens/resetPassword/index';
 const Unathenticated = () => {
     return ( 
         <Routes />
-     );
+    );
 } 
 export default Unathenticated;
 

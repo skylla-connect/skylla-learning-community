@@ -36,12 +36,13 @@ function NetworkError() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '50%'
+          width: '100%'
         }}
       >
         <div>
           <p css={{
               fontSize: '18px',
+              textAlign: 'center',
           }}>Sorry... something went wrong try refeshing your browser, 
               normally this happens due to bad internet connection.</p>
         </div>
@@ -96,7 +97,7 @@ function Routes(props) {
                 <Route path={ROUTES.CHALLENGES} component={Challenges} />
                 <Route path={ROUTES.PROBLEMS} component={Problems} />
                 <Route path={ROUTES.SUBMISSIONS} component ={Submissions} />
-                <Route path="/cart" component={CartApp} />
+                <Route path={ROUTES.CART} component={CartApp} />
 
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}

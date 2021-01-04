@@ -100,7 +100,7 @@ class SignUpFormBase extends Component {
             };
             this.props.firebase.doCreateNewUser(userCredentials);
             this.setState({ ...INITIAL_STATE });
-            this.props.history.push(ROUTES.ADMIN);
+            this.props.history.push(ROUTES.TRAINEE);
         })
         .catch(error => {
             this.setState({ error, isPending: false});

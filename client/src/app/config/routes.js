@@ -30,5 +30,6 @@ export const T_MODULES = '/t-modules';
 export const Live_CLASSES = '/liveclass';
 export const CHALLENGES = '/challenges';
 export const PROBLEMS = '/problems';
-export const SUBMISSIONS ='/submission';
+export const SUBMISSIONS = '/submission';
+export const CART = '/cart';
 

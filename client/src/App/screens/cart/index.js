@@ -16,15 +16,32 @@ import Navbar from '../components/navbar-checkout';
 import YourModules from './imodules';
 import OrderProvider from '../../session/order-context';
 import Product from '../productDetails';
+import *as ROUTE from '../../config/routes'; 
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import Tooltip from '@material-ui/core/Tooltip';
+import Fab from '@material-ui/core/Fab';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    fab: {
+      margin: theme.spacing(2),
+    },
+    absolute: {
+      position: 'fixed',
+      bottom: theme.spacing(2),
+      left: theme.spacing(3),
+      zIndex: 999
+    },
+}));
 
 function CartApp({match}) {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
       <div  css={{
         margin: '0 auto',
         padding: '2em 0',
-        maxWidth: '840px',
+        maxWidth: '940px',
         width: '100%',
         display: 'grid',
         gridGap: '1em',
@@ -78,6 +95,8 @@ const NavLink = styled(Link)({
   
   function Navigation(params) {
     const {match} = params;
+    const classes = useStyles();
+
     return (
       <nav
         css={{
@@ -86,6 +105,7 @@ const NavLink = styled(Link)({
           padding: '0em 1.5em',
           border: `1px solid black`,
           boxShadow: '0 0 4px 0 #888888',
+          background: 'white',
           borderRadius: '3px',
           [mq.small]: {
             padding: '0.5em 1em',
@@ -96,7 +116,7 @@ const NavLink = styled(Link)({
         <ul
           css={{
             listStyle: 'none',
-            padding: '0',
+            padding: '10px 0 10px 0',
             fontSize: "1.0em",
             '& [aria-current="page"]': {
               borderLeft: `5px solid ${colors.indigo}`,
@@ -107,6 +127,15 @@ const NavLink = styled(Link)({
             },
           }}
         >
+
+          <a href={ROUTE.TRAINEE}>
+            <Tooltip title="Dashboard" aria-label="add">
+                <Fab color="primary" className={classes.absolute}>
+                    <KeyboardBackspaceIcon />
+                </Fab>
+            </Tooltip>
+          </a>
+
            <li>
             <NavLink to={`${match.url}/discover`}>
               Purchase Modules

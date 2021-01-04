@@ -89,7 +89,10 @@ const Discover = (props) => {
             onChange={handleInputChange}
             placeholder="Search modules..."
             id="search"
-            css={{width: '100%'}}
+            css={{
+              width: '100%',
+              padding: '10px'
+            }}
           />
           <Tooltip label="Search Books">
             <label htmlFor="search">
@@ -124,8 +127,8 @@ const Discover = (props) => {
       <div>
         {hasSearched ? null : (
             <div css={{marginTop: 20, fontSize: '1.1em', textAlign: 'center'}}>
-                <p>Welcome to the discover page.</p>
-                <p>Here, let me load a few modules for you...</p>
+                <p>Welcome to the Module page.</p>
+                <p>Select a module you want to learn ...</p>
                 {isPending ? (
                 <div css={{width: '100%', margin: 'auto'}}>
                     <Spinner />
@@ -150,15 +153,15 @@ const Discover = (props) => {
             </List>
           ) : hasSearched ? (
             <div css={{marginTop: 20, fontSize: '1.2em', textAlign: 'center'}}>
-              <p>Hmmm... can't find any books</p>
-              <p>Here, let me load a few books for you...</p>
+              <p>Hmmm... can't find any module</p>
+              <p>let me load a modules for you...</p>
               {isPending ? (
                 <div css={{width: '100%', margin: 'auto'}}>
                   <Spinner />
                 </div>
               ) : (
                 <p>
-                  Hmmm... I couldn't find any books with the query "{query}."
+                  Hmmm... I couldn't find any module with the query "{query}."
                   Please try another.
                 </p>
               )}

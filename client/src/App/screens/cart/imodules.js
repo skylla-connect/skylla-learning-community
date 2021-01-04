@@ -10,9 +10,11 @@ function YourModules() {
     <ListItemList
       noListItems={
         <p>
-          Hey there! Welcome to your bookshelf reading list. Get started by
-          heading over to <Link to="/cart/discover">the Discover page</Link> to add
-          books to your list.
+          Hey there! Welcome to your Skylla Learning Community module. 
+          Get started by
+          heading over to 
+          <Link to="/cart/discover">the Discover page</Link> to add
+          module to your list.
         </p>
       }
     />
