@@ -7,6 +7,7 @@ import DvrIcon from '@material-ui/icons/Dvr';
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
 import SchoolIcon from '@material-ui/icons/School';
 import { Typography } from '@material-ui/core';
+import { withFirebase } from '../../../../firebase';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,9 +33,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function FullWidthGrid(props) {
+const FullWidthGrid = (props) => {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Grid container spacing={6} className={classes.grid}>
@@ -178,3 +178,4 @@ export default function FullWidthGrid(props) {
     </div>
   );
 }
+export default withFirebase(FullWidthGrid)

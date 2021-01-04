@@ -17,6 +17,7 @@ import Mobile from './mob';
 import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
 import {SignUpPage} from '../../screens/signup';
+import { withFirebase } from "../../firebase";
 
 import {
   BrowserRouter as Router,
@@ -180,11 +181,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PersistentDrawerLeft() {
+function PersistentDrawerLeft(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
-
+ 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -303,3 +304,4 @@ export default function PersistentDrawerLeft() {
     </Router>
   );
 }
+export default withFirebase(PersistentDrawerLeft);

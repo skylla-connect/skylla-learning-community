@@ -13,6 +13,7 @@ import LiveSupport from './LiveSupport/LiveSupport'
 import LiveSupport2 from './LiveSupport2/LiveSupport2'
 import  Support  from './app/screens/chat'
 import { withFirebase } from './app/firebase';
+import AdminChat from './app/screens/chat/admin';
 
 const Athenticated = (props) => {
     const [firstAttemptFinished, setFirstAttemptFinished] = React.useState(false);
@@ -24,7 +25,7 @@ const Athenticated = (props) => {
         // eslint-disable-next-line no-console
             console.log(firebaseToken);
             // if (user.ROLE === "admin") {
-                props.firebase.doSetTokens({'id':user.userId,'admin-access-token':firebaseToken})
+                // props.firebase.doSetTokens({'id':user.userId,'admin-access-token':firebaseToken})
             // }
         })
         .catch((err) => {
@@ -60,6 +61,7 @@ function Routes(props) {
                 <Route path={ROUTES.LIVE_SUPPORT} component={LiveSupport} />
                 <Route path={ROUTES.LIVE_SUPPORT2} component={LiveSupport2} />
                 <Route path="/livechat/:roomId" component={Support} />
+                <Route path="/livechat/:roomId/admin" component={AdminChat} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}
