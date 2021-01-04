@@ -625,7 +625,7 @@ const Checkout = (props) => {
                                             <span style={{fontWeight: 'bold', marginRight: 5}}>
                                                 SKYLLA
                                             </span> 
-                                            is required bt law to collect applicable
+                                            is required by law to collect applicable
                                             taxes for purcharses made in some tax juridications
                                         </Typography>
                                         <Typography variant="subtitle2">
