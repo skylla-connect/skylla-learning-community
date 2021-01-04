@@ -7,7 +7,7 @@ import { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUpLink } from '../signup';
-import { withFirebase } from '../../../App/firebase';
+import { withFirebase } from '../../firebase';
 import * as ROUTES from '../../config/routes';
 // import * as colors from "../../styles/colors";
 import { Centered, FormGroup } from '../../components';
@@ -16,6 +16,7 @@ import { PasswordForgetLink } from '../resetPassword';
 import Footer from "../../components/Footer/footer";
 import TextFieldMui from '../components/textField';
 import ButtonMui from '../components/button';
+
 
 
 const SignInPage = () => (
@@ -44,7 +45,8 @@ const SignInPage = () => (
                         alignItems: 'center',
                     }}>
                         <PasswordForgetLink />
-                        <Link to="#" css={{fontSize: '14px', color: 'black'}}>
+
+                        <Link to= {ROUTES.FAQ} css={{fontSize: '14px', color: 'black'}}>
                             FAQs
                         </Link>
                     </div>

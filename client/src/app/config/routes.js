@@ -32,4 +32,5 @@ export const CHALLENGES = '/challenges';
 export const PROBLEMS = '/problems';
 export const SUBMISSIONS = '/submission';
 export const CART = '/cart';
-
+export const QUIZTESTS ='/quiz';
+export const FAQ = '/faq';

@@ -4,7 +4,7 @@ import {jsx} from '@emotion/core'
 
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { withFirebase } from '../../../App/firebase';
+import { withFirebase } from '../../firebase';
 import * as ROUTES from '../../config/routes';
 import { Centered, FormGroup } from '../../components';
 import Footer from "../../components/Footer/footer";
