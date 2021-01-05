@@ -8,6 +8,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Footer from '../components/Footer/footer';
+import *as ROUTES from '../config/routes';
+import { Link } from 'react-router-dom';
 import './faq.css'
 
 const Accordion = withStyles({
@@ -119,11 +121,13 @@ export default function CustomizedAccordions() {
   return (
     <div>
         <div className={classes.menu}>
-            <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' 
-            className={classes.logo}
-            alt='pic'
-            
-            />
+            <Link to={ROUTES.SIGN_IN}>
+                <img src='https://skyllaconnect.com/static/media/skylla2.328f6004.png' 
+                    className={classes.logo}
+                    alt='pic'
+                />
+            </Link>
+
             <br/>
             <Typography 
             style={{
