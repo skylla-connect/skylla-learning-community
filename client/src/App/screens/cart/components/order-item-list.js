@@ -8,25 +8,31 @@ import { withFirebase } from '../../../firebase';
 import { List, ListItem } from '@material-ui/core';
 import ModuleRow from './ModuleRow';
 import useCallbackStatus from '../../../utils/use-callback-status';
-import modules from "./data/modules.json";
+import FirebaseContext from 'firebase';
+// import modules from "./data/modules.json";
 import { Spinner } from '../../../components';
 
 function ListItemList(props) {
-    const dispatch = useOrderItemDispatch();
+  const db = FirebaseContext.firestore()
+  const [art , setArt] = React.useState([]);
+  const dispatch = useOrderItemDispatch();
     const getOrders = async (userId) => {
-        return await (props.firebase.doGetUserOrders(userId)
-        .then(snapshot => {
-          console.log(snapshot.docs);
-            dispatch({type: "fetch", payload: snapshot.docs})
-          return snapshot.docs;
-        })
+        return await (db.collection('modules').where('uid','==', userId)
+        .get()
+          .then(snapshot => {
+            console.log(snapshot.docs);
+            const data = snapshot.docs.map(doc => doc.data())
+            setArt(data);
+              dispatch({type: "fetch", payload: snapshot.docs})
+            return snapshot.docs;
+          })
         )
       }
       const { data, isPending, run} = useCallbackStatus();
       React.useEffect(() => {
         run(getOrders(props.firebase.auth.currentUser.uid))
       },[]);
-  const listItems = modules.slice(1,5) || data
+  const listItems = art.slice(1,5) || data
   dispatch({type: "fetch", payload: listItems})
 //   const filteredListItems = listItems.filter(filterListItems)
     if (isPending) {
