@@ -107,8 +107,9 @@ const Product = (props) => {
                     </Tooltip> 
                         </CardMedia>
                         <CardContent style={{textAlign: 'center'}}>
-                            <Typography variant="h6" color="textSecondary">Javascript</Typography>
-                            <Typography style={{paddingTop: '10px'}} variant="body2">Walkthrough Javascript</Typography>
+                            <Typography variant="h6" color="textSecondary">{module}</Typography>
+                            <Typography style={{paddingTop: '10px'}} variant="body2"><b>Trainer:</b> {trainer}</Typography>
+                            <Typography style={{paddingTop: '10px'}} variant="body2"><b>Description:</b>{description}</Typography>
                         </CardContent>
                     </Card>
                     <Card style={{
@@ -119,10 +120,8 @@ const Product = (props) => {
                         padding: "50px 20px"
                     }}>
                         <CardContent>
-                            <Typography variant="body" color="textSecondary">What you will learn!!</Typography>
-                            {learnContent.map( content => {
-                               return ( <Typography style={{paddingTop: '8px'}} key={content} variant="body2"><a href="#">{content}</a></Typography>)
-                            }) }
+                            <Typography variant="h5" color="textSecondary">What you will learn!!</Typography>
+                            <Typography variant="body" color="textSecondary">{content}</Typography>
                         </CardContent>
                     </Card>
                 </Grid>
@@ -137,7 +136,7 @@ const Product = (props) => {
                         <CardContent style={{
                             textAlign: 'center'}}>
                             <div>
-                                <Typography variant="h6">Javascript</Typography>
+                                <Typography variant="h6">{module}</Typography>
                                 <Typography style={{paddingTop: '10px'}} 
                                 variant="subtitle2">Preview this Content</Typography>
                             </div>
@@ -189,12 +188,12 @@ const Product = (props) => {
               <div>
                 <i>{trainer}</i>
                 <span css={{marginRight: 6, marginLeft: 6}}>|</span>
-                <i>{content}</i>
+                <i>{description}</i>
               </div>
             </div>
           </div>
           <br />
-          <p>{description}</p>
+          <p>{content}</p>
         </div>
       </div>
     </div>
