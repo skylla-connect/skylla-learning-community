@@ -85,7 +85,7 @@ function ModuleRow(props) {
             justifyContent: "space-evenly"
           }}>
           <FormGroup>
-              <Link to={`/cart/module/${book.id}`}>
+              <Link to={`/cart/module/${book.modId}`}>
                 <Button 
                 css={{width: '120px'}}
                     variant="outlined"
@@ -96,7 +96,7 @@ function ModuleRow(props) {
             <FormGroup>
               {/* <Link to={`/checkout/${book.id}`}> */}
                 <Button 
-                onClick={() => navigate(`/cart/checkout/${book.id}`)}
+                onClick={() => navigate(`/cart/checkout/${book.modId}`)}
                 css={{width: '120px'}}
                     variant="contained"
                     color="primary"

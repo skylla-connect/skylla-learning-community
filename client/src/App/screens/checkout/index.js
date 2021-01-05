@@ -11,6 +11,7 @@ import VisaLogo from "./static/Icon_Visa.png";
 import MasterLogo from "./static/Icon_MasterCard.png";
 import { dispatchCTX, stateCTX } from "../../session/checkout-context";
 import * as mq from '../../styles/media-queries';
+import FirebaseContext from 'firebase';
 import modules from "../cart/components/data/modules.json";
 
 // MUI stuff
@@ -456,6 +457,8 @@ const Checkout = (props) => {
     const dispatch = React.useContext(dispatchCTX);
     const context = React.useContext(stateCTX);
     const [loading, setLoading] = React.useState(false)
+    const db = FirebaseContext.firestore()
+    const [art , setArt] = React.useState([]);
     const [country, setCountry] = React.useState('select country');
     const classes = useStyles();
     // const learnContent = ["content", "content", "content", "content", "content", "content"]
@@ -483,18 +486,24 @@ const Checkout = (props) => {
        
        
     }
-    async function getModule(bookId) {
-        return await (props.firebase.doGetModule(bookId)
-        .then(snapshot => {
-             return snapshot.docs
-            }))
-      }
+    async function getModule(modId) {
+        return await (db.collection('modules')
+        .get()
+            .then(snapshot => {
+            console.log(snapshot.docs);
+            const data = snapshot.docs.map(doc => doc.data())
+            setArt(data);
+                // dispatch({type: "fetch", payload: snapshot.docs})
+            return snapshot.docs;
+            })
+        )
+    }
     const { data, status, isPending, isRejected, isResolved, error, run} = useCallbackStatus()
     React.useEffect(() => {
-      run(getModule(props.moduleId))
+      run(getModule(props.modId))
       dispatch({type: "totals", payload: 50000.00})
     },[]);;
-    const book = modules.find(item => item.id === props.moduleId);
+    const book = art.find(item => item.id === props.modId);
     if (isPending) {
         return (
           <div css={{marginTop: '2em', fontSize: '2em', textAlign: 'center'}}>
@@ -517,7 +526,8 @@ const Checkout = (props) => {
           </div>
         )
       }
-    const {title, author, coverImageUrl, publisher, synopsis} = book;
+      const {module, trainer, imageUrl, content, description} = book;
+
     return ( 
         <div className={classes.root}>
             <Grid container spacing={6} className={classes.grid}>
@@ -625,7 +635,7 @@ const Checkout = (props) => {
                                             <span style={{fontWeight: 'bold', marginRight: 5}}>
                                                 SKYLLA
                                             </span> 
-                                            is required bt law to collect applicable
+                                            is required by law to collect applicable
                                             taxes for purcharses made in some tax juridications
                                         </Typography>
                                         <Typography variant="subtitle2">
@@ -665,8 +675,8 @@ const Checkout = (props) => {
                                     }}
                                 >
                                 <img
-                                    src={coverImageUrl}
-                                    alt={`${title} book cover`}
+                                    src={imageUrl}
+                                    alt={`${module} book cover`}
                                     css={{
                                         width: '100%',
                                         maxWidth: 200,
@@ -676,17 +686,17 @@ const Checkout = (props) => {
 
                             <div css={{display: 'flex', position: 'relative'}}>
                                 <div css={{flex: 1, justifyContent: 'space-between'}}>
-                                    <h1>{title}</h1>
+                                    <h1>{module}</h1>
                                     <div>
-                                        <i>{author}</i>
+                                        <i>{trainer}</i>
                                         <span css={{marginRight: 6, marginLeft: 6}}>|</span>
-                                        <i>{publisher}</i>
+                                        <i>{content}</i>
                                     </div>
                                 </div>
                             </div>
                             <br />
                             <p>
-                                {synopsis}
+                                {description}
                             </p>
                         </div>
                     </div>
