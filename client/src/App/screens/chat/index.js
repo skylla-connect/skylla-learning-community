@@ -43,7 +43,6 @@ const Support = (props) => {
     React.useEffect(() => {
         props.firebase.doGetAdmins()
         .then(snapshot => {
-            console.log(snapshot);
             snapshot.docs.map(doc => adminList.push(doc.data()))
         })
     })
@@ -69,10 +68,8 @@ export default compose(
 function Routes(props) {
     return (
         <Router>
-                {props.authUser.ROLE === "admin" && 
-                <Admin path={props.path} component={Admin} user={props.authUser} />}
-                {props.authUser.ROLE === "trainee" && 
-                <Client path={props.path}  user={props.authUser} admin={props.admins} />}
+            <Admin path={`${props.path}/admin`} user={props.authUser} admin={props.admins} />
+            <Client path={`${props.path}/me`}  user={props.authUser} admin={props.admins} />
         </Router>
     )
 }

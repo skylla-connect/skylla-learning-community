@@ -17,6 +17,9 @@ import Permissions from './components/permissions';
 import Views from './components/views/views';
 import Footer from '../../components/Footer/footer';
 import withAuthorization from '../../session/withAuthorization';
+import { compose } from 'recompose';
+import { withFirebase } from '../../firebase';
+import { withRouter } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -74,6 +77,29 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const notifyAdmin = (title, body) => {
+    if (Notification.permission !== "granted")
+      Notification.requestPermission();
+    else {
+      var notification = new Notification(title, {
+        icon: '',
+        body: body,
+      });
+      notification.onclick = function() {
+        props.history.push(`/livechat/${body}/admin`)
+        // this.cancel()
+      }
+    }
+  }
+  React.useEffect(() => {
+    props.firebase.listenerNotify()
+    .then(snapshot => {
+      snapshot.docs.map(doc => {
+        return notifyAdmin(doc.data().title, doc.data().roomId)
+      })
+    })
+  })
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -183,4 +209,8 @@ ResponsiveDrawer.propTypes = {
 const condition = authUser => 
   authUser && authUser.ROLE === "admin";
 
-export default withAuthorization(condition)(ResponsiveDrawer);
+export default compose(
+  withRouter,
+  withFirebase,
+  withAuthorization(condition)
+)(ResponsiveDrawer);

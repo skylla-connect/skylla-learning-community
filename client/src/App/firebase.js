@@ -22,24 +22,7 @@ class Firebase {
         this.auth = app.auth();
         this.db = app.firestore()
         this.messaging = app.messaging()
-
-        // this.messaging.setBackgroundMessageHandler(function(payload) {
-        //     console.log('[firebase-messaging-sw.js] Received background message ', payload);
-        //     const notificationTitle = payload.data.title;
-        //     const notificationOptions = {
-        //       body: payload.data.body,
-        //       icon: '/firebase-logo.png'
-        //     };
-        //     return self.registration.showNotification(notificationTitle,
-        //       notificationOptions);
-        //   });
-          
-        //   self.addEventListener('notificationclick', event => {
-        //     console.log(event)
-        //     return event;
-        //   });
     }
-    // notification
     requestFirebaseNotificationPermission = () =>
     new Promise((resolve) => {
         this.messaging.getToken()
@@ -57,32 +40,6 @@ class Firebase {
         resolve(payload);
         });
     });
-    // onBackgroundMessageHandler = () => 
-    // new Promise((resolve) => {
-    //     this.messaging.setBackgroundMessageHandler(function(payload) {
-    //         resolve(payload)
-    //     });
-    // })
-    // sendNotificationToClient = (tokens, notification) => {
-    //     // Send a message to the devices corresponding to the provided
-    //     // registration tokens.
-    //     this.messaging
-    //       .sendMulticast({ tokens, notification })
-    //       .then(response => {
-    //         // Response is an object of the form { responses: [] }
-    //         const successes = response.responses.filter(r => r.success === true)
-    //           .length;
-    //         const failures = response.responses.filter(r => r.success === false)
-    //           .length;
-    //         console.log(
-    //           'Notifications sent:',
-    //           `${successes} successful, ${failures} failed`
-    //         );
-    //       })
-    //       .catch(error => {
-    //         console.log('Error sending message:', error);
-    //       });
-    //   };
       
     // *** Auth API ***
     doCreateUserWithEmailAndPassword = (email, password) =>
@@ -142,7 +99,10 @@ class Firebase {
     doGetTokens = async () => {
         return await this.db.collection(`/users/admin/tokens`).get()
     }  
-    doGetAdmins = () => this.db.collection(`/users/admin/users`).get()   
+    doGetAdmins = () => this.db.collection(`/users/admin/users`).get()  
+    notifyAdmins = async (data) => await this.db.collection('/notifications').add(data)
+    listenerNotify = () => this.db.collection('/notifications')
+    .orderBy('createdAt', "desc").limit(1).get()
 }
 export default Firebase;
 const FirebaseContext = React.createContext(null);

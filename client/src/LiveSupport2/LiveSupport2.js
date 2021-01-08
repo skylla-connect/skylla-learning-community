@@ -21,14 +21,14 @@ const LiveSupport2 = (props) => {
     const {user, isLoading} = useUser();
     let tokenList = []
     
-    React.useEffect(() => {
-        props.firebase.doGetTokens()
-        .then(snapshot => {
-            snapshot.docs.map(doc => {
-                tokenList.push(doc.data()['admin-access-token'])
-            })
-        })
-    })
+    // React.useEffect(() => {
+    //     props.firebase.doGetTokens()
+    //     .then(snapshot => {
+    //         snapshot.docs.map(doc => {
+    //             tokenList.push(doc.data()['admin-access-token'])
+    //         })
+    //     })
+    // })
     React.useLayoutEffect(() => {
         if (!isLoading) {
           setFirstAttemptFinished(true)
@@ -64,10 +64,15 @@ const LiveSupport2 = (props) => {
      
     };
      
-    const handleStartChat = (event) => {
-          addNotification(options)  
+    const handleStartChat = (event) => { 
+        const notificationData  ={
+                title: user.name,
+                roomId: user.userId,
+                createdAt: new Date()
+        }
+        props.firebase.notifyAdmins(notificationData)
           .then(() => {
-            props.history.push(`/livechat/${user.userId}`)
+            props.history.push(`/livechat/${user.userId}/me`)
         })
        
     }

@@ -1,5 +1,5 @@
-importScripts("https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js");
-importScripts("https://www.gstatic.com/firebasejs/7.14.1/firebase-messaging.js");
+importScripts("https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/7.24.0/firebase-messaging.js");
 
 firebase.initializeApp({
     apiKey: 'AIzaSyAAjENIM451OC_xgBv1uLi-XNbffD8hlh8',
@@ -12,13 +12,14 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
-messaging.setBackgroundMessageHandler(function(payload) {
+messaging.onBackgroundMessage(function(payload) {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
-    const notificationTitle = payload.data.title;
+    const notificationTitle = "payload.data.title";
     const notificationOptions = {
-    body: payload.data.roomId,
-    icon: '/firebase-logo.png'
+    body: "payload.data.roomId",
+    icon: './logo192.png'
     };
+    
     return self.registration.showNotification(notificationTitle,
     notificationOptions);
     });
