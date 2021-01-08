@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core';
 import { FormGroup } from '../../../components';
 
 function ModuleRow(props) {
-  const {module, content, imageUrl} = props.book;
+  const {module, description, imageUrl} = props.book;
   const {finished, book} = props;
   return (
     <div
@@ -72,12 +72,12 @@ function ModuleRow(props) {
                   fontSize: '0.85em',
                 }}
               >
-                {content}
+                {description}
               </div>
               <small>{book.trainer}</small>
             </div>
           </div>
-          <small css={{fontSize: "0.85em", lineHeight: "2em"}}>{book.description.substring(0, 500)}...</small>
+          <small css={{fontSize: "0.85em", lineHeight: "2em"}}>{book.content.substring(0, 500)}...</small>
           {!finished && <div css={{
             paddingTop: "0.85em",
             display: "flex",
