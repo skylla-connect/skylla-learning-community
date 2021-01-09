@@ -12,7 +12,7 @@ import MasterLogo from "./static/Icon_MasterCard.png";
 import { dispatchCTX, stateCTX } from "../../session/checkout-context";
 import * as mq from '../../styles/media-queries';
 import FirebaseContext from 'firebase';
-import modules from "../cart/components/data/modules.json";
+// import modules from "../cart/components/data/modules.json";
 
 // MUI stuff
 import  makeStyles  from '@material-ui/core/styles/makeStyles';
@@ -26,6 +26,7 @@ import Typography from '@material-ui/core/Typography';
 import { FormGroup, Spinner} from '../../components';
 import Button from '@material-ui/core/Button';
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import FlutterPay from '../checkout/flWave';
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import {
     FormControl, 
@@ -652,7 +653,7 @@ const Checkout = (props) => {
                                                     type="submit"
                                                     onClick={handleCheckout}
                                                     >
-                                                        Complete Payment
+                                                        <FlutterPay/>
                                                 </Button>
                                             </FormGroup>
                                         </div>

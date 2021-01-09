@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core';
 import { FormGroup } from '../../../components';
 
 function ModuleRow(props) {
-  const {module, description, imageUrl} = props.book;
+  const {module, description, imageUrl, price} = props.book;
   const {finished, book} = props;
   return (
     <div
@@ -49,7 +49,7 @@ function ModuleRow(props) {
             src={imageUrl}
             alt={`${module} book cover`}
             css={{maxHeight: '100%', maxWidth: '100%'}}
-          />
+          />{price}
         </div>
         <div css={{flex: 1}}>
           <div css={{display: 'flex', justifyContent: 'space-between'}}>
@@ -84,7 +84,7 @@ function ModuleRow(props) {
             flexDirection: "row",
             justifyContent: "space-evenly"
           }}>
-          <FormGroup>
+          {/* <FormGroup>
               <Link to={`/cart/module/${book.modId}`}>
                 <Button 
                 css={{width: '120px'}}
@@ -92,7 +92,7 @@ function ModuleRow(props) {
                     color="primary"
                     ><small>Go to Cart</small></Button>
               </Link>
-            </FormGroup>
+            </FormGroup> */}
             <FormGroup>
               {/* <Link to={`/checkout/${book.id}`}> */}
                 <Button 
