@@ -83,12 +83,6 @@ const useStyles = makeStyles((theme) => ({
     color: 'red',
     cursor: 'pointer',
   },
-
-  absolute: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(3),
-  },
 }));
 
 export default function FullWidthGrid(props) {
@@ -120,14 +114,6 @@ export default function FullWidthGrid(props) {
           </div>
         </div>
       </div>
-
-      <Link to={ROUTES.LIVE_SUPPORT}>
-        <Tooltip title="support" aria-label="support">
-          <Fab color="secondary" className={classes.absolute}>
-            <Support />
-          </Fab>
-        </Tooltip>
-      </Link>
     </div>
   );
 }

@@ -156,14 +156,9 @@ const LiveSupport2 = (props) => {
 
                         }} >Start Chat
                         </Button>
-                        </div>
-
-                </div>
-
-        
-                    
+                    </div>
+                </div>  
             </div>
-            
             <Footer/>
         </div>
     )

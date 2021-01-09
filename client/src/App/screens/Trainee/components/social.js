@@ -10,6 +10,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Typography from '@material-ui/core/Typography';
+import ChatIcon from '../../Admin/components/chatIcon'
 
 const useStyles = makeStyles((theme) => ({
     fab: {
@@ -78,6 +79,8 @@ export default function SimpleMenu() {
                     </Fab>
                 </Tooltip>
             </MenuItem>
+
+            <ChatIcon />
         </MenuList>
     </div>
   );

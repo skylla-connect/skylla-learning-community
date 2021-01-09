@@ -5,6 +5,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 // import Typography from '@material-ui/core/Typography';
 import './permissions.css'
 import { Link } from 'react-router-dom';
+import ChatIcon from './chatIcon';
 
 const permissions = (props) => {
   return (
@@ -71,6 +72,9 @@ const permissions = (props) => {
                 /> create assessment
             </MenuItem>
           </Link>
+
+          {/* Chat Icon */}
+          <ChatIcon />
         </MenuList>
     </div>
   );
