@@ -40,16 +40,19 @@ const Discover = (props) => {
    db.collection('/modules')
   .get()
   .then(snap =>{
-    const data = snap.docs.map(doc => doc.data())
-    // console.log(data);
-    setArt(data);
-    return snap.docs;
+    const data = [] 
+    snap.docs.map(doc => {
+      data.push(doc.data()) })
+    return data;
   })
   }
   async function search(query) {
     return await (props.firebase.doSearch(query)
     .then(snapshot => {
-      return snapshot.docs;
+      const data = [] 
+      snapshot.docs.map(doc => {
+        data.push(doc.data()) })
+      return data;
     })
     );
   }
@@ -67,7 +70,7 @@ const Discover = (props) => {
     console.log(status);
     console.log(error);
     console.log(data);
-      let books = art || data;
+      let books = data;
       const orders = useOrderItemState()
       console.log(orders);
       console.log(books);
