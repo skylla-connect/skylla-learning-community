@@ -23,13 +23,16 @@ const SignInPage = () => (
     }}>
         <SideBanner/>
         <div css={{
-            width: '70%',
+            width: '100%',
             position: 'relative',
             height: '100vh',
+            padding: '10px'
            }}>
             <Centered>
                 <div css={{
                     marginBottom: '60px',
+                    marginRight: '30px',
+                    marginLeft: '10px'
                 }}>
                     <SignUpLink />
                     <SignInForm />
@@ -39,6 +42,7 @@ const SignInPage = () => (
                         justifyContent: 'space-between',
                         marginTop: '30px',
                         alignItems: 'center',
+                        marginRight: '20px',
                     }}>
                         <PasswordForgetLink />
                         <Link to="#" css={{fontSize: '14px', color: 'black'}}>
@@ -46,7 +50,7 @@ const SignInPage = () => (
                         </Link>
                     </div>
                     <Footer/>
-                </div> 
+                </div>
             </Centered>
         </div>
     </div>
@@ -83,16 +87,24 @@ class SignInFormBase extends Component {
     render() {
         const { email, password, error, isPending } = this.state;
         const isInvalid = password === '' || email === '';
+
+        // The current width of the viewport
+        const width = window.innerWidth;
+        // The width below which the mobile view should be rendered
+        const breakpoint = 620;
+
         return (
-            <form onSubmit={this.onSubmit} 
+          width < breakpoint ?
+            <form onSubmit={this.onSubmit}
                 css={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'stretch',
-                    width: '350px',
+                    //width: '350px',
+                    width: '100%',
                 }}>
             <FormGroup>
-                <TextFieldMui 
+                <TextFieldMui
                     label="E-mail Address"
                     variant="outlined"
                     type="email"
@@ -105,7 +117,7 @@ class SignInFormBase extends Component {
             <FormGroup css={{
                 paddingTop: '25px',
             }}>
-                <TextFieldMui 
+                <TextFieldMui
                     label="Password"
                     id="password"
                     name="password"
@@ -118,7 +130,7 @@ class SignInFormBase extends Component {
             <FormGroup css={{
                 paddingTop: '25px',
                 }}>
-                <ButtonMui 
+                <ButtonMui
                     variant="contained"
                     color="primary"
                     type="submit"
@@ -128,7 +140,55 @@ class SignInFormBase extends Component {
                 />
             </FormGroup>
             {error && <p css={{
-                color: 'red', 
+                color: 'red',
+                fontSize: '14px',
+                paddingTop: '15px'}}>{error.message}</p>}
+            </form> :
+            <form onSubmit={this.onSubmit}
+                css={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'stretch',
+                    width: '350px',
+                }}>
+            <FormGroup>
+                <TextFieldMui
+                    label="E-mail Address"
+                    variant="outlined"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={email}
+                    onChange={this.onChange}
+                />
+            </FormGroup>
+            <FormGroup css={{
+                paddingTop: '25px',
+            }}>
+                <TextFieldMui
+                    label="Password"
+                    id="password"
+                    name="password"
+                    value={password}
+                    variant="outlined"
+                    type="password"
+                    onChange={this.onChange}
+                />
+            </FormGroup>
+            <FormGroup css={{
+                paddingTop: '25px',
+                }}>
+                <ButtonMui
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    disabled={isInvalid}
+                    isPending={isPending}
+                    text="login"
+                />
+            </FormGroup>
+            {error && <p css={{
+                color: 'red',
                 fontSize: '14px',
                 paddingTop: '15px'}}>{error.message}</p>}
             </form>

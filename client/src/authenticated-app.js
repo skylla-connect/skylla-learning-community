@@ -21,14 +21,14 @@ const Athenticated = () => {
           setFirstAttemptFinished(true)
         }
       }, [isLoading])
-    
+
       if (!firstAttemptFinished) {
           return <FullPageSpinner />
       }
-    return ( 
+    return (
         <Routes authUser={user}/>
      );
-} 
+}
 const condition = (authUser) => authUser;
 export default withAuthorization(condition)(Athenticated);
 
@@ -40,13 +40,13 @@ function Routes(props) {
                 <Route path={ROUTES.TRAINER} component={Trainer} />
                 <Route path={ROUTES.TRAINEE} component={Trainee} />
                 <Route path={ROUTES.CART} component={Cart} />
-                <Route path={ROUTES.MODULES} component={Module} /> 
+                <Route path={ROUTES.MODULES} component={Module} />
                 <Route path={ROUTES.PAYMENT} component={Payment} />
                 <Route path="/">
                     {props.authUser.ROLE === "admin" && <Redirect to={ROUTES.ADMIN}/>}
                     {props.authUser.ROLE === "trainer" && <Redirect to={ROUTES.TRAINER}/>}
                     {props.authUser.ROLE === "trainee" && <Redirect to={ROUTES.TRAINEE}/>}
-                </Route> 
+                </Route>
             </Switch>
         </Router>
     )

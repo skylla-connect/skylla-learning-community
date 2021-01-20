@@ -1,22 +1,22 @@
 @font-face {
     font-family: 'Helvetica';
-    src: local('Helvetica'), 
+    src: local('Helvetica'),
     url('../fonts/Helvetica.ttf') format('truetype');
 }
 @font-face {
     font-family: 'RobotoCondensed';
-    src: local('RobotoCondensed-Regular'), 
+    src: local('RobotoCondensed-Regular'),
     url('../fonts/RobotoCondensed-Regular.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Raleway-Medium';
-    src: local('Raleway-Medium'), 
+    src: local('Raleway-Medium'),
     url('../fonts/Raleway-Medium.ttf') format('truetype');
 }
 @font-face {
     font-family: 'Helvetica-Bold';
-    src: local('Helvetica-Bold'), 
+    src: local('Helvetica-Bold'),
     url('../fonts/Helvetica-Bold.ttf') format('truetype');
 }
 body{

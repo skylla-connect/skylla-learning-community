@@ -66,7 +66,7 @@ class SignUpFormBase extends Component {
         super(props);
         this.state = { ...INITIAL_STATE };
     }
-    
+
     onSubmit = event => {
         this.setState({...this.state, isPending: true})
         const { username, email, passwordOne } = this.state;
@@ -111,7 +111,7 @@ class SignUpFormBase extends Component {
             isPending,
             error,
             isChecked,
-            } = this.state;    
+            } = this.state;
             const isInvalid =
             passwordOne !== passwordTwo ||
             passwordOne === '' ||
@@ -121,7 +121,7 @@ class SignUpFormBase extends Component {
             isPending;
 
     return (
-        <form onSubmit={this.onSubmit} 
+        <form onSubmit={this.onSubmit}
         css={{
             width: '350px',
             display: 'flex',
@@ -143,7 +143,7 @@ class SignUpFormBase extends Component {
              <FormGroup css={{
                  paddingTop: "18px"
              }}>
-            <TextFieldMui 
+            <TextFieldMui
                 label="E-mail Address"
                 variant="outlined"
                 type="email"
@@ -156,7 +156,7 @@ class SignUpFormBase extends Component {
              <FormGroup css={{
                 paddingTop: '18px',
             }}>
-                <TextFieldMui 
+                <TextFieldMui
                 label="Password"
                 id="passwordOne"
                 name="passwordOne"
@@ -169,7 +169,7 @@ class SignUpFormBase extends Component {
              <FormGroup css={{
                 paddingTop: '18px',
             }}>
-                <TextFieldMui 
+                <TextFieldMui
                 label="Confirm Password"
                 id="passwordTwo"
                 name="passwordTwo"
@@ -179,7 +179,7 @@ class SignUpFormBase extends Component {
                 onChange={this.onChange}
                 />
             </FormGroup>
-            <FormGroup css={{display: 'flex', 
+            <FormGroup css={{display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center',
@@ -200,7 +200,7 @@ class SignUpFormBase extends Component {
                     color: "#007bff" }}>Terms</Link> of service and to Skylla <Link to="#"
                     css={{
                         // backgroundColor: "#007bff",
-                        color: "#007bff"  
+                        color: "#007bff"
                     }}>Polices</Link> </label>
             </FormGroup>
             <FormGroup css={{
@@ -230,7 +230,7 @@ const SignUpLink = () => (
     fontSize: '16px',
     paddingBottom: '30px',
     }}>
-    Don't have an account? <span css={{paddingLeft: '18px'}}>
+    Don't have an account? <span css={{paddingLeft: '10px'}}>
     <Link to={ROUTES.SIGN_UP}>Sign Up</Link></span>
 </p>
 );
@@ -239,6 +239,6 @@ const SignUpForm = compose(
     withRouter,
     withFirebase,
     )(SignUpFormBase);
-    
+
 
 export { SignUpPage, SignUpLink };

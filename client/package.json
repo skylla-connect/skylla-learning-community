@@ -11,9 +11,25 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@theia/callhierarchy": "next",
+    "@theia/file-search": "next",
+    "@theia/git": "next",
+    "@theia/markers": "next",
+    "@theia/messages": "next",
+    "@theia/mini-browser": "next",
+    "@theia/navigator": "next",
+    "@theia/outline-view": "next",
+    "@theia/plugin-ext-vscode": "next",
+    "@theia/preferences": "next",
+    "@theia/preview": "next",
+    "@theia/search-in-workspace": "next",
+    "@theia/terminal": "next",
     "bootstrap": "^4.3.1",
+    "circular-dependency-plugin": "^5.2.2",
     "firebase": "^7.24.0",
     "material-table": "^1.69.1",
+    "package.json": "^2.0.1",
+    "puppeteer": "^5.5.0",
     "react": "^16.13.1",
     "react-async": "^10.0.1",
     "react-bootstrap": "^1.4.0",
@@ -48,6 +64,6 @@
     ]
   },
   "devDependencies": {
-    "dotenv": "^8.2.0"
+    "@theia/cli": "next"
   }
 }

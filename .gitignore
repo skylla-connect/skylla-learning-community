@@ -131,3 +131,7 @@ config.json
 
 # Pyre type checker
 .pyre/
+
+
+# Ignore the node_modules directory
+client/node_modules/
