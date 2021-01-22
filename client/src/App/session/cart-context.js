@@ -1,5 +1,5 @@
 import React from "react";
-import { withFirebase } from "../../firebase";
+import { withFirebase } from "../firebase";
 
 const CartStateContext = React.createContext()
 const CartDispatchContext = React.createContext()
@@ -13,6 +13,7 @@ export const cartReducer = (state=initialState, action) =>{
     let updatedCart = [...state.cart]
     let updatedTotal = state.totalPrice
     // let updatedGst = state.gst
+    let item
     const updatedMap = { ...state.itemMap }
     switch (action.type) {
         case "clear":
@@ -49,7 +50,7 @@ export const cartReducer = (state=initialState, action) =>{
     }
 }
 
-function cartProvider({children}) {
+function CartProvider({children}) {
     const {data} = useCart();
     const [state, dispatch] = React.useReducer(cartReducer, data )
     return (
@@ -61,7 +62,7 @@ function cartProvider({children}) {
     )
   }
 
-export {cartProvider};
+export {CartProvider};
 
 
 const CRUD = ({ firebase }) => {

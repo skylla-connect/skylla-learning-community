@@ -43,6 +43,7 @@ const Discover = (props) => {
     const data = [] 
     snap.docs.map(doc => {
       data.push(doc.data()) })
+      setArt(data);
     return data;
   })
   }
@@ -70,11 +71,11 @@ const Discover = (props) => {
     console.log(status);
     console.log(error);
     console.log(data);
-      let books = data;
+      let books = art;
       const orders = useOrderItemState()
       console.log(orders);
       console.log(books);
-      books = books.filter(li => !orders.find(item => item.id === li.id));
+      books = books.filter(li => !orders.find(item => item.modId === li.id));
       console.log(books);
     
     function handleInputChange(e) {

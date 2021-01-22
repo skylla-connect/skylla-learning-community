@@ -170,7 +170,7 @@ const ModuleForm = () => {
                     <TextFieldMui
                         label="Trainer's Name"
                         variant="outlined"
-                        type="email"
+                        type="text"
                         id="trainer"
                         name="trainer"
                         value={values.trainer}
