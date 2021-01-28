@@ -207,7 +207,18 @@ const StyledToggleButton = withStyles({
     },[value, name]);
     return ( 
     <div>
-    <RadioGroup 
+        <FormGroup style={{
+            padding: 10,
+            backgroundColor: colors.bluegray, 
+            width: "100%",
+            cursor: 'pointer',
+            boxShadow: '0 1.5px 1px 0px grey',
+            borderRadius: 7
+        }}>
+            
+                    <FlutterPay/>
+        </FormGroup>
+    {/* <RadioGroup 
     name={name}
     value={value}
     onChange={onChangeCard}
@@ -315,7 +326,7 @@ const StyledToggleButton = withStyles({
                     <SavedCard card={item} />
                 );
             })}
-        </RadioGroup>
+        </RadioGroup> */}
         </div>
     );
         
@@ -369,7 +380,7 @@ const StyledToggleButton = withStyles({
         </Card>
     </AccordionDetails>
     </Accordion>
-    <Accordion style={{backgroundColor: colors.bluegray, width: "100%"}}>
+    {/* <Accordion style={{backgroundColor: colors.bluegray, width: "100%"}}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <span style={{fontSize: "15px"}}>
             <IconButton style={{padding: "0px"}}>
@@ -392,7 +403,7 @@ const StyledToggleButton = withStyles({
             </FormGroup>
         </Card>
     </AccordionDetails>
-    </Accordion> 
+    </Accordion>  */}
         </RadioGroup>
       );
   }
@@ -584,11 +595,11 @@ const Checkout = (props) => {
                                 <span>
                                     <PhoneIphoneOutlined 
                                     // style={{color: colors.gray20}} 
-                                    className={classes.icon}/> Mobile Money
+                                    className={classes.icon}/> MoMo Pay
                                 </span>} 
                                 rightButtonContent={
                                     <span>
-                                    Credit or Debit Card
+                                     Other
                                     </span>
                                 }/>
                             </FormGroup>
@@ -645,7 +656,7 @@ const Checkout = (props) => {
                                                 Terms and Conditions
                                             </a>
                                         </Typography>
-                                        <div>
+                                        {/* <div>
                                             <FormGroup style={{paddingTop: "20px"}}>
                                                 <Button style={{backgroundColor: '#FF0000'}}
                                                     variant="contained"
@@ -656,7 +667,7 @@ const Checkout = (props) => {
                                                         <FlutterPay/>
                                                 </Button>
                                             </FormGroup>
-                                        </div>
+                                        </div> */}
                                     </CardContent>
                                 </Card>
                             </Grid>
@@ -689,7 +700,7 @@ const Checkout = (props) => {
                                 <div css={{flex: 1, justifyContent: 'space-between'}}>
                                     <h1>{module}</h1>
                                     <div>
-                                        <i>{trainer}</i>
+                                        <i>{trainer}</i> {art.modId}
                                         <span css={{marginRight: 6, marginLeft: 6}}>|</span>
                                         <i>{content}</i>
                                     </div>

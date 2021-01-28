@@ -86,7 +86,7 @@ export default function App() {
           });
         }}
       >
-        Payment with React hooks
+        Other
       </div>
     </div>
   );
