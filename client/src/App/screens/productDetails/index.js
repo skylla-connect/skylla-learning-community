@@ -6,7 +6,8 @@ import React from 'react';
 import * as colors from "../../styles/colors";
 import Footer from "../../components/Footer/footer";
 import * as mq from '../../styles/media-queries';
-import modules from "../cart/components/data/modules.json";
+import FirebaseContext from 'firebase';
+// import modules from "../cart/components/data/modules.json";
 
 // MUI stuff
 import  makeStyles  from '@material-ui/core/styles/makeStyles';
@@ -40,18 +41,25 @@ const useStyles = makeStyles((theme) => ({
 
 const Product = (props) => {
     const classes = useStyles();
+    const db = FirebaseContext.firestore()
+    const [art , setArt] = React.useState([]);
     const learnContent = ["content", "content", "content", "content", "content", "content"]
-    async function getModule(moduleId) {
-        return await (props.firebase.doGetModule(moduleId)
-        .then(snapshot => {
-             return snapshot.docs
-            }))
+    async function getModule(modId) {
+        return await (db.collection('modules')
+        .get()
+          .then(snapshot => {
+            console.log(snapshot.docs);
+            const data = snapshot.docs.map(doc => doc.data())
+            setArt(data);
+              // dispatch({type: "fetch", payload: snapshot.docs})
+            return snapshot.docs;
+          }))
       }
     const { data, status, isPending, isRejected, isResolved, error, run} = useCallbackStatus()
     React.useEffect(() => {
-      run(getModule(props.moduleId))
+      run(getModule(props.modId))
     },[]);
-    const book = modules.find(item => item.id === props.moduleId);
+    const book = art.find(item => item.id === props.modId);
     if (isPending) {
         return (
           <div css={{marginTop: '2em', fontSize: '2em', textAlign: 'center'}}>
@@ -74,7 +82,7 @@ const Product = (props) => {
           </div>
         )
       }
-    const {title, author, coverImageUrl, publisher, synopsis} = book;
+    const {module, trainer, imageUrl, content, description} = book;
     return ( 
         <div className={classes.root}>
         <Grid container spacing={6} className={classes.grid}>
@@ -99,8 +107,9 @@ const Product = (props) => {
                     </Tooltip> 
                         </CardMedia>
                         <CardContent style={{textAlign: 'center'}}>
-                            <Typography variant="h6" color="textSecondary">Javascript</Typography>
-                            <Typography style={{paddingTop: '10px'}} variant="body2">Walkthrough Javascript</Typography>
+                            <Typography variant="h6" color="textSecondary">{module}</Typography>
+                            <Typography style={{paddingTop: '10px'}} variant="body2"><b>Trainer:</b> {trainer}</Typography>
+                            <Typography style={{paddingTop: '10px'}} variant="body2"><b>Description:</b>{description}</Typography>
                         </CardContent>
                     </Card>
                     <Card style={{
@@ -111,10 +120,8 @@ const Product = (props) => {
                         padding: "50px 20px"
                     }}>
                         <CardContent>
-                            <Typography variant="body" color="textSecondary">What you will learn!!</Typography>
-                            {learnContent.map( content => {
-                               return ( <Typography style={{paddingTop: '8px'}} key={content} variant="body2"><a href="#">{content}</a></Typography>)
-                            }) }
+                            <Typography variant="h5" color="textSecondary">What you will learn!!</Typography>
+                            <Typography variant="body" color="textSecondary">{content}</Typography>
                         </CardContent>
                     </Card>
                 </Grid>
@@ -129,7 +136,7 @@ const Product = (props) => {
                         <CardContent style={{
                             textAlign: 'center'}}>
                             <div>
-                                <Typography variant="h6">Javascript</Typography>
+                                <Typography variant="h6">{module}</Typography>
                                 <Typography style={{paddingTop: '10px'}} 
                                 variant="subtitle2">Preview this Content</Typography>
                             </div>
@@ -167,8 +174,8 @@ const Product = (props) => {
         }}
       >
         <img
-          src={coverImageUrl}
-          alt={`${title} book cover`}
+          src={imageUrl}
+          alt={`${module} book cover`}
           css={{
             width: '100%',
             maxWidth: 200,
@@ -177,16 +184,16 @@ const Product = (props) => {
         <div>
           <div css={{display: 'flex', position: 'relative'}}>
             <div css={{flex: 1, justifyContent: 'space-between'}}>
-              <h1>{title}</h1>
+              <h1>{module}</h1>
               <div>
-                <i>{author}</i>
+                <i>{trainer}</i>
                 <span css={{marginRight: 6, marginLeft: 6}}>|</span>
-                <i>{publisher}</i>
+                <i>{description}</i>
               </div>
             </div>
           </div>
           <br />
-          <p>{synopsis}</p>
+          <p>{content}</p>
         </div>
       </div>
     </div>

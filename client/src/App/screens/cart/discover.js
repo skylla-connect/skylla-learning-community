@@ -6,7 +6,8 @@ import React from 'react';
 import {FaSearch, FaTimes} from 'react-icons/fa'
 import { Spinner } from "../../components";
 import ModuleRow from "./components/ModuleRow";
-import modules from "./components/data/modules.json";
+import FirebaseContext from 'firebase';
+// import modules from "./components/data/modules.json";
 
 //MUI stuff
 import  makeStyles  from '@material-ui/core/styles/makeStyles';
@@ -32,22 +33,27 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const Discover = (props) => {
+  const [art , setArt] = React.useState([]);
+
   const getModules = async () => {
-    return await (props.firebase.doGetModules()
-    .then(snapshot => {
-      return snapshot.docs;
-      // if(result.exists){
-      //   return result.data();
-      // } else {
-      //   return [];
-      // }
-    })
-    )
+    const db = FirebaseContext.firestore()
+   db.collection('/modules')
+  .get()
+  .then(snap =>{
+    const data = [] 
+    snap.docs.map(doc => {
+      data.push(doc.data()) })
+      setArt(data);
+    return data;
+  })
   }
   async function search(query) {
     return await (props.firebase.doSearch(query)
     .then(snapshot => {
-      return snapshot.docs;
+      const data = [] 
+      snapshot.docs.map(doc => {
+        data.push(doc.data()) })
+      return data;
     })
     );
   }
@@ -65,11 +71,11 @@ const Discover = (props) => {
     console.log(status);
     console.log(error);
     console.log(data);
-      let books = modules || data;
+      let books = art;
       const orders = useOrderItemState()
       console.log(orders);
       console.log(books);
-      books = books.filter(li => !orders.find(item => item.id === li.id));
+      books = books.filter(li => !orders.find(item => item.modId === li.id));
       console.log(books);
     
     function handleInputChange(e) {

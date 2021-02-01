@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core';
 import { FormGroup } from '../../../components';
 
 function ModuleRow(props) {
-  const {title, author, coverImageUrl} = props.book;
+  const {module, description, imageUrl, price} = props.book;
   const {finished, book} = props;
   return (
     <div
@@ -46,10 +46,10 @@ function ModuleRow(props) {
           }}
         >
           <img
-            src={coverImageUrl}
-            alt={`${title} book cover`}
+            src={imageUrl}
+            alt={`${module} book cover`}
             css={{maxHeight: '100%', maxWidth: '100%'}}
-          />
+          />{price}
         </div>
         <div css={{flex: 1}}>
           <div css={{display: 'flex', justifyContent: 'space-between'}}>
@@ -61,7 +61,7 @@ function ModuleRow(props) {
                   color: colors.indigo,
                 }}
               >
-                {title}
+                {module}
               </h2>
              </div>
             <div css={{marginLeft: 10}}>
@@ -72,31 +72,31 @@ function ModuleRow(props) {
                   fontSize: '0.85em',
                 }}
               >
-                {author}
+                {description}
               </div>
-              <small>{book.publisher}</small>
+              <small>{book.trainer}</small>
             </div>
           </div>
-          <small css={{fontSize: "0.85em", lineHeight: "2em"}}>{book.synopsis.substring(0, 500)}...</small>
+          <small css={{fontSize: "0.85em", lineHeight: "2em"}}>{book.content.substring(0, 500)}...</small>
           {!finished && <div css={{
             paddingTop: "0.85em",
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-evenly"
           }}>
-          <FormGroup>
-              <Link to={`/cart/module/${book.id}`}>
+          {/* <FormGroup>
+              <Link to={`/cart/module/${book.modId}`}>
                 <Button 
                 css={{width: '120px'}}
                     variant="outlined"
                     color="primary"
                     ><small>Go to Cart</small></Button>
               </Link>
-            </FormGroup>
+            </FormGroup> */}
             <FormGroup>
               {/* <Link to={`/checkout/${book.id}`}> */}
                 <Button 
-                onClick={() => navigate(`/cart/checkout/${book.id}`)}
+                onClick={() => navigate(`/cart/checkout/${book.modId}`)}
                 css={{width: '120px'}}
                     variant="contained"
                     color="primary"

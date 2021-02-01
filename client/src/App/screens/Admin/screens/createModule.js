@@ -168,9 +168,9 @@ const ModuleForm = () => {
                     paddingTop: "18px",
                     }}>
                     <TextFieldMui
-                        label="Trainer"
+                        label="Trainer's Name"
                         variant="outlined"
-                        type="email"
+                        type="text"
                         id="trainer"
                         name="trainer"
                         value={values.trainer}

@@ -43,7 +43,7 @@ function NetworkError() {
           <p css={{
               fontSize: '18px',
               textAlign: 'center',
-          }}>Sorry... something went wrong try refeshing your browser, 
+          }}>Sorry... something went wrong try refreshing your browser, 
               normally this happens due to bad internet connection.</p>
         </div>
       </div>
