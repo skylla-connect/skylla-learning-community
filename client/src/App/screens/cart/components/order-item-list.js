@@ -3,7 +3,7 @@
 import {jsx} from '@emotion/core'
 
 import React from "react";
-import { useOrderItemDispatch, useOrderItemState } from '../../../session/order-context'
+import { useOrderItemDispatch } from '../../../session/order-context'
 import { withFirebase } from '../../../firebase';
 import { List, ListItem } from '@material-ui/core';
 import ModuleRow from './ModuleRow';

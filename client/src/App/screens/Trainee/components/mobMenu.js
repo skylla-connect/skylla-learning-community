@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import *as ROUTES from '../../../config/routes'
 
+
 const useStyles = makeStyles((theme) => ({
     fab: {
       margin: theme.spacing(2),
@@ -69,6 +70,7 @@ export default function SimpleMenu() {
             </div>
         </MenuItem>
 
+        <Link to ={ROUTES.QUIZTESTS}>
         <MenuItem onClick={handleClose}>
             <div style={{textAlign: 'center', display: 'flex'}}>
                 <img 
@@ -80,6 +82,7 @@ export default function SimpleMenu() {
                 </Typography>
             </div>
         </MenuItem>
+        </Link>
 
         <MenuItem onClick={handleClose}>
             <div style={{textAlign: 'center', display: 'flex'}}>
