@@ -207,7 +207,7 @@ const StyledToggleButton = withStyles({
     },[value, name]);
     return ( 
     <div>
-        <FormGroup style={{
+        {/* <FormGroup style={{
             padding: 10,
             backgroundColor: colors.bluegray, 
             width: "100%",
@@ -217,7 +217,7 @@ const StyledToggleButton = withStyles({
         }}>
             
                     <FlutterPay/>
-        </FormGroup>
+        </FormGroup> */}
     {/* <RadioGroup 
     name={name}
     value={value}
@@ -363,7 +363,7 @@ const StyledToggleButton = withStyles({
         </span> 
     </AccordionSummary>
     <AccordionDetails>
-    <Card style={{
+        <Card style={{
             width: "100%",
             backgroundColor: "#FFF",
             padding: "30px 25px"}}>
@@ -378,6 +378,14 @@ const StyledToggleButton = withStyles({
                 />
             </FormGroup>
         </Card>
+        <Button style={{backgroundColor: '#0000FF'}}
+            variant="contained"
+            color="primary"
+            type="submit"
+            // onClick={handleCheckout}
+            >
+               Pay
+        </Button>
     </AccordionDetails>
     </Accordion>
     {/* <Accordion style={{backgroundColor: colors.bluegray, width: "100%"}}>
@@ -598,9 +606,14 @@ const Checkout = (props) => {
                                     className={classes.icon}/> MoMo Pay
                                 </span>} 
                                 rightButtonContent={
-                                    <span>
-                                     Other
-                                    </span>
+                                    <Button style={{backgroundColor: '#FF0000', width: '100%'}}
+                                        variant="contained"
+                                        color="primary"
+                                        type="submit"
+                                        // onClick={handleCheckout}
+                                        >
+                                            <FlutterPay/>
+                                    </Button>
                                 }/>
                             </FormGroup>
                         </Grid>
