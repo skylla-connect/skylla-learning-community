@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Helvetica';
+    src: local('Helvetica'), 
+    url('../fonts/Helvetica.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'RobotoCondensed';
+    src: local('RobotoCondensed-Regular'), 
+    url('../fonts/RobotoCondensed-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Raleway-Medium';
+    src: local('Raleway-Medium'), 
+    url('../fonts/Raleway-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Helvetica-Bold';
+    src: local('Helvetica-Bold'), 
+    url('../fonts/Helvetica-Bold.ttf') format('truetype');
+}
+body{
+    overflow-x: hidden;
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
